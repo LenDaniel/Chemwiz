@@ -1,0 +1,28 @@
+const syllabusTopics = [
+  "atoms-molecules-and-stoichiometry",
+  "atomic-structure",
+  "chemical-bonding",
+  "states-of-matter",
+  "chemical-energetics",
+  "electrochemistry",
+  "equilibria",
+  "reaction-kinetics",
+  "periodicity",
+  "group-ii",
+  "group-iv",
+  "group-vii",
+  "nitrogen-and-sulphur",
+  "hydrocarbons",
+  "halogen-derivatives",
+  "hydroxy-compounds",
+  "carbonyl-compounds",
+  "carboxylic-acids-and-derivatives",
+  "nitrogen-compounds",
+  "polymerisation",
+  "transition-elements",
+  "phase-equilibria",
+  "environmental-chemistry",
+  "nano-chemistry",
+];
+
+module.exports = syllabusTopics;
