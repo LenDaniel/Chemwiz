@@ -1,0 +1,518 @@
+// Nano Chemistry — AC-24 — full content
+// ZIMSEC Form 5/6 Chemistry, Section 6.4 — Topic 24
+// Properties of nanomaterials, applications (medicine, water, environment), risks
+
+/* ============================================================
+   SPECS — Phase K2 migration
+   Shared diagram specs. Unused legacy JSX removed in K-Cleanup.
+   Restore the previous content files from rollback/K-Cleanup-content-before.zip if needed.
+   ============================================================ */
+
+const scaleSpec = {
+  title: 'THE NANOSCALE',
+  blocks: [
+    { type: 'scaleBar',
+      ticks: [
+        { x: 0.0,  label: '0.1 nm', sublabel: 'atom' },
+        { x: 0.25, label: '1 nm',   sublabel: 'molecule' },
+        { x: 0.5,  label: '10 nm',  sublabel: 'protein' },
+        { x: 0.75, label: '100 nm', sublabel: 'virus' },
+        { x: 1.0,  label: '1 µm',   sublabel: 'bacterium' },
+      ],
+      highlight: { from: 0.25, to: 0.75, label: 'NANOSCALE 1–100 nm', color: 'primary' },
+    },
+    { type: 'panel', title: 'WHY THIS RANGE MATTERS', body: [
+      'Size of biological structures (DNA, proteins)',
+      'Quantum effects start to matter',
+      'Surface-to-volume ratio enormous → reactivity',
+      'Optical properties become size-dependent',
+    ], color: 'primary' },
+  ],
+};
+
+const svSpec = {
+  title: 'SURFACE-TO-VOLUME RATIO',
+  blocks: [
+    { type: 'raw', height: 132, primitives: [
+      // 4 cubes of decreasing size
+      { p: 'rect', x: 50,  y: 25, w: 60, h: 60, fill: 'primary', fillAlpha: 0.3, stroke: 0.7, color: 'primary' },
+      { p: 'text', x: 80,  y: 99,  text: '1 cm cube',      size: 8, bold: true, color: 'text' },
+      { p: 'text', x: 80,  y: 112, text: 'SA/V = 6 cm⁻¹',   size: 8, bold: true, color: 'primary' },
+
+      { p: 'rect', x: 140, y: 45, w: 30, h: 30, fill: 'accent', fillAlpha: 0.3, stroke: 0.7, color: 'accent' },
+      { p: 'text', x: 155, y: 99,  text: '1 mm cube',  size: 8, bold: true, color: 'text' },
+      { p: 'text', x: 155, y: 112, text: 'SA/V = 60',  size: 8, bold: true, color: 'accent' },
+
+      { p: 'rect', x: 210, y: 55, w: 20, h: 20, fill: 'pink', fillAlpha: 0.3, stroke: 0.7, color: 'pink' },
+      { p: 'text', x: 220, y: 99,  text: '1 µm cube',     size: 8, bold: true, color: 'text' },
+      { p: 'text', x: 220, y: 112, text: 'SA/V = 6×10⁴',  size: 8, bold: true, color: 'pink' },
+
+      { p: 'text', x: 285, y: 60,  text: '1 nm', size: 11, bold: true, color: 'text' },
+      { p: 'text', x: 285, y: 99,  text: '1 nm cube',     size: 8, bold: true, color: 'text' },
+      { p: 'text', x: 285, y: 112, text: 'SA/V = 6×10⁷',  size: 8, bold: true, color: 'green' },
+    ]},
+    { type: 'note', text: 'SA/V scales as 1/size — explodes at nm scale', emphasis: true },
+    { type: 'note', text: 'Same mass; finer particles → far more surface' },
+    { type: 'note', text: 'Drives reactivity, catalysis, dissolution, lower m.p.' },
+  ],
+};
+
+const typesSpec = {
+  title: 'TYPES OF NANOMATERIAL',
+  blocks: [
+    { type: 'panel', title: 'NANOPARTICLES — 0D, spheres/dots', body: [
+      'Au, Ag, Fe₃O₄, ZnO, quantum dots',
+    ], color: 'primary' },
+    { type: 'panel', title: 'NANOTUBES — 1D, wires/tubes', body: [
+      'CNT (carbon nanotube), BN nanotube',
+    ], color: 'accent' },
+    { type: 'panel', title: 'NANOSHEETS — 2D, planar layers', body: [
+      'graphene, MoS₂, h-BN',
+    ], color: 'pink' },
+    { type: 'panel', title: 'BULK NANOSTRUCTURED — 3D, nano-grained solid', body: [
+      'nanocrystalline metals, alloys',
+    ], color: 'green' },
+    { type: 'note', text: '0D/1D/2D/3D = number of macroscopic dimensions' },
+  ],
+};
+
+const medSpec = {
+  title: 'NANOMEDICINE',
+  blocks: [
+    { type: 'panel', title: 'TARGETED DRUG DELIVERY', body: [
+      'liposomes/NPs carry drug to specific cells',
+    ], hint: 'e.g. doxorubicin in PEG-liposomes for cancer; mRNA vaccines', color: 'primary' },
+    { type: 'panel', title: 'IMAGING & DIAGNOSTICS', body: [
+      'iron oxide → MRI contrast; quantum dots → fluorescence',
+    ], hint: 'gold NPs → CT contrast; bind antibodies for tumour targeting', color: 'accent' },
+    { type: 'panel', title: 'ANTIMICROBIAL', body: [
+      'silver NPs release Ag⁺ → kill bacteria',
+    ], hint: 'used in wound dressings, hospital surfaces, fabrics', color: 'pink' },
+  ],
+};
+
+const envSpec = {
+  title: 'WATER & ENVIRONMENT',
+  blocks: [
+    { type: 'panel', title: 'WATER PURIFICATION', body: [
+      'nano-Fe⁰ removes As, Pb, Cr from groundwater',
+    ], hint: 'TiO₂ + UV photocatalyses organic pollutants → CO₂ + H₂O', color: 'primary' },
+    { type: 'panel', title: 'SOIL REMEDIATION', body: [
+      'iron NPs injected into aquifers',
+    ], hint: 'reduce Cr(VI) → Cr(III); dechlorinate solvents', color: 'accent' },
+    { type: 'panel', title: 'AIR PURIFICATION', body: [
+      'TiO₂ photocatalytic coatings on buildings',
+    ], hint: 'break down NOx and VOCs in sunlight; self-cleaning surfaces', color: 'pink' },
+  ],
+};
+
+const riskSpec = {
+  title: 'RISKS & UNCERTAINTIES',
+  blocks: [
+    { type: 'panel', title: 'RESPIRATORY HAZARDS', body: [
+      'NPs < 100 nm reach deep into lungs',
+      'Some long CNTs behave like asbestos',
+    ], color: 'pink' },
+    { type: 'panel', title: 'BIOLOGICAL TRANSPORT', body: [
+      'cross blood-brain barrier; reach unintended organs',
+      'some bioaccumulate; long-term effects unknown',
+    ], color: 'pink' },
+    { type: 'panel', title: 'ENVIRONMENTAL FATE', body: [
+      'sunscreens shed nano-TiO₂ to oceans',
+      'silver fabrics shed Ag NPs to wastewater',
+    ], color: 'pink' },
+    { type: 'note', text: 'EU REACH + cosmetics labelling; precautionary principle' },
+  ],
+};
+
+const chapters = [
+  { id: 'nn1', title: 'What is the Nanoscale?', minutes: 5, blocks: [
+    { type: 'p', text: 'The nanoscale spans 1 to 100 nanometres — about a billionth of a metre, ten to a thousand atoms across. At this size, materials behave differently from bulk: they catalyse more efficiently, absorb light at unusual wavelengths, melt at lower temperatures, and exhibit quantum effects. Nanotechnology is the deliberate manipulation of materials at this scale.' },
+    { type: 'd', spec: scaleSpec, caption: '1–100 nm: between atoms and bacteria' },
+    { type: 'h', text: 'Size context' },
+    { type: 'ul', items: [
+      'A typical atom is about 0.1 nm; a small molecule (water) about 0.3 nm.',
+      'Proteins range from ~3 nm (small enzyme) to ~50 nm (virus capsid).',
+      'A DNA double helix is 2 nm in diameter.',
+      'A red blood cell is about 7 µm = 7000 nm.',
+      'A human hair is ~80 µm wide — 800 times the upper nanoscale limit.',
+    ]},
+    { type: 'h', text: 'Why this range matters' },
+    { type: 'ul', items: [
+      'Biological matter is largely built at this scale: proteins, DNA, viruses, organelles.',
+      'Quantum effects (electron confinement, tunnelling) become significant below ~10 nm.',
+      'Surface-to-volume ratio is enormous (next chapter).',
+      'Optical properties become size-dependent: gold nanoparticles look red at 30 nm and purple at 80 nm — bulk gold is yellow.',
+      'Catalytic activity often peaks for very small clusters.',
+    ]},
+    { type: 'h', text: 'Nanoscience vs nanotechnology' },
+    { type: 'ul', items: [
+      'Nanoscience: study of phenomena at the nanoscale — fundamental research.',
+      'Nanotechnology: design and manipulation of nanoscale structures for useful applications.',
+      'Top-down fabrication: carve from bulk material (lithography, milling).',
+      'Bottom-up fabrication: assemble from atoms/molecules (chemical synthesis, self-assembly).',
+    ]},
+    { type: 'callout', kind: 'definition', title: 'Nanoparticle', body: 'A particle with at least one dimension in the range 1–100 nm. May be 0D (sphere), 1D (rod, tube), 2D (sheet), or 3D depending on which dimensions are nano-sized.' },
+    { type: 'takeaway', items: [
+      'Nanoscale = 1–100 nm; between atoms and bacteria.',
+      'This range coincides with biological structures and where quantum effects matter.',
+      'Top-down (carve) and bottom-up (assemble) are the two fabrication routes.',
+    ]},
+  ]},
+
+  { id: 'nn2', title: 'Why Nano Properties Differ from Bulk', minutes: 6, blocks: [
+    { type: 'p', text: 'Reduce a material from a coin to a nanoparticle and three things change: surface-to-volume ratio explodes, electron confinement starts to matter, and the fraction of surface atoms grows from negligible to dominant. Together these make nano-sized versions of familiar materials behave like entirely different substances.' },
+    { type: 'd', spec: svSpec, caption: 'SA/V scales as 1/size — orders of magnitude bigger at nm' },
+    { type: 'h', text: 'Surface area-to-volume ratio (SA/V)' },
+    { type: 'ul', items: [
+      'For a cube of side L: SA = 6L²; V = L³; SA/V = 6/L. As L decreases, SA/V increases.',
+      'A 1 cm cube has SA/V = 6 cm⁻¹. A 1 nm cube has SA/V = 6 × 10⁷ cm⁻¹ — ten million times bigger.',
+      'For a fixed mass, breaking it into nanoparticles dramatically increases the total exposed surface.',
+      'Consequences: faster reaction with environment, more efficient catalysis, lower melting point, faster dissolution.',
+    ]},
+    { type: 'h', text: 'High SA/V matters in catalysis' },
+    { type: 'ul', items: [
+      'Heterogeneous catalysts work at the surface — only surface atoms can adsorb reactants.',
+      'In bulk Pt, only the outermost atoms are active — a tiny fraction of total Pt mass.',
+      'Pt nanoparticles 2 nm across: ~50% of atoms are at the surface. Almost every Pt atom does useful chemistry.',
+      'Cost saving: same activity for less precious metal.',
+      'This is exactly why catalytic converters use nano-dispersed Pt/Pd/Rh on alumina (AC-23 chapter 5).',
+    ]},
+    { type: 'h', text: 'High SA/V drives reactivity and dissolution' },
+    { type: 'ul', items: [
+      'A solid dissolves at its surface — rate is proportional to surface area.',
+      'Nano-sized drug particles dissolve faster than micro-sized → faster onset of action.',
+      'Nano iron particles in contaminated groundwater react quickly with pollutants — bulk iron in the same site would corrode much more slowly.',
+      'Nano-aluminium powder ignites in air spontaneously; bulk aluminium is stable thanks to its protective oxide layer.',
+    ]},
+    { type: 'h', text: 'Quantum confinement' },
+    { type: 'ul', items: [
+      'Below about 10 nm, electrons in semiconductor nanoparticles ("quantum dots") are confined to a small region. Energy levels become discrete (like atoms) rather than continuous bands.',
+      'Energy gap ∝ 1/L². So smaller dot → larger gap → higher-energy emitted light.',
+      'CdSe quantum dots: 2 nm dot → blue fluorescence; 7 nm dot → red. Just by changing size, the colour tunes.',
+      'Used in: high-quality TVs (QLED), fluorescent tags for biological imaging, single-photon sources.',
+    ]},
+    { type: 'h', text: 'Melting point depression' },
+    { type: 'ul', items: [
+      'Bulk gold melts at 1064 °C. Gold nanoparticles 2 nm across melt at ~330 °C — a 700 °C reduction.',
+      'Reason: surface atoms have fewer neighbours, so they vibrate more freely. At nanoscale, they are a large fraction of total — average bond strength is reduced.',
+      'Practical implication: sinter nano-metal powders at much lower temperatures than bulk.',
+      'Used in printed electronics: silver nanoparticle inks dried at 200 °C give continuous Ag traces — impossible with bulk Ag (m.p. 962 °C).',
+    ]},
+    { type: 'h', text: 'Optical properties' },
+    { type: 'ul', items: [
+      'Gold nanoparticles in solution show "surface plasmon resonance" — collective oscillation of conduction electrons. Resonance wavelength depends on size and shape.',
+      'Spheres ~30 nm: red colour; spheres ~80 nm: blue/purple.',
+      'Stained glass in medieval cathedrals: colours are gold (red) and silver (yellow) nanoparticles trapped in glass — known empirically for centuries; explained scientifically only in the 19th century.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Same material, different properties', body: 'Bulk Au is a noble metal — yellow, melts at 1064 °C, almost chemically inert. Nano-Au is red or purple, melts at 330 °C, and is an excellent catalyst for CO oxidation at low T. Two different "materials" by any practical measure, even though both are pure gold.' },
+    { type: 'takeaway', items: [
+      'SA/V scales as 1/size → nanoparticles have huge surface area per gram.',
+      'Quantum confinement → discrete electronic levels → tunable optical/electronic properties.',
+      'Melting point depression → easier processing.',
+      'Same chemical composition shows different colours, reactivity, m.p. at the nanoscale.',
+    ]},
+  ]},
+
+  { id: 'nn3', title: 'Types of Nanomaterials', minutes: 6, blocks: [
+    { type: 'p', text: 'Nanomaterials are conventionally classified by how many dimensions are confined to the nanoscale. Spheres are 0D; nanowires/tubes are 1D; sheets are 2D; bulk nanostructured solids are 3D. Each class has its own characteristic chemistry and applications.' },
+    { type: 'd', spec: typesSpec, caption: 'Four classes by dimensionality' },
+    { type: 'h', text: '0D — nanoparticles and quantum dots' },
+    { type: 'ul', items: [
+      'Spheres or nearly spherical, all three dimensions in 1-100 nm.',
+      'Metal nanoparticles: gold, silver, platinum, palladium. Catalysis, antimicrobial surfaces, drug delivery, sensors.',
+      'Metal oxide nanoparticles: TiO₂ (sunscreens, photocatalysis), Fe₃O₄ (magnetic — MRI contrast), ZnO (sunscreen, antibacterial).',
+      'Quantum dots: CdSe, CdTe, InP, PbS. Tunable fluorescence by size. Displays, biological imaging.',
+      'Carbon dots and silicon dots: less toxic alternatives to heavy-metal quantum dots.',
+    ]},
+    { type: 'h', text: '1D — nanotubes, nanowires, nanorods' },
+    { type: 'ul', items: [
+      'Long in one dimension (microns), nano in the other two.',
+      'CARBON NANOTUBES (CNTs): graphene rolled into a cylinder. Single-walled or multi-walled. Diameter 1–50 nm; length up to mm.',
+      'CNT properties: tensile strength 50–100 GPa (~100× steel by mass); current 1000× copper by area; thermal conductivity higher than diamond.',
+      'CNT applications: structural composites (Boeing 787, sports gear), electronics (transistors), batteries, water filters.',
+      'Other 1D: silver nanowires (transparent conducting films for touch screens), boron nitride nanotubes, silicon nanowires (battery anodes).',
+    ]},
+    { type: 'h', text: '2D — sheets and films' },
+    { type: 'ul', items: [
+      'GRAPHENE: a single layer of carbon atoms in a hexagonal lattice. One atom thick. Discovered/isolated 2004 — Nobel Prize 2010.',
+      'Graphene properties: highest known thermal conductivity, ~2.5× copper electrical conductivity, transparent, very strong.',
+      'Applications: high-frequency electronics, transparent conductive electrodes (touch screens), composites, water purification membranes.',
+      'Other 2D: hexagonal boron nitride (h-BN, "white graphene"); MoS₂ (tunable bandgap); MXenes (titanium carbides for batteries).',
+    ]},
+    { type: 'h', text: '3D — bulk nanostructured solids' },
+    { type: 'ul', items: [
+      'Macroscopic objects with grain size, pore size, or filler size in the nanoscale range.',
+      'Nanostructured metals: very fine grain size makes the metal much stronger than coarse-grained (Hall-Petch strengthening).',
+      'Nanoporous materials: aerogels, zeolites, MOFs (metal-organic frameworks).',
+      'Nanocomposites: bulk matrix (polymer, metal, ceramic) reinforced with nanoparticles or nanotubes.',
+      'Natural examples: bone (collagen + apatite), nacre (CaCO₃ + protein), wood (cellulose + lignin). Nature has been using nanocomposites for hundreds of millions of years.',
+    ]},
+    { type: 'h', text: 'How nanomaterials are made' },
+    { type: 'ul', items: [
+      'Top-down: ball milling, lithography, mechanical attrition.',
+      'Bottom-up: chemical synthesis (reduction of metal salts), sol-gel, CVD, self-assembly, biological templating.',
+      'CVD (chemical vapour deposition): heat substrate + reactive gases; product nucleates on substrate. Used for graphene, carbon nanotubes, semiconductor films.',
+      'Each method gives different control over size, shape, dispersity, surface chemistry.',
+    ]},
+    { type: 'callout', kind: 'definition', title: 'Carbon nanotube', body: 'A long cylindrical structure of carbon atoms, formed by rolling up a sheet of graphene. SWCNT diameters 1-2 nm; MWCNT 5-50 nm. Combine high tensile strength, electrical and thermal conductivity in one material.' },
+    { type: 'takeaway', items: [
+      '0D: nanoparticles, quantum dots — catalysis, imaging, drug delivery.',
+      '1D: nanotubes, nanowires — electronics, structural composites.',
+      '2D: graphene, h-BN — transparent conductors, membranes, electronics.',
+      '3D: bulk nanostructured — stronger metals, lightweight composites.',
+    ]},
+  ]},
+
+  { id: 'nn4', title: 'Applications in Medicine', minutes: 6, blocks: [
+    { type: 'p', text: 'Medicine is the most active commercial application of nanotechnology. Nanoparticles operate at the size scale of biological structures, so they can interact with cells, target tissues, and pass through biological barriers in ways bulk materials cannot. Three areas dominate: drug delivery, diagnostic imaging, and antimicrobial surfaces.' },
+    { type: 'd', spec: medSpec, caption: 'Three pillars of nanomedicine' },
+    { type: 'h', text: 'Targeted drug delivery' },
+    { type: 'ul', items: [
+      'Conventional drugs distribute throughout the body — they reach the target tissue but also healthy tissue, causing side effects.',
+      'Nanoparticles can deliver drugs SELECTIVELY: load drug into a nanoparticle, attach a targeting ligand (antibody, peptide), inject. The nanoparticle finds the target and releases the drug there.',
+      'EXAMPLE: Doxil (FDA-approved 1995) — doxorubicin in PEGylated liposomes (~100 nm). Reduces cardiac toxicity by ~50% vs free doxorubicin.',
+      'EXAMPLE: COVID-19 mRNA vaccines (Pfizer, Moderna). The mRNA is encapsulated in lipid nanoparticles (~100 nm). LNPs protect the mRNA, enable cellular uptake, and release inside the cell.',
+      'Future: targeted gene therapy, glucose-responsive insulin nanoparticles, magnetic NPs steered to target sites.',
+    ]},
+    { type: 'h', text: 'Diagnostic imaging' },
+    { type: 'ul', items: [
+      'Iron oxide nanoparticles (~10 nm): superparamagnetic. Used as MRI contrast agents to highlight tumours and inflammation.',
+      'Gold nanoparticles: high atomic number → strong X-ray attenuation. CT contrast and photo-acoustic imaging.',
+      'Quantum dots: bright, photostable fluorescence at tunable wavelengths. Microscopy, single-molecule tracking in living cells.',
+      'Theranostics: a single nanoparticle that both images disease and delivers treatment.',
+    ]},
+    { type: 'h', text: 'Antimicrobial surfaces' },
+    { type: 'ul', items: [
+      'Silver nanoparticles (5-50 nm) release Ag⁺ slowly. Ag⁺ binds proteins, disrupts membranes, generates reactive oxygen species — kills bacteria with multiple mechanisms; resistance is hard to develop.',
+      'Used in wound dressings (Acticoat, Aquacel Ag): high-burn hospitals routinely use silver-impregnated dressings.',
+      'Hospital surfaces: silver-coated door handles, light switches, bed rails reduce surface bacterial loads by 70-90%.',
+      'Fabrics: silver-impregnated socks (anti-odour), surgical gowns, food packaging.',
+      'Other: ZnO and CuO have weaker activity but cheaper; TiO₂ in sunlight produces ROS (photocatalytic kill).',
+    ]},
+    { type: 'h', text: 'Sunscreens — nano-TiO₂ and nano-ZnO' },
+    { type: 'ul', items: [
+      'Conventional sunscreens use organic UV absorbers; some have allergenic or hormonal-disruption concerns.',
+      'TiO₂ and ZnO are inorganic UV blockers that physically scatter and absorb UV. The bulk powders are white and chalky.',
+      'Nano-TiO₂ and nano-ZnO (~50-100 nm) scatter UV but transmit visible light — appear transparent on skin while blocking UV.',
+      'Excellent cosmetic acceptance + photostability — leading mineral sunscreens use nano-TiO₂.',
+      'Concern: skin penetration and free-radical generation; current evidence: negligible penetration through intact skin.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Why nano works in medicine', body: 'Nanoparticles match the size scale of cells, viruses, and protein machinery. Small enough to circulate in the bloodstream (< 100 nm to avoid kidney filtration; > 10 nm to avoid rapid uptake), large enough to carry useful drug payloads, surface-engineered to find specific tissues. No bulk material can do all three.' },
+    { type: 'takeaway', items: [
+      'Targeted drug delivery: NPs + ligands → drug to diseased cells; reduces side effects.',
+      'Imaging: iron oxides for MRI, quantum dots for fluorescence, gold for CT.',
+      'Antimicrobials: silver NPs in dressings, surfaces, fabrics.',
+      'Sunscreens: nano-TiO₂ and nano-ZnO transparent UV blockers.',
+      'Vaccines: lipid nanoparticles deliver mRNA.',
+    ]},
+  ]},
+
+  { id: 'nn5', title: 'Applications in Water and Environment', minutes: 5, blocks: [
+    { type: 'p', text: 'After medicine, the second-most active application of nanotechnology is environmental — water purification and pollution remediation. High surface area, tunable surface chemistry, and (sometimes) magnetic recoverability make nanomaterials ideal sorbents and catalysts for cleaning up contamination.' },
+    { type: 'd', spec: envSpec, caption: 'Three areas: water, soil, air' },
+    { type: 'h', text: 'Water purification' },
+    { type: 'ul', items: [
+      'Nano-iron (zerovalent iron, nZVI): tiny iron particles injected into contaminated groundwater. Iron is a strong reducing agent. Reduces Cr(VI) → Cr(III), reduces As(V) → insoluble As(0)/As(III), dechlorinates PCE/TCE to ethene + Cl⁻.',
+      'TiO₂ photocatalysis: nano-TiO₂ + UV generates hydroxyl radicals that oxidise organic pollutants (dyes, pesticides, drugs) all the way to CO₂ + H₂O.',
+      'Carbon nanotube membranes: channels can be smaller than salt ions but allow water through — proposed for energy-efficient desalination.',
+      'Iron oxide nanoparticles: bind heavy metal ions strongly; can be removed by a magnet after treatment.',
+      'Graphene oxide membranes: very thin barriers that allow water but exclude salt — work in progress on commercial desalination.',
+    ]},
+    { type: 'h', text: 'Soil and groundwater remediation' },
+    { type: 'ul', items: [
+      'Contaminated industrial sites: chlorinated solvent plumes, heavy metals, acid mine drainage. Conventional pump-and-treat takes decades.',
+      'In-situ nano-iron treatment: inject nZVI slurry into the contaminated zone. Iron particles disperse in the aquifer and react with contaminants over months to years.',
+      'Reactions: 4Fe⁰ + Cr(VI) → 4Fe(III) + Cr(III); Fe⁰ + Cl-CH=CCl-Cl + H⁺ → CH₂=CH₂ + Fe²⁺ + 3HCl.',
+      'Advantage: no excavation; treatment underground; fraction of pump-and-treat cost.',
+      'Limitations: nanoparticle aggregation reduces reactivity; uneven distribution in heterogeneous aquifers.',
+    ]},
+    { type: 'h', text: 'Air purification' },
+    { type: 'ul', items: [
+      'Photocatalytic tiles and pavements: TiO₂ coating on building surfaces. In sunlight, TiO₂ generates radicals that destroy NOx and VOCs on contact.',
+      'Used on motorway sound barriers in the Netherlands; on roof tiles in Italy and Japan; on tunnel walls.',
+      'Efficacy: well-designed coatings reduce local NOx by 30-50%.',
+      'Self-cleaning property: organic dirt is decomposed by the same radicals; surfaces stay clean longer.',
+      'Indoor air: TiO₂ photocatalytic filters destroy VOCs and odours.',
+    ]},
+    { type: 'h', text: 'Sensors and other applications' },
+    { type: 'ul', items: [
+      'CNT-based sensors detect specific gases (NOx, NH₃, ethene from fruit ripening) at ppb levels.',
+      'Quantum dot biosensors bind specific proteins or viruses; fluorescence change → rapid disease detection.',
+      'Nano-fertilisers: slow-release nutrient delivery; less wash-off, less run-off pollution.',
+      'Food packaging: nano-Ag for antimicrobial packaging; nano-clay for improved barrier; nano-sensors for spoilage.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Why nano works in environmental cleanup', body: 'High surface area means more contaminant binding per gram of sorbent. High reactivity means contaminants are destroyed (not just sequestered). Tiny size lets particles infiltrate porous soils. Magnetic NPs allow recovery after cleanup.' },
+    { type: 'takeaway', items: [
+      'Nano-iron: in-situ groundwater cleanup of Cr(VI), As, chlorinated solvents.',
+      'TiO₂ photocatalysis: destroys organics in water and air.',
+      'Nano-membranes: efficient desalination and contaminant filtering.',
+      'Nano-sensors: ppb-level real-time detection.',
+    ]},
+  ]},
+
+  { id: 'nn6', title: 'Risks and Regulation', minutes: 5, blocks: [
+    { type: 'p', text: 'The same properties that make nanomaterials useful — small size, high surface area, ability to cross biological barriers — also raise safety concerns. Bulk gold is one of the safest materials known; nano-gold may be very different. Toxicology and environmental fate research has been racing to keep up with product release.' },
+    { type: 'd', spec: riskSpec, caption: 'Three categories of nanomaterial concern' },
+    { type: 'h', text: 'Routes of human exposure' },
+    { type: 'ul', items: [
+      'Inhalation: airborne nanoparticles from manufacturing, abrasion of nano-products, accidental release. Particles < 100 nm reach the alveoli (deepest part of the lung), where they are not effectively cleared.',
+      'Ingestion: nanoparticles in food (intentional, e.g. nano-TiO₂ as whitener; or unintentional, e.g. wear from food processing equipment), in water from industrial discharges.',
+      'Dermal: cosmetics, sunscreens — though intact skin generally blocks penetration of well-formulated NPs.',
+      'Injection: medical applications — direct introduction into bloodstream.',
+    ]},
+    { type: 'h', text: 'Health concerns' },
+    { type: 'ul', items: [
+      'Carbon nanotubes: long, fibre-like CNTs resemble asbestos. Animal studies show that long, straight CNTs cause inflammation and tumours in lung lining (mesothelioma) — the same disease asbestos causes. Short, tangled CNTs appear less hazardous.',
+      'Metal nanoparticles: silver, gold, copper NPs taken up by cells, concentrate in liver, spleen, brain. Long-term effects in humans not fully studied.',
+      'TiO₂: classified by IARC as "possibly carcinogenic" (group 2B) when inhaled in particulate form. France banned nano-TiO₂ as a food additive in 2020.',
+      'Quantum dots: many contain heavy metals (Cd, Pb) toxic if released; design effort focuses on coating to prevent leaching.',
+      'Crossing the blood-brain barrier: nanoparticles small enough can reach the brain — toxic effects there are particularly serious.',
+    ]},
+    { type: 'h', text: 'Environmental concerns' },
+    { type: 'ul', items: [
+      'Sunscreens shed nano-TiO₂ and nano-ZnO into rivers and oceans during swimming; effects on coral and fish are emerging research areas.',
+      'Silver NPs in fabric/clothing wash into wastewater; can damage beneficial bacteria in sewage treatment plants.',
+      'CNTs released from composite materials at end-of-life (incineration, weathering) — long-term fate uncertain.',
+      'Aggregation: many NPs aggregate over time into less reactive lumps. Toxicity of aggregated nano-material is generally less than freshly dispersed form.',
+      'Bioaccumulation: some NPs accumulate up the food chain — concern especially for persistent metal NPs.',
+    ]},
+    { type: 'h', text: 'Regulation and the precautionary principle' },
+    { type: 'ul', items: [
+      'EU REACH (2007): chemical regulation framework requires safety data. Specific nanomaterial requirements added 2018 — registrants must consider nanoform-specific properties.',
+      'EU Cosmetics Regulation: nanomaterial ingredients must be labelled with "[nano]" suffix.',
+      'US FDA: regulates nanomaterials in food, drugs, cosmetics — but the threshold for what counts as "nano" is debated.',
+      'Difficulty: a single material can have many nanoforms with different properties — toxicology must consider EACH form.',
+      'Precautionary principle: if a product cannot be proven safe, restrict its use until evidence is in.',
+      'Ongoing research: large EU and US programmes investigating nanomaterial fate and toxicity.',
+    ]},
+    { type: 'h', text: 'How risk is managed in practice' },
+    { type: 'ul', items: [
+      'Workplace: protective masks (N95 or better), enclosed handling, ventilation. Treat nano-powders like asbestos.',
+      'Consumer products: nanomaterials typically incorporated into solid matrices (plastics, ceramics, coatings). Wear and weathering still emit some — research continues.',
+      'End-of-life: incineration and recycling release NPs. Modern incinerators with advanced filtration capture most; landfill is a long-term unknown.',
+      'Informed consent: drug delivery and medical imaging applications must establish risk/benefit before approval.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'The science is racing the products', body: 'Nanotechnology has produced thousands of commercial products since the early 2000s. Toxicological understanding lags behind. The chemistry and engineering are well understood; long-term ecological and health impacts are not. Continuing research and adaptive regulation are essential.' },
+    { type: 'takeaway', items: [
+      'Exposure routes: inhalation (worst), ingestion, dermal, injection.',
+      'Health: long CNTs may resemble asbestos; metal NPs accumulate in organs.',
+      'Environment: sunscreens, fabrics, products release NPs into water.',
+      'Regulation: EU REACH, cosmetics labelling, FDA — adaptive but lagging.',
+      'Precautionary principle: assume risk until proven safe.',
+    ]},
+  ]},
+];
+
+const quizzes = [
+  { q: 'The nanoscale is defined as:', opts: ['1 to 100 m', '1 to 100 mm', '1 to 100 µm', '1 to 100 nm'], ans: 3, hint: '1 nm = 10⁻⁹ m.' },
+  { q: 'A typical atom is about:', opts: ['0.1 nm', '1 nm', '10 nm', '100 nm'], ans: 0, hint: 'About one tenth of a nanometre.' },
+  { q: 'Why do nanoparticles have unusual reactivity?', opts: ['Different chemical formula', 'Very high surface-to-volume ratio', 'Lower mass', 'Higher temperature'], ans: 1, hint: 'SA/V scales as 1/size.' },
+  { q: 'The melting point of gold nanoparticles is:', opts: ['Higher than bulk Au', 'Lower than bulk Au', 'Same as bulk', 'Cannot be defined'], ans: 1, hint: 'Surface atoms vibrate freely; m.p. drops with size.' },
+  { q: 'CdSe quantum dots are tunable in colour because:', opts: ['Different chemical compositions', 'Quantum confinement: smaller dot → larger band gap → bluer light', 'Different temperatures', 'Different solvents'], ans: 1, hint: 'Energy ∝ 1/L².' },
+  { q: 'A 0D nanomaterial is:', opts: ['A flat film', 'A long wire', 'A sphere or quantum dot', 'A bulk solid'], ans: 2, hint: 'All three dimensions confined to nm scale.' },
+  { q: 'Carbon nanotubes are:', opts: ['Random soot', 'Long cylindrical structures of carbon, like a rolled graphene sheet', 'Fullerenes', 'Diamond polymorphs'], ans: 1, hint: 'Sheet of graphene rolled into a tube.' },
+  { q: 'Graphene is:', opts: ['A 3D bulk solid', 'A 2D single sheet of carbon atoms in a hexagonal lattice', 'A 1D wire', 'A 0D dot'], ans: 1, hint: 'One atom thick.' },
+  { q: 'Iron oxide nanoparticles are used in:', opts: ['Steel manufacture', 'MRI contrast (superparamagnetic)', 'Solar cells only', 'Batteries only'], ans: 1, hint: 'Magnetic at small size.' },
+  { q: 'Targeted drug delivery uses nanoparticles to:', opts: ['Make drugs cheaper', 'Selectively reach diseased tissue, reducing side effects', 'Make drugs more soluble', 'Replace drugs entirely'], ans: 1, hint: 'Combined with targeting ligand.' },
+  { q: 'COVID-19 mRNA vaccines use:', opts: ['Bulk virus particles', 'Lipid nanoparticles to deliver mRNA into cells', 'Solid pellets', 'Naked mRNA injection'], ans: 1, hint: 'LNP protects mRNA and enables uptake.' },
+  { q: 'Silver nanoparticles in wound dressings work because:', opts: ['They emit radiation', 'Slow release of Ag⁺ ions kills bacteria', 'They block oxygen', 'They warm the wound'], ans: 1, hint: 'Ag⁺ disrupts bacterial proteins/membranes.' },
+  { q: 'Nano-TiO₂ in modern sunscreens:', opts: ['Is bulk TiO₂', 'Is transparent on skin while still blocking UV', 'Is coloured', 'Is biodegradable'], ans: 1, hint: '~50-100 nm scatters UV but transmits visible light.' },
+  { q: 'Nano-iron (nZVI) injected into groundwater:', opts: ['Pollutes the water further', 'Reduces and immobilises heavy metals; dechlorinates organics', 'Acidifies the water', 'Has no effect'], ans: 1, hint: 'Strong reducer; in-situ remediation.' },
+  { q: 'TiO₂ photocatalysis works by:', opts: ['Direct electron transfer', 'UV-generated hydroxyl radicals oxidise organic pollutants', 'Acid-base reaction', 'Heating the air'], ans: 1, hint: '•OH from photoexcited TiO₂ + H₂O.' },
+  { q: 'Why are CNTs of concern in respiratory health?', opts: ['Too small to inhale', 'Long, fibre-like CNTs resemble asbestos and cause similar lung pathology', 'They are radioactive', 'They taste bad'], ans: 1, hint: 'Long, straight CNTs cause mesothelioma in animal studies.' },
+  { q: 'Catalytic converters use Pt as nanoparticles because:', opts: ['Cheaper that way', 'Maximises Pt surface area per gram', 'Required by law', 'Avoids leaded fuel'], ans: 1, hint: 'High SA/V → most Pt atoms catalytically active.' },
+  { q: 'Quantum dots used in TV displays exploit:', opts: ['Their colour change with temperature', 'Size-tunable photoluminescence to give pure RGB colours', 'Their magnetism', 'Their conductivity'], ans: 1, hint: 'Different sizes emit different colours.' },
+  { q: 'Bulk gold and the SAME mass of gold nanoparticles. Compare reactivity:', opts: ['Equal', 'Bulk gold is more reactive', 'Nanoparticles are far more reactive', 'Cannot tell'], ans: 2, hint: 'Same mass, far more surface area for nano.' },
+  { q: 'Which is NOT a typical concern about nanomaterials?', opts: ['Inhalation hazard for workers', 'Aquatic ecosystem effects', 'Loss of mass', 'Crossing the blood-brain barrier'], ans: 2, hint: 'Mass is conserved; the others are real concerns.' },
+  { q: 'EU regulation requires nanomaterials in cosmetics to be:', opts: ['Banned', 'Labelled with [nano]', 'Made of natural materials only', 'Tested by every consumer'], ans: 1, hint: 'EU Cosmetics Regulation 1223/2009.' },
+  { q: 'The "precautionary principle" in nanotech regulation means:', opts: ['Use products only after they prove safe', 'Always assume safety', 'Ban all new products', 'Test only after deployment'], ans: 0, hint: 'Restrict use until safety is established.' },
+];
+
+const structured = [
+  { title: 'The nanoscale and surface area', marks: 7, q: 'Nanomaterials have at least one dimension between 1 and 100 nm.', parts: [
+    { q: '(a) Calculate the surface area-to-volume ratio for cubes of side (i) 1 cm and (ii) 1 nm. Comment on the result.', marks: 3, ans: '(i) 1 cm cube: SA = 6(0.01)² = 6 × 10⁻⁴ m². V = (0.01)³ = 10⁻⁶ m³. SA/V = 600 m⁻¹ = 6 cm⁻¹. (ii) 1 nm cube: SA = 6(10⁻⁹)² = 6 × 10⁻¹⁸ m². V = (10⁻⁹)³ = 10⁻²⁷ m³. SA/V = 6 × 10⁹ m⁻¹ = 6 × 10⁷ cm⁻¹. Comment: SA/V of the 1 nm cube is about 10⁷ times that of the 1 cm cube. SA/V scales as 1/L. For a fixed mass of material, breaking it down to nm size dramatically increases the available surface for chemical interactions.' },
+    { q: '(b) Use this calculation to explain why platinum is used as nanoparticles in catalytic converters.', marks: 2, ans: 'Platinum is extremely expensive (~$30/g). Catalysis happens only at the surface — only surface atoms can adsorb reactants. For bulk Pt, only a tiny fraction of atoms are at the surface; the interior atoms are wasted. Using Pt as ~2 nm nanoparticles dispersed on a high-SA alumina support, ~50% of the atoms are at the surface. Same total catalytic activity is achieved with 10-100× less Pt — major economic and resource saving.' },
+    { q: '(c) State ONE other practical consequence of high SA/V at the nanoscale.', marks: 2, ans: 'Any of: (i) faster dissolution rate — nano-sized drugs dissolve faster, giving quicker onset of action; (ii) lower melting point — nano-metals can be sintered at much lower T than bulk; (iii) higher reactivity — nano-aluminium powder ignites in air, while bulk Al is stable; (iv) faster reaction with environment — nano-iron in groundwater reacts quickly with pollutants, while bulk iron reacts slowly.' },
+  ]},
+  { title: 'Quantum effects and applications', marks: 7, q: 'CdSe quantum dots are used in displays and biological imaging.', parts: [
+    { q: '(a) Explain how the colour of light emitted by a quantum dot depends on its size.', marks: 3, ans: 'A quantum dot is a small semiconductor crystal (typically 2-10 nm) in which electrons are confined to a region comparable to or smaller than their natural orbital radius. This confinement quantises the electronic energy levels, similar to a particle in a box. The energy gap between the valence and conduction bands depends on the size of the dot: E ∝ 1/L². Smaller dots have a LARGER energy gap, so they emit higher-energy (shorter wavelength, blue) light. Larger dots have a SMALLER energy gap and emit lower-energy (longer wavelength, red) light. By controlling the dot size in synthesis, the emission colour can be tuned across the visible spectrum.' },
+    { q: '(b) State TWO applications of quantum dots and explain WHY their tunable colour is useful in each.', marks: 4, ans: 'Application 1: QLED displays. Each pixel needs to emit pure red, green, or blue light. Quantum dots can be made in three sizes to produce these three pure colours. The colours are MORE PURE than from white-light backlights filtered through colour filters, giving a wider colour gamut. Quantum dot TVs deliver more vivid images. Application 2: Biological imaging. Researchers tag specific proteins or organelles with quantum dots of different colours to track them in living cells. The colour-tunability lets them image MULTIPLE different biological targets simultaneously, each with its own colour. Quantum dots are also far more photo-stable than organic fluorescent dyes — they do not fade quickly under microscope illumination, allowing long observation. Other accepted uses: solar cells, single-photon sources for quantum computing, security inks.' },
+  ]},
+  { title: 'Applications and risks', marks: 8, q: 'Nanoparticles have important applications in medicine and the environment, but also raise safety concerns.', parts: [
+    { q: '(a) Describe how silver nanoparticles are used in wound dressings and explain the chemistry behind their antimicrobial action.', marks: 3, ans: 'Silver nanoparticles (typically 5-50 nm) are incorporated into wound-dressing fabrics or hydrogels. In contact with wound moisture, the particles slowly release silver ions Ag⁺. The Ag⁺ ions kill bacteria via several mechanisms: (i) they bind to protein -SH groups, denaturing enzymes; (ii) they disrupt the bacterial cell membrane, causing leakage; (iii) they generate reactive oxygen species (ROS) that damage DNA and other biomolecules. The combined attack means bacteria find it difficult to develop resistance — unlike with conventional antibiotics that target a single mechanism. Silver dressings are routinely used in burns units and chronic-wound care, where infection risk is high. The slow Ag⁺ release sustains antimicrobial activity for several days.' },
+    { q: '(b) Outline how nano-iron (nZVI) is used to treat groundwater contaminated with chromium(VI).', marks: 3, ans: 'A slurry of zerovalent iron nanoparticles (10-100 nm) is injected directly into the contaminated aquifer through wells. The nanoparticles disperse through the porous rock or soil and contact the dissolved Cr(VI) (typically as CrO₄²⁻ or Cr₂O₇²⁻). Iron is a strong reducing agent and reduces the soluble, toxic Cr(VI) to insoluble Cr(III): 2Cr₂O₇²⁻ + 3Fe⁰ + 14H⁺ → 4Cr³⁺ + 3Fe²⁺ + 7H₂O (with subsequent precipitation as Cr(OH)₃ at the local pH). Cr(III) is approximately 1000 times less toxic than Cr(VI) and is much less mobile in groundwater. The treatment is in-situ — no excavation required, far cheaper than pump-and-treat. The same technology can dechlorinate solvents (TCE, PCE) to harmless ethene and Cl⁻.' },
+    { q: '(c) State TWO health concerns about widespread use of nanomaterials.', marks: 2, ans: 'Concern 1: Long, fibrous carbon nanotubes resemble asbestos in shape and lung-deposition behaviour. Animal studies show that long, straight CNTs deposited in the lung lining cause inflammation and, after long exposure, mesothelioma — the same cancer caused by asbestos. Workers handling CNT powder need full respiratory protection. Concern 2: Many nanoparticles can cross biological barriers that bulk materials cannot. They may pass through skin, the gut wall, or even the blood-brain barrier. Once inside the body, they may bioaccumulate in organs (liver, spleen, brain) over time. Long-term human health effects are not yet fully studied. Other accepted: damage to ecosystems from environmental release; uncertainty about combined exposure to multiple nanomaterials; difficulty in tracking nanomaterials through complex environmental media.' },
+  ]},
+  { title: 'Sunscreen comparison', marks: 6, q: 'Modern sunscreens use either organic UV absorbers (e.g. avobenzone) or inorganic UV blockers (TiO₂, ZnO).', parts: [
+    { q: '(a) Explain why bulk TiO₂ and ZnO are used in some sunscreens but the cosmetic acceptance was historically poor.', marks: 2, ans: 'Bulk TiO₂ and ZnO (particle size > 200 nm) physically scatter and absorb ultraviolet radiation, providing broad-spectrum UV protection (both UVA and UVB). Unlike many organic UV absorbers, they are photo-stable — they do not break down on UV exposure. They are also less likely to cause skin irritation or allergic reaction. However, particles in this size range scatter VISIBLE light as well as UV, so the sunscreen leaves a visible WHITE FILM on the skin — the chalky look of older sunscreens. Cosmetic acceptance was poor; consumers preferred the "invisible" finish of organic sunscreens.' },
+    { q: '(b) Explain how nano-TiO₂ (50-100 nm) overcomes this problem.', marks: 2, ans: 'Particles in the 50-100 nm range are much smaller than visible light wavelengths (400-700 nm) but comparable to or smaller than UV wavelengths (280-400 nm). They efficiently SCATTER UV light (still blocking it from the skin) but TRANSMIT visible light (so they appear transparent). This combines the best of both worlds: the photostability and broad-spectrum protection of inorganic UV blockers, with the cosmetic invisibility of organic sunscreens. Modern mineral sunscreens use nano-TiO₂ with surface coatings that prevent ROS generation by the TiO₂ photocatalysis, addressing the skin-damage concern.' },
+    { q: '(c) State ONE concern about widespread use of nano-TiO₂ in sunscreens.', marks: 2, ans: 'Two main concerns. Concern 1: Skin penetration. Some early studies suggested that nano-TiO₂ might penetrate damaged or sun-burnt skin and reach the dermis or even the bloodstream. Current evidence indicates negligible penetration through intact skin, but data on damaged skin and long-term repeated use is limited. Concern 2: Environmental release. When swimmers wear sunscreen and enter water, the nano-TiO₂ washes off into rivers and oceans. The particles may damage coral reefs (TiO₂ photocatalysis can generate ROS that bleach coral), affect aquatic invertebrates, and contribute to long-term contamination of marine sediments. Some destinations (e.g. Hawaii, Palau) have banned reef-damaging sunscreen ingredients.' },
+  ]},
+];
+
+const worked = [
+  { title: 'Calculate SA/V ratio', diff: 'easy', q: 'A 1 g sample of solid copper is processed into uniform spherical nanoparticles of 50 nm diameter. Density of Cu = 8.96 g/cm³. Estimate the total surface area of the nano-sample.', steps: [
+    { label: 'STEP 1', text: 'Volume of Cu sample = 1 g / 8.96 g cm⁻³ = 0.1116 cm³ = 1.116 × 10⁻⁷ m³.' },
+    { label: 'STEP 2', text: 'Volume of one nanoparticle: V = (4/3)π r³, with r = 25 nm = 2.5 × 10⁻⁸ m. V = (4/3)(π)(1.5625 × 10⁻²³) = 6.54 × 10⁻²³ m³.' },
+    { label: 'STEP 3', text: 'Number of nanoparticles N = total volume / volume of one = 1.116 × 10⁻⁷ / 6.54 × 10⁻²³ = 1.71 × 10¹⁵.' },
+    { label: 'STEP 4', text: 'Surface area of one nanoparticle: A = 4π r² = 4π (2.5 × 10⁻⁸)² = 7.85 × 10⁻¹⁵ m².' },
+    { label: 'STEP 5', text: 'Total surface area = N × A = 1.71 × 10¹⁵ × 7.85 × 10⁻¹⁵ = 13.4 m².' },
+  ], ans: 'About 13 m² of surface area per gram of copper. The same 1 g of bulk copper as a single sphere would have surface area only ~0.011 m² — over 1000 times less. This is why nanoparticles are so much more reactive than bulk material.' },
+
+  { title: 'Predict quantum dot colour', diff: 'medium', q: 'Two CdSe quantum dots have diameters of 3 nm and 6 nm. Predict which emits longer-wavelength light and explain.', steps: [
+    { label: 'STEP 1', text: 'Quantum confinement: the energy gap between the highest occupied and lowest unoccupied electronic states scales as 1/L² (particle in a box).' },
+    { label: 'STEP 2', text: 'Smaller dot (3 nm): smaller L → larger 1/L² → LARGER energy gap → photons emitted are higher energy = SHORTER wavelength (e.g. blue/green).' },
+    { label: 'STEP 3', text: 'Larger dot (6 nm): larger L → smaller 1/L² → SMALLER energy gap → photons emitted are lower energy = LONGER wavelength (e.g. orange/red).' },
+    { label: 'STEP 4', text: 'For CdSe, the 3 nm dot would emit around 540 nm (green) and the 6 nm dot around 620 nm (orange-red). The wavelength scales smoothly with size.' },
+  ], ans: 'The 6 nm dot emits the LONGER wavelength (around orange-red ~620 nm) compared with the 3 nm dot (~540 nm green). This size-tunability is the key feature exploited in quantum-dot displays and biological imaging.' },
+
+  { title: 'Compare reactivity', diff: 'easy', q: 'Iron filings (~1 mm) react slowly with dilute HCl. Iron nanopowder (~50 nm) reacts violently and may even ignite in air. Explain in terms of surface area.', steps: [
+    { label: 'STEP 1', text: 'Filings have particle size ~1 mm = 10⁻³ m. SA/V ≈ 6/L = 6/10⁻³ = 6000 m⁻¹.' },
+    { label: 'STEP 2', text: 'Nanopowder has size 50 nm = 5 × 10⁻⁸ m. SA/V ≈ 6/(5 × 10⁻⁸) = 1.2 × 10⁸ m⁻¹.' },
+    { label: 'STEP 3', text: 'Ratio: nanopowder SA/V is about 20 000 times larger than filings.' },
+    { label: 'STEP 4', text: 'Reactions of metal with acid (or with O₂) take place at the surface. Rate is proportional to surface area. The nanopowder has 20 000 times more surface, so the reaction is 20 000 times faster (per gram).' },
+    { label: 'STEP 5', text: 'For ignition in air: bulk iron has a protective Fe₂O₃ layer that inhibits further oxidation. The high reactivity AND high surface area of nanopowder mean that the entire particle can oxidise in seconds, releasing enough heat to ignite.' },
+  ], ans: 'Nano-iron has ~10⁴ times the surface area per gram of iron filings. Reaction rates scale with surface area, so the nanopowder reacts ~10⁴ times faster — fast enough to ignite spontaneously when oxidised in air.' },
+
+  { title: 'Choose a nanomaterial for an application', diff: 'medium', q: 'For each application, suggest a suitable nanomaterial and justify briefly: (a) clear UV-blocking sunscreen; (b) MRI contrast agent for tumour imaging; (c) photocatalyst to destroy organic pollutants in water.', steps: [
+    { label: 'STEP 1', text: '(a) UV-blocking but transparent: nano-TiO₂ or nano-ZnO at ~50-100 nm. Particles much smaller than visible wavelengths so they transmit visible light, but comparable to UV wavelengths so they scatter and absorb UV. Result: protective but invisible.' },
+    { label: 'STEP 2', text: '(b) MRI contrast agent: superparamagnetic iron oxide nanoparticles (Fe₃O₄ or γ-Fe₂O₃) at ~10 nm. They magnetise strongly in the MRI field, locally distorting the magnetic environment of nearby protons and shortening their relaxation times. This provides strong contrast in T₂-weighted images. Functionalising the surface with a tumour-targeting antibody concentrates the particles at the tumour for better visualisation.' },
+    { label: 'STEP 3', text: '(c) Photocatalyst for water purification: nano-TiO₂ at ~10-20 nm. Under UV illumination, photoexcited electrons and holes generate hydroxyl radicals (•OH) at the particle surface. These radicals oxidise organic pollutants (dyes, pesticides, drugs, EDCs) all the way to CO₂ and H₂O. The high SA/V of nanoparticles maximises the radical-generating surface; the small size keeps them suspended in water for prolonged contact with pollutants.' },
+  ], ans: '(a) Nano-TiO₂ or nano-ZnO ~50-100 nm — transparent on skin, blocks UV. (b) Iron oxide nanoparticles ~10 nm — superparamagnetic MRI contrast; antibody-targeted for tumours. (c) Nano-TiO₂ ~10-20 nm with UV — generates hydroxyl radicals to oxidise organic pollutants.' },
+
+  { title: 'Design a safety protocol', diff: 'medium', q: 'A research lab is starting to use single-walled carbon nanotube (SWCNT) powder for composite synthesis. Outline a safety protocol.', steps: [
+    { label: 'STEP 1', text: 'Recognise the hazard: long, fibrous SWCNTs may behave like asbestos in lung tissue. Treat the powder as a Group 1 inhalation hazard and assume worst-case toxicity.' },
+    { label: 'STEP 2', text: 'Engineering controls: handle the powder only inside a fume hood or glove box. Never handle in open air. Use dedicated equipment that stays within the controlled area.' },
+    { label: 'STEP 3', text: 'Personal protective equipment: lab coat, nitrile gloves (double if powder handling), N95 or P100 respirator, safety glasses. Never eat, drink, or apply cosmetics in the area.' },
+    { label: 'STEP 4', text: 'Workflow: weigh and disperse SWCNTs into a polymer or solvent matrix as quickly as possible — once dispersed in solid composite or in liquid, the inhalation hazard drops dramatically. Avoid grinding, sieving, or any operation that generates dust.' },
+    { label: 'STEP 5', text: 'Cleanup: wet wipe surfaces (do not use a dry brush or compressed air, which would aerosolise particles). HEPA-vacuum any spills. Decontaminate fume hood weekly.' },
+    { label: 'STEP 6', text: 'Waste: all powder waste, used PPE, and contaminated wipes go into double-bagged HEPA-rated waste container. Disposal via specialist nanomaterial waste contractor (not normal lab chemical waste stream).' },
+    { label: 'STEP 7', text: 'Health monitoring: workers handling CNT powder regularly should have baseline lung-function tests and follow-up annual screening. Follow employer\'s nanomaterial-specific protocol.' },
+  ], ans: 'Treat SWCNT powder as a serious inhalation hazard. Handle only in fume hood or glove box; full PPE including N95+ respirator. Disperse into solid/liquid matrix ASAP to reduce risk. Wet cleanup, HEPA vacuum. Specialist waste disposal. Health monitoring for regular handlers.' },
+];
+
+export const NANO = {
+  id: 'nano',
+  objectives: [
+    'Define the nanoscale and identify nanomaterials',
+    'Explain why surface-to-volume ratio drives much of nanoscale behaviour',
+    'Describe quantum confinement and its consequences (tunable optical properties)',
+    'Classify nanomaterials by dimensionality (0D, 1D, 2D, 3D) and recognise key examples',
+    'Explain applications in medicine: targeted drug delivery, imaging, antimicrobials',
+    'Explain applications in water and environmental remediation',
+    'Discuss risks of nanomaterials and the regulatory response',
+  ],
+  chapters,
+  quizzes,
+  multi: [],
+  structured,
+  worked,
+  tutorPrompts: [
+    'Walk me through why nanoparticles have unusual properties',
+    'How do quantum dots tune their colour?',
+    'Compare nanomaterial uses in medicine and environment',
+    'What are the risks of using nanomaterials in cosmetics?',
+    'How is nano-iron used to clean groundwater?',
+  ],
+};

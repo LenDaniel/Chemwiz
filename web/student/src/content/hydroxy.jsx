@@ -1,0 +1,727 @@
+// Hydroxy Compounds — OC-16 — full content
+// ZIMSEC Form 5/6 Chemistry, Section 6.3 — Topic 16
+// Syllabus coverage:
+//   Nomenclature, isomerism, classification (1°/2°/3°)
+//   Manufacture of ethanol (fermentation + hydration)
+//   Physical properties (H-bonding) of alcohols
+//   Chemical properties of alcohols (combustion, halogenation, Na,
+//     oxidation, dehydration, esterification, iodoform test)
+//   Reactions of phenol with Na, bases, nitration, bromination
+//   Acidity comparison: water vs phenol vs ethanol
+
+/* ============================================================
+   Diagram specs (Phase K3 migration)
+   ============================================================ */
+
+const hyClassificationSpec = {
+  title: 'CLASSIFYING ALCOHOLS',
+  blocks: [
+    { type: 'cards', cards: [
+      { title: 'PRIMARY (1°)', body: [
+        'OH-bearing C',
+        'bonded to ONE',
+        'other C',
+        'R–CH₂–OH',
+        'CH₃CH₂OH',
+        'ethanol',
+      ], color: 'primary' },
+      { title: 'SECONDARY (2°)', body: [
+        'OH-bearing C',
+        'bonded to TWO',
+        'other Cs',
+        'R₂CH–OH',
+        '(CH₃)₂CHOH',
+        'propan-2-ol',
+      ], color: 'accent' },
+      { title: 'TERTIARY (3°)', body: [
+        'OH-bearing C',
+        'bonded to THREE',
+        'other Cs',
+        'R₃C–OH',
+        '(CH₃)₃COH',
+        '2-Me-propan-2-ol',
+      ], color: 'pink' },
+    ]},
+    { type: 'note', text: 'classification controls oxidation behaviour' },
+  ],
+};
+
+const hydrogenBondingSpec = {
+  title: 'HYDROGEN BONDING IN ALCOHOLS',
+  blocks: [
+    { type: 'panel', title: 'CONCEPT', body: [
+      'O is electronegative; H–O is highly polar',
+      'H of one molecule attracts O of another',
+      '→ strong intermolecular H-bond',
+    ], color: 'cyan' },
+    { type: 'table',
+      headers: ['Compound', 'Mr', 'B.P. (°C)', 'H-bonds?'],
+      rows: [
+        ['Ethane',   '30', '−89',  'No'],
+        ['Methanol', '32', '+65',  'Yes'],
+        ['Ethanol',  '46', '+78',  'Yes'],
+      ],
+      rowColors: ['dim', 'primary', 'primary'],
+    },
+    { type: 'note', text: 'H-bonding raises b.p.; small alcohols miscible with water', emphasis: true },
+  ],
+};
+
+const oxidationSpec = {
+  title: 'OXIDATION BY ACIDIFIED K₂Cr₂O₇',
+  blocks: [
+    { type: 'panel', title: 'PRIMARY ALCOHOL', body: [
+      '1° R–CH₂–OH → R–CHO (aldehyde) → R–COOH (acid)',
+    ], hint: 'distil out aldehyde to stop; reflux for carboxylic acid', color: 'primary' },
+    { type: 'panel', title: 'SECONDARY ALCOHOL', body: [
+      '2° R₂CH–OH → R₂C=O (ketone)',
+      'no further oxidation',
+    ], color: 'accent' },
+    { type: 'panel', title: 'TERTIARY ALCOHOL', body: [
+      '3° R₃C–OH → NOT OXIDISED',
+      '(no H on C–OH)',
+    ], color: 'pink' },
+    { type: 'note', text: 'Colour: ORANGE Cr₂O₇²⁻ → GREEN Cr³⁺', emphasis: true },
+    { type: 'note', text: '(no colour change with tertiary — diagnostic test)' },
+  ],
+};
+
+const dehydrationSpec = {
+  title: 'DEHYDRATION OF ALCOHOLS',
+  blocks: [
+    { type: 'equation', text: 'R–CH(OH)–CH₃ → R–CH=CH₂ + H₂O', big: true },
+    { type: 'panel', title: 'CONDITIONS', body: [
+      'Conc. H₂SO₄ at 170 °C  OR  Al₂O₃ at 350 °C',
+    ], hint: 'elimination of water from adjacent C–OH and C–H', color: 'primary' },
+    { type: 'note', text: 'Example: ethanol → ethene', emphasis: true },
+    { type: 'equation', text: 'CH₃CH₂OH → CH₂=CH₂ + H₂O' },
+    { type: 'note', text: 'Mechanism: protonation, loss of water → carbocation, loss of H⁺' },
+    { type: 'note', text: '3° > 2° > 1° in ease (carbocation stability)' },
+  ],
+};
+
+const esterificationSpec = {
+  title: 'ESTERIFICATION',
+  blocks: [
+    { type: 'equation', text: "R–OH + R'–COOH ⇌ R'–COO–R + H₂O", big: true },
+    { type: 'note', text: 'alcohol + carboxylic acid ⇌ ester + water' },
+    { type: 'panel', title: 'CONDITIONS', body: [
+      'conc. H₂SO₄ catalyst, reflux',
+      'Reversible — use excess of one reactant',
+    ], color: 'primary' },
+    { type: 'note', text: 'Example:', emphasis: true },
+    { type: 'equation', text: 'CH₃CH₂OH + CH₃COOH ⇌ CH₃COOCH₂CH₃ + H₂O' },
+    { type: 'note', text: 'ethanol + ethanoic acid → ethyl ethanoate' },
+    { type: 'note', text: 'esters: fruity smells, used in flavourings and perfumes' },
+  ],
+};
+
+const phenolReactionsSpec = {
+  title: 'REACTIONS OF PHENOL',
+  subtitle: 'C₆H₅OH (OH on benzene ring)',
+  blocks: [
+    { type: 'table',
+      headers: ['Reagent', 'Product', 'Note'],
+      colWidths: [70, 110, 110],
+      rows: [
+        ['+ Na',         '→ C₆H₅O⁻Na⁺ + ½H₂',     'like alcohols'],
+        ['+ NaOH',       '→ C₆H₅O⁻Na⁺ + H₂O',      'phenol IS acidic'],
+        ['+ Br₂(aq)',    '→ 2,4,6-tribromophenol', 'white ppt, no cat.'],
+        ['+ HNO₃(dil)',  '→ 2-nitro + 4-nitro',    'fast vs benzene'],
+      ],
+    },
+    { type: 'note', text: 'OH activates the ring — much faster than benzene', emphasis: true },
+  ],
+};
+
+const acidityCompareSpec = {
+  title: 'ACIDITY: WATER vs PHENOL vs ETHANOL',
+  blocks: [
+    { type: 'bars',
+      yMax: 18,
+      items: [
+        { label: 'ethanol', value: 16, valueLabel: 'pKa 16',  color: 'green',   sublabel: 'CH₃CH₂OH' },
+        { label: 'water',   value: 14, valueLabel: 'pKa 14',  color: 'accent',  sublabel: 'H₂O' },
+        { label: 'phenol',  value: 10, valueLabel: 'pKa 10',  color: 'pink',    sublabel: 'C₆H₅OH' },
+      ],
+    },
+    { type: 'note', text: 'lower pKa = stronger acid' },
+    { type: 'note', text: 'phenol > water > ethanol (acidity)', emphasis: true },
+  ],
+};
+
+const phenolDelocalisationSpec = {
+  title: 'WHY IS PHENOL ACIDIC?',
+  blocks: [
+    { type: 'panel', title: 'PHENOXIDE ION', body: [
+      'C₆H₅O⁻',
+      'O⁻ lone pair delocalises into ring',
+      'negative charge SPREAD over ring + O',
+    ], color: 'primary' },
+    { type: 'note', text: '→ phenoxide STABILISED → phenol releases H⁺', emphasis: true },
+    { type: 'panel', title: 'CONTRAST: ETHANOL', body: [
+      'Ethoxide has charge ALL on O',
+      '→ unstable',
+      '→ ethanol is NOT acidic',
+    ], color: 'accent' },
+    { type: 'note', text: 'Conjugate base stability determines acid strength' },
+  ],
+};
+
+/* ============================================================
+   Chapters
+   ============================================================ */
+const chapters = [
+  { id: 'hy1', title: 'Naming & Classifying Alcohols', minutes: 8, blocks: [
+    { type: 'p', text: 'Hydroxy compounds contain the –OH (hydroxyl) functional group. The two main types are ALCOHOLS, where –OH is attached to a saturated (sp³) carbon, and PHENOLS, where –OH is attached directly to a benzene ring. Their chemistry is very different — phenols are acidic, alcohols are not.' },
+    { type: 'h', text: 'Naming alcohols (IUPAC)' },
+    { type: 'ul', items: [
+      'Find the longest carbon chain containing the –OH group.',
+      'Number from the end nearest the –OH to give it the lowest locant.',
+      'Replace the final "-e" of the alkane with "-ol", with the locant for –OH in front.',
+      'Examples: CH₃OH = methanol; CH₃CH₂OH = ethanol; (CH₃)₂CHOH = propan-2-ol; CH₂(OH)CH(OH)CH₂(OH) = propane-1,2,3-triol (glycerol).',
+      'Branched: HOCH₂CH(CH₃)CH₃ = 2-methylpropan-1-ol.',
+    ]},
+    { type: 'h', text: 'Classifying alcohols' },
+    { type: 'd', spec: hyClassificationSpec, caption: 'Primary, secondary and tertiary alcohols' },
+    { type: 'ul', items: [
+      'PRIMARY (1°): C bearing –OH bonded to ONE other carbon. R–CH₂–OH. Example: ethanol.',
+      'SECONDARY (2°): C bearing –OH bonded to TWO other carbons. R₂CH–OH. Example: propan-2-ol.',
+      'TERTIARY (3°): C bearing –OH bonded to THREE other carbons. R₃C–OH. Example: 2-methylpropan-2-ol.',
+      'Methanol (CH₃OH) has 0 other carbons; reactions usually grouped with primary alcohols.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Why classification matters', body: 'The class of alcohol determines its OXIDATION behaviour: 1° → aldehyde → carboxylic acid; 2° → ketone (no further); 3° → no oxidation. One of the most heavily examined topics in organic chemistry.' },
+    { type: 'takeaway', items: [
+      'Alcohols: –OH on sp³ C. Phenols: –OH on aromatic ring.',
+      'Classify by number of C–C bonds at the C–OH carbon.',
+      '1° → aldehyde/acid; 2° → ketone; 3° → no oxidation.',
+    ]},
+  ]},
+
+  { id: 'hy2', title: 'Isomerism in Alcohols', minutes: 7, blocks: [
+    { type: 'p', text: 'Alcohols can show several types of isomerism: chain, position, functional group, and optical isomerism.' },
+    { type: 'h', text: 'Chain isomerism' },
+    { type: 'p', text: 'Same molecular formula, different carbon skeletons. C₄H₉OH has chain isomers butan-1-ol (CH₃CH₂CH₂CH₂OH, straight) and 2-methylpropan-1-ol (HOCH₂CH(CH₃)CH₃, branched).' },
+    { type: 'h', text: 'Position isomerism' },
+    { type: 'p', text: 'Same chain, –OH in different positions. C₃H₇OH gives propan-1-ol (CH₃CH₂CH₂OH, primary) and propan-2-ol ((CH₃)₂CHOH, secondary). They have very different reactivities.' },
+    { type: 'h', text: 'Functional group isomerism' },
+    { type: 'p', text: 'Same molecular formula, different functional groups. Alcohols (R–OH) are isomeric with ETHERS (R–O–R\'). C₂H₆O is either ethanol (b.p. 78 °C, H-bonding) or methoxymethane (CH₃OCH₃, b.p. −24 °C, no H-bonding).' },
+    { type: 'h', text: 'Optical isomerism' },
+    { type: 'ul', items: [
+      'Occurs when the C bearing –OH has 4 DIFFERENT groups attached.',
+      'Example: butan-2-ol (CH₃CH(OH)CH₂CH₃) — middle C has H, OH, CH₃, C₂H₅ — chiral.',
+      'Two enantiomers: (R)-butan-2-ol and (S)-butan-2-ol; rotate plane-polarised light oppositely.',
+      'A 1:1 racemic mixture is optically inactive.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Spotting chirality', body: 'Look at the C bearing –OH. Count the groups — if all four are DIFFERENT, the molecule is chiral. If any two are the same, it is not chiral.' },
+    { type: 'takeaway', items: [
+      'Chain, position, functional group, optical — all possible.',
+      'Alcohols are functional group isomers of ethers.',
+      'Chirality: 4 different groups on the C–OH carbon.',
+    ]},
+  ]},
+
+  { id: 'hy3', title: 'Manufacture of Ethanol', minutes: 9, blocks: [
+    { type: 'p', text: 'Ethanol is the most industrially important alcohol. Two main routes: FERMENTATION (biological) and HYDRATION OF ETHENE (petrochemical).' },
+    { type: 'h', text: 'Method 1: Fermentation' },
+    { type: 'ul', items: [
+      'Sugars (glucose) from grains, fruits, sugar cane, baobab, marula are broken down by yeast (anaerobic).',
+      'Equation: C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂.',
+      'Conditions: 25–37 °C, anaerobic (no O₂ — otherwise ethanol oxidises to ethanoic acid), pH ≈ 3–5.',
+      'Yeast (Saccharomyces cerevisiae) provides the enzyme zymase as biological catalyst.',
+      'Reaction stops at ~13–15% ethanol — yeast killed by alcohol.',
+      'Concentration increased by FRACTIONAL DISTILLATION (max ~96% — azeotrope with water).',
+    ]},
+    { type: 'h', text: 'Method 2: Hydration of ethene' },
+    { type: 'ul', items: [
+      'Ethene (from cracking petroleum) reacts with steam over phosphoric acid catalyst.',
+      'Equation: CH₂=CH₂ + H₂O → CH₃CH₂OH.',
+      'Conditions: 300 °C, 60 atm, H₃PO₄ catalyst on solid silica support.',
+      'Reversible — only ~5% conversion per pass; unreacted ethene recycled.',
+      'Produces very pure ethanol (no fermentation by-products).',
+    ]},
+    { type: 'h', text: 'Comparing the two methods' },
+    { type: 'ul', items: [
+      'Fermentation: RENEWABLE (biomass). Slow batch process. Lower purity. Suited to biomass-rich countries (Zimbabwe, Brazil).',
+      'Hydration: NON-RENEWABLE (petroleum). Fast continuous. Very pure. Suited to industrialised oil-rich economies.',
+      'Drinking alcohol: only fermentation allowed.',
+      'Industrial ethanol (solvent, fuel additive): both methods used.',
+    ]},
+    { type: 'takeaway', items: [
+      'Fermentation: glucose → ethanol + CO₂ (yeast, 25–37 °C, anaerobic).',
+      'Hydration: ethene + H₂O → ethanol (H₃PO₄, 300 °C, 60 atm).',
+      'Fermentation = renewable but slow; hydration = fast but uses oil.',
+    ]},
+  ]},
+
+  { id: 'hy4', title: 'Physical Properties: H-Bonding Effects', minutes: 8, blocks: [
+    { type: 'p', text: 'Alcohols have unusually high boiling points and high water solubility (for small alcohols) compared with hydrocarbons of similar molecular mass. Both effects are due to HYDROGEN BONDING between –OH groups.' },
+    { type: 'd', spec: hydrogenBondingSpec, caption: 'H-bonding raises b.p. and gives water solubility' },
+    { type: 'h', text: 'Boiling points' },
+    { type: 'ul', items: [
+      'Ethane (Mr = 30): b.p. −89 °C — only weak London forces between CH₃CH₃.',
+      'Methanol (Mr = 32): b.p. +65 °C — extensive H-bonding raises b.p. by over 150 °C vs ethane.',
+      'Ethanol (Mr = 46): b.p. +78 °C — H-bonding plus longer chain (more London).',
+      'B.p. increases as alkyl chain lengthens (greater London forces add to H-bonding).',
+    ]},
+    { type: 'h', text: 'Water solubility' },
+    { type: 'ul', items: [
+      'Small alcohols (methanol, ethanol, propan-1-ol, propan-2-ol) MISCIBLE with water in all proportions — H-bond with water molecules.',
+      'As alkyl chain lengthens, solubility DECREASES — long hydrocarbon tail disrupts water structure.',
+      'Hexan-1-ol: only slightly soluble. Octan-1-ol: essentially insoluble.',
+      'Polyols (multiple OHs) like glycerol very soluble due to multiple H-bonds.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Two H-bonds per OH', body: 'Each –OH can act as both H-bond DONOR (the O–H...O bond) and H-bond ACCEPTOR (a lone pair on O accepting another H). This is why alcohols form extensive 3D H-bonding networks similar to water.' },
+    { type: 'takeaway', items: [
+      'Alcohols have high b.p. due to H-bonding.',
+      'Small alcohols miscible with water (H-bond with water).',
+      'Solubility decreases as alkyl chain lengthens.',
+    ]},
+  ]},
+
+  { id: 'hy5', title: 'Combustion, Halogenation & Sodium', minutes: 8, blocks: [
+    { type: 'p', text: 'Simple reactions of alcohols include combustion (burning in air) and reactions involving the O–H bond (with sodium) or replacement of –OH (halogenation).' },
+    { type: 'h', text: 'Combustion' },
+    { type: 'ul', items: [
+      'Alcohols burn cleanly in excess air to give CO₂ and H₂O.',
+      'Equation for ethanol: C₂H₅OH + 3O₂ → 2CO₂ + 3H₂O.',
+      'Highly exothermic — ethanol used as fuel additive (gasohol) and biofuel.',
+      'Cleaner burning than petrol (no sulphur, less particulate matter).',
+    ]},
+    { type: 'h', text: 'Reaction with sodium' },
+    { type: 'ul', items: [
+      'Alcohols react with Na to release H₂ — similar to (but slower than) water with Na.',
+      'Equation: 2CH₃CH₂OH + 2Na → 2CH₃CH₂O⁻Na⁺ + H₂.',
+      'Product CH₃CH₂O⁻Na⁺ = sodium ethoxide — strong base, soluble in ethanol.',
+      'Observation: gentle effervescence (slower than water). Na dissolves but does not melt.',
+      'Shows alcohols have weakly acidic O–H bonds — but FAR less acidic than water (does not turn litmus red).',
+    ]},
+    { type: 'h', text: 'Halogenation: replacing OH with X' },
+    { type: 'ul', items: [
+      'OH can be replaced by Cl, Br or I to give a halogenoalkane.',
+      'With HCl + ZnCl₂ catalyst (Lucas reagent): 1° slow, 3° fast — used as a test.',
+      'With PCl₃ or PCl₅: ROH + PCl₅ → RCl + HCl + POCl₃. Convenient lab method.',
+      'With SOCl₂ (thionyl chloride): cleanest — by-products are gases (HCl + SO₂).',
+      'With HBr (in situ from KBr + H₂SO₄): R-OH + HBr → R-Br + H₂O.',
+      'With red P + I₂: produces PI₃ in situ which converts ROH to R-I.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Identifying alcohols', body: 'Add Na metal — effervescence (H₂) confirms an OH group (could be alcohol, water, phenol or carboxylic acid; distinguish further). Always dry the alcohol first to avoid Na reacting with water.' },
+    { type: 'takeaway', items: [
+      'Combustion: CₙH₂ₙ₊₁OH + O₂ → CO₂ + H₂O.',
+      '2ROH + 2Na → 2RO⁻Na⁺ + H₂ (sodium alkoxide).',
+      'OH → X using PCl₅, SOCl₂, HBr, or red P + I₂.',
+    ]},
+  ]},
+
+  { id: 'hy6', title: 'Oxidation of Alcohols', minutes: 11, blocks: [
+    { type: 'p', text: 'Oxidation of alcohols is one of the most important reactions in organic chemistry. Behaviour depends on class — primary, secondary or tertiary. Standard oxidising agent: acidified potassium dichromate(VI), K₂Cr₂O₇/H₂SO₄, ORANGE turning GREEN (Cr³⁺) when reduced.' },
+    { type: 'd', spec: oxidationSpec, caption: 'Oxidation pathways for primary, secondary and tertiary alcohols' },
+    { type: 'h', text: 'Primary alcohols' },
+    { type: 'ul', items: [
+      'Step 1: 1° R-CH₂-OH → R-CHO (aldehyde). To stop here, DISTIL the aldehyde out as it forms (lower b.p. than alcohols).',
+      'Step 2: With excess oxidising agent and continued heating (REFLUX), aldehyde → R-COOH (carboxylic acid).',
+      'Equations: CH₃CH₂OH + [O] → CH₃CHO + H₂O; CH₃CHO + [O] → CH₃COOH.',
+      'Colour change: orange Cr₂O₇²⁻ → green Cr³⁺.',
+    ]},
+    { type: 'h', text: 'Secondary alcohols' },
+    { type: 'ul', items: [
+      '2° R₂CH-OH → R₂C=O (ketone). Single oxidation only — ketones not further oxidised under these conditions.',
+      'Example: (CH₃)₂CHOH + [O] → (CH₃)₂C=O + H₂O. Propan-2-ol → propanone.',
+      'Conditions: reflux with acidified K₂Cr₂O₇.',
+      'Colour change: orange → green.',
+    ]},
+    { type: 'h', text: 'Tertiary alcohols' },
+    { type: 'ul', items: [
+      '3° R₃C-OH → NO REACTION (no H atom on the C bearing –OH).',
+      'No colour change — orange stays orange.',
+      'Key DIAGNOSTIC test to distinguish 3° from 1°/2°.',
+    ]},
+    { type: 'h', text: 'Distinguishing alcohols experimentally' },
+    { type: 'ul', items: [
+      'Add acidified K₂Cr₂O₇ and warm. If colour stays orange → tertiary.',
+      'If green → either 1° or 2°. To distinguish: add Tollens\' or Fehling\'s to the product. Positive (silver mirror or red ppt) → original was primary (gave aldehyde).',
+      'Alternatively: mild distillation to collect volatile aldehyde (1°) or just observe ketone (2°).',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Why tertiary cannot oxidise', body: 'Oxidation of an alcohol involves breaking BOTH the O-H bond AND the C-H bond on the C bearing the OH. In 3° alcohols, that carbon has no H atom (it is bonded to three carbons + OH). So oxidation cannot proceed without breaking C-C bonds, which requires far harsher conditions.' },
+    { type: 'takeaway', items: [
+      '1° → aldehyde (distil) → carboxylic acid (reflux).',
+      '2° → ketone (reflux); not further oxidised.',
+      '3° → no reaction (no H on C-OH).',
+      'Orange Cr₂O₇²⁻ → green Cr³⁺ when oxidation occurs.',
+    ]},
+  ]},
+
+  { id: 'hy7', title: 'Dehydration & Esterification', minutes: 9, blocks: [
+    { type: 'p', text: 'Two more important reactions: DEHYDRATION (loss of water → alkene) and ESTERIFICATION (with carboxylic acid → ester).' },
+    { type: 'h', text: 'Dehydration' },
+    { type: 'd', spec: dehydrationSpec, caption: 'Dehydration of alcohols to alkenes' },
+    { type: 'ul', items: [
+      'Conditions: concentrated sulphuric acid at 170 °C, OR aluminium oxide (Al₂O₃) at 350 °C.',
+      'Mechanism: protonation of OH → loss of water gives carbocation → loss of H⁺ from adjacent C → alkene.',
+      'Example: CH₃CH₂OH → CH₂=CH₂ + H₂O (ethanol → ethene).',
+      'Ease of dehydration: 3° > 2° > 1° (carbocation stability — 3° most stable).',
+      'Saytzeff\'s rule: when more than one alkene is possible, the more substituted alkene is the major product.',
+    ]},
+    { type: 'h', text: 'Esterification' },
+    { type: 'd', spec: esterificationSpec, caption: 'Alcohol + carboxylic acid → ester (reversible)' },
+    { type: 'ul', items: [
+      'Reaction: R-OH + R\'-COOH ⇌ R\'-COO-R + H₂O.',
+      'Conditions: concentrated H₂SO₄ catalyst, REFLUX.',
+      'Reversible (equilibrium): use excess of one reactant or remove water to drive equilibrium right.',
+      'Example: ethanol + ethanoic acid → ethyl ethanoate + water.',
+      'Esters: FRUITY, SWEET smells — flavourings (banana, pineapple, pear) and perfumes.',
+    ]},
+    { type: 'h', text: 'Reactions with acyl chlorides (faster esterification)' },
+    { type: 'p', text: 'Acyl chlorides (R-COCl) react with alcohols MUCH faster than acids, irreversibly: R-OH + R\'-COCl → R\'-COO-R + HCl. Useful when ester yield needs to be high. (Detail in Carboxylic Acids topic.)' },
+    { type: 'takeaway', items: [
+      'Dehydration: alcohol → alkene + H₂O (conc. H₂SO₄, 170 °C).',
+      'Esterification: alcohol + acid ⇌ ester + H₂O (conc. H₂SO₄, reflux). Reversible.',
+      'Acyl chlorides give faster, irreversible esterification.',
+    ]},
+  ]},
+
+  { id: 'hy8', title: 'The Iodoform Test', minutes: 7, blocks: [
+    { type: 'p', text: 'The iodoform test (triiodomethane test) identifies a particular structural feature: the CH₃-CH(OH)- group (or CH₃-C(=O)- group). Positive test = yellow precipitate of triiodomethane (CHI₃, "iodoform").' },
+    { type: 'h', text: 'The reagent and conditions' },
+    { type: 'ul', items: [
+      'Reagent: ALKALINE iodine — I₂ in NaOH(aq), or KI₃ in NaOH(aq).',
+      'Conditions: warm gently. Mixture starts brown (I₂) and turns paler as iodine is consumed.',
+      'Positive: yellow precipitate of CHI₃ appears.',
+      'Smell: distinctive antiseptic.',
+    ]},
+    { type: 'h', text: 'Which compounds give a positive test?' },
+    { type: 'ul', items: [
+      'Methyl secondary alcohols — contain CH₃-CH(OH)-. Examples: ethanol (CH₃CH₂OH), propan-2-ol (CH₃CH(OH)CH₃), butan-2-ol (CH₃CH(OH)CH₂CH₃).',
+      'Methyl ketones — contain CH₃-C(=O)-. Examples: propanone (CH₃COCH₃), butanone (CH₃COCH₂CH₃). And ethanal (CH₃CHO).',
+      'NEGATIVE: methanol (no CH₃-CH(OH)-), propan-1-ol, most other ketones, phenol.',
+    ]},
+    { type: 'h', text: 'Mechanism (overview)' },
+    { type: 'ul', items: [
+      'Step 1: alkaline iodine OXIDISES the secondary alcohol to a methyl ketone.',
+      'Step 2: three H atoms of the CH₃ group sequentially replaced by I → CI₃.',
+      'Step 3: alkaline hydrolysis cleaves C-C bond between CI₃ and C=O → CHI₃ (yellow ppt).',
+      'Overall: CH₃CH(OH)R + 4I₂ + 6NaOH → CHI₃ + RCOO⁻Na⁺ + 5NaI + 5H₂O.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Diagnostic value', body: 'The iodoform test specifically detects CH₃-CH(OH)- and CH₃-C=O substructures. One of the few simple chemical tests that identifies a specific structural feature beyond just a functional group. Frequent exam: "Will compound X give a positive iodoform test?"' },
+    { type: 'takeaway', items: [
+      'Reagent: I₂ + NaOH(aq), warm.',
+      'Yellow ppt of CHI₃ = positive.',
+      'Detects CH₃-CH(OH)- (methyl 2° alcohol) or CH₃-C=O (methyl ketone).',
+      'Also positive for ethanol and ethanal.',
+    ]},
+  ]},
+
+  { id: 'hy9', title: 'Phenol: Reactions & Uses', minutes: 9, blocks: [
+    { type: 'p', text: 'Phenol (C₆H₅OH) is structurally similar to alcohols but its chemistry is very different — acidic, and its benzene ring is highly activated towards electrophilic substitution.' },
+    { type: 'd', spec: phenolReactionsSpec, caption: 'Key reactions of phenol' },
+    { type: 'h', text: 'Reactions involving the OH group' },
+    { type: 'ul', items: [
+      'With sodium: 2C₆H₅OH + 2Na → 2C₆H₅O⁻Na⁺ + H₂. Sodium phenoxide formed. Like alcohols — H₂ evolves.',
+      'With NaOH(aq): C₆H₅OH + NaOH → C₆H₅O⁻Na⁺ + H₂O. Phenol IS acidic enough to react with bases. ALCOHOLS DO NOT REACT WITH NaOH. Key distinguishing test.',
+      'With Na₂CO₃: NO reaction. Phenol is too weak to react with carbonate. Carboxylic acids DO react with Na₂CO₃ — distinguishes phenol from carboxylic acids.',
+    ]},
+    { type: 'h', text: 'Reactions on the ring (electrophilic substitution)' },
+    { type: 'ul', items: [
+      'With Br₂(aq): 3 H atoms on the ring replaced. C₆H₅OH + 3Br₂ → C₆H₂Br₃OH + 3HBr. Yields 2,4,6-tribromophenol — WHITE PRECIPITATE. NO catalyst needed (unlike benzene which needs FeBr₃). Bromine water decolourised.',
+      'With dilute HNO₃: 2-nitrophenol and 4-nitrophenol. Much faster than nitration of benzene (no need for conc. acids).',
+      'These reactions MUCH FASTER than for benzene because OH ACTIVATES the ring (donates electron density via O lone pair).',
+    ]},
+    { type: 'h', text: 'Why is phenol so reactive on the ring?' },
+    { type: 'p', text: 'The lone pair on the oxygen of –OH overlaps with the π electron system of the benzene ring. This donates electron density into the ring, making it more nucleophilic and so more reactive towards electrophiles. The ortho and para positions become especially electron-rich, which is why substitution occurs at the 2, 4 and 6 positions.' },
+    { type: 'h', text: 'Uses of phenol' },
+    { type: 'ul', items: [
+      'Disinfectants and antiseptics: original "carbolic acid" used by Joseph Lister.',
+      'Manufacture of plastics: phenol-formaldehyde resins (Bakelite), epoxy resins.',
+      'Pharmaceuticals: aspirin synthesis (phenol → salicylic acid → aspirin).',
+      'Explosives: 2,4,6-trinitrophenol (picric acid).',
+    ]},
+    { type: 'takeaway', items: [
+      'Phenol + Na: H₂ evolved (like alcohol).',
+      'Phenol + NaOH: phenoxide forms (alcohols don\'t).',
+      'Phenol + Br₂(aq): white ppt of 2,4,6-tribromophenol, NO catalyst needed.',
+      'OH activates ring → much faster electrophilic substitution than benzene.',
+    ]},
+  ]},
+
+  { id: 'hy10', title: 'Acidity: Water vs Phenol vs Ethanol', minutes: 9, blocks: [
+    { type: 'p', text: 'Comparing acidity of these three OH-containing molecules is one of the most asked exam questions. Key: compare the STABILITY of conjugate bases.' },
+    { type: 'd', spec: acidityCompareSpec, caption: 'Acidity ranking by pKa' },
+    { type: 'h', text: 'The data' },
+    { type: 'ul', items: [
+      'Ethanol (CH₃CH₂OH): pKa ≈ 16. Very weak acid.',
+      'Water (H₂O): pKa ≈ 14.',
+      'Phenol (C₆H₅OH): pKa ≈ 10. Weak acid (about 1 million times stronger than ethanol).',
+      'Lower pKa = stronger acid. Order: phenol > water > ethanol.',
+    ]},
+    { type: 'h', text: 'Why phenol is more acidic than water' },
+    { type: 'd', spec: phenolDelocalisationSpec, caption: 'Phenoxide ion stabilised by delocalisation' },
+    { type: 'ul', items: [
+      'When phenol loses H⁺, the phenoxide ion (C₆H₅O⁻) forms.',
+      'The negative charge on oxygen can be DELOCALISED into the benzene ring through overlap of the O lone pair with the π system.',
+      'Negative charge spreads over O AND ortho/para positions of the ring → much more stable than localised charge.',
+      'More stable conjugate base → equilibrium of dissociation lies further right → more acidic.',
+    ]},
+    { type: 'h', text: 'Why ethanol is less acidic than water' },
+    { type: 'ul', items: [
+      'In ethoxide (CH₃CH₂O⁻), negative charge localised on O.',
+      'CH₃CH₂ group is ELECTRON-DONATING (positive inductive effect, +I).',
+      'Alkyl group pushes electron density TOWARDS the negative O → makes negative charge LESS stable.',
+      'Less stable conjugate base → less acidic alcohol → ethanol does NOT release H⁺ as readily as water.',
+    ]},
+    { type: 'h', text: 'Distinguishing test' },
+    { type: 'ul', items: [
+      'Phenol reacts with NaOH(aq) → soluble (forms phenoxide).',
+      'Ethanol does NOT react with NaOH(aq) at all.',
+      'Both react with Na metal (release H₂) — more vigorously for phenol.',
+      'Phenol does NOT react with Na₂CO₃ (carboxylic acids do — they are stronger acids).',
+    ]},
+    { type: 'callout', kind: 'key', title: 'The exam template', body: 'For acidity comparisons, ALWAYS argue from CONJUGATE BASE stability. (1) Phenoxide stabilised by delocalisation into the ring. (2) Ethoxide destabilised by electron-donating ethyl group. Hydroxide (from water) sits in between. State this clearly.' },
+    { type: 'takeaway', items: [
+      'Acidity: phenol > water > ethanol (pKa: 10 > 14 > 16).',
+      'Phenol acidic because phenoxide stabilised by delocalisation.',
+      'Ethanol weak because ethoxide destabilised by alkyl +I effect.',
+      'NaOH test: phenol dissolves; ethanol does not.',
+    ]},
+  ]},
+
+  { id: 'hy11', title: 'Synthesis Pathways with Alcohols', minutes: 7, blocks: [
+    { type: 'p', text: 'Alcohols are central to organic synthesis — many functional groups can be made from them, and they can be made from many other compounds.' },
+    { type: 'h', text: 'Making alcohols' },
+    { type: 'ul', items: [
+      'From halogenoalkane: R-X + NaOH(aq), reflux → R-OH (nucleophilic substitution).',
+      'From alkene: hydration with H₂O/H₂SO₄ or H₂O/H₃PO₄ catalyst → alcohol (Markovnikov).',
+      'From aldehyde: reduction with NaBH₄ or LiAlH₄ → 1° alcohol.',
+      'From ketone: reduction with NaBH₄ → 2° alcohol.',
+      'From ester: hydrolysis with H₂O/H⁺ or NaOH → alcohol + carboxylic acid.',
+      'From sugars: fermentation → ethanol.',
+    ]},
+    { type: 'h', text: 'From an alcohol you can make:' },
+    { type: 'ul', items: [
+      'Halogenoalkane: PCl₅, SOCl₂, HBr, or red P + I₂.',
+      'Aldehyde (1°): K₂Cr₂O₇/H₂SO₄, distil out.',
+      'Carboxylic acid (1°): K₂Cr₂O₇/H₂SO₄, reflux.',
+      'Ketone (2°): K₂Cr₂O₇/H₂SO₄, reflux.',
+      'Alkene: dehydration with conc. H₂SO₄ at 170 °C.',
+      'Ester: with carboxylic acid + conc. H₂SO₄, reflux.',
+      'Alkoxide: with Na metal.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Multi-step synthesis', body: 'Many exam questions involve linking alcohols with other functional groups in 2 or 3 steps. Common: halogenoalkane → alcohol → aldehyde → carboxylic acid. Or: alkene → alcohol → ester. Practice forward (synthesis) and backward (retrosynthesis).' },
+    { type: 'takeaway', items: [
+      'Alcohols are the central hub of organic synthesis.',
+      'From: halogenoalkanes, alkenes, carbonyls, esters, sugars.',
+      'To: halogenoalkanes, aldehydes, ketones, acids, alkenes, esters.',
+    ]},
+  ]},
+
+  { id: 'hy12', title: 'Exam Technique & Common Pitfalls', minutes: 7, blocks: [
+    { type: 'p', text: 'Hydroxy compound questions test classification, oxidation, mechanism and acidity. Here are the patterns.' },
+    { type: 'h', text: 'Classification questions' },
+    { type: 'ul', items: [
+      'Always count the carbons attached to the C–OH carbon. 0–1 = primary; 2 = secondary; 3 = tertiary.',
+      'Watch out for branched structures — number from end nearest OH for IUPAC.',
+      'For oxidation predictions, state the class FIRST, then predict the products.',
+    ]},
+    { type: 'h', text: 'Oxidation must-haves' },
+    { type: 'ul', items: [
+      'State colour change: ORANGE → GREEN.',
+      'For 1° → aldehyde: state DISTILLATION (collect aldehyde as it forms).',
+      'For 1° → carboxylic acid: state REFLUX with EXCESS oxidising agent.',
+      'For 2° → ketone: REFLUX.',
+      'For 3°: state NO REACTION, NO COLOUR CHANGE.',
+    ]},
+    { type: 'h', text: 'Acidity comparisons' },
+    { type: 'ul', items: [
+      'Always argue from CONJUGATE BASE stability — never from "the alcohol\'s O-H bond is weaker".',
+      'Phenoxide: state "negative charge delocalised into ring" or "lone pair overlap with π system".',
+      'Ethoxide: state "alkyl group is electron-donating (+I effect)" → destabilises negative O.',
+      'Use Na, NaOH, Na₂CO₃ as a ladder: Na = OH/COOH; NaOH adds phenols; Na₂CO₃ = COOH only.',
+    ]},
+    { type: 'h', text: 'Common mistakes' },
+    { type: 'ul', items: [
+      'Saying ethanol reacts with NaOH — IT DOES NOT. Only Na metal.',
+      'Confusing iodoform scope: detects CH₃-CH(OH)- (and CH₃-C=O), so methanol does NOT give a positive test, but ethanol does.',
+      'Forgetting 3° alcohols are NOT oxidised — colour stays orange.',
+      'Wrong dehydration product when more than one alkene possible — Saytzeff: more substituted alkene major.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Distinguishing tests summary', body: '(1) Na: alcohol/phenol/COOH all release H₂. (2) NaOH: phenol and COOH dissolve; alcohol does not. (3) Na₂CO₃: COOH gives CO₂; phenol does not. (4) K₂Cr₂O₇: 1°/2° → green; 3° → no change. (5) Iodoform: detects CH₃CH(OH)- and CH₃C=O specifically.' },
+    { type: 'takeaway', items: [
+      'Argue acidity from conjugate base stability.',
+      'Three colour changes: orange → green (oxidation); brown → colourless (Br₂/phenol); yellow ppt (iodoform).',
+      'Distinguishing tests: Na, NaOH, Na₂CO₃, K₂Cr₂O₇, iodoform.',
+    ]},
+  ]},
+];
+
+/* ============================================================
+   Quizzes — 32 MCQs
+   ============================================================ */
+const quizzes = [
+  { q: 'The IUPAC name for (CH₃)₃COH is:', opts: ['Butanol', '2-methylpropan-2-ol', 'Tert-butanol', '3-methylpropan-2-ol'], ans: 1, hint: 'Longest chain through OH-bearing C is 3 carbons (propane); methyl branch.' },
+  { q: '(CH₃)₂CHOH is classified as:', opts: ['Primary', 'Secondary', 'Tertiary', 'Quaternary'], ans: 1, hint: 'OH-bearing C bonded to 2 methyls — secondary.' },
+  { q: 'Why are alcohols soluble in water?', opts: ['They have ionic bonds', 'They form H-bonds with water through OH groups', 'They react with water', 'They have low Mr'], ans: 1, hint: 'OH–OH and OH–H₂O hydrogen bonding.' },
+  { q: 'Methanol b.p. (65 °C) is much higher than methane (−164 °C) because:', opts: ['Methanol is heavier', 'Methanol has H-bonding', 'Methanol is ionic', 'Methane is reactive'], ans: 1, hint: 'H-bonds much stronger than London forces.' },
+  { q: 'In fermentation, glucose gives:', opts: ['Methanol + CO₂', 'Ethanol + CO₂', 'Ethanal + H₂O', 'Ethanoic acid + H₂'], ans: 1, hint: 'C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂.' },
+  { q: 'Catalyst for industrial hydration of ethene:', opts: ['V₂O₅', 'H₃PO₄', 'Ni', 'KMnO₄'], ans: 1, hint: 'Phosphoric acid on silica.' },
+  { q: 'CH₃CH₂OH + Na →', opts: ['CH₃CH₂Na + H₂O', 'CH₃CH₂O⁻Na⁺ + ½H₂', 'CH₃CHO + NaOH', 'No reaction'], ans: 1, hint: 'Sodium ethoxide + hydrogen.' },
+  { q: 'Acidified K₂Cr₂O₇ is what colour?', opts: ['Green', 'Orange', 'Purple', 'Yellow'], ans: 1, hint: 'Cr₂O₇²⁻ orange; reduces to green Cr³⁺.' },
+  { q: 'Primary alcohols on REFLUX with K₂Cr₂O₇/H₂SO₄ give:', opts: ['Aldehyde only', 'Ketone', 'Carboxylic acid', 'Alkane'], ans: 2, hint: 'Reflux + excess oxidiser → all the way to acid.' },
+  { q: 'To stop oxidation of 1° alcohol at the aldehyde:', opts: ['Use less acid', 'Distil out the aldehyde as it forms', 'Use more oxidiser', 'Cool to 0°C'], ans: 1, hint: 'Aldehydes have lower b.p. — distil out before further oxidation.' },
+  { q: 'Tertiary alcohols with K₂Cr₂O₇/H₂SO₄ give:', opts: ['Ketone', 'Aldehyde', 'No reaction (no colour change)', 'Carboxylic acid'], ans: 2, hint: 'No H on C–OH — cannot oxidise.' },
+  { q: 'Which alcohol gives a ketone on oxidation?', opts: ['Methanol', 'Ethanol', 'Propan-1-ol', 'Propan-2-ol'], ans: 3, hint: 'Propan-2-ol is secondary → propanone.' },
+  { q: 'Conditions for dehydration of ethanol:', opts: ['Aqueous NaOH, cold', 'Conc. H₂SO₄, 170 °C', 'KMnO₄, dilute', 'PCl₅'], ans: 1, hint: 'Concentrated H₂SO₄ at high T.' },
+  { q: 'Dehydration of ethanol gives:', opts: ['Methane', 'Ethanal', 'Ethene', 'Ethyne'], ans: 2, hint: 'CH₃CH₂OH → CH₂=CH₂ + H₂O.' },
+  { q: 'Catalyst in esterification:', opts: ['NaOH', 'Conc. H₂SO₄', 'Ni', 'Zn'], ans: 1, hint: 'Concentrated sulphuric acid.' },
+  { q: 'CH₃CH₂OH + CH₃COOH gives:', opts: ['CH₃COOCH₂CH₃ + H₂O', 'CH₃CH₂COOH + CH₃OH', 'CH₃CH₂CHO + H₂O', 'CH₃CN + H₂O'], ans: 0, hint: 'Ethyl ethanoate + water.' },
+  { q: 'Iodoform test gives a positive result with:', opts: ['Methanol', 'Ethanol', 'Propan-1-ol', 'Methoxymethane'], ans: 1, hint: 'Ethanol contains CH₃CH(OH)-.' },
+  { q: 'A positive iodoform produces:', opts: ['White ppt of AgCl', 'Yellow ppt of CHI₃', 'Red ppt of Cu₂O', 'Silver mirror'], ans: 1, hint: 'CHI₃ = triiodomethane = bright yellow.' },
+  { q: 'Phenol + Br₂(aq) gives:', opts: ['No reaction', '2,4,6-tribromophenol (white ppt) without catalyst', 'Bromobenzene (with FeBr₃)', 'Hexane'], ans: 1, hint: 'OH activates the ring; no FeBr₃ needed.' },
+  { q: 'Phenol does NOT react with:', opts: ['Na', 'NaOH(aq)', 'Br₂(aq)', 'Na₂CO₃'], ans: 3, hint: 'Phenol too weak to react with carbonates.' },
+  { q: 'Why is phenol more acidic than ethanol?', opts: ['Phenol is more polar', 'Phenoxide stabilised by delocalisation into the ring', 'Phenol is heavier', 'Phenol has more O atoms'], ans: 1, hint: 'Conjugate base stability determines acidity.' },
+  { q: 'Order of acidity (weakest to strongest):', opts: ['Phenol < water < ethanol', 'Ethanol < water < phenol', 'Water < ethanol < phenol', 'Phenol < ethanol < water'], ans: 1, hint: 'Ethanol weakest; phenol strongest.' },
+  { q: 'Which converts an alcohol to a halogenoalkane with gaseous by-products only?', opts: ['HCl/ZnCl₂', 'PCl₅', 'SOCl₂', 'NaCl'], ans: 2, hint: 'SOCl₂ → R-Cl + HCl(g) + SO₂(g).' },
+  { q: 'CH₃OH on iodoform test gives:', opts: ['Yellow ppt', 'Red ppt', 'NO yellow ppt', 'White ppt'], ans: 2, hint: 'No CH₃-CH(OH)- group.' },
+  { q: 'Sodium ethoxide is:', opts: ['CH₃CH₂ONa', 'CH₃CH₂COONa', 'CH₃CHO·Na', 'NaOH·CH₃CH₂OH'], ans: 0, hint: 'CH₃CH₂O⁻Na⁺ — alkoxide salt.' },
+  { q: 'Hexan-1-ol is much LESS soluble in water than ethanol because:', opts: ['Its OH is different', 'Long hydrocarbon chain disrupts H-bonding with water', 'It has higher Mr', 'It is solid'], ans: 1, hint: 'Long hydrophobic tail dominates over small OH.' },
+  { q: 'Which test distinguishes 1° from 3° alcohols?', opts: ['Na metal', 'Acidified K₂Cr₂O₇ (orange→green for 1° only)', 'NaOH', 'Br₂ water'], ans: 1, hint: '1° oxidises; 3° does not.' },
+  { q: 'Phenol reacts faster than benzene towards electrophiles because:', opts: ['Phenol is smaller', 'OH lone pair donates electron density into ring', 'Phenol has more carbons', 'OH is electron-withdrawing'], ans: 1, hint: 'Activating effect — π-donation increases ring electron density.' },
+  { q: 'Which test would give CO₂ gas?', opts: ['Phenol + Na₂CO₃', 'Ethanol + Na₂CO₃', 'Carboxylic acid + Na₂CO₃', 'Ethanol + Na'], ans: 2, hint: 'Only acids strong enough (carboxylic acids) liberate CO₂.' },
+  { q: 'Glycerol (propane-1,2,3-triol) is more viscous than ethanol because:', opts: ['It is heavier', 'Three OH groups → more H-bonding', 'It is ionic', 'Fewer carbons'], ans: 1, hint: 'More OH groups = more intermolecular H-bonds.' },
+  { q: 'Major product of dehydration of butan-2-ol:', opts: ['But-1-ene', 'But-2-ene (Saytzeff, more substituted)', 'Butane', '2-methylpropene'], ans: 1, hint: 'Saytzeff: more substituted alkene more stable.' },
+  { q: 'Test that distinguishes ethanol from methanol:', opts: ['Na', 'Iodoform (ethanol +ve, methanol −ve)', 'Combustion', 'Solubility'], ans: 1, hint: 'Iodoform requires CH₃CH(OH)- — methanol lacks it.' },
+];
+
+/* ============================================================
+   Structured questions — 6
+   ============================================================ */
+const structured = [
+  { title: 'Manufacture of ethanol', marks: 8, q: 'Ethanol is manufactured by fermentation and by hydration of ethene.', parts: [
+    { q: '(a) Write the equation for fermentation of glucose and state two conditions required.', marks: 3, ans: 'C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂. Conditions: temperature 25–37 °C; anaerobic (no oxygen, otherwise ethanol oxidises to ethanoic acid); yeast (Saccharomyces cerevisiae) provides the enzyme zymase as catalyst.' },
+    { q: '(b) Write the equation and conditions for the industrial hydration of ethene.', marks: 2, ans: 'CH₂=CH₂ + H₂O → CH₃CH₂OH. Conditions: 300 °C, 60 atm, phosphoric acid (H₃PO₄) catalyst on a solid silica support.' },
+    { q: '(c) State two advantages of fermentation over hydration of ethene.', marks: 2, ans: 'Uses a renewable feedstock (sugars from biomass — grain, fruit, sugar cane) rather than non-renewable petroleum-derived ethene; lower energy and equipment requirements (atmospheric pressure, low temperature) compared with the high pressure and temperature needed for hydration.' },
+    { q: '(d) State why ethanol concentration cannot exceed about 15% by fermentation.', marks: 1, ans: 'High ethanol concentration (>15%) is toxic to yeast — it kills the cells, halting fermentation. Higher concentrations require fractional distillation.' },
+  ]},
+  { title: 'Oxidation of alcohols', marks: 9, q: 'Two compounds X and Y are alcohols. X gives a green solution and a compound that turns Tollens\' reagent silver. Y gives a green solution but does not react with Tollens\'.', parts: [
+    { q: '(a) State which class (1°, 2°, 3°) X and Y belong to. Justify.', marks: 3, ans: 'X is a PRIMARY alcohol — it is oxidised (orange → green) and the product (an aldehyde) gives a positive Tollens\' test. Y is a SECONDARY alcohol — it is oxidised (orange → green) but the product is a ketone, which does not react with Tollens\'.' },
+    { q: '(b) Write the equations for the oxidation of (i) X = ethanol to ethanal and to ethanoic acid; (ii) Y = propan-2-ol.', marks: 3, ans: '(i) CH₃CH₂OH + [O] → CH₃CHO + H₂O (distil out the aldehyde to stop here). CH₃CHO + [O] → CH₃COOH (reflux, excess oxidiser). (ii) (CH₃)₂CHOH + [O] → (CH₃)₂C=O + H₂O (propanone).' },
+    { q: '(c) Describe the conditions to maximise the yield of aldehyde when oxidising a primary alcohol.', marks: 2, ans: 'Use a limited amount of oxidising agent (acidified K₂Cr₂O₇), warm gently, and DISTIL OFF the aldehyde as it forms. The aldehyde has a lower boiling point than the alcohol so distils out, escaping further oxidation to the carboxylic acid.' },
+    { q: '(d) Predict the result if a tertiary alcohol such as 2-methylpropan-2-ol is added to acidified K₂Cr₂O₇ and warmed.', marks: 1, ans: 'No reaction; the orange colour of the dichromate(VI) does not change. Tertiary alcohols cannot be oxidised because there is no H atom on the C bearing the OH.' },
+  ]},
+  { title: 'Identifying alcohols by tests', marks: 8, q: 'Three colourless liquids A, B and C are known to be: ethanol, phenol, and 2-methylpropan-2-ol (in some order). Tests are performed: A reacts with NaOH(aq) to give a clear solution; B reacts with Na to give effervescence but does not react with NaOH(aq) or with K₂Cr₂O₇; C reacts with K₂Cr₂O₇ to give a green solution and the product gives a yellow precipitate with alkaline I₂.', parts: [
+    { q: '(a) Identify A, B and C, justifying each from the test results.', marks: 4, ans: 'A is PHENOL — it reacts with NaOH (alcohols do not). B is 2-METHYLPROPAN-2-OL (3° alcohol) — reacts with Na (has OH) but not with NaOH (not acidic enough — alcohols don\'t) and not with K₂Cr₂O₇ (3° alcohols don\'t oxidise). C is ETHANOL — reacts with K₂Cr₂O₇ (orange → green; 1° alcohol) and gives positive iodoform (yellow CHI₃) because it contains CH₃-CH(OH)-.' },
+    { q: '(b) Write the equation for the reaction of A with NaOH(aq).', marks: 1, ans: 'C₆H₅OH + NaOH → C₆H₅O⁻Na⁺ + H₂O (sodium phenoxide).' },
+    { q: '(c) Explain why 2-methylpropan-2-ol does not react with K₂Cr₂O₇.', marks: 2, ans: '2-methylpropan-2-ol is a TERTIARY alcohol. The C bearing the OH is bonded to three other carbons (3 methyl groups) and has NO H atom on it. Oxidation requires breaking both an O-H AND a C-H bond on the C-OH carbon; without that C-H, the alcohol cannot be oxidised under standard conditions.' },
+    { q: '(d) Write the equation for the iodoform reaction of ethanol.', marks: 1, ans: 'CH₃CH₂OH + 4I₂ + 6NaOH → CHI₃(s) + HCOO⁻Na⁺ + 5NaI + 5H₂O.' },
+  ]},
+  { title: 'Acidity comparison', marks: 9, q: 'Compare the acidities of water, phenol and ethanol.', parts: [
+    { q: '(a) Arrange these three compounds in order of increasing acidity. Quote approximate pKa values.', marks: 2, ans: 'Increasing acidity: ethanol (pKa ≈ 16) < water (pKa ≈ 14) < phenol (pKa ≈ 10). Phenol is the strongest acid; ethanol the weakest.' },
+    { q: '(b) Explain, in terms of conjugate base stability, why phenol is more acidic than water.', marks: 3, ans: 'When phenol loses H⁺, the phenoxide ion (C₆H₅O⁻) is formed. The lone pair on O can be DELOCALISED into the benzene ring through overlap with the π electron system. The negative charge spreads over the O atom and the ortho/para ring carbons → much more stable than a localised charge. In hydroxide (OH⁻, the conjugate base of water), the negative charge stays entirely on a single O atom — no delocalisation — so it is less stable than phenoxide. A more stable conjugate base means the equilibrium of dissociation lies further right, so phenol is more acidic than water.' },
+    { q: '(c) Explain why ethanol is less acidic than water.', marks: 3, ans: 'In ethoxide (CH₃CH₂O⁻, the conjugate base of ethanol), the negative charge is localised on the O atom. The ethyl group (CH₃CH₂-) is electron-donating through the positive inductive effect (+I): it pushes electron density TOWARDS the O, which already bears a negative charge. This destabilises the ethoxide ion (concentrating the negative charge). In hydroxide (OH⁻), there is no electron-donating group attached, so the charge is less destabilised. The less stable conjugate base of ethanol means the equilibrium of dissociation lies further to the LEFT than for water — ethanol is therefore less acidic.' },
+    { q: '(d) Describe a chemical test that distinguishes phenol from ethanol.', marks: 1, ans: 'Add aqueous NaOH (or aqueous Na₂CO₃ — but NaOH is cleaner). Phenol dissolves with no effervescence (forms sodium phenoxide). Ethanol does NOT react with NaOH at all. Alternatively: add Br₂(aq) — phenol decolourises and gives a white precipitate of 2,4,6-tribromophenol; ethanol gives no reaction.' },
+  ]},
+  { title: 'Reactions of phenol', marks: 7, q: 'Phenol reacts vigorously with bromine water without a catalyst, whereas benzene does not react with bromine water at all.', parts: [
+    { q: '(a) Write the equation for the reaction of phenol with bromine water.', marks: 2, ans: 'C₆H₅OH + 3Br₂ → C₆H₂Br₃OH + 3HBr. Product: 2,4,6-tribromophenol (white precipitate). The bromine water is decolourised.' },
+    { q: '(b) Explain why phenol reacts much faster than benzene towards electrophiles.', marks: 3, ans: 'In phenol, a lone pair on the O atom of –OH overlaps with the π electron system of the benzene ring. This donates electron density into the ring (positive mesomeric effect), making the ring more electron-rich and therefore more reactive towards electrophiles. The increase in electron density is greatest at the ortho (2 and 6) and para (4) positions, which is why bromination occurs at exactly these three positions. Benzene has no such activating group, so its ring is much less reactive — bromination of benzene requires a halogen carrier catalyst (FeBr₃) and pure (anhydrous) Br₂.' },
+    { q: '(c) State two uses of phenol or its derivatives.', marks: 2, ans: 'Any two of: disinfectants and antiseptics (original "carbolic acid"); manufacture of plastics (Bakelite/phenol-formaldehyde resins, epoxy resins); pharmaceuticals (aspirin synthesis from salicylic acid, derived from phenol); explosives (2,4,6-trinitrophenol = picric acid).' },
+  ]},
+  { title: 'Synthesis with alcohols', marks: 8, q: 'Outline how the following conversions can be carried out, giving reagents and conditions for each step.', parts: [
+    { q: '(a) Convert ethene to ethanoic acid in two steps.', marks: 3, ans: 'Step 1: CH₂=CH₂ + H₂O → CH₃CH₂OH. Reagents: steam, H₃PO₄ catalyst, 300 °C, 60 atm (industrial hydration). Step 2: CH₃CH₂OH + 2[O] → CH₃COOH + H₂O. Reagents: acidified K₂Cr₂O₇ (or KMnO₄), reflux. The aldehyde intermediate (CH₃CHO) forms first but is further oxidised under reflux.' },
+    { q: '(b) Convert propan-1-ol to propanal (without any further oxidation).', marks: 2, ans: 'CH₃CH₂CH₂OH + [O] → CH₃CH₂CHO + H₂O. Conditions: acidified K₂Cr₂O₇ (or KMnO₄). DISTIL the aldehyde out as it forms — this prevents further oxidation to propanoic acid because the aldehyde\'s lower boiling point allows it to escape the reaction mixture.' },
+    { q: '(c) Convert ethanol to bromoethane.', marks: 2, ans: 'CH₃CH₂OH + HBr → CH₃CH₂Br + H₂O. Reagents: KBr + concentrated H₂SO₄ (HBr generated in situ); reflux. Alternatively: PBr₃ or red phosphorus + Br₂.' },
+    { q: '(d) Convert butan-2-ol to but-2-ene.', marks: 1, ans: 'CH₃CH(OH)CH₂CH₃ → CH₃CH=CHCH₃ + H₂O. Reagents/conditions: concentrated H₂SO₄, 170 °C (dehydration). But-2-ene is the major product (Saytzeff — more substituted alkene).' },
+  ]},
+];
+
+/* ============================================================
+   Worked examples — 8
+   ============================================================ */
+const worked = [
+  { title: 'Classify and predict oxidation', diff: 'easy', q: 'For 2-methylbutan-2-ol, (CH₃)₂C(OH)CH₂CH₃, classify the alcohol and predict the product (if any) of oxidation with acidified K₂Cr₂O₇.', steps: [
+    { label: 'STEP 1', text: 'Identify the C bearing the OH. Here it is the second carbon of the chain: (CH₃)₂C(OH)CH₂CH₃.' },
+    { label: 'STEP 2', text: 'Count the carbons attached to it: two methyls + one CH₂CH₃ = three carbons attached.' },
+    { label: 'STEP 3', text: 'Three carbons → TERTIARY alcohol.' },
+    { label: 'STEP 4', text: 'Tertiary alcohols are NOT oxidised by acidified K₂Cr₂O₇. The orange colour of the dichromate does not change.' },
+  ], ans: 'Tertiary alcohol. No oxidation; orange colour stays orange.' },
+
+  { title: 'Stop oxidation at the aldehyde', diff: 'medium', q: 'You want to convert ethanol to ethanal (not to ethanoic acid). Describe the procedure.', steps: [
+    { label: 'STEP 1', text: 'Use acidified potassium dichromate(VI), K₂Cr₂O₇/H₂SO₄, as the oxidising agent.' },
+    { label: 'STEP 2', text: 'Use a LIMITED amount of oxidising agent (not excess) to minimise over-oxidation.' },
+    { label: 'STEP 3', text: 'Heat gently with a DISTILLATION apparatus, NOT reflux. The condenser collects the volatile product as it forms.' },
+    { label: 'STEP 4', text: 'Ethanal (b.p. 21 °C) has a much lower boiling point than ethanol (78 °C). It evaporates and condenses into the collection flask BEFORE it can be further oxidised to ethanoic acid.' },
+    { label: 'STEP 5', text: 'Equation: CH₃CH₂OH + [O] → CH₃CHO + H₂O.' },
+  ], ans: 'Distil with limited acidified K₂Cr₂O₇ — the volatile aldehyde escapes before further oxidation.' },
+
+  { title: 'Iodoform test prediction', diff: 'medium', q: 'Predict whether each of these gives a positive iodoform test: methanol, ethanol, propan-1-ol, propan-2-ol, butanone.', steps: [
+    { label: 'STEP 1', text: 'Iodoform requires either CH₃-CH(OH)- (methyl 2° alcohol) or CH₃-C(=O)- (methyl ketone). Ethanol is a special case (counts as having CH₃-CH(OH)-H).' },
+    { label: 'STEP 2', text: 'Methanol (CH₃OH): no CH₃-CH(OH)- sub-structure → NEGATIVE.' },
+    { label: 'STEP 3', text: 'Ethanol (CH₃CH₂OH = CH₃-CH(OH)-H): contains CH₃-CH(OH)- → POSITIVE.' },
+    { label: 'STEP 4', text: 'Propan-1-ol (CH₃CH₂CH₂OH): the OH-bearing C has H₂ (it is CH₂-OH), not CH₃-CH(OH)- → NEGATIVE.' },
+    { label: 'STEP 5', text: 'Propan-2-ol (CH₃-CH(OH)-CH₃): contains CH₃-CH(OH)- → POSITIVE.' },
+    { label: 'STEP 6', text: 'Butanone (CH₃-C(=O)-CH₂CH₃): contains CH₃-C(=O)- (methyl ketone) → POSITIVE.' },
+  ], ans: 'Positive: ethanol, propan-2-ol, butanone. Negative: methanol, propan-1-ol.' },
+
+  { title: 'Acidity argument', diff: 'hard', q: 'Explain in detail why phenol (pKa ≈ 10) is approximately 10⁶ times more acidic than ethanol (pKa ≈ 16).', steps: [
+    { label: 'STEP 1', text: 'Both can lose H⁺ to give a conjugate base (phenoxide or ethoxide). Acid strength depends on the STABILITY of the conjugate base — more stable = stronger acid.' },
+    { label: 'STEP 2', text: 'Phenoxide (C₆H₅O⁻): the lone pair on the O can be DELOCALISED into the benzene ring via overlap with the π system. The negative charge is shared between O and the ortho/para ring carbons. This delocalisation greatly stabilises the ion.' },
+    { label: 'STEP 3', text: 'Ethoxide (CH₃CH₂O⁻): the negative charge stays localised on a single O atom. The ethyl group is electron-DONATING (+I effect): it pushes electron density TOWARDS the O, which is already negatively charged. This DESTABILISES the ion.' },
+    { label: 'STEP 4', text: 'More stable conjugate base (phenoxide) → equilibrium of dissociation lies further right → more acidic. Less stable conjugate base (ethoxide) → equilibrium lies far left → less acidic.' },
+    { label: 'STEP 5', text: 'The pKa difference of about 6 corresponds to a Ka ratio of about 10⁶ — phenol is 10⁶ times more acidic than ethanol.' },
+  ], ans: 'Phenoxide is stabilised by delocalisation; ethoxide is destabilised by the +I effect of the alkyl group.' },
+
+  { title: 'Distinguishing phenol from ethanol', diff: 'easy', q: 'Describe a simple chemical test to distinguish phenol from ethanol.', steps: [
+    { label: 'STEP 1', text: 'Add aqueous sodium hydroxide (NaOH) to each.' },
+    { label: 'STEP 2', text: 'Phenol (acidic enough): reacts with NaOH to form sodium phenoxide. C₆H₅OH + NaOH → C₆H₅O⁻Na⁺ + H₂O. Phenol dissolves to give a clear colourless solution.' },
+    { label: 'STEP 3', text: 'Ethanol: NOT acidic enough — does not react with NaOH at all. No observable change.' },
+    { label: 'STEP 4', text: 'Alternatively: add Br₂(aq). Phenol decolourises the bromine water and gives a white precipitate of 2,4,6-tribromophenol. Ethanol gives no reaction.' },
+  ], ans: 'NaOH(aq): phenol dissolves (reacts), ethanol does not. Or Br₂(aq): phenol gives white ppt; ethanol gives no reaction.' },
+
+  { title: 'Predict major dehydration product', diff: 'medium', q: 'Predict the major product when butan-2-ol is dehydrated with concentrated H₂SO₄ at 170 °C.', steps: [
+    { label: 'STEP 1', text: 'Butan-2-ol: CH₃CH(OH)CH₂CH₃. The OH is on C2.' },
+    { label: 'STEP 2', text: 'Dehydration removes H from a C ADJACENT to the C–OH carbon. There are two options: take H from C1 (CH₃) → but-1-ene, or take H from C3 (CH₂) → but-2-ene.' },
+    { label: 'STEP 3', text: 'But-1-ene = CH₂=CHCH₂CH₃ (terminal, monosubstituted). But-2-ene = CH₃CH=CHCH₃ (internal, disubstituted).' },
+    { label: 'STEP 4', text: 'Saytzeff\'s rule: the more substituted alkene is the major product (more stable alkene due to hyperconjugation).' },
+    { label: 'STEP 5', text: 'But-2-ene (disubstituted) is more substituted than but-1-ene (monosubstituted) → but-2-ene is the major product.' },
+  ], ans: 'Major product: but-2-ene (CH₃CH=CHCH₃) — Saytzeff (more substituted, more stable).' },
+
+  { title: 'Multi-step synthesis', diff: 'hard', q: 'Outline how to convert ethene to ethyl ethanoate in three steps.', steps: [
+    { label: 'STEP 1', text: 'Step 1: ethene → ethanol. CH₂=CH₂ + H₂O → CH₃CH₂OH. Reagents: H₃PO₄ catalyst, 300 °C, 60 atm.' },
+    { label: 'STEP 2', text: 'Step 2: half of the ethanol → ethanoic acid. CH₃CH₂OH + 2[O] → CH₃COOH + H₂O. Reagents: acidified K₂Cr₂O₇, reflux (for full oxidation).' },
+    { label: 'STEP 3', text: 'Step 3: esterification. The remaining ethanol + the ethanoic acid → ethyl ethanoate. CH₃CH₂OH + CH₃COOH ⇌ CH₃COOCH₂CH₃ + H₂O. Reagents: concentrated H₂SO₄ catalyst, reflux.' },
+    { label: 'STEP 4', text: 'Use excess of one reactant or remove water to push the equilibrium right (Le Chatelier).' },
+  ], ans: 'Ethene → ethanol (hydration) → ethanoic acid (oxidation) → ethyl ethanoate (esterification).' },
+
+  { title: 'Phenol with bromine water', diff: 'easy', q: 'Describe what is observed when phenol is shaken with bromine water and write the equation.', steps: [
+    { label: 'STEP 1', text: 'Bromine water (orange/brown) is added to phenol solution.' },
+    { label: 'STEP 2', text: 'The orange/brown colour of bromine water is DECOLOURISED.' },
+    { label: 'STEP 3', text: 'A WHITE PRECIPITATE of 2,4,6-tribromophenol forms.' },
+    { label: 'STEP 4', text: 'Equation: C₆H₅OH + 3Br₂ → C₆H₂Br₃OH + 3HBr.' },
+    { label: 'STEP 5', text: 'No catalyst needed — the OH group activates the ring sufficiently. (Benzene would need FeBr₃ as a halogen carrier and would only mono-substitute.)' },
+  ], ans: 'Br₂(aq) decolourised; white ppt of 2,4,6-tribromophenol; C₆H₅OH + 3Br₂ → C₆H₂Br₃OH + 3HBr.' },
+];
+
+export const HYDROXY = {
+  id: 'hydroxy',
+  objectives: [
+    'Name and classify alcohols (1°, 2°, 3°) using IUPAC nomenclature',
+    'Describe isomerism in alcohols including chain, position, functional group and optical isomerism',
+    'Describe the manufacture of ethanol by fermentation and by hydration of ethene',
+    'Explain the physical properties of alcohols (high b.p., water solubility) in terms of hydrogen bonding',
+    'Describe the reactions of alcohols: combustion, sodium, halogenation (PCl₅, SOCl₂, HBr, red P + I₂)',
+    'Describe the oxidation of primary, secondary and tertiary alcohols by acidified K₂Cr₂O₇',
+    'Describe dehydration to alkenes and esterification with carboxylic acids',
+    'Describe the iodoform test and identify which compounds give a positive result',
+    'Describe the reactions of phenol with Na, NaOH, Br₂(aq) and HNO₃',
+    'Compare the acidities of water, phenol and ethanol using conjugate base stability arguments',
+  ],
+  chapters,
+  quizzes,
+  multi: [],
+  structured,
+  worked,
+  tutorPrompts: [
+    'Walk me through how to distinguish 1°, 2° and 3° alcohols experimentally',
+    'Why is phenol much more acidic than ethanol?',
+    'Explain the iodoform test — which compounds give positive results?',
+    'Compare fermentation vs hydration of ethene as routes to ethanol',
+    'Give me a hard multi-step synthesis problem starting from ethene',
+  ],
+};

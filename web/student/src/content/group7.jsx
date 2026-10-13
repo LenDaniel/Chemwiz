@@ -1,0 +1,631 @@
+// Group VII — IC-12 — full content
+// ZIMSEC Form 5/6 Chemistry, Section 6.2 — Topic 12
+// Syllabus coverage:
+//   Trends in volatility and colour (Cl₂, Br₂, I₂)
+//   Van der Waals forces explaining volatility
+//   Relative reactivity as oxidising agents (E° values)
+//   Reactions with hydrogen; thermal stabilities of hydrides
+//   Reactions of halide ions with Ag⁺/NH₃ and with conc. H₂SO₄
+//   Disproportionation of Cl₂ with cold and hot NaOH
+//   Industrial importance and environmental significance
+
+/* ============================================================
+   Diagram specs (Phase K3 migration)
+   ============================================================ */
+
+const physicalSpec = {
+  title: 'GROUP VII PHYSICAL PROPERTIES',
+  blocks: [
+    { type: 'table',
+      headers: ['Halogen', 'Colour', 'State', 'B.P./°C', 'E°/V'],
+      rows: [
+        ['F₂',  'pale yellow',  'gas',     '−188', '+2.87'],
+        ['Cl₂', 'yellow-green', 'gas',     '−34',  '+1.36'],
+        ['Br₂', 'red-brown',    'liquid',  '+59',  '+1.07'],
+        ['I₂',  'grey-black*',  'solid',   '+184', '+0.54'],
+      ],
+      rowColors: ['amber', 'green', 'pink', 'primary'],
+    },
+    { type: 'note', text: '*I₂ gives purple vapour when heated; brown in solution' },
+    { type: 'note', text: '↓ group: ↑ size → ↑ London forces → ↑ b.p. → ↓ volatility', emphasis: true },
+  ],
+};
+
+const displacementSpec = {
+  title: 'HALOGEN DISPLACEMENT REACTIONS',
+  subtitle: 'a more reactive halogen displaces a less reactive one',
+  blocks: [
+    { type: 'table',
+      headers: ['', 'Cl⁻(aq)', 'Br⁻(aq)', 'I⁻(aq)'],
+      rows: [
+        ['Cl₂', '—',  '✓ brown',          '✓ brown→purple'],
+        ['Br₂', '✗',  '—',                '✓ brown→purple'],
+        ['I₂',  '✗',  '✗',                '—'],
+      ],
+    },
+    { type: 'equation', text: 'Cl₂ + 2Br⁻ → 2Cl⁻ + Br₂', big: true },
+    { type: 'equation', text: 'Cl₂ + 2I⁻ → 2Cl⁻ + I₂' },
+    { type: 'note', text: 'Cl₂ is the strongest oxidising agent; I₂ is the weakest' },
+  ],
+};
+
+const silverTestsSpec = {
+  title: 'TESTING FOR HALIDE IONS · Ag⁺/NH₃',
+  blocks: [
+    { type: 'table',
+      headers: ['Halide', '+ AgNO₃', '+ dil NH₃', '+ conc NH₃'],
+      rows: [
+        ['Cl⁻', 'white ppt',  'dissolves',  'dissolves'],
+        ['Br⁻', 'cream ppt',  'insoluble',  'dissolves'],
+        ['I⁻',  'yellow ppt', 'insoluble',  'insoluble'],
+      ],
+    },
+    { type: 'panel', title: 'PROCEDURE', body: [
+      'Add dilute HNO₃ first (removes CO₃²⁻/SO₃²⁻)',
+      'then add AgNO₃ → precipitate forms',
+      'then test with NH₃ to distinguish the halides',
+    ], color: 'primary' },
+  ],
+};
+
+const concH2SO4Spec = {
+  title: 'HALIDE IONS + CONC. H₂SO₄',
+  blocks: [
+    { type: 'table',
+      headers: ['Halide', 'Products', 'Observations'],
+      colWidths: [50, 130, 110],
+      rows: [
+        ['Cl⁻', 'HCl only',                'white fumes'],
+        ['Br⁻', 'HBr → Br₂ + SO₂',         'brown fumes'],
+        ['I⁻',  'HI → I₂ + H₂S',           'purple, rotten egg'],
+      ],
+    },
+    { type: 'note', text: 'Why the difference?', emphasis: true },
+    { type: 'panel', body: [
+      'HCl: not strong enough to reduce H₂SO₄',
+      'HBr: reduces H₂SO₄ to SO₂ (Br⁻ better reducer)',
+      'HI: reduces H₂SO₄ all the way to H₂S (I⁻ strongest reducer)',
+    ], color: 'primary' },
+  ],
+};
+
+const disproportionationSpec = {
+  title: 'Cl₂ + NaOH · DISPROPORTIONATION',
+  blocks: [
+    { type: 'compare',
+      left: { title: 'COLD DILUTE NaOH', body: [
+        'Cl₂ + 2NaOH →',
+        'NaCl + NaClO + H₂O',
+        'Cl: 0 → −1 and +1',
+      ], color: 'cyan' },
+      right: { title: 'HOT CONC. NaOH', body: [
+        '3Cl₂ + 6NaOH →',
+        '5NaCl + NaClO₃ + 3H₂O',
+        'Cl: 0 → −1 and +5',
+      ], color: 'pink' },
+    },
+    { type: 'note', text: 'DISPROPORTIONATION', emphasis: true },
+    { type: 'note', text: '= simultaneous oxidation AND reduction of the SAME element' },
+    { type: 'note', text: 'Cold: Cl₂ → Cl⁻(−1) + ClO⁻(+1) — bleach!' },
+    { type: 'note', text: 'Hot: Cl₂ → Cl⁻(−1) + ClO₃⁻(+5) — chlorate' },
+  ],
+};
+
+const hydridesSpec = {
+  title: 'HYDROGEN HALIDE THERMAL STABILITY',
+  blocks: [
+    { type: 'bars',
+      yMax: 100,
+      items: [
+        { label: 'HF',  value: 95, valueLabel: '95',  color: 'primary', sublabel: 'very stable' },
+        { label: 'HCl', value: 75, valueLabel: '75',  color: 'primary', sublabel: 'stable' },
+        { label: 'HBr', value: 45, valueLabel: '45',  color: 'primary', sublabel: 'decomp.' },
+        { label: 'HI',  value: 20, valueLabel: '20',  color: 'primary', sublabel: 'easy decomp.' },
+      ],
+    },
+    { type: 'note', text: 'Stability DECREASES down the group', emphasis: true },
+    { type: 'note', text: 'longer H–X bond → weaker → easier to break → less stable' },
+  ],
+};
+
+const reactivitySpec = {
+  title: 'OXIDISING POWER · E° VALUES',
+  blocks: [
+    { type: 'table',
+      headers: ['Halogen', 'E°/V', 'Strength'],
+      colWidths: [70, 80, 140],
+      rows: [
+        ['F₂',  '+2.87 V', 'strongest oxidiser'],
+        ['Cl₂', '+1.36 V', 'very strong'],
+        ['Br₂', '+1.07 V', 'moderate'],
+        ['I₂',  '+0.54 V', 'weakest'],
+      ],
+      rowColors: ['amber', 'green', 'pink', 'primary'],
+    },
+    { type: 'note', text: 'higher E° → stronger oxidising agent → more reactive', emphasis: true },
+    { type: 'note', text: 'oxidising power DECREASES down the group' },
+  ],
+};
+
+/* ============================================================
+   Chapters
+   ============================================================ */
+const chapters = [
+  // CH.1 — Introduction
+  { id: 'g71', title: 'The Halogens: Cl₂, Br₂ & I₂', minutes: 7, blocks: [
+    { type: 'p', text: 'Group VII contains fluorine (F), chlorine (Cl), bromine (Br), iodine (I) and astatine (At). The ZIMSEC syllabus focuses on Cl₂, Br₂ and I₂. These are called the HALOGENS (Greek: "salt-formers") because they react with metals to form salts. All have the outer electron configuration ns²np⁵ — they need just ONE more electron to achieve a noble gas configuration, which is why they are powerful oxidising agents.' },
+    { type: 'h', text: 'Key features' },
+    { type: 'ul', items: [
+      'All exist as diatomic molecules: F₂, Cl₂, Br₂, I₂.',
+      'All are coloured and toxic.',
+      'They are the most electronegative elements (F is the most electronegative of all).',
+      'Reactivity DECREASES down the group (opposite to Groups I and II).',
+      'They form −1 ions (halide ions: Cl⁻, Br⁻, I⁻).',
+    ]},
+    { type: 'takeaway', items: [
+      'Group VII: F, Cl, Br, I — configuration ns²np⁵.',
+      'Exist as X₂ molecules. Reactivity decreases down.',
+      'Powerful oxidising agents: X₂ + 2e⁻ → 2X⁻.',
+    ]},
+  ]},
+
+  // CH.2 — Physical properties
+  { id: 'g72', title: 'Colour, Volatility & Van der Waals Forces', minutes: 9, blocks: [
+    { type: 'p', text: 'The halogens show a clear trend in physical appearance: colour deepens and volatility decreases going down the group.' },
+    { type: 'd', spec: physicalSpec, caption: 'Physical properties of halogens' },
+    { type: 'h', text: 'Colour trend' },
+    { type: 'ul', items: [
+      'F₂: pale yellow gas.',
+      'Cl₂: yellow-green gas (pungent, choking smell).',
+      'Br₂: red-brown volatile liquid (fuming at room temperature).',
+      'I₂: grey-black solid with a shiny lustre. Sublimes to give PURPLE vapour. Brown when dissolved in organic solvents; brown-yellow in aqueous solution.',
+    ]},
+    { type: 'h', text: 'Why volatility decreases' },
+    { type: 'ul', items: [
+      'All halogens are simple molecular (X₂) with non-polar covalent bonds.',
+      'The intermolecular forces are VAN DER WAALS (London dispersion) forces only.',
+      'Going down: molecular size and number of electrons INCREASE → London forces get STRONGER.',
+      'Stronger intermolecular forces → higher boiling point → less volatile.',
+      'F₂ (gas) → Cl₂ (gas) → Br₂ (liquid) → I₂ (solid) at room temperature.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Volatility = ease of evaporation', body: 'High volatility means low boiling point. F₂ is the most volatile halogen (b.p. −188 °C) because it has the fewest electrons and weakest London forces. I₂ is the least volatile (b.p. +184 °C) with the strongest London forces.' },
+    { type: 'takeaway', items: [
+      'Colour deepens: pale yellow → yellow-green → red-brown → grey-black.',
+      'Volatility decreases (b.p. increases): more electrons → stronger London forces.',
+      'All are simple molecular — only London forces between X₂ molecules.',
+    ]},
+  ]},
+
+  // CH.3 — Reactivity as oxidising agents
+  { id: 'g73', title: 'Reactivity & E° Values', minutes: 10, blocks: [
+    { type: 'p', text: 'Halogens are oxidising agents — they accept electrons to form halide ions: X₂ + 2e⁻ → 2X⁻. Reactivity as oxidising agents DECREASES down the group: F₂ > Cl₂ > Br₂ > I₂.' },
+    { type: 'd', spec: reactivitySpec, caption: 'E° values decrease down Group VII' },
+    { type: 'h', text: 'Why reactivity decreases' },
+    { type: 'ul', items: [
+      'Going down: atomic radius INCREASES. The incoming electron is added to a shell further from the nucleus.',
+      'More inner shells provide greater SHIELDING of the nuclear charge.',
+      'The effective nuclear attraction for the incoming electron is WEAKER.',
+      'Therefore it becomes harder for the halogen to gain an electron → lower E° → weaker oxidising agent.',
+    ]},
+    { type: 'h', text: 'Displacement reactions' },
+    { type: 'd', spec: displacementSpec, caption: 'A more reactive halogen displaces a less reactive halide from solution' },
+    { type: 'ul', items: [
+      'Cl₂ + 2KBr → 2KCl + Br₂. Cl₂ oxidises Br⁻ to Br₂. Solution turns ORANGE/BROWN.',
+      'Cl₂ + 2KI → 2KCl + I₂. Cl₂ oxidises I⁻ to I₂. Solution turns BROWN (then dark/purple with starch).',
+      'Br₂ + 2KI → 2KBr + I₂. Br₂ oxidises I⁻. Solution turns brown/black.',
+      'I₂ cannot displace Cl⁻ or Br⁻ — it is the weakest oxidising agent.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Using E° to predict', body: 'E°cell = E°(oxidiser) − E°(reducer). Cl₂/Cl⁻ = +1.36 V and Br₂/Br⁻ = +1.07 V. E°cell = 1.36 − 1.07 = +0.29 V > 0 → Cl₂ WILL oxidise Br⁻. But Br₂ cannot oxidise Cl⁻ because E°cell would be negative.' },
+    { type: 'takeaway', items: [
+      'Reactivity as oxidising agents: F₂ > Cl₂ > Br₂ > I₂.',
+      'Explained by increasing atomic radius and shielding down the group.',
+      'A more reactive halogen displaces a less reactive halide.',
+    ]},
+  ]},
+
+  // CH.4 — Reactions with hydrogen
+  { id: 'g74', title: 'Hydrogen Halides & Thermal Stability', minutes: 9, blocks: [
+    { type: 'p', text: 'All halogens react with hydrogen to form hydrogen halides (HX). The vigour of the reaction decreases down the group, and the thermal stability of the product also decreases.' },
+    { type: 'h', text: 'Reactions with hydrogen' },
+    { type: 'ul', items: [
+      'H₂ + F₂ → 2HF. EXPLOSIVE, even in the dark and at low temperatures.',
+      'H₂ + Cl₂ → 2HCl. Explosive in UV light or at high temperatures. Slow in the dark.',
+      'H₂ + Br₂ → 2HBr. Requires heating. Less vigorous.',
+      'H₂ + I₂ ⇌ 2HI. Slow, requires a catalyst (Pt), and the reaction is REVERSIBLE.',
+    ]},
+    { type: 'd', spec: hydridesSpec, caption: 'Thermal stability of hydrogen halides decreases down the group' },
+    { type: 'h', text: 'Why stability decreases' },
+    { type: 'ul', items: [
+      'H–F bond is very short and strong (568 kJ mol⁻¹) → HF is extremely stable.',
+      'H–Cl: 432 kJ mol⁻¹. H–Br: 366 kJ mol⁻¹. H–I: 298 kJ mol⁻¹.',
+      'Going down: the H–X bond gets LONGER and WEAKER because the halogen atom is larger.',
+      'Weaker bonds are easier to break → HI decomposes at relatively low temperatures; HF is essentially unbreakable thermally.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Bond strength explains both trends', body: 'The decreasing bond energy H–F > H–Cl > H–Br > H–I explains both (1) the decreasing vigour of the H₂ + X₂ reaction (less energy released as the bond formed is weaker) and (2) the decreasing thermal stability (weaker bonds break more easily).' },
+    { type: 'takeaway', items: [
+      'Vigour of H₂ + X₂ decreases: F₂ explosive → I₂ slow/reversible.',
+      'Thermal stability: HF > HCl > HBr > HI.',
+      'Explained by decreasing H–X bond energy down the group.',
+    ]},
+  ]},
+
+  // CH.5 — Testing for halide ions
+  { id: 'g75', title: 'Testing for Halide Ions: Ag⁺ & NH₃', minutes: 9, blocks: [
+    { type: 'p', text: 'The standard test for halide ions uses silver nitrate solution followed by ammonia. Each halide gives a different coloured precipitate with different solubility in ammonia.' },
+    { type: 'd', spec: silverTestsSpec, caption: 'The Ag⁺/NH₃ test distinguishes Cl⁻, Br⁻ and I⁻' },
+    { type: 'h', text: 'Procedure' },
+    { type: 'ul', items: [
+      'Step 1: Acidify the solution with DILUTE NITRIC ACID (HNO₃). This removes interfering ions like CO₃²⁻ and SO₃²⁻ that would also give precipitates with Ag⁺.',
+      'Step 2: Add silver nitrate solution, AgNO₃(aq).',
+      'Step 3: Observe the precipitate colour: white (Cl⁻), cream (Br⁻), yellow (I⁻).',
+      'Step 4: Add dilute ammonia (NH₃) to confirm: AgCl dissolves (soluble), AgBr does not dissolve.',
+      'Step 5: Add concentrated ammonia: AgBr now dissolves, but AgI still does not.',
+    ]},
+    { type: 'h', text: 'Equations' },
+    { type: 'ul', items: [
+      'Ag⁺(aq) + Cl⁻(aq) → AgCl(s) — white precipitate.',
+      'Ag⁺(aq) + Br⁻(aq) → AgBr(s) — cream precipitate.',
+      'Ag⁺(aq) + I⁻(aq) → AgI(s) — yellow precipitate.',
+      'AgCl dissolves in dilute NH₃: AgCl + 2NH₃ → [Ag(NH₃)₂]⁺ + Cl⁻ (diamminesilver(I) complex).',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Why HNO₃ not HCl?', body: 'You must use nitric acid, NOT hydrochloric acid. HCl would introduce Cl⁻ ions, giving a false positive for chloride. HNO₃ does not contain any halide ions.' },
+    { type: 'takeaway', items: [
+      'Acidify with HNO₃, then add AgNO₃.',
+      'White = Cl⁻ (dissolves in dil. NH₃). Cream = Br⁻ (dissolves in conc. NH₃). Yellow = I⁻ (insoluble in NH₃).',
+      'Use HNO₃, never HCl, to acidify.',
+    ]},
+  ]},
+
+  // CH.6 — Halides with conc. H₂SO₄
+  { id: 'g76', title: 'Halide Ions + Concentrated H₂SO₄', minutes: 10, blocks: [
+    { type: 'p', text: 'When solid sodium halides are treated with concentrated sulphuric acid, the products depend on whether the hydrogen halide (HX) is a strong enough reducing agent to reduce H₂SO₄.' },
+    { type: 'd', spec: concH2SO4Spec, caption: 'Products depend on reducing power of the halide' },
+    { type: 'h', text: 'NaCl + conc. H₂SO₄' },
+    { type: 'ul', items: [
+      'NaCl + H₂SO₄ → NaHSO₄ + HCl. White fumes of HCl.',
+      'HCl is NOT a strong enough reducing agent to reduce H₂SO₄ further.',
+      'This is a simple acid-base reaction (not redox). H₂SO₄ acts as an acid, donating H⁺ to Cl⁻.',
+    ]},
+    { type: 'h', text: 'NaBr + conc. H₂SO₄' },
+    { type: 'ul', items: [
+      'Initially: NaBr + H₂SO₄ → NaHSO₄ + HBr (acid-base, steamy fumes).',
+      'But HBr IS a reducing agent. It reduces H₂SO₄: 2HBr + H₂SO₄ → Br₂ + SO₂ + 2H₂O.',
+      'Observations: brown/orange fumes of Br₂, pungent SO₂ gas.',
+      'Br⁻ is oxidised from −1 to 0; S is reduced from +6 to +4.',
+    ]},
+    { type: 'h', text: 'NaI + conc. H₂SO₄' },
+    { type: 'ul', items: [
+      'Initially: NaI + H₂SO₄ → NaHSO₄ + HI.',
+      'HI is a VERY strong reducing agent. It reduces H₂SO₄ all the way to H₂S:',
+      '8HI + H₂SO₄ → 4I₂ + H₂S + 4H₂O.',
+      'Observations: purple/black I₂ solid/vapour, rotten egg smell of H₂S.',
+      'I⁻ is oxidised from −1 to 0; S is reduced from +6 to −2 (a 8-electron change!).',
+      'Also produces SO₂ and S as intermediate reduction products.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Reducing power increases', body: 'Cl⁻: no reduction of H₂SO₄. Br⁻: reduces to SO₂ (S: +6→+4). I⁻: reduces to H₂S (S: +6→−2). This is because the reducing power of X⁻ increases down the group — larger ions hold their outer electrons less tightly and lose them more easily.' },
+    { type: 'takeaway', items: [
+      'NaCl: HCl only (white fumes, no redox).',
+      'NaBr: HBr then Br₂ + SO₂ (brown fumes).',
+      'NaI: HI then I₂ + H₂S (purple/black, rotten egg smell).',
+      'Reducing power: I⁻ > Br⁻ > Cl⁻.',
+    ]},
+  ]},
+
+  // CH.7 — Disproportionation
+  { id: 'g77', title: 'Disproportionation of Cl₂ with NaOH', minutes: 9, blocks: [
+    { type: 'p', text: 'Chlorine reacts with sodium hydroxide in a DISPROPORTIONATION reaction — the same element (Cl) is simultaneously oxidised AND reduced. The products depend on the temperature.' },
+    { type: 'd', spec: disproportionationSpec, caption: 'Cold vs hot NaOH gives different products' },
+    { type: 'h', text: 'Cold dilute NaOH' },
+    { type: 'ul', items: [
+      'Cl₂ + 2NaOH → NaCl + NaClO + H₂O.',
+      'Chlorine (oxidation state 0) → Cl⁻ (−1, reduced) and ClO⁻ (+1, oxidised).',
+      'NaClO is sodium chlorate(I) = bleach (sodium hypochlorite).',
+      'This reaction is the basis of household bleach manufacture.',
+    ]},
+    { type: 'h', text: 'Hot concentrated NaOH' },
+    { type: 'ul', items: [
+      '3Cl₂ + 6NaOH → 5NaCl + NaClO₃ + 3H₂O.',
+      'Chlorine (0) → Cl⁻ (−1, reduced) and ClO₃⁻ (+5, oxidised).',
+      'NaClO₃ is sodium chlorate(V) — used as a weedkiller.',
+      'The higher temperature allows further oxidation of Cl to the +5 state.',
+    ]},
+    { type: 'h', text: 'Cl₂ in cold water' },
+    { type: 'ul', items: [
+      'Cl₂ + H₂O ⇌ HCl + HClO (or H⁺ + Cl⁻ + HClO).',
+      'Also a disproportionation: Cl₂ (0) → Cl⁻ (−1) + HClO (+1).',
+      'HClO (chloric(I) acid) is the active disinfecting agent in chlorinated water.',
+      'This equilibrium explains why chlorine both acidifies water AND acts as a bleach/disinfectant.',
+    ]},
+    { type: 'callout', kind: 'definition', title: 'Disproportionation', body: 'A reaction in which the SAME element is simultaneously OXIDISED and REDUCED. Cl₂ → Cl⁻ (reduction, −1) + ClO⁻ (oxidation, +1). The element goes to both a higher AND lower oxidation state.' },
+    { type: 'takeaway', items: [
+      'Cold NaOH: Cl₂ → NaCl + NaClO (bleach). Cl: 0 → −1 and +1.',
+      'Hot NaOH: Cl₂ → NaCl + NaClO₃. Cl: 0 → −1 and +5.',
+      'Cold water: Cl₂ → HCl + HClO (disinfectant).',
+      'All are disproportionation reactions.',
+    ]},
+  ]},
+
+  // CH.8 — Uses and environmental significance
+  { id: 'g78', title: 'Industrial Importance & Environmental Significance', minutes: 9, blocks: [
+    { type: 'p', text: 'The halogens and their compounds have enormous industrial importance but also raise significant environmental concerns.' },
+    { type: 'h', text: 'Uses of chlorine and its compounds' },
+    { type: 'ul', items: [
+      'Water purification: Cl₂ or NaClO kills bacteria by oxidation. Used in drinking water and swimming pools.',
+      'Bleach manufacture: Cl₂ + 2NaOH → NaCl + NaClO.',
+      'PVC production: Cl₂ is used to make chloroethene (vinyl chloride), which is polymerised to PVC — a major construction and packaging plastic.',
+      'Halogenated hydrocarbons: used as solvents (e.g. dichloromethane), refrigerants, and anaesthetics.',
+    ]},
+    { type: 'h', text: 'Environmental concerns' },
+    { type: 'ul', items: [
+      'CFCs (chlorofluorocarbons): formerly used as refrigerants and aerosol propellants. Extremely stable → persist in the atmosphere → reach the ozone layer.',
+      'In the stratosphere, UV light breaks C–Cl bonds: CFCl₃ → CFCl₂ + Cl•. The chlorine radical catalytically destroys ozone: Cl• + O₃ → ClO• + O₂, then ClO• + O₃ → Cl• + 2O₂. One Cl• can destroy thousands of O₃ molecules.',
+      'HFCs and HCFCs are now used as replacements — they break down in the lower atmosphere before reaching the ozone layer.',
+      'Chlorinated solvents: can contaminate groundwater. Many are now restricted or banned.',
+    ]},
+    { type: 'h', text: 'Uses of bromine and iodine' },
+    { type: 'ul', items: [
+      'Br₂: fire retardants, photographic chemicals, pharmaceuticals.',
+      'I₂: antiseptic (tincture of iodine), iodised salt (prevents goitre/thyroid deficiency), medical contrast agents.',
+      'AgBr: used in traditional photographic film (decomposes in light to form Ag metal).',
+    ]},
+    { type: 'takeaway', items: [
+      'Cl₂: water purification, bleach, PVC.',
+      'CFCs destroy ozone layer — now banned under Montreal Protocol.',
+      'I₂: antiseptic, iodised salt.',
+    ]},
+  ]},
+
+  // CH.9 — Oxidation states in compounds
+  { id: 'g79', title: 'Halogen Oxidation States & Thiosulphate', minutes: 8, blocks: [
+    { type: 'p', text: 'Halogens typically have oxidation state −1 in halides, but chlorine can also show +1 (in ClO⁻), +5 (in ClO₃⁻) and +7 (in ClO₄⁻). The exam may also involve the halogen–thiosulphate reaction used in iodometric titrations.' },
+    { type: 'h', text: 'Oxidation states of chlorine' },
+    { type: 'ul', items: [
+      'Cl₂: 0 (elemental).',
+      'Cl⁻: −1 (in HCl, NaCl).',
+      'ClO⁻ (hypochlorite): +1 (in bleach, NaClO).',
+      'ClO₃⁻ (chlorate): +5 (in NaClO₃).',
+      'ClO₄⁻ (perchlorate): +7.',
+    ]},
+    { type: 'h', text: 'Reaction of halogens with Na₂S₂O₃' },
+    { type: 'ul', items: [
+      'I₂ + 2Na₂S₂O₃ → 2NaI + Na₂S₄O₆ (iodine–thiosulphate titration).',
+      'I₂ is reduced (0 → −1); S₂O₃²⁻ is oxidised (+2 → +2.5 average in S₄O₆²⁻).',
+      'This is the basis of iodometric analysis — widely used in quantitative chemistry.',
+      'Starch indicator: turns blue-black with I₂; colourless at endpoint when all I₂ consumed.',
+    ]},
+    { type: 'h', text: 'Change in oxidation state for Cl₂ + NaOH' },
+    { type: 'p', text: 'In cold NaOH: Cl goes from 0 to both −1 (Cl⁻) and +1 (ClO⁻). In hot NaOH: from 0 to −1 (Cl⁻) and +5 (ClO₃⁻). These changes are used to calculate the mole ratios in the equations.' },
+    { type: 'takeaway', items: [
+      'Cl can be −1, 0, +1, +5, +7.',
+      'I₂ + 2S₂O₃²⁻ → 2I⁻ + S₄O₆²⁻ (iodometric titration).',
+      'Disproportionation: 0 → −1 and +1 (cold) or +5 (hot).',
+    ]},
+  ]},
+
+  // CH.10 — Comparing halide reducing power
+  { id: 'g710', title: 'Halide Ions as Reducing Agents', minutes: 7, blocks: [
+    { type: 'p', text: 'While halogens are OXIDISING agents, halide ions (X⁻) are REDUCING agents. Their reducing power INCREASES down the group: I⁻ > Br⁻ > Cl⁻ > F⁻.' },
+    { type: 'h', text: 'Why reducing power increases' },
+    { type: 'ul', items: [
+      'Going down: ionic radius INCREASES. The outer electron in the halide ion is further from the nucleus and more shielded.',
+      'It is easier to REMOVE this electron (lower ionisation energy for X⁻ → X + e⁻).',
+      'Therefore I⁻ is the most easily oxidised halide → strongest reducing agent.',
+    ]},
+    { type: 'h', text: 'Evidence from conc. H₂SO₄ reactions' },
+    { type: 'ul', items: [
+      'Cl⁻: cannot reduce H₂SO₄ at all → only HCl produced.',
+      'Br⁻: reduces H₂SO₄ to SO₂ (+6 → +4) → Br₂ produced.',
+      'I⁻: reduces H₂SO₄ to H₂S (+6 → −2) → I₂ produced.',
+      'This dramatic difference is direct evidence for increasing reducing power down the group.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Don\'t confuse the two trends', body: 'Halogens (X₂) are oxidising agents — strength DECREASES down. Halide ions (X⁻) are reducing agents — strength INCREASES down. These are opposite trends for the same reason: electron affinity/IE of the species involved.' },
+    { type: 'takeaway', items: [
+      'Reducing power of X⁻ increases: F⁻ < Cl⁻ < Br⁻ < I⁻.',
+      'Evidence: reactions with conc. H₂SO₄ show I⁻ is strongest reducer.',
+      'Opposite trend to halogen oxidising power.',
+    ]},
+  ]},
+
+  // CH.11 — Exam technique
+  { id: 'g711', title: 'Exam Technique & Common Pitfalls', minutes: 7, blocks: [
+    { type: 'p', text: 'Group VII questions combine trend explanations, testing procedures, equations, and redox analysis. Here are the key patterns.' },
+    { type: 'h', text: 'Must-know equations' },
+    { type: 'ul', items: [
+      'Cl₂ + 2KBr → 2KCl + Br₂ (displacement).',
+      'Cl₂ + 2NaOH → NaCl + NaClO + H₂O (cold — bleach).',
+      '3Cl₂ + 6NaOH → 5NaCl + NaClO₃ + 3H₂O (hot).',
+      'Ag⁺ + X⁻ → AgX (precipitate test).',
+      'NaCl + H₂SO₄ → NaHSO₄ + HCl.',
+      '2HBr + H₂SO₄ → Br₂ + SO₂ + 2H₂O.',
+      '8HI + H₂SO₄ → 4I₂ + H₂S + 4H₂O.',
+    ]},
+    { type: 'h', text: 'Common mistakes' },
+    { type: 'ul', items: [
+      'Saying "reactivity increases down Group VII" — WRONG. Oxidising power (reactivity of X₂) DECREASES. Reducing power (of X⁻) INCREASES.',
+      'Using HCl to acidify in the halide test — use HNO₃ only.',
+      'Forgetting to state temperature for Cl₂ + NaOH reactions (cold → ClO⁻; hot → ClO₃⁻).',
+      'Writing the wrong products for NaI + conc. H₂SO₄ — there are MULTIPLE products (I₂, H₂S, S, SO₂) because I⁻ is such a strong reducer.',
+    ]},
+    { type: 'h', text: 'Colour observations to state in exams' },
+    { type: 'ul', items: [
+      'Cl₂ displaces Br⁻: solution turns ORANGE/BROWN.',
+      'Cl₂ displaces I⁻: solution turns BROWN (dark) or add starch for BLUE-BLACK.',
+      'AgCl: WHITE ppt. AgBr: CREAM ppt. AgI: YELLOW ppt.',
+      'Br₂ fumes: brown/orange. I₂ vapour: purple.',
+    ]},
+    { type: 'takeaway', items: [
+      'Oxidising power decreases down (X₂); reducing power increases down (X⁻).',
+      'Use HNO₃ to acidify, never HCl.',
+      'State temperature for Cl₂ + NaOH.',
+      'Know ALL observation colours.',
+    ]},
+  ]},
+];
+
+/* ============================================================
+   Quizzes — 32 MCQs
+   ============================================================ */
+const quizzes = [
+  { q: 'Group VII elements are called:', opts: ['Alkali metals', 'Halogens', 'Noble gases', 'Transition metals'], ans: 1, hint: 'Halogen = salt-former.' },
+  { q: 'The colour of Br₂ at room temperature is:', opts: ['Pale yellow', 'Yellow-green', 'Red-brown', 'Grey-black'], ans: 2, hint: 'Bromine is a distinctive red-brown fuming liquid.' },
+  { q: 'I₂ at room temperature is a:', opts: ['Gas', 'Liquid', 'Solid', 'Plasma'], ans: 2, hint: 'Iodine is a grey-black solid with a shiny lustre.' },
+  { q: 'Volatility of halogens DECREASES down the group because:', opts: ['Bond energy increases', 'Molecular size increases → stronger London forces', 'They become more ionic', 'They react with water'], ans: 1, hint: 'More electrons → stronger temporary dipoles → stronger attraction.' },
+  { q: 'The most powerful oxidising agent among the halogens is:', opts: ['Cl₂', 'Br₂', 'I₂', 'F₂'], ans: 3, hint: 'F₂ has the highest E° value (+2.87 V).' },
+  { q: 'Cl₂ can displace Br⁻ from KBr because:', opts: ['Cl₂ is less reactive', 'Cl₂ is a stronger oxidising agent than Br₂', 'Br₂ is more reactive', 'KBr is insoluble'], ans: 1, hint: 'Higher E° → stronger oxidiser → displaces lower.' },
+  { q: 'When Cl₂ is added to KI solution, the observation is:', opts: ['No change', 'Solution turns brown/black', 'White precipitate', 'Gas evolved'], ans: 1, hint: 'I₂ is produced (brown). With starch indicator: blue-black.' },
+  { q: 'The thermal stability of hydrogen halides DECREASES because:', opts: ['The H–X bond gets longer and weaker', 'The H–X bond gets shorter', 'The molecules get smaller', 'More electrons are present'], ans: 0, hint: 'Longer bond → weaker → easier to break thermally.' },
+  { q: 'HI decomposes more easily than HCl because:', opts: ['HI has a stronger bond', 'H–I bond is longer and weaker than H–Cl', 'I is more electronegative', 'HI is more acidic'], ans: 1, hint: 'Bond energy: H–I (298) < H–Cl (432) kJ mol⁻¹.' },
+  { q: 'To test for Cl⁻ ions, add:', opts: ['BaCl₂ then HCl', 'AgNO₃ after acidifying with HNO₃', 'NaOH then heat', 'AgNO₃ after acidifying with HCl'], ans: 1, hint: 'HNO₃ + AgNO₃. White ppt = AgCl.' },
+  { q: 'AgCl is what colour?', opts: ['Yellow', 'Cream', 'White', 'Brown'], ans: 2, hint: 'White precipitate, soluble in dilute NH₃.' },
+  { q: 'AgBr is what colour?', opts: ['White', 'Cream', 'Yellow', 'Orange'], ans: 1, hint: 'Cream — between white (AgCl) and yellow (AgI).' },
+  { q: 'AgI dissolves in:', opts: ['Dilute NH₃', 'Concentrated NH₃', 'Neither', 'Both'], ans: 2, hint: 'AgI is insoluble in both dilute and concentrated ammonia.' },
+  { q: 'NaCl + conc. H₂SO₄ produces:', opts: ['Cl₂ + SO₂', 'HCl only', 'Br₂ + SO₂', 'I₂ + H₂S'], ans: 1, hint: 'HCl is too weak a reducer to reduce H₂SO₄.' },
+  { q: 'NaBr + conc. H₂SO₄ produces:', opts: ['HBr only', 'HBr then Br₂ and SO₂', 'NaCl + Br₂', 'No reaction'], ans: 1, hint: 'HBr reduces H₂SO₄ to SO₂.' },
+  { q: 'NaI + conc. H₂SO₄ produces:', opts: ['HI only', 'I₂ + SO₂ only', 'I₂ + H₂S (and SO₂, S)', 'No reaction'], ans: 2, hint: 'I⁻ reduces H₂SO₄ all the way to H₂S.' },
+  { q: 'The reducing power of halide ions INCREASES because:', opts: ['Ionic radius decreases', 'Ionic radius increases → electrons held less tightly', 'Nuclear charge increases', 'Electronegativity increases'], ans: 1, hint: 'Larger ion → outer electron easier to remove → better reducer.' },
+  { q: 'Disproportionation means:', opts: ['Same element oxidised AND reduced simultaneously', 'Two different elements react', 'A compound decomposes', 'An acid reacts with a base'], ans: 0, hint: 'The same element goes to both a higher and lower oxidation state.' },
+  { q: 'Cl₂ + cold NaOH produces:', opts: ['NaCl + NaClO₃', 'NaCl + NaClO', 'NaCl + HClO₃', 'NaCl only'], ans: 1, hint: 'Cold → NaClO (bleach). Cl: 0 → −1 and +1.' },
+  { q: 'Cl₂ + hot NaOH produces:', opts: ['NaCl + NaClO', 'NaCl + NaClO₃', 'NaCl + HCl', 'NaCl + Cl₂O'], ans: 1, hint: 'Hot → NaClO₃ (chlorate). Cl: 0 → −1 and +5.' },
+  { q: 'The oxidation state of Cl in NaClO is:', opts: ['−1', '0', '+1', '+5'], ans: 2, hint: 'Na is +1, O is −2. Na(+1) + Cl + O(−2) = 0. Cl = +1.' },
+  { q: 'The oxidation state of Cl in NaClO₃ is:', opts: ['+1', '+3', '+5', '+7'], ans: 2, hint: 'Na(+1) + Cl + 3O(−2) = 0. Cl = +5.' },
+  { q: 'Chlorine is used for water purification because:', opts: ['It is colourless', 'HClO kills bacteria by oxidation', 'It makes water taste better', 'It removes calcium'], ans: 1, hint: 'Cl₂ + H₂O ⇌ HCl + HClO. HClO is the active disinfectant.' },
+  { q: 'CFCs damage the ozone layer by:', opts: ['Absorbing UV directly', 'Releasing Cl radicals that catalytically destroy O₃', 'Reacting with N₂', 'Absorbing heat'], ans: 1, hint: 'Cl• + O₃ → ClO• + O₂; one Cl• destroys thousands of O₃.' },
+  { q: 'PVC is made from:', opts: ['Polyethene + Cl₂', 'Chloroethene (vinyl chloride) by polymerisation', 'CCl₄ + ethene', 'Chlorine + sodium'], ans: 1, hint: 'CH₂=CHCl → (−CH₂CHCl−)ₙ = PVC.' },
+  { q: 'The colour of I₂ vapour is:', opts: ['Brown', 'Purple', 'White', 'Green'], ans: 1, hint: 'Iodine sublimes to give a characteristic purple gas.' },
+  { q: 'In the reaction Cl₂ + 2KBr → 2KCl + Br₂, chlorine is:', opts: ['Oxidised', 'Reduced', 'Neither', 'Both'], ans: 1, hint: 'Cl₂ (0) → Cl⁻ (−1). It gains electrons = reduced.' },
+  { q: 'In the same reaction, Br⁻ is:', opts: ['Oxidised', 'Reduced', 'Neither', 'Both'], ans: 0, hint: 'Br⁻ (−1) → Br₂ (0). It loses electrons = oxidised.' },
+  { q: 'Which halide test precipitate is soluble in dilute NH₃?', opts: ['AgCl', 'AgBr', 'AgI', 'All of them'], ans: 0, hint: 'Only AgCl dissolves in dilute ammonia.' },
+  { q: 'The H–F bond energy (kJ mol⁻¹) is approximately:', opts: ['298', '366', '432', '568'], ans: 3, hint: 'HF has the shortest, strongest H–X bond.' },
+  { q: 'Cl₂ + H₂O ⇌ HCl + HClO. The Cl₂ is:', opts: ['Only oxidised', 'Only reduced', 'Disproportionated', 'Unchanged'], ans: 2, hint: 'Cl goes from 0 to both −1 and +1 simultaneously.' },
+  { q: 'Tincture of iodine is used as:', opts: ['A fuel', 'An antiseptic', 'A bleach', 'A food preservative'], ans: 1, hint: 'I₂ dissolved in ethanol — applied to wounds.' },
+];
+
+/* ============================================================
+   Structured questions — 6
+   ============================================================ */
+const structured = [
+  { title: 'Physical properties and displacement', marks: 8, q: 'Consider the halogens Cl₂, Br₂ and I₂.', parts: [
+    { q: '(a) Describe and explain the trend in boiling point from Cl₂ to I₂.', marks: 3, ans: 'Boiling point increases: Cl₂ (−34 °C) < Br₂ (+59 °C) < I₂ (+184 °C). All are simple molecular (X₂) held by van der Waals (London) forces. Going down: the number of electrons per molecule increases (Cl₂ = 34, Br₂ = 70, I₂ = 106 electrons). More electrons → larger, more polarisable electron cloud → stronger instantaneous dipole-induced dipole forces → higher b.p.' },
+    { q: '(b) Write the equation for the reaction of Cl₂ with KI(aq) and state the colour change.', marks: 2, ans: 'Cl₂(aq) + 2KI(aq) → 2KCl(aq) + I₂(aq). The colourless/pale green solution turns BROWN as iodine is produced. (With starch indicator: blue-black.)' },
+    { q: '(c) Explain, using E° values, why Cl₂ can displace I⁻ but I₂ cannot displace Cl⁻.', marks: 3, ans: 'E°(Cl₂/2Cl⁻) = +1.36 V; E°(I₂/2I⁻) = +0.54 V. For Cl₂ + 2I⁻: E°cell = 1.36 − 0.54 = +0.82 V > 0 → feasible. Cl₂ is a stronger oxidising agent so it can take electrons from I⁻. For I₂ + 2Cl⁻: E°cell = 0.54 − 1.36 = −0.82 V < 0 → not feasible. I₂ is too weak an oxidising agent to remove electrons from Cl⁻.' },
+  ]},
+  { title: 'Halide tests', marks: 8, q: 'An unknown solution may contain Cl⁻, Br⁻ or I⁻ ions.', parts: [
+    { q: '(a) Describe a test to identify which halide ion is present. Include the reagents, procedure, observations and equations.', marks: 5, ans: 'Procedure: (1) Add dilute HNO₃ to the solution to remove CO₃²⁻/SO₃²⁻. (2) Add AgNO₃(aq). (3) Observe precipitate: white = Cl⁻ (AgCl), cream = Br⁻ (AgBr), yellow = I⁻ (AgI). Equations: Ag⁺(aq) + Cl⁻(aq) → AgCl(s); Ag⁺(aq) + Br⁻(aq) → AgBr(s); Ag⁺(aq) + I⁻(aq) → AgI(s). (4) Confirm by adding NH₃: AgCl dissolves in dilute NH₃ (AgCl + 2NH₃ → [Ag(NH₃)₂]⁺ + Cl⁻). AgBr dissolves only in concentrated NH₃. AgI is insoluble in both.' },
+    { q: '(b) Explain why HNO₃ is used to acidify, not HCl.', marks: 2, ans: 'HCl would introduce Cl⁻ ions into the solution, which would react with AgNO₃ to give a white precipitate of AgCl regardless of the actual halide present — a false positive for chloride. HNO₃ does not contain any halide ions, so it does not interfere with the test.' },
+    { q: '(c) State the formula of the complex formed when AgCl dissolves in ammonia.', marks: 1, ans: '[Ag(NH₃)₂]⁺ — the diamminesilver(I) ion.' },
+  ]},
+  { title: 'Conc. H₂SO₄ reactions', marks: 9, q: 'Solid NaCl, NaBr and NaI are each treated separately with concentrated sulphuric acid.', parts: [
+    { q: '(a) Write the equation for NaCl + conc. H₂SO₄ and state the observation.', marks: 2, ans: 'NaCl(s) + H₂SO₄(l) → NaHSO₄(s) + HCl(g). Observation: steamy white fumes of HCl.' },
+    { q: '(b) Write equations to show the two stages of the reaction of NaBr with conc. H₂SO₄.', marks: 3, ans: 'Stage 1 (acid-base): NaBr + H₂SO₄ → NaHSO₄ + HBr. Stage 2 (redox): 2HBr + H₂SO₄ → Br₂ + SO₂ + 2H₂O. Overall observations: steamy fumes initially, then brown/orange fumes of Br₂ and pungent smell of SO₂.' },
+    { q: '(c) Explain why HBr reduces H₂SO₄ but HCl does not.', marks: 2, ans: 'Br⁻ is a stronger reducing agent than Cl⁻. Br⁻ has a larger ionic radius → the outer electron is further from the nucleus and more shielded → easier to remove. Br⁻ can lose an electron to reduce H₂SO₄ (S: +6→+4 in SO₂). Cl⁻ is a weaker reducer — it cannot provide enough reducing power to reduce H₂SO₄.' },
+    { q: '(d) Write the equation for the reduction of H₂SO₄ by HI to form H₂S, and state the observations.', marks: 2, ans: '8HI + H₂SO₄ → 4I₂ + H₂S + 4H₂O. Observations: purple/black solid or vapour of I₂ and a rotten-egg smell from H₂S gas. Sulphur (yellow solid) may also be deposited as an intermediate reduction product.' },
+  ]},
+  { title: 'Disproportionation', marks: 8, q: 'Chlorine reacts with aqueous sodium hydroxide.', parts: [
+    { q: '(a) Write the equation for the reaction of Cl₂ with cold dilute NaOH.', marks: 1, ans: 'Cl₂ + 2NaOH → NaCl + NaClO + H₂O.' },
+    { q: '(b) State the oxidation states of chlorine in each chlorine-containing product.', marks: 2, ans: 'In NaCl: Cl is −1. In NaClO: Cl is +1.' },
+    { q: '(c) Explain why this reaction is described as disproportionation.', marks: 2, ans: 'Chlorine in Cl₂ has oxidation state 0. In the products, chlorine has been simultaneously REDUCED to −1 (in NaCl) and OXIDISED to +1 (in NaClO). The same element undergoes both oxidation and reduction — this defines a disproportionation reaction.' },
+    { q: '(d) Write the equation for Cl₂ with hot concentrated NaOH and state the oxidation states.', marks: 2, ans: '3Cl₂ + 6NaOH → 5NaCl + NaClO₃ + 3H₂O. Cl in NaCl: −1. Cl in NaClO₃: +5. Disproportionation: 0 → −1 and +5.' },
+    { q: '(e) State one important use of the product NaClO.', marks: 1, ans: 'NaClO (sodium hypochlorite) is used as bleach — for whitening clothes, disinfecting surfaces, and water treatment.' },
+  ]},
+  { title: 'Hydrogen halides', marks: 7, q: 'The hydrogen halides HCl, HBr and HI have different thermal stabilities.', parts: [
+    { q: '(a) Arrange HCl, HBr and HI in order of decreasing thermal stability.', marks: 1, ans: 'HCl > HBr > HI (most stable first).' },
+    { q: '(b) Explain this trend in terms of bond energies.', marks: 3, ans: 'Going from HCl to HI, the H–X bond length increases because the halogen atom is larger. Longer bonds are weaker: H–Cl (432 kJ mol⁻¹) > H–Br (366) > H–I (298). Weaker bonds require less energy to break, so HI decomposes at a lower temperature than HCl. HCl is thermally stable because its shorter, stronger bond resists breaking.' },
+    { q: '(c) Describe the reaction of H₂ with I₂ and contrast it with the reaction of H₂ with F₂.', marks: 3, ans: 'H₂ + I₂ ⇌ 2HI: slow reaction, requires a catalyst (Pt) and heat. The reaction is REVERSIBLE. H₂ + F₂ → 2HF: explosively fast, even at low temperatures and in the dark. Not reversible under normal conditions. The difference is because the H–F bond (568 kJ mol⁻¹) is much stronger than H–I (298 kJ mol⁻¹), so the HF reaction is much more exothermic and proceeds vigorously.' },
+  ]},
+  { title: 'Environmental significance', marks: 7, q: 'Chlorine compounds have both beneficial and harmful effects on the environment.', parts: [
+    { q: '(a) Explain why chlorine is added to drinking water.', marks: 2, ans: 'Chlorine reacts with water to form HClO (chloric(I) acid): Cl₂ + H₂O ⇌ HCl + HClO. HClO is a powerful oxidising agent that kills bacteria and other pathogens, making the water safe to drink. This process is called chlorination.' },
+    { q: '(b) Describe how CFCs damage the ozone layer.', marks: 3, ans: 'CFCs (e.g. CFCl₃) are very stable and persist in the atmosphere. They rise to the stratosphere where UV radiation breaks the C–Cl bond, releasing chlorine radicals: CFCl₃ → CFCl₂• + Cl•. The Cl radical catalytically destroys ozone: Cl• + O₃ → ClO• + O₂; ClO• + O₃ → Cl• + 2O₂. The Cl radical is regenerated, so one radical can destroy thousands of O₃ molecules before being removed.' },
+    { q: '(c) Explain one environmental concern about halogenated hydrocarbons used as solvents.', marks: 2, ans: 'Halogenated solvents such as CCl₄ and CHCl₃ can contaminate groundwater because they are denser than water and sink through soil. They are toxic to aquatic life and potentially carcinogenic to humans. They are also very persistent — their strong C–Cl bonds make them resistant to natural degradation.' },
+  ]},
+];
+
+/* ============================================================
+   Worked examples — 8
+   ============================================================ */
+const worked = [
+  { title: 'Predict displacement reaction', diff: 'easy', q: 'Will Br₂ displace Cl⁻ from NaCl solution? Use E° values: Br₂/2Br⁻ = +1.07 V, Cl₂/2Cl⁻ = +1.36 V.', steps: [
+    { label: 'STEP 1', text: 'For Br₂ to displace Cl⁻: Br₂ must oxidise Cl⁻ to Cl₂.' },
+    { label: 'STEP 2', text: 'E°cell = E°(oxidiser) − E°(species being oxidised) = 1.07 − 1.36 = −0.29 V.' },
+    { label: 'STEP 3', text: 'Negative E°cell → reaction is NOT feasible.' },
+    { label: 'STEP 4', text: 'Br₂ is a weaker oxidising agent than Cl₂, so it cannot displace Cl⁻.' },
+  ], ans: 'No. E°cell = −0.29 V < 0. Br₂ cannot displace Cl⁻.' },
+
+  { title: 'Identify halide by Ag⁺ test', diff: 'easy', q: 'An unknown halide gives a cream precipitate with AgNO₃. The precipitate does not dissolve in dilute NH₃ but dissolves in concentrated NH₃. Identify the halide.', steps: [
+    { label: 'STEP 1', text: 'Cream precipitate = AgBr (not white = AgCl, not yellow = AgI).' },
+    { label: 'STEP 2', text: 'Does not dissolve in dilute NH₃ — confirms it is NOT AgCl.' },
+    { label: 'STEP 3', text: 'Dissolves in concentrated NH₃ — confirms it is AgBr (AgI would not dissolve in either).' },
+  ], ans: 'The halide is Br⁻ (bromide).' },
+
+  { title: 'NaI + conc. H₂SO₄', diff: 'hard', q: 'Explain fully what happens when NaI(s) is treated with conc. H₂SO₄. Give equations and observations.', steps: [
+    { label: 'STEP 1', text: 'Stage 1 (acid-base): NaI + H₂SO₄ → NaHSO₄ + HI. Steamy fumes initially.' },
+    { label: 'STEP 2', text: 'Stage 2 (redox): HI is a very strong reducing agent. It reduces H₂SO₄ through several stages.' },
+    { label: 'STEP 3', text: 'H₂SO₄ reduced to SO₂ (S: +6→+4): 2HI + H₂SO₄ → I₂ + SO₂ + 2H₂O.' },
+    { label: 'STEP 4', text: 'Further: 6HI + H₂SO₄ → 3I₂ + S + 4H₂O (S: +6→0). And: 8HI + H₂SO₄ → 4I₂ + H₂S + 4H₂O (S: +6→−2).' },
+    { label: 'STEP 5', text: 'Observations: purple/black solid (I₂), rotten egg smell (H₂S), yellow solid (S), pungent smell (SO₂).' },
+  ], ans: 'Multiple reduction products: SO₂, S, H₂S because I⁻ is a very strong reducing agent. Purple I₂ and rotten-egg H₂S are the key observations.' },
+
+  { title: 'Disproportionation oxidation states', diff: 'medium', q: 'In the reaction Cl₂ + 2NaOH → NaCl + NaClO + H₂O, identify the oxidation state changes.', steps: [
+    { label: 'STEP 1', text: 'Cl in Cl₂ = 0.' },
+    { label: 'STEP 2', text: 'Cl in NaCl: Na is +1, so Cl = −1. This Cl has been REDUCED (0 → −1).' },
+    { label: 'STEP 3', text: 'Cl in NaClO: Na is +1, O is −2. Na(+1) + Cl + O(−2) = 0, so Cl = +1. This Cl has been OXIDISED (0 → +1).' },
+    { label: 'STEP 4', text: 'Same element (Cl) simultaneously oxidised and reduced = disproportionation.' },
+  ], ans: 'Cl: 0 → −1 (reduced) and 0 → +1 (oxidised). This is disproportionation.' },
+
+  { title: 'Explain reducing power trend', diff: 'medium', q: 'Explain why I⁻ is a stronger reducing agent than Cl⁻.', steps: [
+    { label: 'STEP 1', text: 'I⁻ has a much larger ionic radius than Cl⁻ (220 pm vs 181 pm).' },
+    { label: 'STEP 2', text: 'The outer electron in I⁻ is further from the nucleus and more shielded by inner shells.' },
+    { label: 'STEP 3', text: 'It is therefore easier to remove this electron from I⁻ (lower IE for I⁻ → I + e⁻).' },
+    { label: 'STEP 4', text: 'Easier electron loss = better reducing agent. So I⁻ > Br⁻ > Cl⁻ in reducing power.' },
+  ], ans: 'I⁻ is larger → outer electron is further from nucleus and more shielded → easier to lose → stronger reducing agent.' },
+
+  { title: 'Thermal stability of HBr', diff: 'medium', q: 'Explain why HBr is less thermally stable than HCl.', steps: [
+    { label: 'STEP 1', text: 'H–Br bond length is longer than H–Cl (because Br is larger than Cl).' },
+    { label: 'STEP 2', text: 'Longer bond = less effective orbital overlap = weaker bond.' },
+    { label: 'STEP 3', text: 'Bond energy: H–Br = 366 kJ mol⁻¹ < H–Cl = 432 kJ mol⁻¹.' },
+    { label: 'STEP 4', text: 'Less energy needed to break the weaker H–Br bond → HBr decomposes at a lower temperature.' },
+  ], ans: 'H–Br bond is longer and weaker (366 vs 432 kJ mol⁻¹) → easier to break → less thermally stable.' },
+
+  { title: 'CFCs and ozone', diff: 'hard', q: 'Explain the mechanism by which CFCs destroy the ozone layer.', steps: [
+    { label: 'STEP 1', text: 'CFCs (e.g. CF₂Cl₂) are very stable in the lower atmosphere — C–Cl bonds are strong enough to resist normal degradation.' },
+    { label: 'STEP 2', text: 'They rise to the stratosphere where high-energy UV radiation has enough energy to break the C–Cl bond (homolytic fission): CF₂Cl₂ → CF₂Cl• + Cl•.' },
+    { label: 'STEP 3', text: 'Initiation: Cl• + O₃ → ClO• + O₂. The ozone molecule is destroyed.' },
+    { label: 'STEP 4', text: 'Propagation: ClO• + O₃ → Cl• + 2O₂. The Cl• is REGENERATED — it acts as a catalyst.' },
+    { label: 'STEP 5', text: 'One Cl radical can destroy tens of thousands of O₃ molecules before being removed from the cycle.' },
+  ], ans: 'UV breaks C–Cl bond. Released Cl• catalytically destroys O₃: Cl• + O₃ → ClO• + O₂; ClO• + O₃ → Cl• + 2O₂. Cl• is regenerated each cycle.' },
+
+  { title: 'Write hot NaOH equation', diff: 'medium', q: 'Write the balanced equation for chlorine with hot concentrated NaOH. State oxidation state changes.', steps: [
+    { label: 'STEP 1', text: '3Cl₂ + 6NaOH → 5NaCl + NaClO₃ + 3H₂O.' },
+    { label: 'STEP 2', text: 'Cl₂: Cl = 0. NaCl: Cl = −1. NaClO₃: Cl = +5.' },
+    { label: 'STEP 3', text: 'Reduction: 0 → −1 (5 Cl atoms). Oxidation: 0 → +5 (1 Cl atom).' },
+    { label: 'STEP 4', text: 'Electrons: 5 × 1e⁻ gained = 5e⁻. 1 × 5e⁻ lost = 5e⁻. Balanced.' },
+  ], ans: '3Cl₂ + 6NaOH → 5NaCl + NaClO₃ + 3H₂O. Cl: 0 → −1 (×5) and 0 → +5 (×1).' },
+];
+
+/* ============================================================
+   Exported module
+   ============================================================ */
+export const GROUP7 = {
+  id: 'group7',
+  objectives: [
+    'Describe the trends in volatility and colour of Cl₂, Br₂ and I₂ using van der Waals forces',
+    'Explain the relative reactivity of halogens as oxidising agents using E° values',
+    'Write equations for displacement reactions of halogens with halide solutions',
+    'Explain the relative thermal stabilities of HCl, HBr and HI in terms of bond energies',
+    'Describe the reactions of halide ions with AgNO₃ and subsequent ammonia tests',
+    'Describe and explain the reactions of halide ions with concentrated H₂SO₄',
+    'Write equations for the disproportionation of Cl₂ with cold and hot NaOH',
+    'Explain the industrial importance (water purification, bleach, PVC) and environmental significance (CFCs, ozone depletion) of halogens and their compounds',
+  ],
+  chapters,
+  quizzes,
+  multi: [],
+  structured,
+  worked,
+  tutorPrompts: [
+    'Walk me through the silver halide test step by step',
+    'Explain why NaI + conc. H₂SO₄ gives so many products',
+    'What is disproportionation? Show me both the cold and hot NaOH reactions',
+    'Give me a hard question about CFCs and the ozone layer mechanism',
+    'Why can Cl₂ displace Br⁻ but not vice versa? Use E° values.',
+  ],
+};

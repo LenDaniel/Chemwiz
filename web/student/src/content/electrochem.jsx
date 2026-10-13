@@ -1,0 +1,896 @@
+// Electrochemistry — PC-06 — full content
+// ZIMSEC Form 5/6 Chemistry, Section 6.1 — Topic 6
+// Syllabus coverage:
+//   Form 5: Redox processes, electrode potentials, electrolysis (acidified water,
+//           copper/nickel purification, aluminium extraction, chlorine from brine)
+//   Form 6: Redox titration, fuel cells, quantitative electrolysis (F = Le)
+
+/* ============================================================
+   Diagram specs (Phase K3.5 migration)
+   Unused legacy JSX removed in K-Cleanup; active specs are unchanged.
+   ============================================================ */
+const electrochemOxidationRulesSpec = {
+  "title": "OXIDATION STATE RULES",
+  "blocks": [
+    {
+      "type": "table",
+      "headers": [
+        "Rule",
+        "Value",
+        "Example / note"
+      ],
+      "rows": [
+        [
+          "Element",
+          "0",
+          "Na, O₂, Fe, Cl₂"
+        ],
+        [
+          "Monatomic ion",
+          "= charge",
+          "Na⁺ = +1; Cl⁻ = −1"
+        ],
+        [
+          "H in compounds",
+          "+1",
+          "except metal hydrides: −1"
+        ],
+        [
+          "O in compounds",
+          "−2",
+          "except peroxides: −1"
+        ],
+        [
+          "F always",
+          "−1",
+          "most electronegative"
+        ],
+        [
+          "Sum in compound",
+          "= 0",
+          "H₂O: 2(+1)+(−2)=0"
+        ],
+        [
+          "Sum in ion",
+          "= ion charge",
+          "SO₄²⁻: total = −2"
+        ]
+      ],
+      "colWidths": [
+        88,
+        58,
+        144
+      ],
+      "rowH": 24
+    }
+  ],
+  "subtitle": "OIL RIG: Oxidation Is Loss, Reduction Is Gain of electrons"
+};
+
+const electrochemSHESpec = {
+  "title": "STANDARD HYDROGEN ELECTRODE (SHE)",
+  "blocks": [
+    {
+      "type": "panel",
+      "title": "Reference half-cell",
+      "body": [
+        "Pt electrode in 1 mol dm⁻³ H⁺(aq)",
+        "H₂(g) at 100 kPa bubbles over Pt",
+        "Temperature = 298 K"
+      ],
+      "color": "accent"
+    },
+    {
+      "type": "equation",
+      "text": "2H⁺(aq) + 2e⁻ ⇌ H₂(g)"
+    },
+    {
+      "type": "panel",
+      "title": "Definition",
+      "body": [
+        "E°(SHE) = 0.00 V by definition",
+        "Connect to another half-cell through wire + salt bridge"
+      ],
+      "hint": "All E° values are measured relative to the SHE."
+    }
+  ]
+};
+
+const electrochemCellSpec = {
+  "title": "ELECTROCHEMICAL CELL · Zn | Cu",
+  "blocks": [
+    {
+      "type": "compare",
+      "left": {
+        "title": "ANODE (−)",
+        "color": "pink",
+        "body": [
+          "Zn(s) in ZnSO₄(aq)",
+          "oxidation",
+          "Zn → Zn²⁺ + 2e⁻"
+        ]
+      },
+      "right": {
+        "title": "CATHODE (+)",
+        "color": "green",
+        "body": [
+          "Cu(s) in CuSO₄(aq)",
+          "reduction",
+          "Cu²⁺ + 2e⁻ → Cu"
+        ]
+      }
+    },
+    {
+      "type": "note",
+      "text": "electrons flow Zn → Cu through the wire",
+      "emphasis": true
+    },
+    {
+      "type": "note",
+      "text": "E°cell = +0.34 − (−0.76) = +1.10 V",
+      "emphasis": true
+    },
+    {
+      "type": "note",
+      "text": "salt bridge maintains charge balance",
+      "emphasis": true
+    }
+  ]
+};
+
+const electrochemWaterSpec = {
+  "title": "ELECTROLYSIS OF ACIDIFIED WATER",
+  "blocks": [
+    {
+      "type": "compare",
+      "left": {
+        "title": "CATHODE (−)",
+        "color": "green",
+        "body": [
+          "H₂ released",
+          "2H⁺ + 2e⁻ → H₂",
+          "reduction"
+        ]
+      },
+      "right": {
+        "title": "ANODE (+)",
+        "color": "pink",
+        "body": [
+          "O₂ released",
+          "2H₂O → O₂ + 4H⁺ + 4e⁻",
+          "oxidation"
+        ]
+      }
+    },
+    {
+      "type": "note",
+      "text": "electrolyte: dilute H₂SO₄",
+      "emphasis": true
+    },
+    {
+      "type": "note",
+      "text": "gas volume ratio H₂ : O₂ = 2 : 1",
+      "emphasis": true
+    }
+  ]
+};
+
+const electrochemAluminiumSpec = {
+  "title": "EXTRACTION OF ALUMINIUM · HALL-HÉROULT",
+  "blocks": [
+    {
+      "type": "panel",
+      "title": "Electrolyte",
+      "body": [
+        "Al₂O₃ dissolved in molten cryolite, Na₃AlF₆",
+        "cryolite lowers operating temperature to about 960 °C"
+      ],
+      "color": "accent"
+    },
+    {
+      "type": "compare",
+      "left": {
+        "title": "CATHODE lining (−)",
+        "color": "green",
+        "body": [
+          "Al³⁺ + 3e⁻ → Al",
+          "molten Al collects at base"
+        ]
+      },
+      "right": {
+        "title": "CARBON ANODE (+)",
+        "color": "pink",
+        "body": [
+          "2O²⁻ → O₂ + 4e⁻",
+          "C + O₂ → CO₂",
+          "anodes burn away"
+        ]
+      }
+    },
+    {
+      "type": "note",
+      "text": "Carbon anodes burn away and need replacement.",
+      "emphasis": true
+    }
+  ]
+};
+
+const electrochemCopperPurifySpec = {
+  "title": "ELECTROLYTIC PURIFICATION OF COPPER",
+  "blocks": [
+    {
+      "type": "compare",
+      "left": {
+        "title": "IMPURE Cu ANODE (+)",
+        "color": "amber",
+        "body": [
+          "Cu → Cu²⁺ + 2e⁻",
+          "anode loses mass",
+          "Ag/Au collect as sludge"
+        ]
+      },
+      "right": {
+        "title": "PURE Cu CATHODE (−)",
+        "color": "green",
+        "body": [
+          "Cu²⁺ + 2e⁻ → Cu",
+          "pure copper deposits",
+          "cathode gains mass"
+        ]
+      }
+    },
+    {
+      "type": "note",
+      "text": "electrolyte: CuSO₄(aq)",
+      "emphasis": true
+    },
+    {
+      "type": "note",
+      "text": "Cu transfers from impure anode to cathode",
+      "emphasis": true
+    }
+  ]
+};
+
+const electrochemBrineSpec = {
+  "title": "ELECTROLYSIS OF BRINE · MEMBRANE CELL",
+  "blocks": [
+    {
+      "type": "compare",
+      "left": {
+        "title": "CATHODE (−)",
+        "color": "green",
+        "body": [
+          "2H₂O + 2e⁻ → H₂ + 2OH⁻",
+          "H₂ collected",
+          "NaOH remains in solution"
+        ]
+      },
+      "right": {
+        "title": "ANODE (+)",
+        "color": "pink",
+        "body": [
+          "2Cl⁻ → Cl₂ + 2e⁻",
+          "Cl₂ collected",
+          "oxidation"
+        ]
+      }
+    },
+    {
+      "type": "note",
+      "text": "membrane keeps Cl₂ away from NaOH",
+      "emphasis": true
+    },
+    {
+      "type": "note",
+      "text": "three products: Cl₂ · H₂ · NaOH",
+      "emphasis": true
+    }
+  ]
+};
+
+const electrochemRedoxTitrationSpec = {
+  "title": "REDOX TITRATION · KMnO₄ / Fe²⁺",
+  "blocks": [
+    {
+      "type": "panel",
+      "title": "Burette",
+      "body": [
+        "KMnO₄(aq) · purple",
+        "added to acidified Fe²⁺ solution"
+      ],
+      "color": "accent"
+    },
+    {
+      "type": "equation",
+      "text": "MnO₄⁻ + 8H⁺ + 5Fe²⁺ → Mn²⁺ + 4H₂O + 5Fe³⁺"
+    },
+    {
+      "type": "panel",
+      "title": "Endpoint",
+      "body": [
+        "first permanent pale pink colour",
+        "KMnO₄ is self-indicating."
+      ],
+      "color": "pink"
+    }
+  ]
+};
+
+const electrochemFuelCellSpec = {
+  "title": "HYDROGEN-OXYGEN FUEL CELL",
+  "blocks": [
+    {
+      "type": "compare",
+      "left": {
+        "title": "ANODE (−)",
+        "color": "pink",
+        "body": [
+          "H₂ supplied",
+          "H₂ → 2H⁺ + 2e⁻",
+          "electrons go through load"
+        ]
+      },
+      "right": {
+        "title": "CATHODE (+)",
+        "color": "green",
+        "body": [
+          "O₂ supplied",
+          "O₂ + 4H⁺ + 4e⁻ → 2H₂O",
+          "water formed"
+        ]
+      }
+    },
+    {
+      "type": "note",
+      "text": "overall: 2H₂ + O₂ → 2H₂O",
+      "emphasis": true
+    },
+    {
+      "type": "note",
+      "text": "reactant flow sustains electrical output",
+      "emphasis": true
+    }
+  ]
+};
+
+const electrochemFaradaySpec = {
+  "title": "QUANTITATIVE ELECTROLYSIS",
+  "blocks": [
+    {
+      "type": "equation",
+      "text": "Q = I × t"
+    },
+    {
+      "type": "panel",
+      "title": "Charge",
+      "body": [
+        "Q in coulombs (C)",
+        "I in amperes (A)",
+        "t in seconds (s)"
+      ],
+      "color": "primary"
+    },
+    {
+      "type": "equation",
+      "text": "F = L × e = 96 485 C mol⁻¹"
+    },
+    {
+      "type": "panel",
+      "title": "Electron amount",
+      "body": [
+        "moles of e⁻ = Q / F",
+        "then use electrode stoichiometry",
+        "2 mol e⁻ deposits 1 mol Cu"
+      ],
+      "color": "accent"
+    }
+  ]
+};
+
+/* ============================================================
+   Chapters
+   ============================================================ */
+const chapters = [
+  // CH.1 — Oxidation and reduction
+  { id: 'ec1', title: 'Oxidation & Reduction Revisited', minutes: 9, blocks: [
+    { type: 'p', text: 'At O-level you met oxidation as gaining oxygen and reduction as losing it. At A-level, we use a more powerful definition based on ELECTRON TRANSFER. Oxidation is LOSS of electrons; reduction is GAIN of electrons. The mnemonic OIL RIG captures this: Oxidation Is Loss, Reduction Is Gain.' },
+    { type: 'h', text: 'Oxidation states (numbers)' },
+    { type: 'p', text: 'An oxidation state is a bookkeeping tool that tracks how many electrons an atom has effectively gained or lost in a compound. By comparing oxidation states before and after a reaction, you can instantly see which species is oxidised and which is reduced.' },
+    { type: 'd', spec: electrochemOxidationRulesSpec, caption: 'Oxidation state assignment rules' },
+    { type: 'h', text: 'Applying the rules' },
+    { type: 'ul', items: [
+      'In MnO₂: let Mn = x. x + 2(−2) = 0, so x = +4. Manganese is in the +4 oxidation state.',
+      'In Cr₂O₇²⁻: let Cr = x. 2x + 7(−2) = −2, so 2x = +12, x = +6.',
+      'An increase in oxidation state = oxidation (electrons lost). A decrease = reduction (electrons gained).',
+    ]},
+    { type: 'h', text: 'Redox reactions' },
+    { type: 'p', text: 'In every redox reaction, one species is oxidised while another is reduced. The oxidised species is the REDUCING AGENT (it donates electrons). The reduced species is the OXIDISING AGENT (it accepts electrons). They always come in pairs.' },
+    { type: 'callout', kind: 'definition', title: 'Key terms', body: 'Oxidising agent: accepts electrons, is itself reduced. Reducing agent: donates electrons, is itself oxidised. These definitions are the opposite of what the name suggests — a common exam trap.' },
+    { type: 'takeaway', items: [
+      'Oxidation = loss of electrons = increase in oxidation state.',
+      'Reduction = gain of electrons = decrease in oxidation state.',
+      'OIL RIG. Reducing agent is oxidised; oxidising agent is reduced.',
+    ]},
+  ]},
+
+  // CH.2 — Half-equations
+  { id: 'ec2', title: 'Writing Half-Equations', minutes: 8, blocks: [
+    { type: 'p', text: 'A half-equation shows the electron transfer for just ONE species in a redox reaction. Every redox reaction can be split into two half-equations: one for oxidation and one for reduction. Combining them gives the overall ionic equation.' },
+    { type: 'h', text: 'Balancing half-equations' },
+    { type: 'ul', items: [
+      'Step 1: Write the species being oxidised or reduced on each side, showing the change in oxidation state.',
+      'Step 2: Balance the change in oxidation state by adding electrons. Electrons go on the LEFT for reduction, on the RIGHT for oxidation.',
+      'Step 3: In acidic solution, balance O by adding H₂O, then balance H by adding H⁺.',
+      'Step 4: Check that charge balances on both sides.',
+    ]},
+    { type: 'h', text: 'Example: MnO₄⁻ reduction in acid' },
+    { type: 'ul', items: [
+      'Mn goes from +7 to +2 — gains 5 electrons: MnO₄⁻ + 5e⁻ → Mn²⁺.',
+      'Balance O: add 4H₂O on the right (to account for 4 O atoms): MnO₄⁻ + 5e⁻ → Mn²⁺ + 4H₂O.',
+      'Balance H: add 8H⁺ on the left: MnO₄⁻ + 8H⁺ + 5e⁻ → Mn²⁺ + 4H₂O.',
+      'Check charge: left = (−1) + 8(+1) + 5(−1) = +2. Right = +2. Balanced.',
+    ]},
+    { type: 'h', text: 'Combining half-equations' },
+    { type: 'p', text: 'To get the overall equation, multiply each half-equation so the electrons cancel. For MnO₄⁻ + Fe²⁺: the Mn half needs 5e⁻, the Fe half produces 1e⁻, so multiply the Fe half by 5: MnO₄⁻ + 8H⁺ + 5Fe²⁺ → Mn²⁺ + 4H₂O + 5Fe³⁺.' },
+    { type: 'takeaway', items: [
+      'Half-equations isolate the oxidation or reduction process.',
+      'Balance: atoms first (O with H₂O, H with H⁺), then charge with electrons.',
+      'Combine by scaling so electrons cancel.',
+    ]},
+  ]},
+
+  // CH.3 — Electrode potentials
+  { id: 'ec3', title: 'Standard Electrode Potentials', minutes: 12, blocks: [
+    { type: 'p', text: 'Every metal (or non-metal) in contact with its ions has a tendency to gain or lose electrons. This tendency is measured as the STANDARD ELECTRODE POTENTIAL (E°), in volts, relative to the Standard Hydrogen Electrode (SHE).' },
+    { type: 'd', spec: electrochemSHESpec, caption: 'The Standard Hydrogen Electrode — reference point (0.00 V)' },
+    { type: 'h', text: 'Measuring E°' },
+    { type: 'ul', items: [
+      'Connect the half-cell of interest (e.g. Zn in ZnSO₄) to the SHE via a salt bridge and external wire.',
+      'Measure the voltage with a high-resistance voltmeter.',
+      'The sign tells you the direction: a negative E° means the half-cell has a greater tendency to lose electrons (more reactive metal); a positive E° means a greater tendency to gain electrons.',
+      'All solutions must be 1 mol dm⁻³, temperature 298 K, gas pressures 100 kPa.',
+    ]},
+    { type: 'h', text: 'The electrochemical series' },
+    { type: 'ul', items: [
+      'E°(Li⁺/Li) = −3.04 V, E°(Zn²⁺/Zn) = −0.76 V, E°(H⁺/H₂) = 0.00 V, E°(Cu²⁺/Cu) = +0.34 V, E°(Ag⁺/Ag) = +0.80 V, E°(F₂/2F⁻) = +2.87 V.',
+      'More negative E° → stronger reducing agent (readily loses electrons).',
+      'More positive E° → stronger oxidising agent (readily gains electrons).',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Predicting feasibility', body: 'A reaction is thermodynamically feasible if E°cell > 0. E°cell = E°(cathode, the more positive) − E°(anode, the more negative). A positive E°cell means electrons flow spontaneously. BUT feasibility ≠ rate — some feasible reactions are kinetically slow.' },
+    { type: 'd', spec: electrochemCellSpec, caption: 'Zn-Cu cell: E°cell = +1.10 V — feasible and spontaneous' },
+    { type: 'takeaway', items: [
+      'E° is measured relative to SHE (0.00 V).',
+      'More negative E° = better reducing agent.',
+      'E°cell = E°(cathode) − E°(anode); positive → feasible.',
+      'Feasibility ≠ speed (kinetics may still be slow).',
+    ]},
+  ]},
+
+  // CH.4 — Electrolysis basics
+  { id: 'ec4', title: 'Electrolysis: Forcing Non-Spontaneous Reactions', minutes: 10, blocks: [
+    { type: 'p', text: 'Electrolysis uses electrical energy to drive a non-spontaneous redox reaction. A direct current (DC) supply pushes electrons into the cathode (negative electrode) and pulls them from the anode (positive electrode). Cations migrate to the cathode; anions migrate to the anode.' },
+    { type: 'h', text: 'Key differences: cell vs electrolysis' },
+    { type: 'ul', items: [
+      'In an electrochemical CELL, a spontaneous reaction generates electricity. In ELECTROLYSIS, external electricity forces a reaction.',
+      'In both, reduction occurs at the cathode and oxidation at the anode.',
+      'In a cell: anode is negative, cathode is positive. In electrolysis: anode is positive, cathode is negative (because the external supply assigns the polarity).',
+    ]},
+    { type: 'h', text: 'Predicting products of electrolysis' },
+    { type: 'ul', items: [
+      'At the cathode: the cation that is EASIEST to reduce (most positive E°) is discharged first. For aqueous solutions, H⁺ may be reduced instead of the metal cation if the metal is very reactive.',
+      'At the anode: the anion that is EASIEST to oxidise (most negative E°) is discharged first. For dilute solutions with SO₄²⁻ or NO₃⁻, water is oxidised instead.',
+      'Concentration matters: concentrated Cl⁻ is discharged at the anode even though E° suggests water should be preferentially oxidised — kinetic/concentration effects override.',
+    ]},
+    { type: 'callout', kind: 'warning', title: 'Don\'t confuse polarity', body: 'In electrolysis, the ANODE is POSITIVE (connected to the + terminal of the battery). This is the OPPOSITE of a galvanic cell where the anode is negative. The cathode is always where REDUCTION occurs — that rule never changes.' },
+    { type: 'takeaway', items: [
+      'Electrolysis: external DC forces a non-spontaneous reaction.',
+      'Cathode (−): reduction. Anode (+): oxidation.',
+      'Product depends on E° values and concentration of ions.',
+    ]},
+  ]},
+
+  // CH.5 — Electrolysis of acidified water
+  { id: 'ec5', title: 'Electrolysis of Acidified Water', minutes: 7, blocks: [
+    { type: 'p', text: 'Pure water is a very poor conductor. Adding dilute sulphuric acid provides mobile H⁺ and SO₄²⁻ ions, allowing electrolysis. The acid is NOT consumed — it acts as a catalyst for the decomposition of water into hydrogen and oxygen.' },
+    { type: 'd', spec: electrochemWaterSpec, caption: 'Electrolysis of acidified water' },
+    { type: 'h', text: 'Electrode reactions' },
+    { type: 'ul', items: [
+      'Cathode (−): 2H⁺(aq) + 2e⁻ → H₂(g). Hydrogen gas is produced.',
+      'Anode (+): 2H₂O(l) → O₂(g) + 4H⁺(aq) + 4e⁻. Oxygen gas is produced (SO₄²⁻ is NOT discharged because it would require breaking strong S–O bonds).',
+      'Overall: 2H₂O(l) → 2H₂(g) + O₂(g). Pure decomposition of water.',
+      'Volume of H₂ is DOUBLE the volume of O₂ (2:1 ratio), matching the formula H₂O.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Why not SO₄²⁻?', body: 'SO₄²⁻ has a very positive E° for its oxidation — it is extremely difficult to oxidise. Water is much easier to oxidise, so O₂ is produced at the anode instead. This is a common exam question.' },
+    { type: 'takeaway', items: [
+      'Dilute H₂SO₄ provides ions; acid is NOT consumed.',
+      'H₂ at cathode, O₂ at anode, 2:1 volume ratio.',
+      'SO₄²⁻ is too stable to be discharged.',
+    ]},
+  ]},
+
+  // CH.6 — Industrial electrolysis
+  { id: 'ec6', title: 'Industrial Electrolysis: Al, Cu, Cl₂', minutes: 12, blocks: [
+    { type: 'p', text: 'Three major industrial electrolysis processes are on the ZIMSEC syllabus: extraction of aluminium, purification of copper, and production of chlorine from brine.' },
+    { type: 'h', text: 'Extraction of aluminium' },
+    { type: 'd', spec: electrochemAluminiumSpec, caption: 'The Hall-Héroult process' },
+    { type: 'ul', items: [
+      'Aluminium ore (bauxite) is purified to give alumina (Al₂O₃), which has a very high melting point (~2072 °C).',
+      'Cryolite (Na₃AlF₆) is added to lower the melting point to ~960 °C, reducing energy costs enormously.',
+      'Cathode: Al³⁺ + 3e⁻ → Al. Molten aluminium collects at the bottom of the cell.',
+      'Anode: 2O²⁻ → O₂ + 4e⁻. The oxygen produced reacts with the carbon anodes: C + O₂ → CO₂, so anodes must be replaced regularly.',
+      'The process is extremely energy-intensive, which is why aluminium smelters are located near cheap electricity (e.g. hydroelectric).',
+    ]},
+    { type: 'h', text: 'Purification of copper (and nickel)' },
+    { type: 'd', spec: electrochemCopperPurifySpec, caption: 'Electrolytic refining of copper' },
+    { type: 'ul', items: [
+      'Anode: impure copper. Cathode: thin sheet of pure copper. Electrolyte: CuSO₄(aq).',
+      'Anode: Cu(s) → Cu²⁺(aq) + 2e⁻. Copper dissolves from the impure anode.',
+      'Cathode: Cu²⁺(aq) + 2e⁻ → Cu(s). Pure copper is deposited on the cathode.',
+      'Impurities less reactive than Cu (Ag, Au, Pt) do not dissolve — they fall to the bottom as "anode sludge" (valuable!).',
+      'Impurities more reactive than Cu (Zn, Fe) dissolve but are NOT deposited (their E° is more negative than Cu²⁺/Cu).',
+      'The same principle works for nickel purification using NiSO₄(aq).',
+    ]},
+    { type: 'h', text: 'Production of chlorine from brine' },
+    { type: 'd', spec: electrochemBrineSpec, caption: 'Membrane cell for brine electrolysis' },
+    { type: 'ul', items: [
+      'Concentrated NaCl(aq) — brine — is electrolysed in a membrane cell.',
+      'Anode: 2Cl⁻(aq) → Cl₂(g) + 2e⁻. Chlorine gas collected.',
+      'Cathode: 2H₂O(l) + 2e⁻ → H₂(g) + 2OH⁻(aq). Hydrogen gas + sodium hydroxide.',
+      'The membrane allows Na⁺ to pass through but blocks Cl₂ and OH⁻, preventing them from mixing (which would produce bleach).',
+      'Three valuable products: Cl₂ (for bleach, PVC, disinfection), H₂ (fuel, margarine), NaOH (soap, paper).',
+    ]},
+    { type: 'takeaway', items: [
+      'Al extraction: cryolite lowers m.p.; carbon anodes burn away.',
+      'Cu purification: impure anode dissolves, pure Cu deposits on cathode.',
+      'Brine: three products — Cl₂, H₂, NaOH. Membrane keeps them separate.',
+    ]},
+  ]},
+
+  // CH.7 — Redox titrations
+  { id: 'ec7', title: 'Redox Titrations', minutes: 10, blocks: [
+    { type: 'p', text: 'A redox titration determines the concentration of a reducing agent (or oxidising agent) by reacting it with a standard solution of an oxidising agent (or reducing agent). The most common A-level redox titrations involve potassium manganate(VII), KMnO₄, or iodine/sodium thiosulphate.' },
+    { type: 'd', spec: electrochemRedoxTitrationSpec, caption: 'KMnO₄ titrated into Fe²⁺ in acid' },
+    { type: 'h', text: 'KMnO₄ / Fe²⁺ titration' },
+    { type: 'ul', items: [
+      'MnO₄⁻ is purple. Fe²⁺ is pale green. The reaction: MnO₄⁻ + 8H⁺ + 5Fe²⁺ → Mn²⁺ + 4H₂O + 5Fe³⁺.',
+      'As KMnO₄ is added to Fe²⁺ (acidified with dilute H₂SO₄), the purple colour disappears instantly as MnO₄⁻ is reduced to colourless Mn²⁺.',
+      'At the endpoint, all Fe²⁺ has been consumed. The NEXT DROP of KMnO₄ gives a permanent pale pink colour.',
+      'No indicator needed — KMnO₄ is its own indicator.',
+    ]},
+    { type: 'h', text: 'Iodine / thiosulphate titration' },
+    { type: 'ul', items: [
+      'Iodine (I₂) is titrated with sodium thiosulphate (Na₂S₂O₃): I₂ + 2S₂O₃²⁻ → 2I⁻ + S₄O₆²⁻.',
+      'The brown iodine colour fades as I₂ is consumed. When the solution is pale yellow, add starch indicator.',
+      'Starch + I₂ gives a deep blue-black colour. The endpoint is when the blue-black disappears.',
+      'This titration is often used to determine the amount of an oxidising agent indirectly: the oxidising agent is first reacted with excess KI to liberate I₂, then the I₂ is titrated with thiosulphate.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Calculation strategy', body: 'From the titration: moles of titrant = c × V/1000. Use the stoichiometric ratio from the balanced equation to find moles of analyte. Then calculate concentration or mass as required.' },
+    { type: 'takeaway', items: [
+      'KMnO₄/Fe²⁺: self-indicating (pink endpoint). Ratio = 1:5.',
+      'I₂/thiosulphate: starch indicator (blue → colourless). Ratio = 1:2.',
+      'Always use the balanced equation for stoichiometric ratios.',
+    ]},
+  ]},
+
+  // CH.8 — Fuel cells
+  { id: 'ec8', title: 'Fuel Cells', minutes: 9, blocks: [
+    { type: 'p', text: 'A fuel cell converts chemical energy directly into electrical energy, without combustion. The most common type is the hydrogen-oxygen fuel cell, which combines H₂ and O₂ to produce water and electricity.' },
+    { type: 'd', spec: electrochemFuelCellSpec, caption: 'Hydrogen-oxygen fuel cell' },
+    { type: 'h', text: 'How it works' },
+    { type: 'ul', items: [
+      'Hydrogen gas is fed to the anode. Oxygen gas (or air) is fed to the cathode.',
+      'Anode: H₂(g) → 2H⁺(aq) + 2e⁻. Hydrogen is oxidised.',
+      'Cathode: O₂(g) + 4H⁺(aq) + 4e⁻ → 2H₂O(l). Oxygen is reduced.',
+      'Overall: 2H₂(g) + O₂(g) → 2H₂O(l). The only product is water.',
+      'Electrons flow through the external circuit from anode to cathode, doing useful work.',
+    ]},
+    { type: 'h', text: 'Advantages over conventional cells and engines' },
+    { type: 'ul', items: [
+      'Clean — only product is water (no CO₂, no pollutants).',
+      'Higher efficiency — direct conversion of chemical to electrical energy avoids the thermodynamic losses of combustion engines (Carnot limit).',
+      'Continuous operation — as long as fuel is supplied (unlike batteries, which run out).',
+      'Quiet operation, no moving parts in the cell itself.',
+    ]},
+    { type: 'h', text: 'Disadvantages and limitations' },
+    { type: 'ul', items: [
+      'Hydrogen storage is difficult — it is a low-density gas, requiring compression or cryogenic cooling.',
+      'Hydrogen production currently often relies on fossil fuels (steam reforming of natural gas), which produces CO₂.',
+      'Platinum catalysts are expensive and limited in supply.',
+      'Infrastructure for hydrogen distribution is not widely developed.',
+    ]},
+    { type: 'takeaway', items: [
+      'Fuel cells convert chemical energy directly to electricity.',
+      'H₂/O₂ cell: only product is water — clean energy.',
+      'Advantages: efficient, clean, continuous.',
+      'Challenges: H₂ storage, Pt cost, infrastructure.',
+    ]},
+  ]},
+
+  // CH.9 — Quantitative electrolysis
+  { id: 'ec9', title: 'Quantitative Electrolysis (Faraday)', minutes: 10, blocks: [
+    { type: 'p', text: 'Faraday\'s laws of electrolysis relate the amount of substance deposited or liberated to the quantity of electric charge passed. These calculations connect current, time and moles.' },
+    { type: 'd', spec: electrochemFaradaySpec, caption: 'The key relationships in quantitative electrolysis' },
+    { type: 'h', text: 'The Faraday constant' },
+    { type: 'ul', items: [
+      'One Faraday (F) = the charge carried by one mole of electrons = 96 485 C mol⁻¹ ≈ 96 500 C mol⁻¹.',
+      'F = L × e, where L = Avogadro constant (6.022 × 10²³ mol⁻¹) and e = charge on one electron (1.602 × 10⁻¹⁹ C).',
+      'So F = 6.022 × 10²³ × 1.602 × 10⁻¹⁹ = 96 485 C mol⁻¹.',
+    ]},
+    { type: 'h', text: 'Calculation method' },
+    { type: 'ul', items: [
+      'Step 1: Calculate the total charge: Q = I × t (current in amps × time in seconds).',
+      'Step 2: Find moles of electrons: n(e⁻) = Q / F.',
+      'Step 3: Use the electrode equation to find moles of substance. For Cu²⁺ + 2e⁻ → Cu, every 2 mol e⁻ deposits 1 mol Cu.',
+      'Step 4: Convert to mass (m = n × M) or volume (V = n × 24000 cm³ at RTP) as needed.',
+    ]},
+    { type: 'h', text: 'Finding Avogadro\'s constant experimentally' },
+    { type: 'p', text: 'By electrolysing CuSO₄(aq) and measuring the mass of Cu deposited, the current and the time, you can calculate L: L = Q / (n × e), where n is the moles of Cu deposited (from mass/M_r) × 2 (since 2 electrons per Cu atom). This is a common practical in the syllabus.' },
+    { type: 'callout', kind: 'key', title: 'Units check', body: 'Current must be in AMPS (not mA) and time must be in SECONDS (not minutes). Q = I × t gives charge in COULOMBS. F ≈ 96 500 C mol⁻¹. These are the most common unit errors in electrolysis calculations.' },
+    { type: 'takeaway', items: [
+      'Q = I × t (charge = current × time in seconds).',
+      'n(e⁻) = Q / F, where F = 96 485 C mol⁻¹.',
+      'Use electrode equation stoichiometry to find mass/volume.',
+      'Can determine L by electrolysis experiment: L = Q / (n_atoms × e).',
+    ]},
+  ]},
+
+  // CH.10 — Predicting electrolysis products
+  { id: 'ec10', title: 'Predicting Electrolysis Products', minutes: 8, blocks: [
+    { type: 'p', text: 'In aqueous electrolysis, multiple ions compete for discharge. The product at each electrode depends on the E° values AND the concentration of the ions present.' },
+    { type: 'h', text: 'At the cathode (reduction)' },
+    { type: 'ul', items: [
+      'The ion with the MORE POSITIVE E° is preferentially reduced. For metals below hydrogen in the series (Cu²⁺, Ag⁺), the metal is deposited.',
+      'For metals above hydrogen (Na⁺, K⁺, Ca²⁺, Al³⁺), H₂O (or H⁺) is reduced instead, producing H₂. The reactive metal ion stays in solution.',
+      'Rule of thumb: if the metal is reactive (Group I/II, Al), expect H₂. If it is less reactive (Cu, Ag), expect metal deposition.',
+    ]},
+    { type: 'h', text: 'At the anode (oxidation)' },
+    { type: 'ul', items: [
+      'The ion with the MORE NEGATIVE E° is preferentially oxidised. Halide ions (Cl⁻, Br⁻, I⁻) are often discharged.',
+      'SO₄²⁻ and NO₃⁻ are NOT discharged — water is oxidised instead, giving O₂.',
+      'Exception: in DILUTE Cl⁻ solutions, water may be oxidised preferentially (giving O₂ instead of Cl₂). In CONCENTRATED Cl⁻, chlorine is produced — concentration overrides E° in this case.',
+    ]},
+    { type: 'callout', kind: 'warning', title: 'Concentration effect', body: 'The discharge of Cl⁻ vs H₂O at the anode is a favourite exam question. In concentrated NaCl (brine), Cl₂ is produced. In dilute NaCl, O₂ is produced. Always state the concentration when predicting products.' },
+    { type: 'takeaway', items: [
+      'Cathode: most positive E° ion is reduced. Reactive metals → H₂ instead.',
+      'Anode: most negative E° ion is oxidised. SO₄²⁻/NO₃⁻ → O₂ from water.',
+      'Concentration can override E° (especially for Cl⁻ vs H₂O).',
+    ]},
+  ]},
+
+  // CH.11 — Electrochemistry in context
+  { id: 'ec11', title: 'Rusting & Corrosion Prevention', minutes: 7, blocks: [
+    { type: 'p', text: 'Rusting is an electrochemical process. Iron in contact with water and oxygen forms an electrochemical cell on the metal surface, leading to oxidation of Fe and reduction of O₂. Understanding this helps explain prevention methods.' },
+    { type: 'h', text: 'The rusting process' },
+    { type: 'ul', items: [
+      'Anodic region (where iron dissolves): Fe(s) → Fe²⁺(aq) + 2e⁻.',
+      'Cathodic region (where oxygen is reduced): O₂(aq) + 2H₂O(l) + 4e⁻ → 4OH⁻(aq).',
+      'Fe²⁺ and OH⁻ combine: Fe²⁺ + 2OH⁻ → Fe(OH)₂, which is further oxidised by air to Fe₂O₃·xH₂O (rust).',
+      'Both WATER and OXYGEN are needed. Iron does not rust in dry air or in boiled (oxygen-free) water.',
+    ]},
+    { type: 'h', text: 'Prevention methods' },
+    { type: 'ul', items: [
+      'Barrier methods: paint, oil, plastic coating, tin plating — keep water and oxygen away from the iron surface.',
+      'Galvanising: coating with zinc. Even if the zinc layer is scratched, zinc is more reactive and is preferentially oxidised (sacrificial protection).',
+      'Sacrificial protection: attaching blocks of zinc or magnesium to iron structures (e.g. ship hulls, pipelines). The more reactive metal corrodes instead of the iron.',
+      'Stainless steel: alloying iron with chromium (and nickel) forms a protective Cr₂O₃ layer.',
+    ]},
+    { type: 'takeaway', items: [
+      'Rusting = electrochemical oxidation of Fe requiring water + O₂.',
+      'Barrier methods block access. Sacrificial protection uses a more reactive metal.',
+      'Galvanising (Zn coating) provides both barrier and sacrificial protection.',
+    ]},
+  ]},
+
+  // CH.12 — Exam technique
+  { id: 'ec12', title: 'Exam Technique & Common Pitfalls', minutes: 8, blocks: [
+    { type: 'p', text: 'Electrochemistry spans redox definitions, electrode potentials, electrolysis, fuel cells and calculations. Here are the key exam patterns and mistakes to avoid.' },
+    { type: 'h', text: 'Half-equation questions' },
+    { type: 'ul', items: [
+      'Always balance atoms first, then charge. Show your working — marks are given for the method.',
+      'In acidic solution, use H₂O and H⁺ to balance O and H. In alkaline solution (rare at ZIMSEC), you may need OH⁻.',
+      'Check your final equation: total charge on the left must equal total charge on the right.',
+    ]},
+    { type: 'h', text: 'E° cell calculation mistakes' },
+    { type: 'ul', items: [
+      'E°cell = E°(cathode) − E°(anode). The cathode is the MORE POSITIVE half-cell.',
+      'Do NOT double or halve E° values when scaling half-equations. E° is an intensive property — it does NOT change when you multiply the equation by a coefficient.',
+      'A positive E°cell means the reaction is feasible. A negative value means the REVERSE is feasible.',
+    ]},
+    { type: 'h', text: 'Electrolysis calculation errors' },
+    { type: 'ul', items: [
+      'Convert time to SECONDS before using Q = It.',
+      'Use the correct number of electrons from the half-equation (e.g. 2e⁻ for Cu²⁺, 3e⁻ for Al³⁺).',
+      'If asked for volume of gas, use n × 24 000 cm³ at RTP (or n × 22 400 cm³ at STP if specified).',
+    ]},
+    { type: 'h', text: 'Fuel cell questions' },
+    { type: 'ul', items: [
+      'Write both electrode equations and the overall equation.',
+      'Know at least two advantages and two disadvantages.',
+      'Compare with conventional cells: fuel cells are NOT rechargeable — they are continuously fed fuel.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Frequently tested', body: 'The "why is Cl₂ produced from concentrated NaCl but O₂ from dilute NaCl?" question appears regularly. Your answer needs to mention the concentration effect overriding E° predictions.' },
+    { type: 'takeaway', items: [
+      'Balance half-equations: atoms first, then charge.',
+      'E° is intensive — never multiply it by stoichiometric coefficients.',
+      'Q = It; convert to seconds; use F = 96 500.',
+      'Fuel cells: continuous feed, water only product, Pt catalyst limitation.',
+    ]},
+  ]},
+];
+
+/* ============================================================
+   Quizzes — 34 MCQs
+   ============================================================ */
+const quizzes = [
+  { q: 'Oxidation is defined as:', opts: ['Gain of electrons', 'Loss of electrons', 'Gain of oxygen only', 'Loss of hydrogen only'], ans: 1, hint: 'OIL RIG — Oxidation Is Loss.' },
+  { q: 'What is the oxidation state of Mn in KMnO₄?', opts: ['+4', '+5', '+6', '+7'], ans: 3, hint: 'K is +1, each O is −2. The sum must be 0.' },
+  { q: 'In a redox reaction, the reducing agent is:', opts: ['Reduced', 'Oxidised', 'Unchanged', 'A catalyst'], ans: 1, hint: 'The reducing agent donates electrons, so it is itself oxidised.' },
+  { q: 'The standard electrode potential is measured at:', opts: ['0 °C, 1 atm', '25 °C, 100 kPa', '100 °C, 100 kPa', '25 °C, 1000 kPa'], ans: 1, hint: 'Standard conditions: 298 K = 25 °C, 100 kPa.' },
+  { q: 'The E° of the Standard Hydrogen Electrode is:', opts: ['+1.00 V', '−1.00 V', '0.00 V', '+0.34 V'], ans: 2, hint: 'By definition, the SHE is assigned a value of zero.' },
+  { q: 'E°(Zn²⁺/Zn) = −0.76 V and E°(Cu²⁺/Cu) = +0.34 V. E°cell for a Zn-Cu cell is:', opts: ['+0.42 V', '+1.10 V', '−1.10 V', '−0.42 V'], ans: 1, hint: 'E°cell = E°(cathode) − E°(anode) = 0.34 − (−0.76).' },
+  { q: 'A reaction with E°cell < 0 is:', opts: ['Spontaneous', 'Feasible', 'Not thermodynamically feasible in the forward direction', 'Always fast'], ans: 2, hint: 'Negative E°cell means the reverse reaction is feasible instead.' },
+  { q: 'During electrolysis, reduction occurs at the:', opts: ['Anode', 'Cathode', 'Salt bridge', 'Electrolyte'], ans: 1, hint: 'Cations go to the cathode and gain electrons (reduction).' },
+  { q: 'In electrolysis, the anode is connected to the:', opts: ['Negative terminal', 'Positive terminal', 'Salt bridge', 'Cathode'], ans: 1, hint: 'External supply pushes electrons away from the anode (positive).' },
+  { q: 'Which ion is discharged at the cathode when dilute CuSO₄ is electrolysed?', opts: ['SO₄²⁻', 'Cu²⁺', 'H⁺', 'OH⁻'], ans: 1, hint: 'Cu²⁺ has a more positive E° than H⁺, so it is preferentially reduced.' },
+  { q: 'In the electrolysis of brine, the product at the anode is:', opts: ['H₂', 'O₂', 'Cl₂', 'Na'], ans: 2, hint: 'Concentrated Cl⁻ is oxidised to Cl₂ at the anode.' },
+  { q: 'In the extraction of aluminium, cryolite is used to:', opts: ['Increase the melting point', 'Lower the melting point of Al₂O₃', 'Act as a catalyst', 'Prevent oxidation'], ans: 1, hint: 'Pure Al₂O₃ melts at ~2072 °C; cryolite brings this down to ~960 °C.' },
+  { q: 'Why do carbon anodes need regular replacement in aluminium extraction?', opts: ['They dissolve in cryolite', 'They react with O₂ to form CO₂', 'They melt', 'They react with aluminium'], ans: 1, hint: 'O₂ produced at the anode reacts with the carbon.' },
+  { q: 'In copper purification, the anode is made of:', opts: ['Pure copper', 'Impure copper', 'Platinum', 'Carbon'], ans: 1, hint: 'The impure copper dissolves from the anode.' },
+  { q: 'Which impurities form the "anode sludge" in copper purification?', opts: ['Zinc and iron', 'Silver and gold', 'Aluminium and sodium', 'Copper oxide'], ans: 1, hint: 'Metals less reactive than Cu don\'t dissolve — they fall as sludge.' },
+  { q: 'In a hydrogen-oxygen fuel cell, the overall reaction produces:', opts: ['CO₂ and H₂O', 'H₂O only', 'O₂ only', 'H₂ and O₂'], ans: 1, hint: 'The only product of combining H₂ and O₂ in a fuel cell is water.' },
+  { q: 'One Faraday of charge equals:', opts: ['96 500 J', '96 500 C mol⁻¹', '96 500 V', '96 500 A'], ans: 1, hint: 'F is measured in coulombs per mole of electrons.' },
+  { q: 'A current of 2.0 A flows for 30 minutes. The charge passed is:', opts: ['60 C', '3600 C', '1800 C', '7200 C'], ans: 1, hint: 'Q = I × t = 2.0 × (30 × 60) seconds.' },
+  { q: 'How many moles of electrons are transferred when 19 300 C of charge passes?', opts: ['0.10 mol', '0.20 mol', '0.50 mol', '1.00 mol'], ans: 1, hint: 'n(e⁻) = Q/F = 19300/96500.' },
+  { q: 'To deposit 1 mol of Cu from Cu²⁺, you need:', opts: ['1 mol e⁻', '2 mol e⁻', '3 mol e⁻', '4 mol e⁻'], ans: 1, hint: 'Cu²⁺ + 2e⁻ → Cu requires 2 electrons per Cu atom.' },
+  { q: 'To deposit 1 mol of Al from Al³⁺, you need:', opts: ['1 mol e⁻', '2 mol e⁻', '3 mol e⁻', '6 mol e⁻'], ans: 2, hint: 'Al³⁺ + 3e⁻ → Al requires 3 electrons per Al atom.' },
+  { q: 'KMnO₄ acts as its own indicator because:', opts: ['It is colourless', 'It changes from purple to colourless when reduced', 'It is always green', 'It reacts with starch'], ans: 1, hint: 'Mn²⁺ is essentially colourless; excess MnO₄⁻ gives a persistent pink.' },
+  { q: 'In the titration I₂ + 2S₂O₃²⁻ → 2I⁻ + S₄O₆²⁻, the indicator used is:', opts: ['Methyl orange', 'Phenolphthalein', 'Starch', 'Litmus'], ans: 2, hint: 'Starch forms a blue-black complex with I₂.' },
+  { q: 'What is the oxidation state of S in S₂O₃²⁻?', opts: ['+2', '+4', '+6', '−2'], ans: 0, hint: 'Let S = x. 2x + 3(−2) = −2, so 2x = +4, x = +2.' },
+  { q: 'For the reaction to be feasible, E°cell must be:', opts: ['Zero', 'Negative', 'Positive', 'Equal to 1.10 V'], ans: 2, hint: 'Positive E°cell = thermodynamically feasible.' },
+  { q: 'E° values should NOT be multiplied by stoichiometric coefficients because:', opts: ['They are measured in volts', 'E° is an intensive property', 'They cancel out', 'The units would change'], ans: 1, hint: 'Intensive properties don\'t change with the amount of substance.' },
+  { q: 'Which gas is produced at the cathode during electrolysis of dilute NaCl?', opts: ['Cl₂', 'O₂', 'H₂', 'Na'], ans: 2, hint: 'Na⁺ is too reactive to be reduced; H₂O is reduced instead.' },
+  { q: 'Iron rusts when exposed to:', opts: ['Dry air only', 'Water only', 'Both water and oxygen', 'Nitrogen'], ans: 2, hint: 'Both water AND oxygen are required for rusting.' },
+  { q: 'Galvanising protects iron because zinc:', opts: ['Is less reactive than iron', 'Provides sacrificial protection', 'Reacts with water', 'Prevents oxygen from forming'], ans: 1, hint: 'Zinc is more reactive and is oxidised preferentially.' },
+  { q: 'A fuel cell differs from a battery because:', opts: ['It can be recharged', 'It uses solid electrolytes only', 'It requires continuous fuel supply', 'It produces heat, not electricity'], ans: 2, hint: 'Fuel cells run as long as fuel (H₂) and oxidant (O₂) are supplied.' },
+  { q: 'In dilute H₂SO₄ electrolysis, the volume of H₂ to O₂ is:', opts: ['1:1', '1:2', '2:1', '3:1'], ans: 2, hint: 'The formula of water (H₂O) gives the 2:1 ratio.' },
+  { q: 'The oxidation state of Cr in Cr₂O₇²⁻ is:', opts: ['+3', '+5', '+6', '+7'], ans: 2, hint: '2x + 7(−2) = −2, so 2x = +12, x = +6.' },
+  { q: 'Which products are formed at the electrodes during electrolysis of molten PbBr₂?', opts: ['Pb at cathode, Br₂ at anode', 'Pb at anode, Br₂ at cathode', 'PbO at cathode, HBr at anode', 'H₂ at cathode, O₂ at anode'], ans: 0, hint: 'Molten salt = only Pb²⁺ and Br⁻ present. No water competition.' },
+  { q: 'A current of 0.50 A passes through molten NaCl for 3860 s. The mass of Na deposited is approximately:', opts: ['0.23 g', '0.46 g', '2.30 g', '4.60 g'], ans: 1, hint: 'Q = 0.50 × 3860 = 1930 C. n(e⁻) = 1930/96500 = 0.02 mol. Na⁺ + e⁻ → Na, so 0.02 mol Na. m = 0.02 × 23 = 0.46 g.' },
+];
+
+/* ============================================================
+   Structured questions — 6
+   ============================================================ */
+const structured = [
+  { title: 'Electrode potentials and feasibility', marks: 9, q: 'Given: E°(Fe³⁺/Fe²⁺) = +0.77 V, E°(I₂/2I⁻) = +0.54 V, E°(Br₂/2Br⁻) = +1.07 V.', parts: [
+    { q: '(a) Calculate E°cell for the reaction between Fe³⁺ and I⁻. Is the reaction feasible?', marks: 3, ans: 'Fe³⁺ would be reduced (cathode, +0.77 V) and I⁻ would be oxidised (anode, +0.54 V). E°cell = 0.77 − 0.54 = +0.23 V. Positive, so the reaction is feasible: 2Fe³⁺ + 2I⁻ → 2Fe²⁺ + I₂.' },
+    { q: '(b) Calculate E°cell for the reaction between Fe³⁺ and Br⁻. Is this feasible?', marks: 3, ans: 'Fe³⁺ reduced (+0.77 V) and Br⁻ oxidised (+1.07 V). E°cell = 0.77 − 1.07 = −0.30 V. Negative, so the forward reaction is NOT feasible. Fe³⁺ cannot oxidise Br⁻.' },
+    { q: '(c) Explain why a positive E°cell does not guarantee that a reaction will actually occur.', marks: 3, ans: 'E°cell predicts thermodynamic feasibility only — it says the reaction is energetically favourable. However, the reaction may be kinetically slow due to a high activation energy. For example, the reaction between MnO₄⁻ and C₂O₄²⁻ is feasible (positive E°cell) but extremely slow at room temperature without heating or a catalyst.' },
+  ]},
+  { title: 'Electrolysis of brine', marks: 8, q: 'Concentrated sodium chloride solution (brine) is electrolysed in a membrane cell.', parts: [
+    { q: '(a) Write the half-equation for the reaction at the anode.', marks: 1, ans: '2Cl⁻(aq) → Cl₂(g) + 2e⁻.' },
+    { q: '(b) Write the half-equation for the reaction at the cathode.', marks: 1, ans: '2H₂O(l) + 2e⁻ → H₂(g) + 2OH⁻(aq).' },
+    { q: '(c) Name the THREE products and give one use for each.', marks: 3, ans: 'Chlorine (Cl₂): water purification, making PVC or bleach. Hydrogen (H₂): fuel, making margarine (hydrogenation). Sodium hydroxide (NaOH): soap making, paper industry.' },
+    { q: '(d) Explain the role of the membrane.', marks: 2, ans: 'The membrane allows Na⁺ ions to pass through but blocks Cl₂ and OH⁻. This prevents chlorine from reacting with sodium hydroxide (which would produce bleach/sodium chlorate(I)) and keeps the products pure.' },
+    { q: '(e) Explain why Cl₂ is produced in concentrated NaCl but O₂ in dilute NaCl.', marks: 1, ans: 'In concentrated NaCl, the high [Cl⁻] overcomes the thermodynamic preference for water oxidation (E° effect). In dilute NaCl, [Cl⁻] is too low, so water is preferentially oxidised to O₂.' },
+  ]},
+  { title: 'Quantitative electrolysis', marks: 8, q: 'A current of 1.50 A was passed through aqueous CuSO₄ for 1.00 hour using copper electrodes.', parts: [
+    { q: '(a) Calculate the charge passed.', marks: 1, ans: 'Q = I × t = 1.50 × (1.00 × 3600) = 5400 C.' },
+    { q: '(b) Calculate the moles of electrons transferred.', marks: 1, ans: 'n(e⁻) = Q/F = 5400/96500 = 0.05596 mol.' },
+    { q: '(c) Write the cathode half-equation and calculate the mass of copper deposited.', marks: 3, ans: 'Cu²⁺(aq) + 2e⁻ → Cu(s). Moles of Cu = n(e⁻)/2 = 0.05596/2 = 0.02798 mol. Mass = 0.02798 × 63.5 = 1.78 g.' },
+    { q: '(d) Explain what happens at the anode if the anode is made of copper.', marks: 2, ans: 'The copper anode dissolves: Cu(s) → Cu²⁺(aq) + 2e⁻. The mass of the anode decreases by the same amount (1.78 g) as the cathode gains. The concentration of CuSO₄ solution remains constant.' },
+    { q: '(e) State how the observation at the anode would differ if platinum electrodes were used instead.', marks: 1, ans: 'With inert Pt electrodes, the anode would produce O₂ gas (from oxidation of water: 2H₂O → O₂ + 4H⁺ + 4e⁻) instead of dissolving. The solution would gradually become more acidic and less blue.' },
+  ]},
+  { title: 'Fuel cells', marks: 7, q: 'A hydrogen-oxygen fuel cell operates at 80 °C with a proton exchange membrane (PEM).', parts: [
+    { q: '(a) Write the half-equation at the anode.', marks: 1, ans: 'H₂(g) → 2H⁺(aq) + 2e⁻.' },
+    { q: '(b) Write the half-equation at the cathode.', marks: 1, ans: 'O₂(g) + 4H⁺(aq) + 4e⁻ → 2H₂O(l).' },
+    { q: '(c) Write the overall cell equation.', marks: 1, ans: '2H₂(g) + O₂(g) → 2H₂O(l).' },
+    { q: '(d) Give two advantages and two disadvantages of fuel cells compared to petrol engines.', marks: 4, ans: 'Advantages: (1) Only product is water — no CO₂ or pollutants emitted. (2) Higher efficiency — chemical energy converted directly to electrical energy without Carnot cycle losses. Disadvantages: (1) Hydrogen is difficult to store safely (very low density gas; requires compression or cryogenic storage). (2) Platinum catalysts are expensive and in limited supply.' },
+  ]},
+  { title: 'KMnO₄ titration', marks: 9, q: '25.0 cm³ of 0.100 mol dm⁻³ Fe²⁺(aq) was titrated with 0.0200 mol dm⁻³ KMnO₄(aq). The balanced equation is: MnO₄⁻ + 8H⁺ + 5Fe²⁺ → Mn²⁺ + 4H₂O + 5Fe³⁺.', parts: [
+    { q: '(a) Calculate the moles of Fe²⁺.', marks: 1, ans: 'n(Fe²⁺) = 0.0250 × 0.100 = 2.50 × 10⁻³ mol.' },
+    { q: '(b) Using the stoichiometric ratio, calculate the moles of KMnO₄ required.', marks: 2, ans: 'Ratio MnO₄⁻ : Fe²⁺ = 1:5. n(MnO₄⁻) = 2.50 × 10⁻³ / 5 = 5.00 × 10⁻⁴ mol.' },
+    { q: '(c) Calculate the volume of KMnO₄ needed to reach the endpoint.', marks: 2, ans: 'V = n/c = 5.00 × 10⁻⁴ / 0.0200 = 0.0250 dm³ = 25.0 cm³.' },
+    { q: '(d) Describe how you would recognise the endpoint.', marks: 2, ans: 'The endpoint is when the first drop of KMnO₄ gives a permanent pale pink/purple colour that does not disappear on swirling. No indicator is needed because KMnO₄ is self-indicating — the purple colour persists once all Fe²⁺ has been consumed.' },
+    { q: '(e) Why must the Fe²⁺ solution be acidified with dilute H₂SO₄, not HCl?', marks: 2, ans: 'HCl cannot be used because Cl⁻ ions would be oxidised by MnO₄⁻ (MnO₄⁻ is a strong enough oxidising agent to oxidise Cl⁻ to Cl₂), giving a falsely high titre. H₂SO₄ provides H⁺ without introducing an oxidisable anion (SO₄²⁻ is very resistant to oxidation).' },
+  ]},
+  { title: 'Aluminium extraction', marks: 7, q: 'Aluminium is extracted from purified alumina (Al₂O₃) by electrolysis.', parts: [
+    { q: '(a) Write the half-equation for the reaction at the cathode.', marks: 1, ans: 'Al³⁺(l) + 3e⁻ → Al(l).' },
+    { q: '(b) Write the half-equation for the reaction at the anode.', marks: 1, ans: '2O²⁻(l) → O₂(g) + 4e⁻.' },
+    { q: '(c) Explain why cryolite is added.', marks: 2, ans: 'Pure Al₂O₃ has a very high melting point (~2072 °C). Dissolving it in molten cryolite (Na₃AlF₆) lowers the operating temperature to ~960 °C, significantly reducing the energy costs of the process.' },
+    { q: '(d) Explain why the carbon anodes must be replaced periodically.', marks: 2, ans: 'The O₂ gas produced at the anode reacts with the carbon at the high operating temperature: C(s) + O₂(g) → CO₂(g). The anodes gradually burn away and must be replaced. This is an ongoing cost of the process.' },
+    { q: '(e) Calculate the mass of Al deposited by 96 500 C of charge.', marks: 1, ans: '96 500 C = 1 mol e⁻. Al³⁺ + 3e⁻ → Al, so 1 mol e⁻ deposits ⅓ mol Al. Mass = (1/3) × 27 = 9.0 g.' },
+  ]},
+];
+
+/* ============================================================
+   Worked examples — 8
+   ============================================================ */
+const worked = [
+  { title: 'Assign oxidation states', diff: 'easy', q: 'Find the oxidation state of the underlined element in: (a) H₂SO₄, (b) Cr₂O₇²⁻, (c) NH₄⁺.', steps: [
+    { label: 'STEP 1', text: 'H₂SO₄: H is +1, O is −2. 2(+1) + S + 4(−2) = 0 → S = +6.' },
+    { label: 'STEP 2', text: 'Cr₂O₇²⁻: O is −2. 2Cr + 7(−2) = −2 → 2Cr = +12 → Cr = +6.' },
+    { label: 'STEP 3', text: 'NH₄⁺: H is +1. N + 4(+1) = +1 → N = −3.' },
+  ], ans: 'S = +6, Cr = +6, N = −3.' },
+
+  { title: 'Calculate E°cell', diff: 'easy', q: 'E°(Ag⁺/Ag) = +0.80 V, E°(Zn²⁺/Zn) = −0.76 V. Find E°cell and state which electrode is the cathode.', steps: [
+    { label: 'STEP 1', text: 'The more positive E° is the cathode: Ag⁺/Ag (+0.80 V) is the cathode.' },
+    { label: 'STEP 2', text: 'E°cell = E°(cathode) − E°(anode) = 0.80 − (−0.76) = +1.56 V.' },
+    { label: 'STEP 3', text: 'Positive E°cell → reaction is feasible. Zn is oxidised; Ag⁺ is reduced.' },
+  ], ans: 'E°cell = +1.56 V. Ag electrode is cathode (reduction), Zn is anode (oxidation).' },
+
+  { title: 'Quantitative electrolysis — mass of Cu', diff: 'medium', q: 'A current of 3.00 A passes through CuSO₄(aq) for 40.0 minutes. Calculate the mass of copper deposited at the cathode.', steps: [
+    { label: 'STEP 1', text: 'Convert time: 40.0 min × 60 = 2400 s.' },
+    { label: 'STEP 2', text: 'Q = I × t = 3.00 × 2400 = 7200 C.' },
+    { label: 'STEP 3', text: 'n(e⁻) = Q/F = 7200/96500 = 0.07461 mol.' },
+    { label: 'STEP 4', text: 'Cu²⁺ + 2e⁻ → Cu. Moles of Cu = 0.07461/2 = 0.03731 mol.' },
+    { label: 'STEP 5', text: 'Mass = 0.03731 × 63.5 = 2.37 g.' },
+  ], ans: 'Mass of copper deposited = 2.37 g.' },
+
+  { title: 'Volume of gas from electrolysis', diff: 'medium', q: 'A current of 0.500 A passes through dilute H₂SO₄ for 32.2 minutes. Calculate the volume of O₂ produced at the anode at RTP.', steps: [
+    { label: 'STEP 1', text: 'Time = 32.2 × 60 = 1932 s. Q = 0.500 × 1932 = 966 C.' },
+    { label: 'STEP 2', text: 'n(e⁻) = 966/96500 = 0.01001 mol.' },
+    { label: 'STEP 3', text: 'Anode: 2H₂O → O₂ + 4H⁺ + 4e⁻. So 4 mol e⁻ produce 1 mol O₂.' },
+    { label: 'STEP 4', text: 'n(O₂) = 0.01001/4 = 0.002503 mol.' },
+    { label: 'STEP 5', text: 'Volume at RTP = 0.002503 × 24000 = 60.1 cm³.' },
+  ], ans: 'Volume of O₂ = 60.1 cm³ at RTP.' },
+
+  { title: 'Redox titration — Fe²⁺ with MnO₄⁻', diff: 'medium', q: '25.0 cm³ of Fe²⁺ solution required 20.0 cm³ of 0.0200 mol dm⁻³ KMnO₄ for complete reaction. Find the concentration of Fe²⁺.', steps: [
+    { label: 'STEP 1', text: 'n(MnO₄⁻) = 0.0200 × 20.0/1000 = 4.00 × 10⁻⁴ mol.' },
+    { label: 'STEP 2', text: 'From MnO₄⁻ + 5Fe²⁺ → ..., ratio is 1:5.' },
+    { label: 'STEP 3', text: 'n(Fe²⁺) = 5 × 4.00 × 10⁻⁴ = 2.00 × 10⁻³ mol.' },
+    { label: 'STEP 4', text: '[Fe²⁺] = 2.00 × 10⁻³ / 0.0250 = 0.0800 mol dm⁻³.' },
+  ], ans: '[Fe²⁺] = 0.0800 mol dm⁻³.' },
+
+  { title: 'Iodine-thiosulphate titration', diff: 'medium', q: 'An oxidising agent liberated I₂ when added to excess KI. The I₂ required 24.0 cm³ of 0.100 mol dm⁻³ Na₂S₂O₃ for complete reaction. Find the moles of I₂.', steps: [
+    { label: 'STEP 1', text: 'n(S₂O₃²⁻) = 0.100 × 24.0/1000 = 2.40 × 10⁻³ mol.' },
+    { label: 'STEP 2', text: 'Equation: I₂ + 2S₂O₃²⁻ → 2I⁻ + S₄O₆²⁻. Ratio I₂ : S₂O₃²⁻ = 1:2.' },
+    { label: 'STEP 3', text: 'n(I₂) = 2.40 × 10⁻³ / 2 = 1.20 × 10⁻³ mol.' },
+  ], ans: 'Moles of I₂ = 1.20 × 10⁻³ mol.' },
+
+  { title: 'Determining Avogadro constant by electrolysis', diff: 'hard', q: 'A current of 0.200 A was passed through CuSO₄(aq) for exactly 1.00 hour. The cathode gained 0.2370 g. Calculate the Avogadro constant.', steps: [
+    { label: 'STEP 1', text: 'Q = 0.200 × 3600 = 720 C.' },
+    { label: 'STEP 2', text: 'Moles of Cu deposited = 0.2370/63.5 = 3.732 × 10⁻³ mol.' },
+    { label: 'STEP 3', text: 'Cu²⁺ + 2e⁻ → Cu. So moles of e⁻ = 2 × 3.732 × 10⁻³ = 7.464 × 10⁻³ mol.' },
+    { label: 'STEP 4', text: 'Total electrons transferred = L × n(e⁻). Also Q = total electrons × e. So L = Q / (n(e⁻) × e).' },
+    { label: 'STEP 5', text: 'L = 720 / (7.464 × 10⁻³ × 1.602 × 10⁻¹⁹) = 720 / (1.196 × 10⁻²¹) = 6.02 × 10²³ mol⁻¹.' },
+  ], ans: 'L ≈ 6.02 × 10²³ mol⁻¹ (matching the accepted value).' },
+
+  { title: 'Predict electrolysis products', diff: 'medium', q: 'Predict the products at each electrode when dilute NaBr(aq) is electrolysed with inert electrodes.', steps: [
+    { label: 'STEP 1', text: 'Ions present: Na⁺, Br⁻, H⁺ (from water), OH⁻ (from water).' },
+    { label: 'STEP 2', text: 'Cathode: Na⁺ or H⁺? Na is very reactive (E° very negative). H⁺ is preferentially reduced → H₂.' },
+    { label: 'STEP 3', text: 'Anode: Br⁻ or OH⁻? In dilute solution, the answer depends on concentration. For moderately concentrated NaBr, Br⁻ is discharged → Br₂. For very dilute, OH⁻ may be oxidised → O₂.' },
+    { label: 'STEP 4', text: 'Assuming dilute: cathode = H₂, anode = O₂. If concentrated: cathode = H₂, anode = Br₂.' },
+  ], ans: 'Cathode: H₂ (always, since Na⁺ is too reactive). Anode: Br₂ if concentrated, O₂ if dilute.' },
+];
+
+/* ============================================================
+   Exported module
+   ============================================================ */
+export const ELECTROCHEM = {
+  id: 'electrochem',
+  objectives: [
+    'Describe redox processes in terms of electron transfer and oxidation state changes',
+    'Write and balance half-equations in acidic solution',
+    'Describe the standard hydrogen electrode and explain how standard electrode potentials are measured',
+    'Use E° values to predict the feasibility of reactions (E°cell = E°cathode − E°anode)',
+    'Describe electrolysis of acidified water, copper purification, aluminium extraction and brine',
+    'Predict the products of electrolysis of aqueous solutions using E° and concentration',
+    'Perform redox titrations (KMnO₄/Fe²⁺ and I₂/thiosulphate) and calculations',
+    'Describe hydrogen-oxygen fuel cells and compare with conventional cells',
+    'Use Faraday\'s laws for quantitative electrolysis calculations (Q = It, n = Q/F, F = Le)',
+  ],
+  chapters,
+  quizzes,
+  multi: [],
+  structured,
+  worked,
+  tutorPrompts: [
+    'Walk me through balancing a half-equation for dichromate in acid',
+    'Explain why Cl₂ is produced from concentrated brine but O₂ from dilute NaCl',
+    'Give me a hard Faraday calculation involving aluminium extraction',
+    'Why can\'t HCl be used to acidify Fe²⁺ in a KMnO₄ titration?',
+    'Compare fuel cells with rechargeable batteries',
+  ],
+};

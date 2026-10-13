@@ -1,0 +1,605 @@
+// Group IV — IC-11 — full content
+// ZIMSEC Form 5/6 Chemistry, Section 6.2 — Topic 11
+// Syllabus coverage:
+//   Variations in m.p. and conductivity
+//   Variations in bonding, acid-base nature, thermal stability of oxides (II & IV)
+//   Bonding, molecular shape and volatility of tetrachlorides
+//   Reactions of tetrachlorides with water
+//   Relative stability of higher and lower oxidation states (inert pair effect)
+//   Properties and uses of elements and compounds
+
+/* ============================================================
+   Diagram specs (Phase K3 migration)
+   ============================================================ */
+
+const physPropsSpec = {
+  title: 'GROUP IV PHYSICAL PROPERTIES',
+  blocks: [
+    { type: 'table',
+      headers: ['Elem.', 'M.P./°C', 'Conduct.', 'Structure', 'Character'],
+      colWidths: [40, 55, 50, 75, 70],
+      rows: [
+        ['C',  '3550', 'none*', 'giant cov.', 'non-metal'],
+        ['Si', '1414', 'semi',  'giant cov.', 'metalloid'],
+        ['Ge', '938',  'semi',  'giant cov.', 'metalloid'],
+        ['Sn', '232',  'good',  'metallic',   'metal'],
+        ['Pb', '327',  'good',  'metallic',   'metal'],
+      ],
+      rowColors: ['primary', 'primary', 'primary', 'accent', 'accent'],
+    },
+    { type: 'note', text: '*graphite conducts along layers (delocalised π electrons)' },
+    { type: 'note', text: 'non-metal → metalloid → metal down the group', emphasis: true },
+  ],
+};
+
+const inertPairSpec = {
+  title: 'THE INERT PAIR EFFECT',
+  blocks: [
+    { type: 'compare',
+      left:  { title: '+4 STATE', body: ['uses all 4 outer e⁻', 'ns² np²'], color: 'primary' },
+      right: { title: '+2 STATE', body: ['uses only 2 np e⁻', 'ns² pair "inert"'], color: 'pink' },
+    },
+    { type: 'note', text: 'Down the group:', emphasis: true },
+    { type: 'table',
+      headers: ['Elem.', '+4 character', '+2 character'],
+      colWidths: [40, 130, 120],
+      rows: [
+        ['C',  '+4 stable',   '+2 rare (CO exists)'],
+        ['Si', '+4 stable',   '+2 very rare'],
+        ['Ge', '+4 stable',   '+2 exists'],
+        ['Sn', '+4 and +2',   '+2 more common'],
+        ['Pb', '+4 unstable', '+2 dominant'],
+      ],
+    },
+    { type: 'note', text: '+2 becomes MORE stable going down; +4 becomes LESS stable' },
+  ],
+};
+
+const tetrachloridesSpec = {
+  title: 'GROUP IV TETRACHLORIDES · MCl₄',
+  blocks: [
+    { type: 'table',
+      headers: ['MCl₄', 'B.P./°C', 'Shape', '+ Water'],
+      colWidths: [55, 55, 80, 100],
+      rows: [
+        ['CCl₄',  '77',         'tetrahedral', 'NO reaction'],
+        ['SiCl₄', '57',         'tetrahedral', 'rapid hydrolysis'],
+        ['GeCl₄', '84',         'tetrahedral', 'hydrolysis'],
+        ['SnCl₄', '114',        'tetrahedral', 'hydrolysis'],
+        ['PbCl₄', 'decomposes', 'tetrahedral', 'decomposes'],
+      ],
+      rowColors: ['accent', 'primary', 'primary', 'primary', 'pink'],
+    },
+    { type: 'note', text: 'All are COVALENT, volatile liquids', emphasis: true },
+    { type: 'note', text: 'CCl₄ does NOT hydrolyse — C has no accessible d orbitals' },
+  ],
+};
+
+const oxidesSpec = {
+  title: 'GROUP IV OXIDES · +4 AND +2',
+  blocks: [
+    { type: 'table',
+      headers: ['Oxide', 'Bonding', 'Acid-base', 'Stability'],
+      colWidths: [50, 90, 75, 75],
+      rows: [
+        ['CO₂',  'covalent (mol.)',   'acidic',     'stable'],
+        ['CO',   'covalent (mol.)',   'neutral',    'stable*'],
+        ['SiO₂', 'giant covalent',    'acidic',     'very stable'],
+        ['GeO₂', 'giant cov./ionic',  'amphoteric', 'stable'],
+        ['SnO₂', 'ionic',             'amphoteric', 'stable'],
+        ['SnO',  'ionic',             'amphoteric', 'reducing'],
+        ['PbO₂', 'ionic',             'amphoteric', 'oxidising'],
+        ['PbO',  'ionic',             'amphoteric', 'stable'],
+      ],
+    },
+    { type: 'note', text: '*CO is stable but toxic — binds irreversibly to haemoglobin' },
+    { type: 'note', text: 'acid-base: acidic (top) → amphoteric (bottom)', emphasis: true },
+  ],
+};
+
+const allotropesSpec = {
+  title: 'CARBON ALLOTROPES',
+  blocks: [
+    { type: 'compare',
+      left: { title: 'DIAMOND', body: [
+        '4 bonds per C',
+        'tetrahedral network',
+        'very hard, high m.p.',
+        'no conductivity',
+      ], color: 'primary' },
+      right: { title: 'GRAPHITE', body: [
+        '3 bonds per C + 1 deloc.',
+        'layers of hexagons',
+        'soft, slippery layers',
+        'conducts (along layers)',
+      ], color: 'accent' },
+    },
+    { type: 'note', text: 'Both are giant covalent — very high m.p.', emphasis: true },
+    { type: 'note', text: 'graphite conducts because delocalised π electrons move between layers' },
+  ],
+};
+
+const pbo2OxidationSpec = {
+  title: 'PbO₂ AS AN OXIDISING AGENT',
+  blocks: [
+    { type: 'equation', text: 'PbO₂ + 4HCl → PbCl₂ + Cl₂ + 2H₂O', big: true },
+    { type: 'panel', body: [
+      'Pb goes from +4 → +2 (reduced = oxidising agent)',
+      'Cl goes from −1 → 0 (oxidised to Cl₂)',
+    ], color: 'primary' },
+    { type: 'note', text: 'PbO₂ is unstable → readily accepts electrons', emphasis: true },
+    { type: 'note', text: 'Because Pb prefers the +2 state (inert pair effect)' },
+    { type: 'panel', title: 'CONTRAST: SnO IS A REDUCING AGENT', body: [
+      'Sn²⁺ → Sn⁴⁺ (Sn prefers +4)',
+      'SnCl₂ + Cl₂ → SnCl₄',
+    ], color: 'accent' },
+  ],
+};
+
+/* ============================================================
+   Chapters
+   ============================================================ */
+const chapters = [
+  // CH.1 — Introduction
+  { id: 'g41', title: 'Group IV: Carbon to Lead', minutes: 7, blocks: [
+    { type: 'p', text: 'Group IV contains carbon (C), silicon (Si), germanium (Ge), tin (Sn) and lead (Pb). These five elements show a dramatic transition from non-metal (C) through metalloid (Si, Ge) to metal (Sn, Pb). All have the outer electron configuration ns²np², giving them the possibility of oxidation states +4 (using all four outer electrons) or +2 (using only the two p electrons).' },
+    { type: 'h', text: 'The key theme: increasing metallic character' },
+    { type: 'ul', items: [
+      'Carbon: non-metal. Forms covalent bonds. Allotropes include diamond (giant covalent, insulator) and graphite (giant covalent, conductor along layers).',
+      'Silicon: metalloid / semiconductor. Giant covalent structure like diamond.',
+      'Germanium: metalloid / semiconductor. Used in electronics.',
+      'Tin: metal. Has two allotropes (white tin = metallic, grey tin = semi-metallic).',
+      'Lead: metal. Dense, soft, low m.p. Strong tendency to form Pb²⁺ (not Pb⁴⁺).',
+    ]},
+    { type: 'callout', kind: 'key', title: 'The big idea', body: 'Going down Group IV, the +2 oxidation state becomes MORE stable relative to the +4 state. This is the INERT PAIR EFFECT — the two s electrons become increasingly reluctant to participate in bonding. For Pb, the +2 state is dominant; PbO₂ (Pb⁴⁺) is a strong oxidising agent because Pb "wants" to return to +2.' },
+    { type: 'takeaway', items: [
+      'Group IV: C, Si, Ge, Sn, Pb — configuration ns²np².',
+      'Non-metal → metalloid → metal down the group.',
+      '+2 state becomes more stable going down (inert pair effect).',
+    ]},
+  ]},
+
+  // CH.2 — Physical properties
+  { id: 'g42', title: 'Melting Points & Electrical Conductivity', minutes: 9, blocks: [
+    { type: 'p', text: 'The physical properties of Group IV elements reflect the change in bonding and structure from giant covalent at the top to metallic at the bottom.' },
+    { type: 'd', spec: physPropsSpec, caption: 'Physical properties across Group IV' },
+    { type: 'h', text: 'Melting point trend' },
+    { type: 'ul', items: [
+      'C (diamond) and Si have very HIGH melting points because they have giant covalent structures — strong covalent bonds must be broken throughout the entire 3D lattice.',
+      'C has a higher m.p. than Si because C–C bonds (348 kJ mol⁻¹) are shorter and stronger than Si–Si bonds (226 kJ mol⁻¹).',
+      'Ge still has a giant covalent structure but with even weaker bonds → lower m.p.',
+      'Sn and Pb have METALLIC structures. Metallic bonds are weaker than the giant covalent bonds of C/Si → much lower melting points.',
+      'Overall: m.p. DECREASES down the group (with the transition from giant covalent to metallic bonding).',
+    ]},
+    { type: 'h', text: 'Electrical conductivity' },
+    { type: 'ul', items: [
+      'Diamond: non-conductor — all four electrons per carbon are in localised covalent bonds.',
+      'Graphite: conducts along the layers — each C uses only 3 electrons for σ bonds; the 4th is delocalised in π orbitals above and below the layers.',
+      'Si, Ge: semiconductors — small band gap allows some electrons to be promoted to the conduction band (conductivity increases with temperature).',
+      'Sn, Pb: good metallic conductors — delocalised electrons carry charge.',
+    ]},
+    { type: 'takeaway', items: [
+      'M.p. decreases: giant covalent (C, Si, Ge) → metallic (Sn, Pb).',
+      'Conductivity increases: insulator/semiconductor → metal.',
+      'Graphite is the exception among non-metals: it conducts along layers.',
+    ]},
+  ]},
+
+  // CH.3 — Carbon allotropes
+  { id: 'g43', title: 'Diamond, Graphite & Fullerenes', minutes: 9, blocks: [
+    { type: 'p', text: 'Carbon exists in several allotropes — different structural forms of the same element. The two most important for A-level are diamond and graphite, with fullerenes (e.g. C₆₀ buckminsterfullerene) as additional interest.' },
+    { type: 'd', spec: allotropesSpec, caption: 'Comparing diamond and graphite structures' },
+    { type: 'h', text: 'Diamond' },
+    { type: 'ul', items: [
+      'Each C atom is sp³ hybridised, bonded to 4 others in a tetrahedral arrangement.',
+      'Giant covalent 3D network — all bonds are strong C–C σ bonds (348 kJ mol⁻¹).',
+      'Properties: extremely hard (hardest natural substance), very high m.p. (3550 °C), does NOT conduct electricity (all electrons localised), transparent and colourless, insoluble in all solvents.',
+      'Uses: cutting tools, drill bits, jewellery, abrasives.',
+    ]},
+    { type: 'h', text: 'Graphite' },
+    { type: 'ul', items: [
+      'Each C is sp² hybridised, bonded to 3 others in flat hexagonal LAYERS.',
+      'The 4th electron on each C is delocalised in a π system that extends across the layer.',
+      'Layers are held together by weak VAN DER WAALS forces → layers slide over each other.',
+      'Properties: soft and slippery, high m.p. (sublimes ~3650 °C), conducts electricity ALONG layers (delocalised π electrons), opaque and grey-black.',
+      'Uses: pencil "lead", lubricant, electrodes (inert, conducts, high m.p.).',
+    ]},
+    { type: 'h', text: 'Fullerenes and nanotubes' },
+    { type: 'p', text: 'C₆₀ (buckminsterfullerene) is a spherical molecule of 60 carbon atoms arranged in pentagons and hexagons (like a football). Carbon nanotubes are rolled-up graphene sheets with remarkable strength and conductivity. Both are examples of simple molecular carbon allotropes.' },
+    { type: 'takeaway', items: [
+      'Diamond: 4 bonds, tetrahedral, hard, insulator.',
+      'Graphite: 3 bonds + delocalised π, layers, soft, conducts.',
+      'Both are giant covalent with very high m.p.',
+      'Graphite conducts because of delocalised electrons between layers.',
+    ]},
+  ]},
+
+  // CH.4 — The inert pair effect
+  { id: 'g44', title: 'The Inert Pair Effect', minutes: 10, blocks: [
+    { type: 'p', text: 'The inert pair effect is the tendency of the two s electrons in the outermost shell to remain UNBONDED (as a "lone pair") in heavier Group IV elements. This means the +2 oxidation state becomes increasingly stable relative to +4 as you go down the group.' },
+    { type: 'd', spec: inertPairSpec, caption: 'Stability of +4 vs +2 changes down Group IV' },
+    { type: 'h', text: 'Why does it happen?' },
+    { type: 'ul', items: [
+      'All Group IV atoms have the configuration ns²np². In carbon, the energy needed to promote the 2s electrons and use all four for bonding is easily repaid by the energy of the four strong bonds formed.',
+      'Going down the group, the ns electrons become harder to utilise in bonding. The bonds formed by heavier elements are WEAKER (because the atoms are larger and overlap less effectively), so the energy benefit of using all four electrons decreases.',
+      'For Pb, the energy cost of promoting the 6s² electrons is NOT repaid by the weak Pb–X bonds, so Pb prefers to keep its 6s² pair inert and form only 2 bonds → Pb²⁺ is the stable oxidation state.',
+    ]},
+    { type: 'h', text: 'Consequences' },
+    { type: 'ul', items: [
+      'Carbon: +4 is overwhelmingly dominant (CO₂, CCl₄, CH₄). +2 exists only in CO.',
+      'Silicon: +4 is dominant (SiO₂, SiCl₄). +2 is very rare.',
+      'Tin: BOTH +4 and +2 exist. Sn²⁺ is a good reducing agent (it wants to become Sn⁴⁺).',
+      'Lead: +2 is dominant (PbO, PbCl₂, Pb(NO₃)₂). +4 is unstable — PbO₂ and PbCl₄ are powerful oxidising agents because Pb⁴⁺ wants to return to Pb²⁺.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Exam statement', body: 'State: "Down Group IV, the +2 oxidation state becomes more stable relative to the +4 state due to the inert pair effect. The ns² electrons become increasingly reluctant to participate in bonding because the bonds formed by larger atoms are weaker and do not compensate for the promotion energy."' },
+    { type: 'takeaway', items: [
+      'Inert pair effect: ns² electrons reluctant to bond in heavier elements.',
+      'C, Si: +4 dominant. Sn: both. Pb: +2 dominant.',
+      'Sn²⁺ is a reducing agent (→ Sn⁴⁺). Pb⁴⁺ is an oxidising agent (→ Pb²⁺).',
+    ]},
+  ]},
+
+  // CH.5 — Oxides
+  { id: 'g45', title: 'Oxides of Group IV', minutes: 11, blocks: [
+    { type: 'p', text: 'Group IV elements form oxides in both +4 and +2 oxidation states. The bonding, acid-base character and thermal stability of these oxides show clear trends down the group.' },
+    { type: 'd', spec: oxidesSpec, caption: 'Summary of Group IV oxides' },
+    { type: 'h', text: 'Bonding trend' },
+    { type: 'ul', items: [
+      'CO₂: simple molecular (O=C=O, linear). Covalent, gas at room temperature.',
+      'SiO₂: giant covalent (each Si bonded to 4 O atoms). Very high m.p., insoluble.',
+      'GeO₂, SnO₂, PbO₂: increasingly ionic character. Higher m.p. solids.',
+      'SnO, PbO: ionic solids.',
+      'Trend: covalent → ionic character increases down the group (as metallic character increases).',
+    ]},
+    { type: 'h', text: 'Acid-base character' },
+    { type: 'ul', items: [
+      'CO₂: acidic — dissolves in water to form carbonic acid (H₂CO₃). Reacts with bases: CO₂ + 2NaOH → Na₂CO₃ + H₂O.',
+      'SiO₂: acidic — insoluble in water but reacts with hot concentrated NaOH or fused NaOH: SiO₂ + 2NaOH → Na₂SiO₃ + H₂O.',
+      'GeO₂, SnO₂: amphoteric — react with both acids and bases.',
+      'SnO, PbO, PbO₂: amphoteric.',
+      'Trend: acidic at the top → amphoteric at the bottom.',
+    ]},
+    { type: 'h', text: 'Thermal stability' },
+    { type: 'ul', items: [
+      'The +4 oxides become LESS thermally stable going down the group (inert pair effect).',
+      'PbO₂ decomposes on heating: 2PbO₂ → 2PbO + O₂. This is because Pb⁴⁺ is unstable and the compound reverts to the more stable Pb²⁺ state.',
+      'CO₂ and SiO₂ are very thermally stable — they do not decompose easily.',
+      'SnO₂ is stable but can be reduced by carbon at high temperatures (tin smelting).',
+    ]},
+    { type: 'takeaway', items: [
+      'Bonding: covalent (CO₂) → giant covalent (SiO₂) → ionic (SnO₂, PbO).',
+      'Acid-base: acidic (CO₂, SiO₂) → amphoteric (SnO₂, PbO).',
+      '+4 oxides become less stable down group (PbO₂ decomposes → PbO + O₂).',
+    ]},
+  ]},
+
+  // CH.6 — Tetrachlorides
+  { id: 'g46', title: 'Tetrachlorides: Bonding, Shape & Hydrolysis', minutes: 10, blocks: [
+    { type: 'p', text: 'All Group IV elements form tetrachlorides (MCl₄). These are all COVALENT, volatile liquids (or gases) with a TETRAHEDRAL molecular shape. Their behaviour with water is a key exam topic.' },
+    { type: 'd', spec: tetrachloridesSpec, caption: 'Group IV tetrachlorides — properties and hydrolysis' },
+    { type: 'h', text: 'Bonding and shape' },
+    { type: 'ul', items: [
+      'All MCl₄ molecules have 4 bonding pairs around the central atom and no lone pairs.',
+      'VSEPR predicts a TETRAHEDRAL shape with bond angles of 109.5°.',
+      'All are covalent — the central atom shares electrons with four Cl atoms.',
+      'They are volatile liquids because they are simple molecular substances held by weak London forces.',
+    ]},
+    { type: 'h', text: 'Reaction with water — the crucial difference' },
+    { type: 'ul', items: [
+      'CCl₄ does NOT react with water. Carbon has no accessible d orbitals — water cannot attack the central C atom. CCl₄ is used as a non-polar solvent and is stable in aqueous conditions.',
+      'SiCl₄ hydrolyses RAPIDLY: SiCl₄ + 2H₂O → SiO₂ + 4HCl. White fumes of HCl are produced. Silicon has accessible 3d orbitals → water lone pairs can attack, initiating nucleophilic substitution.',
+      'GeCl₄, SnCl₄: also hydrolyse, but less vigorously than SiCl₄.',
+      'PbCl₄: very unstable (inert pair effect) — decomposes to PbCl₂ + Cl₂ before hydrolysis can occur.',
+    ]},
+    { type: 'h', text: 'Reaction with organic solvents' },
+    { type: 'p', text: 'All tetrachlorides dissolve in non-polar organic solvents like hexane because they are covalent molecules with similar intermolecular forces. This is a useful test: if a chloride dissolves in hexane but fumes with water, it is covalent.' },
+    { type: 'callout', kind: 'key', title: 'Why CCl₄ doesn\'t hydrolyse', body: 'Carbon has NO accessible d orbitals in its outer shell (period 2 elements never have d orbitals available). Water cannot form a 5th bond to C as an intermediate. Silicon, being in period 3, has empty 3d orbitals that can accept the lone pair from water → hydrolysis proceeds. This is the single most important difference.' },
+    { type: 'takeaway', items: [
+      'All MCl₄ are tetrahedral, covalent, volatile.',
+      'CCl₄ does NOT hydrolyse (no d orbitals on C).',
+      'SiCl₄ hydrolyses rapidly (3d orbitals available).',
+      'PbCl₄ is too unstable (decomposes to PbCl₂ + Cl₂).',
+    ]},
+  ]},
+
+  // CH.7 — Redox behaviour
+  { id: 'g47', title: 'Redox: Sn²⁺ as Reducer, Pb⁴⁺ as Oxidiser', minutes: 9, blocks: [
+    { type: 'p', text: 'The inert pair effect creates opposite redox tendencies for tin and lead compounds. Sn²⁺ is a good REDUCING agent (it wants to become Sn⁴⁺, the more stable state for Sn). Pb⁴⁺ is a good OXIDISING agent (it wants to become Pb²⁺, the more stable state for Pb).' },
+    { type: 'd', spec: pbo2OxidationSpec, caption: 'PbO₂ oxidises HCl to Cl₂; SnO reduces to form Sn⁴⁺' },
+    { type: 'h', text: 'Tin: +2 → +4 (reducing agent)' },
+    { type: 'ul', items: [
+      'Sn²⁺ readily loses 2 more electrons to become Sn⁴⁺ (the more stable state for Sn).',
+      'SnCl₂ reduces Fe³⁺ to Fe²⁺: SnCl₂ + 2FeCl₃ → SnCl₄ + 2FeCl₂.',
+      'Sn²⁺ is oxidised (Sn: +2 → +4), Fe³⁺ is reduced (Fe: +3 → +2).',
+      'SnCl₂ is used in analytical chemistry as a reducing agent.',
+    ]},
+    { type: 'h', text: 'Lead: +4 → +2 (oxidising agent)' },
+    { type: 'ul', items: [
+      'Pb⁴⁺ readily gains 2 electrons to become Pb²⁺ (the more stable state for Pb).',
+      'PbO₂ + 4HCl → PbCl₂ + Cl₂ + 2H₂O. Lead is reduced (+4 → +2) and chloride is oxidised (−1 → 0).',
+      'PbO₂ is a strong enough oxidising agent to oxidise concentrated HCl to Cl₂.',
+      'This reaction is used to demonstrate the oxidising power of Pb(IV).',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Mirror image behaviour', body: 'Sn²⁺ is a reducing agent because +4 is more stable for Sn. Pb⁴⁺ is an oxidising agent because +2 is more stable for Pb. This mirror-image behaviour is a direct consequence of the inert pair effect becoming dominant at Pb but not yet at Sn.' },
+    { type: 'takeaway', items: [
+      'Sn²⁺ → Sn⁴⁺: reducing agent (Sn prefers +4).',
+      'Pb⁴⁺ → Pb²⁺: oxidising agent (Pb prefers +2).',
+      'PbO₂ + 4HCl → PbCl₂ + Cl₂ + 2H₂O.',
+    ]},
+  ]},
+
+  // CH.8 — Properties and uses
+  { id: 'g48', title: 'Properties & Uses of Group IV Elements & Compounds', minutes: 8, blocks: [
+    { type: 'p', text: 'The syllabus requires you to know the properties and uses of several Group IV elements and compounds.' },
+    { type: 'h', text: 'Elements' },
+    { type: 'ul', items: [
+      'Diamond: cutting tools, abrasives, jewellery, drill bits, surgical scalpels (extreme hardness).',
+      'Graphite: pencils, lubricant, electrodes for electrolysis, nuclear reactor moderator (layers slide, conducts, high m.p.).',
+      'Silicon: semiconductor chips, solar cells (dominant semiconductor material).',
+      'Tin: tin plating (coating iron/steel to prevent corrosion), solder (Sn-Pb alloy), bronze (Cu-Sn alloy).',
+      'Lead: lead-acid batteries, radiation shielding, formerly used in pipes and paint (now largely banned due to toxicity).',
+    ]},
+    { type: 'h', text: 'Compounds' },
+    { type: 'ul', items: [
+      'SiO₂ (silicon dioxide / silica): glass manufacture, ceramics, optical fibres. Quartz crystals in watches and electronics.',
+      'CCl₄ (carbon tetrachloride): formerly used as a solvent and dry-cleaning agent. Now restricted due to environmental concerns (ozone depletion, toxicity).',
+      'Glass: made by fusing SiO₂ with Na₂CO₃ and CaCO₃. Borosilicate glass (Pyrex) contains B₂O₃ for heat resistance.',
+      'Ceramics: made from clay (aluminosilicates) fired at high temperature. Hard, heat-resistant, electrical insulators.',
+      'Tin(II) fluoride (SnF₂): in toothpaste to prevent tooth decay.',
+      'Lead(II) oxide (PbO, litharge): used in lead-acid batteries and as a drying agent in paints/varnishes.',
+    ]},
+    { type: 'takeaway', items: [
+      'Diamond: hardness applications. Graphite: lubricant + electrodes.',
+      'Si: semiconductors. SiO₂: glass and ceramics.',
+      'CCl₄: solvent (restricted). Sn: tin plating, solder. Pb: batteries.',
+    ]},
+  ]},
+
+  // CH.9 — Comparing chlorides
+  { id: 'g49', title: 'Comparing Chlorides: MCl₄ vs MCl₂', minutes: 8, blocks: [
+    { type: 'p', text: 'Group IV forms both tetrachlorides (MCl₄, +4 state) and dichlorides (MCl₂, +2 state). The relative stability of these follows the inert pair effect.' },
+    { type: 'h', text: 'Tetrachlorides (MCl₄)' },
+    { type: 'ul', items: [
+      'CCl₄: very stable, does not hydrolyse, non-polar liquid. Used as a solvent.',
+      'SiCl₄: stable but hydrolyses readily with water. Colourless liquid, fumes in moist air.',
+      'SnCl₄: stable liquid. Hydrolyses in water. Can be reduced to SnCl₂.',
+      'PbCl₄: UNSTABLE — decomposes at room temperature to PbCl₂ + Cl₂. This instability reflects the inert pair effect (Pb⁴⁺ is very unstable).',
+    ]},
+    { type: 'h', text: 'Dichlorides (MCl₂)' },
+    { type: 'ul', items: [
+      'CCl₂ (dichlorocarbene): extremely reactive, exists only as a fleeting intermediate.',
+      'SnCl₂: stable ionic solid. Good reducing agent (Sn²⁺ → Sn⁴⁺). Dissolves in water.',
+      'PbCl₂: stable ionic solid. White precipitate when Cl⁻ is added to Pb²⁺(aq). Slightly soluble in hot water.',
+    ]},
+    { type: 'h', text: 'Stability comparison' },
+    { type: 'p', text: 'Going down the group: MCl₄ becomes less stable (PbCl₄ decomposes) while MCl₂ becomes more stable (PbCl₂ is the preferred chloride of lead). This is the inert pair effect in action.' },
+    { type: 'takeaway', items: [
+      'MCl₄ stability decreases down the group (PbCl₄ decomposes).',
+      'MCl₂ stability increases down the group (PbCl₂ is preferred).',
+      'SnCl₂ is a reducing agent; PbCl₄ is an oxidising agent.',
+    ]},
+  ]},
+
+  // CH.10 — Hydrolysis mechanism
+  { id: 'g410', title: 'Why SiCl₄ Hydrolyses But CCl₄ Does Not', minutes: 7, blocks: [
+    { type: 'p', text: 'This is one of the most frequently examined comparisons in inorganic chemistry. The answer hinges on the availability of d orbitals.' },
+    { type: 'h', text: 'CCl₄: no hydrolysis' },
+    { type: 'ul', items: [
+      'Carbon is in Period 2. Its outer shell (n = 2) has only 2s and 2p orbitals — no 2d orbitals exist.',
+      'Carbon already has 4 bonds and cannot expand its octet. There is no way for water to form a temporary 5th bond as an intermediate.',
+      'Without this intermediate, hydrolysis cannot occur. CCl₄ is kinetically stable in water.',
+    ]},
+    { type: 'h', text: 'SiCl₄: rapid hydrolysis' },
+    { type: 'ul', items: [
+      'Silicon is in Period 3. It has empty 3d orbitals that can accept a lone pair from water.',
+      'Water attacks the Si centre, forming a temporary 5-coordinate intermediate (trigonal bipyramidal).',
+      'A Cl⁻ is then displaced. The process repeats until all 4 Cl atoms are replaced.',
+      'Overall: SiCl₄ + 2H₂O → SiO₂ + 4HCl.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'The d-orbital argument', body: 'This explanation applies beyond Group IV: any chloride whose central atom has accessible d orbitals can hydrolyse (AlCl₃, PCl₃, PCl₅, SiCl₄). Those without d orbitals (CCl₄, NCl₃) do not hydrolyse, or hydrolyse by a different mechanism. Always state: "Si has vacant 3d orbitals; C does not have accessible d orbitals."' },
+    { type: 'takeaway', items: [
+      'CCl₄: no d orbitals → cannot form 5-coordinate intermediate → no hydrolysis.',
+      'SiCl₄: empty 3d orbitals → water attacks → rapid hydrolysis → SiO₂ + 4HCl.',
+      'This is the key mechanistic explanation.',
+    ]},
+  ]},
+
+  // CH.11 — Exam technique
+  { id: 'g411', title: 'Exam Technique & Common Pitfalls', minutes: 7, blocks: [
+    { type: 'p', text: 'Group IV questions focus on trends, comparisons, and the inert pair effect. Here are the key patterns.' },
+    { type: 'h', text: 'Trend explanations' },
+    { type: 'ul', items: [
+      'M.p. decrease: "change from giant covalent (strong covalent bonds) to metallic (weaker metallic bonds)".',
+      'Acid-base of oxides: "CO₂ and SiO₂ are acidic; SnO₂ and PbO are amphoteric".',
+      'Inert pair: "the ns² electrons become increasingly reluctant to bond because the M–X bonds formed by heavier atoms are weaker and do not compensate for the promotion energy".',
+    ]},
+    { type: 'h', text: 'Common mistakes' },
+    { type: 'ul', items: [
+      'Saying "CCl₄ doesn\'t hydrolyse because C–Cl bonds are too strong" — WRONG. The actual reason is that C has no d orbitals for water to attack.',
+      'Confusing the stability order: Sn²⁺ is a reducing agent (wants to become Sn⁴⁺). Pb⁴⁺ is an oxidising agent (wants to become Pb²⁺). Students often get these reversed.',
+      'Forgetting that SiO₂ is ACIDIC, not amphoteric. It reacts with NaOH but not with acids.',
+      'Writing PbCl₄ as stable — it decomposes spontaneously.',
+    ]},
+    { type: 'h', text: 'Equations to know' },
+    { type: 'ul', items: [
+      'SiCl₄ + 2H₂O → SiO₂ + 4HCl (hydrolysis of SiCl₄).',
+      'PbO₂ + 4HCl → PbCl₂ + Cl₂ + 2H₂O (PbO₂ as oxidising agent).',
+      '2PbO₂ → 2PbO + O₂ (thermal decomposition).',
+      'SiO₂ + 2NaOH → Na₂SiO₃ + H₂O (SiO₂ as acidic oxide).',
+      'SnCl₂ + Cl₂ → SnCl₄ (SnCl₂ as reducing agent).',
+    ]},
+    { type: 'takeaway', items: [
+      'CCl₄ no hydrolysis = no d orbitals (NOT strong bonds).',
+      'Sn²⁺ reduces; Pb⁴⁺ oxidises. Don\'t reverse them.',
+      'SiO₂ is acidic, not amphoteric.',
+    ]},
+  ]},
+];
+
+/* ============================================================
+   Quizzes — 32 MCQs
+   ============================================================ */
+const quizzes = [
+  { q: 'The electron configuration of Group IV elements is:', opts: ['ns¹', 'ns²np¹', 'ns²np²', 'ns²np³'], ans: 2, hint: 'Two s electrons plus two p electrons in the outer shell.' },
+  { q: 'Going down Group IV, character changes from:', opts: ['Metal to non-metal', 'Non-metal to metal', 'All metals', 'All non-metals'], ans: 1, hint: 'C is a non-metal; Pb is a metal.' },
+  { q: 'Which Group IV element has the highest melting point?', opts: ['Carbon (diamond)', 'Silicon', 'Tin', 'Lead'], ans: 0, hint: 'Diamond has the strongest covalent bonds and a giant 3D network.' },
+  { q: 'The melting point of Group IV elements generally _____ down the group.', opts: ['Increases', 'Decreases', 'Stays the same', 'Alternates'], ans: 1, hint: 'Giant covalent → metallic bonding → weaker overall.' },
+  { q: 'Why does graphite conduct electricity?', opts: ['It has ionic bonds', 'Each C has delocalised π electrons', 'It dissolves in water', 'It has strong covalent bonds'], ans: 1, hint: 'The 4th electron per carbon is delocalised between layers.' },
+  { q: 'Diamond does not conduct electricity because:', opts: ['It is too hard', 'All electrons are in localised covalent bonds', 'It has free ions', 'It is a gas'], ans: 1, hint: 'No delocalised electrons → no charge carriers.' },
+  { q: 'The inert pair effect explains why:', opts: ['+4 becomes more stable going down', '+2 becomes more stable going down', 'Both states are equally stable', 'Only +3 exists'], ans: 1, hint: 'The ns² pair becomes reluctant to bond in heavier elements.' },
+  { q: 'For lead, the more stable oxidation state is:', opts: ['+4', '+2', '0', '+1'], ans: 1, hint: 'Pb²⁺ is dominant due to the inert pair effect.' },
+  { q: 'Sn²⁺ acts as a:', opts: ['Oxidising agent', 'Reducing agent', 'Acid', 'Base'], ans: 1, hint: 'Sn²⁺ wants to become Sn⁴⁺ (more stable for Sn) — it donates electrons.' },
+  { q: 'PbO₂ acts as a:', opts: ['Reducing agent', 'Oxidising agent', 'Neutral compound', 'Catalyst'], ans: 1, hint: 'Pb⁴⁺ wants to become Pb²⁺ — it accepts electrons.' },
+  { q: 'PbO₂ + 4HCl produces:', opts: ['PbCl₄ + H₂O', 'PbCl₂ + Cl₂ + 2H₂O', 'Pb + Cl₂', 'PbO + HCl'], ans: 1, hint: 'Pb is reduced from +4 to +2; Cl is oxidised from −1 to 0.' },
+  { q: 'CO₂ is classified as:', opts: ['Basic', 'Amphoteric', 'Acidic', 'Neutral'], ans: 2, hint: 'CO₂ + H₂O → H₂CO₃ (carbonic acid).' },
+  { q: 'SiO₂ reacts with:', opts: ['Dilute HCl', 'Hot NaOH', 'Cold water', 'All of these'], ans: 1, hint: 'SiO₂ is acidic but insoluble in water — needs hot base.' },
+  { q: 'SnO₂ is classified as:', opts: ['Acidic', 'Basic', 'Amphoteric', 'Neutral'], ans: 2, hint: 'SnO₂ reacts with both acids and bases.' },
+  { q: '2PbO₂ → 2PbO + O₂ demonstrates:', opts: ['The inert pair effect', 'An acid-base reaction', 'A catalyst mechanism', 'Combustion'], ans: 0, hint: 'Pb⁴⁺ (unstable) → Pb²⁺ (stable) by losing oxygen.' },
+  { q: 'The shape of all MCl₄ molecules is:', opts: ['Linear', 'Trigonal planar', 'Tetrahedral', 'Octahedral'], ans: 2, hint: '4 bonding pairs, no lone pairs → tetrahedral.' },
+  { q: 'CCl₄ does NOT hydrolyse because:', opts: ['C–Cl bonds are too strong', 'Carbon has no accessible d orbitals', 'Water is too weak', 'CCl₄ is ionic'], ans: 1, hint: 'No d orbitals means water cannot attack the central C atom.' },
+  { q: 'SiCl₄ hydrolyses because:', opts: ['Si is a metal', 'Si has empty 3d orbitals for water to attack', 'Si–Cl bonds are ionic', 'Si is in Period 2'], ans: 1, hint: 'Period 3 elements have accessible d orbitals.' },
+  { q: 'The products of SiCl₄ hydrolysis are:', opts: ['Si + HCl', 'SiO₂ + 4HCl', 'Si(OH)₄ + 4Cl₂', 'SiH₄ + Cl₂'], ans: 1, hint: 'SiCl₄ + 2H₂O → SiO₂ + 4HCl.' },
+  { q: 'PbCl₄ is unstable because:', opts: ['Pb–Cl bonds are ionic', 'Pb⁴⁺ is unstable due to the inert pair effect', 'PbCl₄ is a gas', 'Lead is too heavy'], ans: 1, hint: 'Pb prefers +2; PbCl₄ decomposes to PbCl₂ + Cl₂.' },
+  { q: 'Which Group IV element is a semiconductor?', opts: ['Carbon', 'Silicon', 'Tin', 'Lead'], ans: 1, hint: 'Si has a small band gap — used in electronic chips.' },
+  { q: 'Glass is made from:', opts: ['PbO', 'CaCO₃ only', 'SiO₂ fused with Na₂CO₃ and CaCO₃', 'CCl₄'], ans: 2, hint: 'Silica is the main component of glass.' },
+  { q: 'Graphite is used as a lubricant because:', opts: ['It is very hard', 'Its layers slide over each other', 'It dissolves in oil', 'It conducts heat'], ans: 1, hint: 'Weak van der Waals forces between layers → easy sliding.' },
+  { q: 'The +2 oxide of lead is:', opts: ['PbO₂', 'PbO', 'Pb₂O', 'PbO₃'], ans: 1, hint: 'Lead in +2 state combined with O²⁻ gives PbO.' },
+  { q: 'SnCl₂ + 2FeCl₃ →', opts: ['SnCl₄ + 2FeCl₂', 'Sn + 2FeCl₃', 'SnO + FeCl₂', 'No reaction'], ans: 0, hint: 'Sn²⁺ reduces Fe³⁺ to Fe²⁺ while being oxidised to Sn⁴⁺.' },
+  { q: 'Which carbon allotrope is used for electrodes?', opts: ['Diamond', 'Graphite', 'Fullerene', 'Coal'], ans: 1, hint: 'Graphite conducts electricity and has a high melting point.' },
+  { q: 'In diamond, each carbon atom is bonded to:', opts: ['2 others', '3 others', '4 others', '6 others'], ans: 2, hint: 'sp³ hybridised → 4 bonds in tetrahedral arrangement.' },
+  { q: 'In graphite, each carbon atom is bonded to:', opts: ['2 others', '3 others', '4 others', '6 others'], ans: 1, hint: 'sp² hybridised → 3 σ bonds + 1 delocalised π electron.' },
+  { q: 'The trend in acid-base character of Group IV oxides is:', opts: ['All acidic', 'All basic', 'Acidic → amphoteric', 'Basic → acidic'], ans: 2, hint: 'CO₂/SiO₂ are acidic; SnO₂/PbO are amphoteric.' },
+  { q: 'CCl₄ was used as:', opts: ['A fuel', 'A solvent and dry-cleaning agent', 'An antacid', 'A fertiliser'], ans: 1, hint: 'Non-polar, good solvent — now restricted for environmental reasons.' },
+  { q: 'Which pair correctly describes SnCl₂ and PbCl₄?', opts: ['Both oxidising agents', 'SnCl₂ reducing, PbCl₄ oxidising', 'Both reducing agents', 'SnCl₂ oxidising, PbCl₄ reducing'], ans: 1, hint: 'Sn wants +4 (gives electrons); Pb wants +2 (takes electrons).' },
+  { q: 'The oxidation state of C in CO is:', opts: ['+4', '+2', '−2', '0'], ans: 1, hint: 'O is −2. C + (−2) = 0, so C = +2.' },
+];
+
+/* ============================================================
+   Structured questions — 6
+   ============================================================ */
+const structured = [
+  { title: 'Physical property trends', marks: 8, q: 'Consider the Group IV elements C, Si, Ge, Sn and Pb.', parts: [
+    { q: '(a) Describe and explain the trend in melting point down Group IV.', marks: 3, ans: 'Melting point generally decreases down the group. C (diamond), Si and Ge have giant covalent structures with strong covalent bonds throughout — very high melting points. C has the highest because C–C bonds are shorter and stronger than Si–Si bonds. Sn and Pb have metallic structures with weaker metallic bonding → much lower melting points. The transition from giant covalent to metallic bonding explains the overall decrease.' },
+    { q: '(b) Explain why graphite conducts electricity but diamond does not.', marks: 3, ans: 'In diamond, each C is sp³ hybridised and bonded to 4 others. All 4 outer electrons are in localised σ bonds — no free electrons to carry charge. In graphite, each C is sp² hybridised and bonded to 3 others in flat layers. The 4th electron on each C is delocalised in a π system extending across the layer. These delocalised electrons are free to move when a potential difference is applied, allowing graphite to conduct along its layers.' },
+    { q: '(c) Explain why Si is a semiconductor while Pb is a metallic conductor.', marks: 2, ans: 'Si has a giant covalent structure with a small band gap between the valence and conduction bands. At room temperature, a few electrons have enough energy to cross this gap, giving limited conductivity. Pb has a metallic structure with delocalised electrons that are free to move — it conducts well at all temperatures.' },
+  ]},
+  { title: 'Inert pair effect', marks: 9, q: 'The stability of the +4 and +2 oxidation states varies down Group IV.', parts: [
+    { q: '(a) State which oxidation state is more stable for (i) carbon and (ii) lead.', marks: 2, ans: '(i) Carbon: +4 is more stable (e.g. CO₂, CCl₄). (ii) Lead: +2 is more stable (e.g. PbO, PbCl₂).' },
+    { q: '(b) Explain the inert pair effect.', marks: 3, ans: 'Going down Group IV, the ns² electrons become increasingly reluctant to participate in bonding. This is because the bonds formed by larger, heavier atoms are weaker (poorer orbital overlap), so the energy released by forming 4 bonds instead of 2 does not compensate for the energy needed to promote the ns² electrons into bonding orbitals. For Pb, the 6s² pair remains "inert", so Pb preferentially forms Pb²⁺ using only its 6p² electrons.' },
+    { q: '(c) PbO₂ is described as an oxidising agent. Write the equation for its reaction with concentrated HCl and explain the redox changes.', marks: 3, ans: 'PbO₂ + 4HCl → PbCl₂ + Cl₂ + 2H₂O. Pb is reduced from +4 to +2 (gains 2 electrons → oxidising agent). Cl is oxidised from −1 to 0 (2Cl⁻ → Cl₂, loses 2 electrons). PbO₂ acts as the oxidising agent because Pb⁴⁺ is unstable and "wants" to return to the more stable Pb²⁺ state.' },
+    { q: '(d) State whether SnCl₂ is an oxidising agent or a reducing agent, and justify.', marks: 1, ans: 'SnCl₂ is a reducing agent. Sn²⁺ is oxidised to Sn⁴⁺ (the more stable state for tin), so it donates electrons to other species.' },
+  ]},
+  { title: 'Tetrachloride hydrolysis', marks: 8, q: 'CCl₄ and SiCl₄ are both Group IV tetrachlorides but behave very differently with water.', parts: [
+    { q: '(a) State the shape and bond angle of SiCl₄.', marks: 1, ans: 'Tetrahedral, bond angle 109.5°.' },
+    { q: '(b) Write the equation for the reaction of SiCl₄ with water.', marks: 1, ans: 'SiCl₄(l) + 2H₂O(l) → SiO₂(s) + 4HCl(g).' },
+    { q: '(c) Describe what you would observe when SiCl₄ is added to water.', marks: 2, ans: 'Vigorous reaction producing white fumes of HCl. A white solid or precipitate (SiO₂) may be observed. The resulting solution is strongly acidic. Heat may be evolved.' },
+    { q: '(d) Explain why CCl₄ does not undergo hydrolysis while SiCl₄ does.', marks: 3, ans: 'Carbon (Period 2) has no accessible d orbitals — its outer shell (n = 2) only has 2s and 2p orbitals. Water cannot form a temporary bond to C because carbon cannot expand beyond 4 bonds. Silicon (Period 3) has empty 3d orbitals that can accept a lone pair from the oxygen of water. This allows water to form a 5-coordinate intermediate, displacing Cl⁻. The hydrolysis then proceeds step by step until all 4 Cl are replaced.' },
+    { q: '(e) State the type of bonding in CCl₄ and explain why it dissolves in hexane.', marks: 1, ans: 'CCl₄ has covalent bonding (simple molecular). It dissolves in hexane because both are non-polar molecules with similar London forces — "like dissolves like".' },
+  ]},
+  { title: 'Oxides of Group IV', marks: 8, q: 'Consider the oxides CO₂, SiO₂, SnO₂ and PbO.', parts: [
+    { q: '(a) Classify each oxide as acidic, basic or amphoteric.', marks: 2, ans: 'CO₂: acidic. SiO₂: acidic. SnO₂: amphoteric. PbO: amphoteric.' },
+    { q: '(b) Write the equation for the reaction of CO₂ with NaOH(aq).', marks: 1, ans: 'CO₂(g) + 2NaOH(aq) → Na₂CO₃(aq) + H₂O(l).' },
+    { q: '(c) Write equations to show that SnO₂ is amphoteric.', marks: 2, ans: 'With acid: SnO₂ + 4HCl → SnCl₄ + 2H₂O (behaves as base). With base: SnO₂ + 2NaOH → Na₂SnO₃ + H₂O (behaves as acid, forming sodium stannate).' },
+    { q: '(d) Explain why PbO₂ is thermally unstable.', marks: 2, ans: 'PbO₂ contains Pb in the +4 oxidation state. Due to the inert pair effect, the +4 state is unstable for lead — the 6s² electrons prefer to remain inert. On heating, PbO₂ decomposes to PbO (Pb²⁺, the more stable state) and O₂: 2PbO₂ → 2PbO + O₂.' },
+    { q: '(e) Explain why CO₂ is a gas at room temperature while SiO₂ is a high-melting solid.', marks: 1, ans: 'CO₂ is a simple molecular substance (O=C=O) with weak London forces between molecules → low b.p., gas at RT. SiO₂ has a giant covalent structure where each Si is bonded to 4 O atoms in a 3D network → very strong bonds throughout → very high m.p.' },
+  ]},
+  { title: 'Carbon allotropes', marks: 7, q: 'Diamond and graphite are both allotropes of carbon.', parts: [
+    { q: '(a) Define the term "allotrope".', marks: 1, ans: 'Allotropes are different structural forms of the same element in the same physical state.' },
+    { q: '(b) Explain why diamond is extremely hard.', marks: 2, ans: 'Each carbon atom is bonded to 4 others in a tetrahedral arrangement by strong covalent bonds. This forms a rigid 3D network (giant covalent structure) with no weak points. The uniform strength of bonding in all directions makes diamond the hardest known natural substance.' },
+    { q: '(c) Explain why graphite is soft and slippery.', marks: 2, ans: 'In graphite, carbon atoms are arranged in flat hexagonal layers. Within each layer, strong covalent bonds hold the atoms together. However, between layers, there are only weak van der Waals (London) forces. These weak forces allow the layers to slide over each other easily, making graphite soft and useful as a lubricant.' },
+    { q: '(d) State two uses of graphite that depend on its ability to conduct electricity.', marks: 2, ans: '(1) Electrodes in electrolysis — graphite is inert, conducts, and has a high melting point. (2) In electric motors/generators as carbon brushes — provides a sliding electrical contact.' },
+  ]},
+  { title: 'Comparing Sn and Pb', marks: 7, q: 'Tin and lead are both Group IV metals.', parts: [
+    { q: '(a) State the more stable oxidation state for each element.', marks: 1, ans: 'Tin: +4 (both exist but +4 is more stable). Lead: +2.' },
+    { q: '(b) Explain why SnCl₂ is a good reducing agent.', marks: 2, ans: 'In SnCl₂, tin is in the +2 oxidation state. Since +4 is the more stable state for tin, Sn²⁺ readily loses 2 more electrons to become Sn⁴⁺. By donating electrons to other species, SnCl₂ acts as a reducing agent: Sn²⁺ → Sn⁴⁺ + 2e⁻.' },
+    { q: '(c) Explain why PbCl₄ decomposes to PbCl₂ + Cl₂.', marks: 2, ans: 'PbCl₄ contains Pb in the unstable +4 state (inert pair effect makes +2 more stable for Pb). The compound decomposes to PbCl₂ (Pb in the stable +2 state) by releasing Cl₂: PbCl₄ → PbCl₂ + Cl₂. This is thermodynamically favoured.' },
+    { q: '(d) Give one use of tin and one use of lead.', marks: 2, ans: 'Tin: tin plating (protecting iron from corrosion) or solder (Sn-Pb alloy for joining metals). Lead: lead-acid batteries (car batteries) or radiation shielding.' },
+  ]},
+];
+
+/* ============================================================
+   Worked examples — 8
+   ============================================================ */
+const worked = [
+  { title: 'Explain m.p. trend', diff: 'medium', q: 'Explain why the melting point of carbon (diamond) is much higher than that of lead.', steps: [
+    { label: 'STEP 1', text: 'Diamond has a giant covalent structure — every C atom is bonded to 4 others by strong C–C covalent bonds (348 kJ mol⁻¹) in a 3D network.' },
+    { label: 'STEP 2', text: 'To melt diamond, many strong covalent bonds must be broken → very high m.p. (3550 °C).' },
+    { label: 'STEP 3', text: 'Lead has a metallic structure — Pb²⁺ cations surrounded by delocalised electrons. Metallic bonds in Pb are weaker than C–C covalent bonds.' },
+    { label: 'STEP 4', text: 'Less energy needed to overcome metallic bonding → lower m.p. (327 °C).' },
+  ], ans: 'Diamond has giant covalent bonding (very strong); Pb has metallic bonding (weaker). Giant covalent → much higher m.p.' },
+
+  { title: 'CCl₄ vs SiCl₄ hydrolysis', diff: 'hard', q: 'Explain why SiCl₄ undergoes hydrolysis with water but CCl₄ does not.', steps: [
+    { label: 'STEP 1', text: 'Both are tetrahedral, covalent molecules with 4 M–Cl bonds.' },
+    { label: 'STEP 2', text: 'Carbon (Period 2) has only 2s and 2p orbitals in its outer shell. No 2d orbitals exist. Carbon cannot expand its octet or form a 5th bond.' },
+    { label: 'STEP 3', text: 'Water cannot attack the C centre because there is no orbital to accept the lone pair → no hydrolysis. CCl₄ is kinetically inert.' },
+    { label: 'STEP 4', text: 'Silicon (Period 3) has empty 3d orbitals. Water\'s lone pair attacks Si, forming a temporary 5-coordinate intermediate. Cl⁻ is displaced. Hydrolysis proceeds rapidly: SiCl₄ + 2H₂O → SiO₂ + 4HCl.' },
+  ], ans: 'Si has accessible 3d orbitals → water attacks → hydrolysis. C has no d orbitals → no intermediate possible → no hydrolysis.' },
+
+  { title: 'Redox: PbO₂ + HCl', diff: 'medium', q: 'Write the equation for PbO₂ + HCl and identify the oxidation state changes.', steps: [
+    { label: 'STEP 1', text: 'Equation: PbO₂ + 4HCl → PbCl₂ + Cl₂ + 2H₂O.' },
+    { label: 'STEP 2', text: 'Pb: +4 in PbO₂ → +2 in PbCl₂. Reduction (gain of 2 electrons).' },
+    { label: 'STEP 3', text: 'Cl: −1 in HCl → 0 in Cl₂. Oxidation (loss of 1 electron per Cl, ×2).' },
+    { label: 'STEP 4', text: 'PbO₂ is the oxidising agent (reduced). HCl is the reducing agent (oxidised).' },
+  ], ans: 'PbO₂ + 4HCl → PbCl₂ + Cl₂ + 2H₂O. Pb: +4→+2 (reduced). Cl: −1→0 (oxidised).' },
+
+  { title: 'Explain the inert pair effect', diff: 'hard', q: 'Explain why lead forms stable Pb²⁺ compounds but Pb⁴⁺ compounds are unstable.', steps: [
+    { label: 'STEP 1', text: 'Pb has the configuration [Xe] 4f¹⁴ 5d¹⁰ 6s² 6p². The 6s² electrons are the "inert pair".' },
+    { label: 'STEP 2', text: 'To use all 4 outer electrons for bonding, the 6s² pair must be promoted and involved. This costs energy.' },
+    { label: 'STEP 3', text: 'Pb is large → Pb–X bonds are long and weak. The energy from forming 4 bonds (vs 2) does NOT compensate for the promotion energy of the 6s² pair.' },
+    { label: 'STEP 4', text: 'Therefore Pb preferentially uses only its 2 × 6p electrons for bonding → Pb²⁺ is stable. Pb⁴⁺ compounds decompose to release the 2 "extra" electrons: PbCl₄ → PbCl₂ + Cl₂.' },
+  ], ans: 'The 6s² pair is reluctant to bond because the weak Pb–X bonds cannot compensate for the promotion energy. Pb²⁺ is stable; Pb⁴⁺ decomposes.' },
+
+  { title: 'SnCl₂ as reducing agent', diff: 'medium', q: 'Write the equation for SnCl₂ reducing Fe³⁺ to Fe²⁺.', steps: [
+    { label: 'STEP 1', text: 'SnCl₂ + 2FeCl₃ → SnCl₄ + 2FeCl₂.' },
+    { label: 'STEP 2', text: 'Sn: +2 → +4 (oxidised, loses 2 electrons). Sn is the reducing agent.' },
+    { label: 'STEP 3', text: 'Fe: +3 → +2 (reduced, gains 1 electron each, ×2). Fe³⁺ is the oxidising agent.' },
+  ], ans: 'SnCl₂ + 2FeCl₃ → SnCl₄ + 2FeCl₂. Sn is oxidised (+2→+4), Fe is reduced (+3→+2).' },
+
+  { title: 'Classify oxides', diff: 'easy', q: 'Classify CO₂, SiO₂, and PbO as acidic, basic, or amphoteric.', steps: [
+    { label: 'STEP 1', text: 'CO₂ is a non-metal oxide → acidic (CO₂ + H₂O → H₂CO₃).' },
+    { label: 'STEP 2', text: 'SiO₂ is a non-metal oxide → acidic (reacts with NaOH but not water directly).' },
+    { label: 'STEP 3', text: 'PbO is a metal oxide with significant covalent character → amphoteric (reacts with both acids and bases).' },
+  ], ans: 'CO₂: acidic. SiO₂: acidic. PbO: amphoteric.' },
+
+  { title: 'SiO₂ as acidic oxide', diff: 'medium', q: 'Write the equation for SiO₂ reacting with NaOH and explain why it does not dissolve in water.', steps: [
+    { label: 'STEP 1', text: 'SiO₂ + 2NaOH → Na₂SiO₃ + H₂O (sodium silicate formed).' },
+    { label: 'STEP 2', text: 'SiO₂ does not dissolve in water because it has a giant covalent structure with very strong Si–O bonds (452 kJ mol⁻¹).' },
+    { label: 'STEP 3', text: 'The energy required to break the Si–O network is not compensated by the hydration energy of any ions that would be formed.' },
+    { label: 'STEP 4', text: 'With hot concentrated NaOH, the strongly alkaline conditions provide enough energy to attack the Si–O bonds.' },
+  ], ans: 'SiO₂ + 2NaOH → Na₂SiO₃ + H₂O. SiO₂ is insoluble in water because its giant covalent bonds are too strong to break.' },
+
+  { title: 'PbO₂ thermal decomposition', diff: 'easy', q: 'Write the equation for the thermal decomposition of PbO₂ and explain why it occurs.', steps: [
+    { label: 'STEP 1', text: '2PbO₂ → 2PbO + O₂.' },
+    { label: 'STEP 2', text: 'PbO₂ contains Pb in the +4 state, which is unstable for lead (inert pair effect).' },
+    { label: 'STEP 3', text: 'On heating, Pb⁴⁺ reverts to the more stable Pb²⁺ (in PbO), releasing O₂.' },
+  ], ans: '2PbO₂ → 2PbO + O₂. Driven by the inert pair effect — Pb²⁺ is the more stable state.' },
+];
+
+/* ============================================================
+   Exported module
+   ============================================================ */
+export const GROUP4 = {
+  id: 'group4',
+  objectives: [
+    'Describe and explain the variations in melting point and electrical conductivity of Group IV elements',
+    'Compare the structures and properties of diamond, graphite and fullerenes',
+    'Explain the inert pair effect and its consequences for the stability of +4 and +2 oxidation states',
+    'Describe the bonding, acid-base character and thermal stability of Group IV oxides (II and IV)',
+    'Describe the bonding, molecular shape, volatility and hydrolysis of Group IV tetrachlorides',
+    'Explain why CCl₄ does not hydrolyse (no d orbitals) but SiCl₄ does (3d orbitals available)',
+    'Describe the redox behaviour of Sn²⁺ (reducing agent) and PbO₂ (oxidising agent)',
+    'State the properties and uses of Group IV elements and compounds (diamond, graphite, SiO₂, glass, ceramics, CCl₄)',
+  ],
+  chapters,
+  quizzes,
+  multi: [],
+  structured,
+  worked,
+  tutorPrompts: [
+    'Explain the inert pair effect step by step for lead',
+    'Why does CCl₄ not hydrolyse but SiCl₄ does? Walk me through it.',
+    'Give me a question comparing the redox behaviour of Sn²⁺ and Pb⁴⁺',
+    'Explain the difference in structure between diamond and graphite',
+    'Why is PbO₂ unstable? Link it to the inert pair effect.',
+  ],
+};
