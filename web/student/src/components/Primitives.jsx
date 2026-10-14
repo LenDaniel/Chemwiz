@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Diagram } from './Diagram.jsx';
+import { diagramText } from '../utils/diagramLayout.mjs';
 
 export function Ring({ pct, color, t, size = 60 }) {
   const r = size / 2 - 4, c = 2 * Math.PI * r;
   return (
-    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+    <svg role="img" aria-label={`${pct}% complete`} width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
       <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={t.border} strokeWidth="3" />
       <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={color} strokeWidth="3" strokeDasharray={c} strokeDashoffset={c * (1 - pct/100)} transform={`rotate(-90 ${size/2} ${size/2})`} strokeLinecap="round" />
       <text x={size/2} y={size/2+4} textAnchor="middle" fill={t.text} fontSize={size > 50 ? 12 : 10} fontFamily="monospace" fontWeight="700">{pct}%</text>
@@ -22,7 +23,7 @@ export function Pill({ children, color, t }) {
  *   { type: 'p',     text }                         — paragraph
  *   { type: 'h',     text }                         — inline sub-heading
  *   { type: 'ul',    items: [] }                    — unordered list
- *   { type: 'd',     component, caption }           — diagram (embedded React node)
+ *   { type: 'd',     spec, caption }                — shared diagram spec
  *   { type: 'callout', kind: 'definition'|'key'|'warning', title, body }
  *   { type: 'takeaway', items: [] }                 — green key-takeaway box
  */
@@ -41,20 +42,7 @@ export function Block({ block, color, t }) {
     );
   }
   if (block.type === 'd') {
-    let body;
-    if (block.spec) {
-      body = <Diagram spec={block.spec} color={color} t={t} />;
-    } else if (typeof block.component === 'function') {
-      body = block.component({ t, color });
-    } else {
-      body = <div style={{ fontSize:12, color:t.textDim, textAlign:'center', padding:20 }}>[Diagram]</div>;
-    }
-    return (
-      <div style={{ margin:'12px 0 16px', padding:12, background:t.panel, border:`1px solid ${t.border}`, borderRadius:8 }}>
-        <div className="cw-diagram-scroll" role="group" tabIndex={0} aria-label={block.caption || block.spec?.title || 'Chemistry diagram'}>{body}</div>
-        {block.caption && <div style={{ fontSize:10, color:t.textDim, textAlign:'center', marginTop:8, letterSpacing:'0.1em', fontFamily:'monospace' }}>{block.caption}</div>}
-      </div>
-    );
+    return <DiagramBlock block={block} color={color} t={t} />;
   }
   if (block.type === 'callout') {
     const palette = { definition:'#00d4ff', key:'#ffbe0b', warning:'#e63946' };
@@ -77,4 +65,19 @@ export function Block({ block, color, t }) {
     );
   }
   return null;
+}
+
+function DiagramBlock({block,color,t}) {
+  const [enlarged,setEnlarged]=useState(false);
+  return <figure className="cw-diagram-figure" style={{margin:'12px 0 16px',padding:12,background:t.panel,border:`1px solid ${t.border}`,borderRadius:8}}>
+    {block.spec && <div className="cw-diagram-actions">
+      <button type="button" aria-pressed={enlarged} onClick={()=>setEnlarged(value=>!value)}>{enlarged?'Normal diagram size':'Enlarge diagram'}</button>
+      <span>Scroll sideways when needed</span>
+    </div>}
+    <div className="cw-diagram-scroll" role="group" tabIndex={0} aria-label={block.caption || block.spec?.title || 'Chemistry diagram'}>
+      {block.spec ? <Diagram spec={block.spec} color={color} t={t} scale={enlarged?1.75:1}/> : '[Diagram]'}
+    </div>
+    {block.caption && <figcaption>{block.caption}</figcaption>}
+    {block.spec && <details className="cw-diagram-description"><summary>Read diagram text</summary><ul>{diagramText(block.spec).map((text,i)=><li key={i}>{text}</li>)}</ul></details>}
+  </figure>;
 }
