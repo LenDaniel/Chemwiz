@@ -1,3 +1,26 @@
+# v1.3.0 W2/admin verification — 14 October 2026
+
+The required integration → local acceptance → deployment readiness sequence passed for the delivered source. Source fingerprint: 9394b7f6f4b6cffdf81b043e5257927f667ea6a8b6b989d90f6fd5b5f56f01bc.
+
+- 184 JavaScript/JSX modules and 477 import references pass source checks. All 17 actual frontend request functions connect to the 24 mounted backend routes and expected middleware. Eight security/data-control groups pass.
+- The production build, 59 Node regression tests and 26 production browser checks pass with zero failures or skipped tests. Browser checks use actual compiled UI and a separate local fixture bundle of the actual React diagram renderer.
+- All 218 diagrams fit their measured SVG text bounds on mobile/desktop: zero text-clipping findings (the earlier geometry scan found 50 inherited diagrams). Chemical content/spec records, reaction/structure geometry and tokens are preserved. Explanatory labels/table rows wrap with appropriate block heights; enlargement and text alternatives work.
+- Learner screens, reader, quiz, structured/worked activities, Wiz text/live-voice controls, all four tools, element details, Progress and Profile are checked at 320×640, 390×844, 768×1024, 1366×768, 1366×460 and 683×384. The last is the effective layout equivalent of a 1366×768 display at 200% browser zoom.
+- Keyboard checks cover search/dialog focus containment, Escape/return, quiz answer state/question focus, structured reveal state and current navigation. Reading S/M/L settings change actual paragraph sizes. Desktop navigation remains accessible at the tested short height; mobile topbar logout clears the existing learner session.
+- Admin browser checks inject a temporary dashboard-log outage and prove login/reload keep a valid session, then recover with Refresh. A temporary authority check outage retains the token and offers Retry saved session. Invalid/expired tokens are removed; students remain blocked. Admin table actions, labels and modal focus were visually inspected on mobile.
+- The read-only diagnostic is tested for public version/origin/readiness/route classification and private local-record inspection without mutations or password material in output. It distinguishes record problems; it does not verify a typed password or unknown live credentials.
+- The Windows launcher now uses Node plus a literal npm CLI path with shell disabled. Regression checks cover spaces/shell characters and Windows path resolution. A physical Windows execution of this new launcher remains user acceptance.
+- Content/K4 remain passing: all 24 topics, 255 chapters, 218 diagrams, 745 MCQs, 134 structured questions, 181 worked examples and 2,796 search entries. Topic files, assessment data and persistent account/learning schemas match the v1.2.1 baseline hashes.
+- Dependency audit reports zero advisories in this run. The existing six-character signup minimum and missing dedicated login/register throttling remain reported medium hardening work.
+
+Node 24.19.0, Vite 8.3.4, Playwright 1.62.1 and Chromium 153 were used. The Render source/evidence guard passes. The optional Worker bundle dry run is checked separately for the version metadata change. No Render deployment, live Atlas write or real provider/microphone/WebRTC audio call was performed.
+
+Local fixtures do not prove current production settings or credentials. A persistent origin failure still happens before authentication and needs the actual public origin/version/configuration evidence. ADMIN_LOGIN_GUIDE.md gives exact public and private read-only commands. W3 remains the next build for broader Chrome/Edge/Firefox/device/performance/failure-state coverage; formal assistive-technology/high-DPI acceptance remains there. Existing application/data and hosting configuration are preserved.
+
+The sanitized passing evidence is in verification/release-evidence.json. Any tested source change invalidates it. Historical reports remain below.
+
+---
+
 # v1.2.1 build-gate verification — 14 October 2026
 
 The required sequence passed against this exact source: check:integration → test:local → ready:deploy. Node 24.19.0, Vite 8.3.4, Playwright 1.62.1 and Chromium 153 were used locally. The Render prebuild guard also accepted the matching passing evidence.
