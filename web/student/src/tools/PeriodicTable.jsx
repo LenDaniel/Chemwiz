@@ -10,7 +10,7 @@ export function PeriodicTable({ t, onElementTap }) {
     const cat = CATEGORIES[el[4]];
     const dim = filter !== 'all' && filter !== el[4];
     return (
-      <button className="cw-element-cell" key={`${p}-${g}`} onClick={() => onElementTap(el)} style={{
+      <button className="cw-element-cell" key={`${p}-${g}`} aria-label={`${el[2]} (${el[1]}), atomic number ${el[0]}`} onClick={() => onElementTap(el)} style={{
         width: 18, height: 22, padding: 0,
         background: dim ? t.panel : cat.color, border: `0.5px solid ${t.border}`,
         color: dim ? t.textDim : '#000', fontFamily: 'monospace', cursor: 'pointer',
