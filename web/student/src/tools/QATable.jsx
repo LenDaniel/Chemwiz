@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useId, useState } from 'react';
 import { CATIONS, ANIONS, GASES, FUNCTIONAL_GROUPS } from './qaData.js';
 
 export function QATable({ t, initialTab = 'cations', initialOpen = null }) {
+  const id = useId();
   const [tab, setTab] = useState(initialTab);
   const [open, setOpen] = useState(initialOpen);
 
@@ -15,7 +16,7 @@ export function QATable({ t, initialTab = 'cations', initialOpen = null }) {
     const isOpen = open === key;
     return (
       <div key={key} className="cw-qa-card" style={{ marginBottom: 6, background: t.panel, border: `1px solid ${t.border}`, borderRadius: 6, overflow: 'hidden' }}>
-        <button onClick={() => setOpen(isOpen ? null : key)} style={{ display: 'flex', width: '100%', alignItems: 'center', padding: 12, background: 'transparent', border: 'none', color: t.text, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+        <button aria-expanded={isOpen} aria-controls={`${id}-${key}`} onClick={() => setOpen(isOpen ? null : key)} style={{ display: 'flex', width: '100%', alignItems: 'center', padding: 12, background: 'transparent', border: 'none', color: t.text, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: t.accent, fontFamily: 'monospace' }}>{item.ion}</div>
             {item.name && <div style={{ fontSize: 10, color: t.textDim, marginTop: 2 }}>{item.name}</div>}
@@ -23,7 +24,7 @@ export function QATable({ t, initialTab = 'cations', initialOpen = null }) {
           <div style={{ color: t.textMuted, fontSize: 14 }}>{isOpen ? '▾' : '▸'}</div>
         </button>
         {isOpen && (
-          <div style={{ padding: '4px 12px 12px', borderTop: `1px solid ${t.border}` }}>
+          <div id={`${id}-${key}`} style={{ padding: '4px 12px 12px', borderTop: `1px solid ${t.border}` }}>
             {item.tests.map((test, j) => (
               <div key={j} style={{ padding: '8px 0', borderBottom: j < item.tests.length - 1 ? `1px dashed ${t.border}` : 'none' }}>
                 <Label t={t}>REAGENT</Label>
@@ -49,7 +50,7 @@ export function QATable({ t, initialTab = 'cations', initialOpen = null }) {
     const isOpen = open === key;
     return (
       <div key={key} className="cw-qa-card" style={{ marginBottom: 6, background: t.panel, border: `1px solid ${t.border}`, borderRadius: 6, overflow: 'hidden' }}>
-        <button onClick={() => setOpen(isOpen ? null : key)} style={{ display: 'flex', width: '100%', alignItems: 'center', padding: 12, background: 'transparent', border: 'none', color: t.text, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+        <button aria-expanded={isOpen} aria-controls={`${id}-${key}`} onClick={() => setOpen(isOpen ? null : key)} style={{ display: 'flex', width: '100%', alignItems: 'center', padding: 12, background: 'transparent', border: 'none', color: t.text, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: t.accent, fontFamily: 'monospace' }}>{item.gas}</div>
             <div style={{ fontSize: 10, color: t.textDim, marginTop: 2 }}>Gas identification</div>
@@ -57,7 +58,7 @@ export function QATable({ t, initialTab = 'cations', initialOpen = null }) {
           <div style={{ color: t.textMuted, fontSize: 14 }}>{isOpen ? '▾' : '▸'}</div>
         </button>
         {isOpen && (
-          <div style={{ padding: '12px', borderTop: `1px solid ${t.border}` }}>
+          <div id={`${id}-${key}`} style={{ padding: '12px', borderTop: `1px solid ${t.border}` }}>
             <Label t={t}>TEST</Label>
             <Value t={t}>{item.test}</Value>
             <Label t={t}>POSITIVE RESULT</Label>
@@ -73,7 +74,7 @@ export function QATable({ t, initialTab = 'cations', initialOpen = null }) {
     const isOpen = open === key;
     return (
       <div key={key} className="cw-qa-card" style={{ marginBottom: 6, background: t.panel, border: `1px solid ${t.border}`, borderRadius: 8, overflow: 'hidden' }}>
-        <button onClick={() => setOpen(isOpen ? null : key)} style={{ display: 'flex', width: '100%', alignItems: 'center', padding: 12, background: 'transparent', border: 'none', color: t.text, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+        <button aria-expanded={isOpen} aria-controls={`${id}-${key}`} onClick={() => setOpen(isOpen ? null : key)} style={{ display: 'flex', width: '100%', alignItems: 'center', padding: 12, background: 'transparent', border: 'none', color: t.text, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 14, fontWeight: 800, color: t.accent, fontFamily: 'monospace' }}>{item.group}</div>
             <div style={{ fontSize: 11, color: t.text, marginTop: 3 }}>{item.name}</div>
@@ -81,7 +82,7 @@ export function QATable({ t, initialTab = 'cations', initialOpen = null }) {
           <div style={{ color: t.textMuted, fontSize: 14 }}>{isOpen ? '▾' : '▸'}</div>
         </button>
         {isOpen && (
-          <div style={{ padding: '4px 12px 12px', borderTop: `1px solid ${t.border}` }}>
+          <div id={`${id}-${key}`} style={{ padding: '4px 12px 12px', borderTop: `1px solid ${t.border}` }}>
             {item.tests.map((test, j) => (
               <div key={j} style={{ padding: '10px 0', borderBottom: j < item.tests.length - 1 ? `1px dashed ${t.border}` : 'none' }}>
                 <Label t={t}>REAGENT / TEST</Label>
@@ -118,7 +119,7 @@ export function QATable({ t, initialTab = 'cations', initialOpen = null }) {
 
       <div className="cw-qa-tabs" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 6, marginBottom: 12 }}>
         {tabs.map(([k, label]) => (
-          <button key={k} onClick={() => { setTab(k); setOpen(null); }} style={{ padding: '8px 4px', fontSize: 9, letterSpacing: '0.08em', fontFamily: 'monospace', fontWeight: 700, background: tab === k ? t.accent : 'transparent', color: tab === k ? '#000' : t.text, border: `1px solid ${tab === k ? t.accent : t.border}`, cursor: 'pointer', borderRadius: 4 }}>{label}</button>
+          <button key={k} aria-pressed={tab === k} onClick={() => { setTab(k); setOpen(null); }} style={{ padding: '8px 4px', fontSize: 9, letterSpacing: '0.08em', fontFamily: 'monospace', fontWeight: 700, background: tab === k ? t.accent : 'transparent', color: tab === k ? '#000' : t.text, border: `1px solid ${tab === k ? t.accent : t.border}`, cursor: 'pointer', borderRadius: 4 }}>{label}</button>
         ))}
       </div>
 
