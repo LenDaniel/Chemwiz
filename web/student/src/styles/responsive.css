@@ -632,3 +632,63 @@ button { -webkit-tap-highlight-color: transparent; }
 .cw-sidebar-logout:hover { background:var(--cw-panel-hi); color:var(--cw-text); }
 .cw-sidebar-logout:focus-visible { outline:2px solid var(--cw-accent); outline-offset:3px; }
 .cw-sidebar-logout:disabled { opacity:.6; cursor:wait; }
+
+/* W2: reflow, usable controls and accessible chemistry figures. */
+.cw-topbar { flex-shrink:0; }
+.cw-mobile-tabs { flex-shrink:0; padding-bottom:env(safe-area-inset-bottom,0px); }
+.cw-screen-stage :is(p,li,h1,h2,h3,h4,button,figcaption) { overflow-wrap:anywhere; }
+.cw-screen-stage :is(input,select,textarea) { max-width:100%; }
+.cw-screen-stage :is(button,input,select,textarea), .cw-auth-card :is(button,input) { min-height:44px; }
+.cw-screen-stage button { white-space:normal; }
+.cw-screen-stage { padding-bottom:84px; }
+.cw-question-stem:focus { outline:2px solid var(--cw-accent); outline-offset:5px; border-radius:4px; }
+.cw-reader-body { --cw-reading-size:1rem; line-height:1.7; }
+.cw-reader-body.cw-reader-font-small { --cw-reading-size:.9rem; }
+.cw-reader-body.cw-reader-font-large { --cw-reading-size:1.2rem; }
+.cw-reader-body :is(p,li) { font-size:var(--cw-reading-size) !important; line-height:1.7 !important; }
+.cw-reader-body :is(h3,h4) { font-size:max(.85rem,calc(var(--cw-reading-size)*.9)) !important; }
+.cw-reader-body .cw-reading-section > .cw-reader-block-anchor > div { overflow-wrap:anywhere; }
+.cw-diagram-actions { display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px; font-size:11px; color:var(--cw-muted); }
+.cw-diagram-actions button { padding:7px 10px; background:var(--cw-panel); color:var(--cw-text); border:1px solid var(--cw-border); border-radius:6px; cursor:pointer; }
+.cw-diagram-scroll > svg.cw-diagram { height:auto; flex-shrink:0; }
+.cw-diagram-figure figcaption { margin-top:10px; font-size:12px; line-height:1.6; color:var(--cw-muted); text-align:center; }
+.cw-diagram-description { font-size:13px; color:var(--cw-text); line-height:1.6; margin-top:8px; }
+.cw-diagram-description summary { cursor:pointer; padding:10px 0; }
+.cw-diagram-description li { margin-bottom:5px; }
+.cw-periodic-grid { min-width:744px; }
+.cw-element-cell,.cw-element-placeholder { width:100% !important; height:46px !important; }
+.cw-element-cell > div:first-child { font-size:9px !important; }
+.cw-element-cell > div:last-child { font-size:14px !important; }
+.cw-topbar-logout { flex:0 0 auto; background:transparent; color:var(--cw-muted); border:1px solid var(--cw-border); border-radius:7px; padding:8px; min-height:40px; font-size:11px; cursor:pointer; }
+.cw-search-panel { margin:16px auto; padding:0; max-height:calc(100dvh - 32px); }
+.cw-search-panel::backdrop { background:rgba(0,0,0,.72); backdrop-filter:blur(3px); }
+.cw-search-panel:not([open]) { display:none; }
+.cw-search-results { flex:1; }
+.cw-tutor-chat { min-height:360px; }
+.cw-tutor-header { max-height:40%; }
+.cw-tutor-composer { flex-wrap:wrap; }
+.cw-tutor-composer input { min-width:100px; }
+@media (max-width:600px) {
+  .cw-topbar { flex-wrap:wrap; }
+  .cw-mobile-brand { flex-basis:140px; }
+  .cw-mobile-brand .cw-official-brand { width:148px; }
+  .cw-topbar-search { min-height:40px; }
+  .cw-screen-stage button { letter-spacing:min(.12em,1px) !important; }
+  .cw-search-result { grid-template-columns:54px minmax(0,1fr) 12px; gap:6px; }
+}
+@media (min-width:980px) { .cw-topbar-logout { display:none; } }
+@media (min-width:980px) and (max-height:500px) {
+  .cw-sidebar { padding:8px; }
+  .cw-sidebar-brand { padding:0 4px 6px; }
+  .cw-sidebar-brand .cw-official-brand { width:156px; }
+  .cw-sidebar-nav { gap:3px; }
+  .cw-sidebar-link { padding:4px 8px; }
+  .cw-sidebar-icon { width:24px; height:24px; }
+  .cw-sidebar-logout { min-height:32px; padding:5px 10px; margin-top:6px; }
+  .cw-sidebar-search { min-height:32px; margin-top:6px; padding:5px 8px; }
+  .cw-sidebar-footer { padding:5px; }
+  .cw-sidebar-footer .cw-home-link { margin-top:3px; }
+}
+@media (forced-colors:active) {
+  .cw-app-root button[aria-pressed="true"], .cw-app-root button[aria-current="page"] { border:2px solid Highlight; }
+}
