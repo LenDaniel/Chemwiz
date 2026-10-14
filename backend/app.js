@@ -24,6 +24,7 @@ const quizRoutes = require('./src/routes/quiz.routes');
 const adminRoutes = require('./src/routes/admin.routes');
 
 const app = express();
+const { version } = require('../package.json');
 app.disable('x-powered-by');
 
 async function ensureDataReady(req, res, next) {
@@ -56,6 +57,7 @@ app.get('/api/health', (req, res) => {
     message: 'ChemWiz Express backend is running',
     stage: 'express',
     service: 'chemwiz-unified',
+    version,
     dataMode,
     configuration: {
       jwtConfigured: Boolean(String(process.env.JWT_SECRET || '').trim()),
@@ -78,6 +80,7 @@ app.get('/api/ready', async (req, res, next) => {
       message: 'ChemWiz backend is ready',
       stage: 'express+database',
       service: 'chemwiz-unified',
+      version,
       dataMode: config.dataMode,
       configuration: {
         jwtConfigured: config.jwtConfigured,
