@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react';
 import { Pill } from '../components/Primitives.jsx';
 
 export function Structured({ topic, bank, t, onExit }) {
+  const id = useId();
   const [i, setI] = useState(0);
   const [revealed, setRevealed] = useState({});
   const q = bank[i];
@@ -20,8 +21,8 @@ export function Structured({ topic, bank, t, onExit }) {
             <div style={{ fontSize: 12, color: t.text, fontWeight: 600 }}>{p.q}</div>
             <Pill color={topic.color} t={t}>{p.marks}m</Pill>
           </div>
-          <button onClick={() => setRevealed({ ...revealed, [idx]: !revealed[idx] })} style={{ width: '100%', padding: '8px', background: 'transparent', border: `1px dashed ${topic.color}60`, color: topic.color, fontSize: 10, letterSpacing: '0.2em', fontFamily: 'monospace', cursor: 'pointer', marginTop: 6 }}>{revealed[idx] ? 'HIDE MODEL' : 'REVEAL MODEL'}</button>
-          {revealed[idx] && <div style={{ marginTop: 10, padding: 10, background: `${topic.color}0d`, borderRadius: 4, fontSize: 12, color: t.text, lineHeight: 1.55 }}>{p.ans}</div>}
+          <button aria-expanded={Boolean(revealed[idx])} aria-controls={`${id}-${i}-${idx}`} onClick={() => setRevealed({ ...revealed, [idx]: !revealed[idx] })} style={{ width: '100%', padding: '8px', background: 'transparent', border: `1px dashed ${topic.color}60`, color: topic.color, fontSize: 10, letterSpacing: '0.2em', fontFamily: 'monospace', cursor: 'pointer', marginTop: 6 }}>{revealed[idx] ? 'HIDE MODEL' : 'REVEAL MODEL'}</button>
+          {revealed[idx] && <div id={`${id}-${i}-${idx}`} style={{ marginTop: 10, padding: 10, background: `${topic.color}0d`, borderRadius: 4, fontSize: 12, color: t.text, lineHeight: 1.55 }}>{p.ans}</div>}
         </div>
       ))}
       <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
