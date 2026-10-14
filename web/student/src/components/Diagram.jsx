@@ -1,7 +1,8 @@
 // Diagram renderer — Phase K1
 // Takes a JSON spec, returns an SVG. Replaces hand-coded JSX SVG diagrams.
 // See SPEC.md (sibling file) for the full spec format.
-import React from 'react';
+import React, { useEffect, useId, useRef, useState } from 'react';
+import { wrapDiagramText, fitDiagramBounds, diagramText } from '../utils/diagramLayout.mjs';
 
 /* ----- color resolution ----- */
 const PALETTE = {
@@ -39,150 +40,75 @@ const TX = ({ x, y, c, s = 11, anchor = 'middle', fw = 400, children }) => (
 const PANEL_PAD_X = 15;
 
 function renderPanel(b, ctx) {
-  const c = resolveColor(b.color, ctx.color, ctx.t);
-  const lines = b.body || [];
-  const titleH = b.title ? 16 : 0;
-  const lineH = 12;
-  const hintH = b.hint ? 12 : 0;
-  const padTop = b.title ? 12 : 8;
-  const padBot = 8;
-  const h = b.height || (padTop + titleH + lines.length * lineH + hintH + padBot);
-  const W = ctx.W;
-  return {
-    height: h + 4,
-    node: (
-      <g transform={`translate(0,${ctx.y})`}>
-        <rect x={PANEL_PAD_X} y={0} width={W - 2*PANEL_PAD_X} height={h} rx={5}
-              fill={`${c}10`} stroke={c} strokeWidth={0.7} />
-        {b.title && <TX x={W/2} y={padTop + 4} c={c} fw={700} s={9}>{b.title}</TX>}
-        {lines.map((line, i) => (
-          <TX key={i} x={W/2} y={padTop + titleH + i * lineH + 8}
-              c={ctx.t.text} s={8}>{line}</TX>
-        ))}
-        {b.hint && <TX x={W/2} y={h - 6} c={ctx.t.textDim} s={7}>{b.hint}</TX>}
-      </g>
-    ),
-  };
+  const c = resolveColor(b.color, ctx.color, ctx.t), W = ctx.W;
+  const title = b.title ? wrapDiagramText(b.title, W - 44, 9) : [];
+  const lines = (b.body || []).flatMap(line => wrapDiagramText(line, W - 44, 8));
+  const hints = b.hint ? wrapDiagramText(b.hint, W - 44, 7) : [];
+  const padTop = title.length ? 12 : 8;
+  const h = Math.max(b.height || 0, padTop + title.length * 13 + lines.length * 12 + hints.length * 11 + 8);
+  return { height: h + 4, node: <g transform={`translate(0,${ctx.y})`}>
+    <rect x={PANEL_PAD_X} y={0} width={W - 2*PANEL_PAD_X} height={h} rx={5} fill={`${c}10`} stroke={c} strokeWidth={0.7} />
+    {title.map((line,i) => <TX key={`t${i}`} x={W/2} y={padTop + 4 + i*13} c={c} fw={700} s={9}>{line}</TX>)}
+    {lines.map((line,i) => <TX key={`b${i}`} x={W/2} y={padTop + title.length*13 + i*12 + 8} c={ctx.t.text} s={8}>{line}</TX>)}
+    {hints.map((line,i) => <TX key={`h${i}`} x={W/2} y={h - 6 - (hints.length-1-i)*11} c={ctx.t.textDim} s={7}>{line}</TX>)}
+  </g> };
 }
 
 function renderCards(b, ctx) {
-  const W = ctx.W;
-  const cards = b.cards || [];
-  const n = cards.length;
-  const gap = 6;
-  const totalW = W - 2*PANEL_PAD_X;
-  const cardW = (totalW - (n - 1) * gap) / n;
-  // Determine row height by tallest card
-  const lineH = 12;
-  const cardHs = cards.map(card => {
-    const lines = card.body || [];
-    const titleH = card.title ? 14 : 0;
-    return 8 + titleH + lines.length * lineH + 6;
+  const W = ctx.W, gap = 6, cards = b.cards || [];
+  if (!cards.length) return { height: 0, node: null };
+  const cardW = (W - 2*PANEL_PAD_X - (cards.length-1)*gap) / cards.length;
+  const layouts = cards.map(card => ({ card, title: card.title ? wrapDiagramText(card.title, cardW-12, 9) : [],
+    lines: (card.body || []).flatMap(line => wrapDiagramText(line, cardW-12, 8)) }));
+  const h = Math.max(...layouts.map(item => 8 + item.title.length*13 + item.lines.length*12 + 8));
+  return { height: h + 6, node: <g transform={`translate(0,${ctx.y})`}>
+    {layouts.map(({card,title,lines},i) => {
+      const c=resolveColor(card.color,ctx.color,ctx.t), x=PANEL_PAD_X+i*(cardW+gap);
+      return <g key={i}>
+        <rect x={x} y={0} width={cardW} height={h} rx={5} fill={`${c}10`} stroke={c} strokeWidth={0.7}/>
+        {title.map((line,j)=><TX key={`t${j}`} x={x+cardW/2} y={14+j*13} c={c} fw={700} s={9}>{line}</TX>)}
+        {lines.map((line,j)=><TX key={`b${j}`} x={x+cardW/2} y={16+title.length*13+j*12} c={ctx.t.text} s={8}>{line}</TX>)}
+      </g>;
+    })}
+  </g> };
+}
+
+function renderSteps(b,ctx) {
+  let y=0;
+  const nodes=(b.items || []).map((item,i)=>{
+    const lines=wrapDiagramText(item.body,ctx.W-100,9), h=Math.max(b.stepH || 30,lines.length*13+14);
+    const c=resolveColor(item.color,ctx.color,ctx.t), top=y; y+=h+4;
+    return <g key={i} transform={`translate(0,${top})`}>
+      <rect x={PANEL_PAD_X} y={0} width={ctx.W-2*PANEL_PAD_X} height={h} rx={5} fill={`${c}10`} stroke={c} strokeWidth={0.7}/>
+      <TX x={45} y={h/2+4} c={c} fw={700} s={10}>{item.number || i+1}.</TX>
+      {lines.map((line,j)=><TX key={j} x={ctx.W/2+20} y={h/2+4+(j-(lines.length-1)/2)*13} c={ctx.t.text} s={9}>{line}</TX>)}
+    </g>;
   });
-  const h = Math.max(...cardHs);
-  return {
-    height: h + 6,
-    node: (
-      <g transform={`translate(0,${ctx.y})`}>
-        {cards.map((card, i) => {
-          const c = resolveColor(card.color, ctx.color, ctx.t);
-          const x = PANEL_PAD_X + i * (cardW + gap);
-          const lines = card.body || [];
-          return (
-            <g key={i}>
-              <rect x={x} y={0} width={cardW} height={h} rx={5}
-                    fill={`${c}10`} stroke={c} strokeWidth={0.7} />
-              {card.title && (
-                <TX x={x + cardW/2} y={14} c={c} fw={700} s={9}>{card.title}</TX>
-              )}
-              {lines.map((line, j) => (
-                <TX key={j} x={x + cardW/2} y={(card.title ? 28 : 16) + j * lineH}
-                    c={ctx.t.text} s={8}>{line}</TX>
-              ))}
-            </g>
-          );
-        })}
-      </g>
-    ),
-  };
+  return { height:y+4,node:<g transform={`translate(0,${ctx.y})`}>{nodes}</g> };
 }
 
-function renderSteps(b, ctx) {
-  const W = ctx.W;
-  const items = b.items || [];
-  const stepH = b.stepH || 30;
-  const total = items.length * (stepH + 4);
-  return {
-    height: total + 4,
-    node: (
-      <g transform={`translate(0,${ctx.y})`}>
-        {items.map((item, i) => {
-          const c = resolveColor(item.color, ctx.color, ctx.t);
-          const y = i * (stepH + 4);
-          const numStr = item.number || `${i+1}`;
-          return (
-            <g key={i}>
-              <rect x={PANEL_PAD_X} y={y} width={W - 2*PANEL_PAD_X} height={stepH}
-                    rx={5} fill={`${c}10`} stroke={c} strokeWidth={0.7} />
-              <TX x={45} y={y + stepH/2 + 4} c={c} fw={700} s={10}>{numStr}.</TX>
-              <TX x={W/2 + 20} y={y + stepH/2 + 4} c={ctx.t.text} s={9}>
-                {item.body}
-              </TX>
-            </g>
-          );
-        })}
-      </g>
-    ),
-  };
-}
-
-function renderTable(b, ctx) {
-  const W = ctx.W;
-  const headers = b.headers || [];
-  const rows = b.rows || [];
-  const rowH = b.rowH || 20;
-  const headerH = 24;
-  const total = headerH + rows.length * rowH + 4;
-  // even column distribution unless colWidths given
-  const usable = W - 2*PANEL_PAD_X;
-  const widths = b.colWidths || headers.map(() => usable / headers.length);
-  const cumX = widths.reduce((acc, w, i) => {
-    acc.push((acc[i] || PANEL_PAD_X) + (i === 0 ? 0 : widths[i-1]));
-    return acc;
-  }, []);
-  cumX[0] = PANEL_PAD_X;
-  for (let i = 1; i < widths.length; i++) cumX[i] = cumX[i-1] + widths[i-1];
-  const colCenter = i => cumX[i] + widths[i] / 2;
-  return {
-    height: total + 4,
-    node: (
-      <g transform={`translate(0,${ctx.y})`}>
-        <line x1={PANEL_PAD_X} y1={2} x2={W - PANEL_PAD_X} y2={2}
-              stroke={ctx.t.text} strokeWidth={0.4} />
-        {headers.map((h, i) => (
-          <TX key={i} x={colCenter(i)} y={14} c={ctx.t.accent} fw={700} s={7}>{h}</TX>
-        ))}
-        <line x1={PANEL_PAD_X} y1={20} x2={W - PANEL_PAD_X} y2={20}
-              stroke={ctx.t.text} strokeWidth={0.4} />
-        {rows.map((row, ri) => {
-          const y = headerH + ri * rowH + 12;
-          const rowColor = b.rowColors && b.rowColors[ri]
-            ? resolveColor(b.rowColors[ri], ctx.color, ctx.t)
-            : ctx.t.text;
-          return (
-            <g key={ri}>
-              {row.map((cell, ci) => (
-                <TX key={ci} x={colCenter(ci)} y={y} c={ci === 0 ? rowColor : ctx.t.text}
-                    fw={ci === 0 ? 700 : 400} s={7}>{cell}</TX>
-              ))}
-              <line x1={PANEL_PAD_X} y1={y + 6} x2={W - PANEL_PAD_X} y2={y + 6}
-                    stroke={ctx.t.border} strokeWidth={0.2} />
-            </g>
-          );
-        })}
-      </g>
-    ),
-  };
+function renderTable(b,ctx) {
+  const W=ctx.W, headers=b.headers || [], usable=W-2*PANEL_PAD_X;
+  const widths=b.colWidths || headers.map(()=>usable/headers.length);
+  const positions=widths.map((width,i)=>PANEL_PAD_X+widths.slice(0,i).reduce((sum,w)=>sum+w,0)+width/2);
+  const head=headers.map((text,i)=>wrapDiagramText(text,widths[i]-10,7));
+  const headerH=Math.max(24,...head.map(lines=>lines.length*11+12));
+  let y=headerH;
+  const rows=(b.rows || []).map((row,ri)=>{
+    const cells=row.map((text,ci)=>wrapDiagramText(text,widths[ci]-10,7));
+    const h=Math.max(b.rowH || 20,...cells.map(lines=>lines.length*11+10)), top=y; y+=h;
+    const c=b.rowColors?.[ri] ? resolveColor(b.rowColors[ri],ctx.color,ctx.t) : ctx.t.text;
+    return <g key={ri}>
+      {cells.map((lines,ci)=>lines.map((text,j)=><TX key={`${ci}-${j}`} x={positions[ci]} y={top+12+j*11} c={ci===0?c:ctx.t.text} fw={ci===0?700:400} s={7}>{text}</TX>))}
+      <line x1={PANEL_PAD_X} y1={top+h-2} x2={W-PANEL_PAD_X} y2={top+h-2} stroke={ctx.t.border} strokeWidth={0.2}/>
+    </g>;
+  });
+  return { height:y+8,node:<g transform={`translate(0,${ctx.y})`}>
+    <line x1={PANEL_PAD_X} y1={2} x2={W-PANEL_PAD_X} y2={2} stroke={ctx.t.text} strokeWidth={0.4}/>
+    {head.map((lines,i)=>lines.map((text,j)=><TX key={`${i}-${j}`} x={positions[i]} y={14+j*11} c={ctx.t.accent} fw={700} s={7}>{text}</TX>))}
+    <line x1={PANEL_PAD_X} y1={headerH-4} x2={W-PANEL_PAD_X} y2={headerH-4} stroke={ctx.t.text} strokeWidth={0.4}/>
+    {rows}
+  </g> };
 }
 
 function renderCompare(b, ctx) {
@@ -202,18 +128,12 @@ function renderEquation(b, ctx) {
   };
 }
 
-function renderNote(b, ctx) {
-  const c = b.emphasis ? resolveColor('primary', ctx.color, ctx.t) : ctx.t.textDim;
-  const s = b.emphasis ? 9 : 7;
-  const fw = b.emphasis ? 700 : 400;
-  return {
-    height: 16,
-    node: (
-      <g transform={`translate(0,${ctx.y})`}>
-        <TX x={ctx.W/2} y={10} c={c} fw={fw} s={s}>{b.text}</TX>
-      </g>
-    ),
-  };
+function renderNote(b,ctx) {
+  const c=b.emphasis ? ctx.color : ctx.t.textDim, size=b.emphasis ? 9 : 7;
+  const lines=wrapDiagramText(b.text,ctx.W-30,size);
+  return { height:lines.length*12+4,node:<g transform={`translate(0,${ctx.y})`}>
+    {lines.map((text,i)=><TX key={i} x={ctx.W/2} y={10+i*12} c={c} fw={b.emphasis?700:400} s={size}>{text}</TX>)}
+  </g> };
 }
 
 function renderArrow(b, ctx) {
@@ -396,7 +316,7 @@ const BLOCK_RENDERERS = {
    Top-level Diagram component
    ============================================================ */
 
-export function Diagram({ spec, color, t }) {
+export function Diagram({ spec, color, t, scale = 1 }) {
   if (!spec || !spec.blocks) return null;
   const W = spec.width || 320;
   const ctx = { W, color, t, y: 0 };
@@ -404,20 +324,15 @@ export function Diagram({ spec, color, t }) {
   let y = 0;
   const nodes = [];
 
-  // Title bar
-  if (spec.title) {
-    nodes.push(
-      <TX key="title" x={W/2} y={y + 14} c={color} fw={700} s={11}>{spec.title}</TX>
-    );
-    y += 18;
+  // Titles wrap independently of chemistry structures/equations.
+  for (const [text,size,fill,weight] of [[spec.title,11,color,700],[spec.subtitle,8,t.textDim,400]]) {
+    if (!text) continue;
+    for (const [i,line] of wrapDiagramText(text,W-20,size).entries()) {
+      nodes.push(<TX key={`heading-${size}-${i}`} x={W/2} y={y+size+3} c={fill} fw={weight} s={size}>{line}</TX>);
+      y+=size+6;
+    }
   }
-  if (spec.subtitle) {
-    nodes.push(
-      <TX key="subtitle" x={W/2} y={y + 8} c={t.textDim} s={8}>{spec.subtitle}</TX>
-    );
-    y += 12;
-  }
-  if (spec.title || spec.subtitle) y += 4; // breathing room
+  if (spec.title || spec.subtitle) y+=4;
 
   // Each block
   for (let i = 0; i < spec.blocks.length; i++) {
@@ -435,10 +350,33 @@ export function Diagram({ spec, color, t }) {
   const totalH = y + 4;
 
   return (
-    <svg viewBox={`0 0 ${W} ${totalH}`} width="100%" height={totalH}>
-      {nodes}
-    </svg>
+    <FittedDiagram spec={spec} width={W} height={totalH} scale={scale}>{nodes}</FittedDiagram>
   );
+}
+
+function FittedDiagram({spec,width,height,scale,children}) {
+  const content=useRef(null), id=useId();
+  const [measured,setMeasured]=useState(null);
+  const bounds=measured?.spec===spec ? measured.bounds : {x:0,y:0,width,height};
+  useEffect(()=>{
+    let active=true;
+    const measure=()=>{
+      if (!active || !content.current) return;
+      const next=fitDiagramBounds(content.current.getBBox(),width,height);
+      setMeasured({spec,bounds:next});
+    };
+    measure();
+    document.fonts?.ready.then(measure);
+    return ()=>{active=false;};
+  },[spec,width,height]);
+  return <svg className="cw-diagram" role="img" aria-labelledby={`${id}-title`} aria-describedby={`${id}-description`}
+    data-fitted={measured?.spec===spec ? 'true' : 'false'}
+    viewBox={`${bounds.x} ${bounds.y} ${bounds.width} ${bounds.height}`} width="100%" height={bounds.height}
+    style={{minWidth:Math.max(320,bounds.width)*scale,maxWidth:Math.max(720,bounds.width)*scale}}>
+    <title id={`${id}-title`}>{spec.title || 'Chemistry diagram'}</title>
+    <desc id={`${id}-description`}>{diagramText(spec).join('. ')}</desc>
+    <g ref={content} aria-hidden="true">{children}</g>
+  </svg>;
 }
 
 export default Diagram;
