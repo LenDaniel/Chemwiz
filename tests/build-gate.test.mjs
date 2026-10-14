@@ -29,7 +29,7 @@ function evidence() {
     compile: { status: 'PASS', fingerprint: compiledFingerprint(root) },
     connections: { status: 'PASS', calls: contracts.frontendProbes.map((probe) => ({ ...probe, result: 'PASS' })) } };
   return { status: 'PASS', version, fingerprint, preflight,
-    local: { status: 'PASS', browser: { status: 'PASS', checks: ['Fixture browser acceptance'] },
+    local: { status: 'PASS', browser: { status: 'PASS', checks: ['Fixture browser acceptance'], w2: { status:'PASS', diagramTextClipping:0, diagrams:218, viewports:Array(6).fill('fixture viewport') } },
       steps: ['check', 'verify:content', 'verify:k4', 'test'].map((command) => ({ command: 'npm run ' + command, status: 'PASS' })) } };
 }
 
@@ -111,6 +111,8 @@ test('failed, unavailable or skipped preflight/local checks block deployment', (
     (record) => { record.preflight.dependencies.counts.high = 1; },
     (record) => { record.preflight.compile.status = 'FAIL'; },
     (record) => { record.local.browser.status = 'NOT_RUN'; },
+    (record) => { delete record.local.browser.w2; },
+    (record) => { record.local.browser.w2.diagramTextClipping = 1; },
     (record) => { record.local.steps.pop(); },
     (record) => { record.local.steps[0].status = 'FAIL'; },
     (record) => { record.preflight.fingerprint = 'old-preflight'; },
