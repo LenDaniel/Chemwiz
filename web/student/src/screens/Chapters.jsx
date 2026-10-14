@@ -81,7 +81,7 @@ export function Reader({ topic, content, chapter, t, settings, onMarkRead, onBac
         </details>
         <ReadAloudControls speech={speech} t={t} />
       </div>
-      <div className="cw-reader-body">
+      <div className={`cw-reader-body cw-reader-font-${settings.fontSize}`}>
         {sections.map((section) => <section key={section.id} className="cw-reading-section" aria-label={section.title}>
           <div className="cw-section-heading">
             {section.blocks[0]?.type === 'h'
