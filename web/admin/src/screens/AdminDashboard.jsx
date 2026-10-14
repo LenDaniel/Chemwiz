@@ -38,6 +38,7 @@ export function AdminDashboard({
 
   return (
     <div className="admin-shell">
+      <a className="admin-skip-link" href="#admin-main-content">Skip to dashboard</a>
       <AdminSidebar
         admin={admin}
         busy={busy}
@@ -45,7 +46,7 @@ export function AdminDashboard({
         handleLogout={handleLogout}
       />
 
-      <main className="main-content">
+      <main id="admin-main-content" tabIndex={-1} className="main-content">
         <header className="topbar">
           <div>
             <p className="eyebrow">CONTROL CENTER</p>
@@ -57,7 +58,7 @@ export function AdminDashboard({
           </div>
         </header>
 
-        {error && <div className="error-box wide">{error}</div>}
+        {error && <div className="error-box wide" role="alert">{error}</div>}
 
         <StatsGrid stats={stats} />
 
