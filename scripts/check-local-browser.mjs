@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 import { chromium } from 'playwright';
+import { runW2Checks } from './lib/w2-browser-checks.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
@@ -146,8 +147,12 @@ try {
   await phone.locator('.error-box').waitFor();
   assert.equal(await phone.locator('.admin-mini-card').count(), 0);
   checks.push('Student credentials cannot open the admin dashboard');
+  const w2=await runW2Checks({root,browser,base,
+    learner:{email:'browser@build-gate.test',password:'Browser-fixture-password!'},
+    admin:{email:process.env.LOCAL_ADMIN_EMAIL,password:process.env.LOCAL_ADMIN_PASSWORD}});
+  checks.push(...w2.checks);
   assert.deepEqual(errors, []);
-  fs.writeFileSync(path.join(root, '.build-checks/browser.json'), JSON.stringify({ status: 'PASS', browser: browser.version(), checks }, null, 2));
+  fs.writeFileSync(path.join(root, '.build-checks/browser.json'), JSON.stringify({ status: 'PASS', browser: browser.version(), checks, w2 }, null, 2));
   console.log(`Local browser: PASS (${checks.length} checks; desktop/mobile; no JavaScript runtime errors).`);
 } catch (error) {
   fs.writeFileSync(path.join(root, '.build-checks/browser.json'), JSON.stringify({ status: 'FAIL', error: error.message, checks }, null, 2));
