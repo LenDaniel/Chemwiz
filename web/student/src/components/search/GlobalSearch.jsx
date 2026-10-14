@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useDialog, clickedBackdrop } from '../../../../../shared/useDialog.js';
 
 
 const KIND_LABEL = {
@@ -13,6 +14,8 @@ const KIND_LABEL = {
 export function GlobalSearch({ t, open, onClose, onSelect }) {
   const [query, setQuery] = useState('');
   const inputRef = useRef(null);
+  const dialogRef = useRef(null);
+  useDialog(dialogRef, open);
   const [engine, setEngine] = useState(null);
   const [loadError, setLoadError] = useState(false);
   const [attempt, setAttempt] = useState(0);
@@ -32,7 +35,7 @@ export function GlobalSearch({ t, open, onClose, onSelect }) {
     const timer = window.setTimeout(() => inputRef.current?.focus(), 20);
     const onKeyDown = (event) => {
       if (event.key === 'Escape') onClose();
-      if (event.key === 'Enter' && results[0]) {
+      if (event.key === 'Enter' && event.target === inputRef.current && results[0]) {
         event.preventDefault();
         onSelect(results[0]);
         onClose();
@@ -55,7 +58,9 @@ export function GlobalSearch({ t, open, onClose, onSelect }) {
     <div className="cw-search-overlay" role="presentation" onMouseDown={(event) => {
       if (event.target === event.currentTarget) onClose();
     }}>
-      <section className="cw-search-panel" role="dialog" aria-modal="true" aria-label="Search ChemWiz">
+      <dialog ref={dialogRef} className="cw-search-panel" aria-label="Search ChemWiz"
+        onCancel={(event) => { event.preventDefault(); onClose(); }}
+        onClick={(event) => { if (clickedBackdrop(event)) onClose(); }}>
         <div className="cw-search-input-wrap">
           <span className="cw-search-icon" aria-hidden="true">⌕</span>
           <input
@@ -105,7 +110,7 @@ export function GlobalSearch({ t, open, onClose, onSelect }) {
             </button>
           ))}
         </div>
-      </section>
+      </dialog>
     </div>
   );
 }
