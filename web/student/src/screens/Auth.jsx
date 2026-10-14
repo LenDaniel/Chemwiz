@@ -91,6 +91,7 @@ export function Auth({ t, onLogin, onRegister }) {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Full name"
+                  aria-label="Full name"
                   autoComplete="name"
                   required
                 />
@@ -101,6 +102,7 @@ export function Auth({ t, onLogin, onRegister }) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
+                aria-label="Email"
                 type="email"
                 autoComplete="email"
                 required
@@ -111,13 +113,14 @@ export function Auth({ t, onLogin, onRegister }) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
+                aria-label="Password"
                 type="password"
                 autoComplete={isRegister ? "new-password" : "current-password"}
                 required
               />
 
               {error && (
-                <div style={{ color: "#ff6b6b", fontSize: 11, marginBottom: 10, lineHeight: 1.45 }}>
+                <div role="alert" style={{ color: "#ff6b6b", fontSize: 11, marginBottom: 10, lineHeight: 1.45 }}>
                   {error}
                 </div>
               )}
