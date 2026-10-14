@@ -1,5 +1,9 @@
+import { useRef } from 'react';
+import { useDialog, clickedBackdrop } from '../../../../shared/useDialog.js';
 
 export function UserDetailsModal({ user, onClose }) {
+  const ref = useRef(null);
+  useDialog(ref, Boolean(user));
   if (!user) return null;
 
   const formatDate = (value) => {
@@ -8,12 +12,13 @@ export function UserDetailsModal({ user, onClose }) {
   };
 
   return (
-    <div className="modal-backdrop">
-      <div className="user-modal">
+      <dialog ref={ref} className="user-modal" aria-labelledby="admin-user-title"
+        onCancel={(event) => { event.preventDefault(); onClose(); }}
+        onClick={(event) => { if (clickedBackdrop(event)) onClose(); }}>
         <div className="modal-header">
           <div>
             <p className="eyebrow">USER DETAILS</p>
-            <h2>{user.name}</h2>
+            <h2 id="admin-user-title">{user.name}</h2>
             <p className="muted">{user.email}</p>
           </div>
 
@@ -38,8 +43,7 @@ export function UserDetailsModal({ user, onClose }) {
           More details will appear here later: quiz history, topic progress, payment history,
           tutor usage, and admin action logs.
         </div>
-      </div>
-    </div>
+      </dialog>
   );
 }
 
