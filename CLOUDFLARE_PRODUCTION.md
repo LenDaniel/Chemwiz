@@ -6,11 +6,14 @@ This release adds a Cloudflare Worker entry point for the whole ChemWiz applicat
 
 ## 1. Prepare the release folder
 
-Keep your working U1 folder as a backup. Extract this full release to a new folder and open PowerShell in its `chemwiz-unified` folder.
+Keep your working release as backup. Apply the v1.2.1 patch to the unified v1.2.0 baseline using README_PATCH.md. Open PowerShell in its chemwiz-unified folder and use Node 24.
 
 ```powershell
-npm install
-npm run build
+npm ci --include=dev
+npx playwright install chromium
+npm run check:integration
+npm run test:local
+npm run ready:deploy
 npm run cf:dry
 ```
 
@@ -111,6 +114,8 @@ npm run create-admin -- ".env.production"
 It prompts for email and a hidden password of at least 12 characters. It refuses to overwrite an existing account. This step needs your PC's IP permitted in Atlas. New learners can create their own Free accounts through the Student workspace; Admin activates Premium.
 
 ## 7. Deploy the whole application
+
+After any source, dependency or wrangler.jsonc changes, repeat check:integration, test:local and ready:deploy. Keep the passing verification/release-evidence.json with the exact source. cf:deploy runs the gate first; failed/missing/stale evidence blocks publishing. Local checks do not replace the private Atlas/provider checks above.
 
 ```powershell
 npm run cf:deploy

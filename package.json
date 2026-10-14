@@ -1,6 +1,6 @@
 {
   "name": "chemwiz-unified",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "private": true,
   "description": "One ChemWiz application: student workspace, admin workspace and Express API",
   "main": "server.js",
@@ -15,8 +15,9 @@
     "build": "npm run generate:search && vite build",
     "generate:search": "node web/student/scripts/generate-search.mjs",
     "verify:k4": "node web/student/scripts/verify-k4.mjs",
+    "verify:content": "node web/student/scripts/verify-content.mjs",
     "check": "node scripts/check-installation.cjs",
-    "test": "node --test backend/tests/tutor.test.js backend/tests/voice.test.js backend/tests/liveVoice.test.js tests/*.test.cjs",
+    "test": "node --test backend/tests/tutor.test.js backend/tests/voice.test.js backend/tests/liveVoice.test.js tests/*.test.cjs tests/build-gate.test.mjs",
     "create-admin": "node scripts/create-admin.cjs",
     "import-local": "node scripts/import-local.cjs",
     "import-config": "node scripts/import-config.cjs",
@@ -27,7 +28,12 @@
     "cf:tail": "wrangler tail",
     "cf:dev": "node scripts/cloudflare-dev.cjs",
     "check:production": "node scripts/check-production.cjs",
-    "check:mongo": "node scripts/check-mongo.cjs"
+    "check:mongo": "node scripts/check-mongo.cjs",
+    "check:integration": "node scripts/check-integration.mjs",
+    "test:local": "node scripts/run-local-checks.mjs",
+    "ready:deploy": "node scripts/release-gate.mjs",
+    "prebuild": "node scripts/build-guard.mjs",
+    "precf:deploy": "npm run ready:deploy"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
@@ -43,7 +49,13 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@eslint/js": "10.0.1",
     "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "10.12.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "eslint-plugin-react-refresh": "0.5.7",
+    "globals": "17.13.0",
+    "playwright": "1.62.1",
     "vite": "^8.0.12",
     "wrangler": "^4.149.0"
   }

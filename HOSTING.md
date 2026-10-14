@@ -1,6 +1,6 @@
 # Host ChemWiz at one web address
 
-This release supports a normal **Node.js application** and a new **Cloudflare Worker** entry point. For Cloudflare + Atlas, follow [CLOUDFLARE_PRODUCTION.md](CLOUDFLARE_PRODUCTION.md). The rest of this guide covers a normal Node host. Serve it on a Node-capable host/VPS or Node application manager. Uploading only `dist/` to static hosting does not run its authentication or data APIs. The new Worker entry point deploys all workspaces together; the previous separate API/Student/Admin Worker deployments remain separate until a deliberate cutover.
+The active user deployment is a **Render Node web service**; use [RENDER_PRODUCTION.md](RENDER_PRODUCTION.md). This guide also covers other Node-capable hosts, VPSs and Node application managers. Optional Cloudflare hosting remains in [CLOUDFLARE_PRODUCTION.md](CLOUDFLARE_PRODUCTION.md). Uploading only `dist/` to static hosting does not run authentication or the data APIs.
 
 ## Required application settings
 
@@ -20,13 +20,16 @@ One reverse proxy maps your HTTPS domain to this Node application. Student, Admi
 If building on the server:
 
 ```bash
-npm ci
-npm run build
+npm ci --include=dev
+npx playwright install chromium
+npm run check:integration
+npm run test:local
+npm run ready:deploy
 node scripts/check-installation.cjs --production
 npm start
 ```
 
-If using the prebuilt `dist/` from this ZIP:
+A checked source/dist can be copied to a host after ready:deploy passes on the build machine. Retain verification/release-evidence.json with the source. The patch ZIP itself does not contain a new dist; preflight builds it. On a runtime-only host, after the release passes all required checks elsewhere:
 
 ```bash
 npm ci --omit=dev
@@ -34,7 +37,7 @@ node scripts/check-installation.cjs --production
 npm start
 ```
 
-Use your hosting manager's normal restart command after deployment. Do not run `npm run dev` for public hosting. For later frontend updates, rebuild with development dependencies installed, then deploy the resulting `dist/` with the backend source.
+Use your hosting manager's normal restart command after deployment. Do not run `npm run dev` for public hosting. For later updates, run check:integration, test:local and ready:deploy with development dependencies installed, then publish the resulting checked source/dist. See BUILD_RULES.md and INTEGRATION_CHECKS.md.
 
 ## Environment
 
@@ -62,6 +65,8 @@ It asks for the new email and a hidden password of at least 12 characters. It re
 If deliberately hosting with local JSON, set `DATA_MODE=local` and a persistent writable `LOCAL_DATA_FILE`. Use one process, private seed credentials and backups. Production does not create the demo student. Set a private `LOCAL_ADMIN_PASSWORD` before initializing a fresh local production database; default test credentials are rejected for that admin initialization. Local JSON data is not automatically migrated to MongoDB when changing modes.
 
 Set `TRUST_PROXY=1` only if there is exactly one trusted reverse proxy directly in front of Node and the host prevents clients from bypassing it. Otherwise leave it `0`; use the provider's documented proxy configuration. `APP_URL` must still match the external HTTPS origin.
+
+On Render, the backend also allows the origin from the platform-provided `RENDER_EXTERNAL_URL` when `RENDER=true`. This handles HTTPS termination without changing proxy trust. Configured workspace URLs contribute their scheme/hostname/port to the allowlist; paths do not change an origin. Unlisted origins are still rejected. Custom domains should use their public origin in `APP_URL`.
 
 ## Data and backups
 
