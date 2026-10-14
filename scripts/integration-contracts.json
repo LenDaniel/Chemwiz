@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "publicRoutes": [
+    { "method": "GET", "path": "/api/health", "kind": "health" },
+    { "method": "GET", "path": "/api/ready", "kind": "ready" },
+    { "method": "POST", "path": "/api/auth/register", "kind": "registration" },
+    { "method": "POST", "path": "/api/auth/login", "kind": "login" },
+    { "method": "GET", "path": "/api/tutor", "kind": "availability" },
+    { "method": "GET", "path": "/api/users", "kind": "placeholder" },
+    { "method": "GET", "path": "/api/subscription", "kind": "placeholder" },
+    { "method": "GET", "path": "/api/payments", "kind": "placeholder" },
+    { "method": "GET", "path": "/api/quiz", "kind": "placeholder" }
+  ],
+  "frontendProbes": [
+    { "file": "web/student/src/config/api.js", "export": "registerUser", "method": "POST", "path": "/api/auth/register", "scenario": "student-register" },
+    { "file": "web/student/src/config/api.js", "export": "loginUser", "method": "POST", "path": "/api/auth/login", "scenario": "student-login" },
+    { "file": "web/student/src/config/api.js", "export": "getCurrentUser", "method": "GET", "path": "/api/auth/me", "scenario": "student-current" },
+    { "file": "web/student/src/config/api.js", "export": "getLearningState", "method": "GET", "path": "/api/progress/me", "scenario": "student-progress" },
+    { "file": "web/student/src/config/api.js", "export": "validateLearningImport", "method": "POST", "path": "/api/progress/validate", "scenario": "student-validate" },
+    { "file": "web/student/src/config/api.js", "export": "putLearningState", "method": "PUT", "path": "/api/progress/me", "scenario": "student-save" },
+    { "file": "web/student/src/config/api.js", "export": "askTutor", "method": "POST", "path": "/api/tutor/message", "scenario": "student-tutor" },
+    { "file": "web/student/src/config/api.js", "export": "transcribeTutorNote", "method": "POST", "path": "/api/tutor/transcribe", "scenario": "student-transcribe" },
+    { "file": "web/student/src/config/api.js", "export": "createLiveVoiceSession", "method": "POST", "path": "/api/tutor/live/session", "scenario": "student-live" },
+    { "file": "web/admin/src/config/api.js", "export": "loginAdmin", "method": "POST", "path": "/api/auth/login", "scenario": "admin-login" },
+    { "file": "web/admin/src/config/api.js", "export": "checkAdmin", "method": "GET", "path": "/api/admin/test", "scenario": "admin-check" },
+    { "file": "web/admin/src/config/api.js", "export": "getAdminStats", "method": "GET", "path": "/api/admin/stats", "scenario": "admin-stats" },
+    { "file": "web/admin/src/config/api.js", "export": "getAdminUsers", "method": "GET", "path": "/api/admin/users", "scenario": "admin-users" },
+    { "file": "web/admin/src/config/api.js", "export": "updateUserSubscription", "method": "PATCH", "path": "/api/admin/users/:userId/subscription", "scenario": "admin-subscription" },
+    { "file": "web/admin/src/config/api.js", "export": "updateUserStatus", "method": "PATCH", "path": "/api/admin/users/:userId/status", "scenario": "admin-status" },
+    { "file": "web/admin/src/config/api.js", "export": "getAdminLogs", "method": "GET", "path": "/api/admin/logs", "scenario": "admin-logs" },
+    { "file": "web/admin/src/config/api.js", "export": "updateUserRole", "method": "PATCH", "path": "/api/admin/users/:userId/role", "scenario": "admin-role" }
+  ]
+}
