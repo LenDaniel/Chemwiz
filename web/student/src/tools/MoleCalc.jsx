@@ -59,7 +59,7 @@ export function MoleCalc({ t }) {
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6, marginBottom: 14 }}>
         {Object.entries(MODES).map(([k, m]) => (
-          <button key={k} onClick={() => { setMode(k); setSolveFor(''); setVals({}); }} style={{ padding: '10px 6px', background: mode === k ? t.accent : t.panel, color: mode === k ? '#000' : t.text, border: `1px solid ${mode === k ? t.accent : t.border}`, fontSize: 10, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '0.1em', cursor: 'pointer', borderRadius: 4, textAlign: 'center' }}>
+          <button key={k} aria-pressed={mode === k} onClick={() => { setMode(k); setSolveFor(''); setVals({}); }} style={{ padding: '10px 6px', background: mode === k ? t.accent : t.panel, color: mode === k ? '#000' : t.text, border: `1px solid ${mode === k ? t.accent : t.border}`, fontSize: 10, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '0.1em', cursor: 'pointer', borderRadius: 4, textAlign: 'center' }}>
             <div>{m.label}</div>
             <div style={{ fontSize: 8, letterSpacing: '0.15em', marginTop: 4, opacity: 0.8 }}>{m.title.toUpperCase()}</div>
           </button>
@@ -70,7 +70,7 @@ export function MoleCalc({ t }) {
         <div style={{ fontSize: 9, letterSpacing: '0.2em', color: t.textDim, fontFamily: 'monospace', marginBottom: 8 }}>SOLVE FOR</div>
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
           {cur.vars.map(v => (
-            <button key={v} onClick={() => setSolveFor(v)} style={{ padding: '6px 14px', background: sf === v ? t.accent : 'transparent', color: sf === v ? '#000' : t.text, border: `1px solid ${sf === v ? t.accent : t.border}`, fontSize: 12, fontFamily: 'monospace', fontWeight: 700, cursor: 'pointer', borderRadius: 4 }}>{subify(v)}</button>
+            <button key={v} aria-pressed={sf === v} onClick={() => setSolveFor(v)} style={{ padding: '6px 14px', background: sf === v ? t.accent : 'transparent', color: sf === v ? '#000' : t.text, border: `1px solid ${sf === v ? t.accent : t.border}`, fontSize: 12, fontFamily: 'monospace', fontWeight: 700, cursor: 'pointer', borderRadius: 4 }}>{subify(v)}</button>
           ))}
         </div>
       </div>
@@ -79,8 +79,8 @@ export function MoleCalc({ t }) {
         <div style={{ fontSize: 9, letterSpacing: '0.2em', color: t.textDim, fontFamily: 'monospace', marginBottom: 8 }}>INPUTS</div>
         {cur.vars.filter(v => v !== sf).map(k => (
           <div key={k} style={{ marginBottom: 8 }}>
-            <div style={{ fontSize: 11, color: t.textMuted, marginBottom: 3 }}>{subify(k)} <span style={{ color: t.textDim, fontSize: 10 }}>({cur.units[k]})</span></div>
-            <input type="number" step="any" value={vals[k] ?? ''} onChange={e => setVals({ ...vals, [k]: e.target.value })} placeholder="0" style={{ width: '100%', padding: '8px 10px', background: t.bg, border: `1px solid ${t.border}`, color: t.text, fontFamily: 'monospace', fontSize: 13, outline: 'none', borderRadius: 4, boxSizing: 'border-box' }} />
+            <label htmlFor={`cw-mole-${k}`} style={{ display: 'block', fontSize: 11, color: t.textMuted, marginBottom: 3 }}>{subify(k)} <span style={{ color: t.textDim, fontSize: 10 }}>({cur.units[k]})</span></label>
+            <input id={`cw-mole-${k}`} type="number" step="any" value={vals[k] ?? ''} onChange={e => setVals({ ...vals, [k]: e.target.value })} placeholder="0" style={{ width: '100%', padding: '8px 10px', background: t.bg, border: `1px solid ${t.border}`, color: t.text, fontFamily: 'monospace', fontSize: 13, outline: 'none', borderRadius: 4, boxSizing: 'border-box' }} />
           </div>
         ))}
       </div>
