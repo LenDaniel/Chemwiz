@@ -1,6 +1,7 @@
 import { ChemWizBrand } from './components/ChemWizBrand.jsx';
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./styles/admin.css";
+import { adminLoginMessage, isAdminAuthError } from './config/session.mjs';
 
 import {
   checkAdmin,
@@ -19,6 +20,7 @@ import { AdminDashboard } from "./screens/AdminDashboard.jsx";
 const TOKEN_KEY = "chemwiz.admin.token";
 
 export default function App() {
+  const sessionEpoch = useRef(0);
   const [token, setToken] = useState(() => localStorage.getItem(TOKEN_KEY) || "");
   const [admin, setAdmin] = useState(null);
 
@@ -42,12 +44,12 @@ export default function App() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
-  async function loadStats(activeToken) {
+  async function loadStats(activeToken, epoch = sessionEpoch.current) {
     const data = await getAdminStats(activeToken);
-    setStats(data.stats || null);
+    if (epoch === sessionEpoch.current) setStats(data.stats || null);
   }
 
-  async function loadUsers(activeToken, overrides = {}) {
+  async function loadUsers(activeToken, overrides = {}, epoch = sessionEpoch.current) {
     const data = await getAdminUsers(activeToken, {
       search,
       role: roleFilter,
@@ -59,86 +61,53 @@ export default function App() {
       ...overrides,
     });
 
-    setUsers(data.users || []);
-    setPagination(data.pagination || null);
+    if (epoch === sessionEpoch.current) {
+      setUsers(data.users || []);
+      setPagination(data.pagination || null);
+    }
   }
 
-  async function loadLogs(activeToken) {
+  async function loadLogs(activeToken, epoch = sessionEpoch.current) {
     const data = await getAdminLogs(activeToken);
-    setLogs(data.logs || []);
+    if (epoch === sessionEpoch.current) setLogs(data.logs || []);
+  }
+
+  async function loadDashboard(activeToken, initial = false, epoch = sessionEpoch.current) {
+    const results = await Promise.allSettled([
+      loadStats(activeToken, epoch), loadUsers(activeToken, initial ? { page: 1 } : {}, epoch), loadLogs(activeToken, epoch),
+    ]);
+    if (epoch !== sessionEpoch.current) return;
+    const denied = results.find(result => result.status === 'rejected' && isAdminAuthError(result.reason));
+    if (denied) throw denied.reason;
+    const names = ['statistics', 'users', 'audit logs'];
+    const missing = results.flatMap((result,index) => result.status === 'rejected' ? [names[index]] : []);
+    setError(missing.length ? `You are signed in. Could not load ${missing.join(', ')}. Use Refresh to retry.` : '');
   }
 
   async function bootstrap(activeToken) {
+    const epoch = ++sessionEpoch.current;
     setLoading(true);
-    setError("");
-
+    setError('');
     try {
+      // Establish admin authority independently of optional dashboard panels.
       const test = await checkAdmin(activeToken);
-      setAdmin(test.admin);
-
-      await Promise.all([
-        loadStats(activeToken),
-        loadUsers(activeToken, { page: 1 }),
-        loadLogs(activeToken),
-      ]);
+      if (epoch !== sessionEpoch.current) return;
+      setAdmin(test.admin); setPage(1);
+      await loadDashboard(activeToken, true, epoch);
     } catch (err) {
-      localStorage.removeItem(TOKEN_KEY);
-
-      setToken("");
-      setAdmin(null);
-      setStats(null);
-      setUsers([]);
-      setLogs([]);
-      setPagination(null);
-
-      setError(err.message || "Admin session failed.");
-    } finally {
-      setLoading(false);
-    }
+      if (epoch !== sessionEpoch.current) return;
+      if (isAdminAuthError(err)) {
+        localStorage.removeItem(TOKEN_KEY);
+        setToken(''); setAdmin(null); setStats(null); setUsers([]); setLogs([]); setPagination(null);
+      }
+      setError(adminLoginMessage(err));
+    } finally { if (epoch === sessionEpoch.current) setLoading(false); }
   }
 
   useEffect(() => {
     const savedToken = localStorage.getItem(TOKEN_KEY);
-    if (!savedToken) return undefined;
-
-    let cancelled = false;
-
-    (async () => {
-      try {
-        const [test, statsData, usersData, logsData] = await Promise.all([
-          checkAdmin(savedToken),
-          getAdminStats(savedToken),
-          getAdminUsers(savedToken, { page: 1, limit: 20 }),
-          getAdminLogs(savedToken),
-        ]);
-
-        if (cancelled) return;
-
-        setAdmin(test.admin);
-        setStats(statsData.stats || null);
-        setUsers(usersData.users || []);
-        setPagination(usersData.pagination || null);
-        setLogs(logsData.logs || []);
-        setError("");
-      } catch (err) {
-        if (cancelled) return;
-
-        localStorage.removeItem(TOKEN_KEY);
-        setToken("");
-        setAdmin(null);
-        setStats(null);
-        setUsers([]);
-        setLogs([]);
-        setPagination(null);
-        setError(err.message || "Admin session failed.");
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-    };
+    if (savedToken) bootstrap(savedToken);
+    return () => { sessionEpoch.current++; };
   }, []);
 
   async function handleLogin(e) {
@@ -149,19 +118,23 @@ export default function App() {
 
     try {
       const data = await loginAdmin({ email, password });
+      if (!data.token || !data.user) throw new Error('The login response is incomplete. Check the deployed application version.');
+      if (data.user.role !== 'admin') throw new Error('This account does not have admin privileges. Open the Student workspace or use an existing admin account.');
+      setPassword('');
 
       localStorage.setItem(TOKEN_KEY, data.token);
       setToken(data.token);
 
       await bootstrap(data.token);
     } catch (err) {
-      setError(err.message || "Login failed.");
+      setError(adminLoginMessage(err));
     } finally {
       setBusy(false);
     }
   }
 
   function handleLogout() {
+    sessionEpoch.current++;
     localStorage.removeItem(TOKEN_KEY);
 
     setToken("");
@@ -234,11 +207,7 @@ export default function App() {
     setError("");
 
     try {
-      await Promise.all([
-        loadStats(token),
-        loadUsers(token),
-        loadLogs(token),
-      ]);
+      await loadDashboard(token);
     } catch (err) {
       setError(err.message || "Could not refresh dashboard.");
     } finally {
@@ -346,6 +315,7 @@ export default function App() {
         busy={busy}
         error={error}
         handleLogin={handleLogin}
+        retrySession={token ? () => bootstrap(token) : null}
       />
     );
   }
