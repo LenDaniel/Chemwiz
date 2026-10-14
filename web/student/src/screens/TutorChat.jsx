@@ -162,7 +162,7 @@ export function TutorChat({ topic, content, t, token, context = DEFAULT_CONTEXT,
         </div>
       </div>
 
-      <div className="cw-tutor-messages" style={{ flex: 1, overflowY: 'auto', padding: 16 }}>
+      <div className="cw-tutor-messages" role="log" aria-label="Wiz conversation" aria-live="polite" style={{ flex: 1, overflowY: 'auto', padding: 16 }}>
         {messages.map((m, i) => (
           <div key={i} style={{ marginBottom: 12, display: 'flex', gap: 8, justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start' }}>
             {m.role === 'assistant' && <WizEmblem size={28} label="Wiz" />}
