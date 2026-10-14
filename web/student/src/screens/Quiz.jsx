@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Ring } from '../components/Primitives.jsx';
 
 export function Quiz({ topic, bank, t, onExit, onComplete }) {
   const [i, setI] = useState(0);
+  const questionRef = useRef(null);
+  useEffect(() => { questionRef.current?.focus({ preventScroll: true }); }, [i]);
   const [picks, setPicks] = useState(Array(bank.length).fill(null)); // remembered per question
   const [showHint, setShowHint] = useState(false);
   const [done, setDone] = useState(false);
@@ -85,9 +87,9 @@ export function Quiz({ topic, bank, t, onExit, onComplete }) {
           ))}
         </div>
       </div>
-      <div style={{ fontSize: 14, lineHeight: 1.55, color: t.text, marginBottom: 16 }}>{q.q}</div>
+      <div ref={questionRef} tabIndex={-1} role="heading" aria-level={2} className="cw-question-stem" style={{ fontSize: 14, lineHeight: 1.55, color: t.text, marginBottom: 16 }}>{q.q}</div>
       {q.opts.map((opt, idx) => (
-        <button key={idx} onClick={() => setPick(idx)} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '12px 14px', marginBottom: 8, background: pick === idx ? `${topic.color}20` : t.panel, border: `1px solid ${pick === idx ? topic.color : t.border}`, color: t.text, fontSize: 13, fontFamily: 'inherit', cursor: 'pointer', borderRadius: 6 }}>
+        <button key={idx} aria-pressed={pick === idx} onClick={() => setPick(idx)} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '12px 14px', marginBottom: 8, background: pick === idx ? `${topic.color}20` : t.panel, border: `1px solid ${pick === idx ? topic.color : t.border}`, color: t.text, fontSize: 13, fontFamily: 'inherit', cursor: 'pointer', borderRadius: 6 }}>
           <span style={{ color: topic.color, fontWeight: 700, marginRight: 10, fontFamily: 'monospace' }}>[{String.fromCharCode(65 + idx)}]</span>{opt}
         </button>
       ))}
