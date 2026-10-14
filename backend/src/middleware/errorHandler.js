@@ -9,7 +9,8 @@ const errorHandler = (err, req, res, next) => {
 
   res.status(statusCode).json({
     success: false,
-    ...(production && databaseError ? { code: 'DATABASE_UNAVAILABLE' } : {}),
+    ...(production && databaseError ? { code: 'DATABASE_UNAVAILABLE' } :
+      ['CORS_ORIGIN_BLOCKED', 'RUNTIME_CONFIG_MISSING'].includes(err.code) ? { code: err.code } : {}),
     message: production && statusCode >= 500 && err.code !== 'RUNTIME_CONFIG_MISSING'
       ? (databaseError ? 'The production database could not be reached. Check Atlas access, credentials and deployment logs.' : 'ChemWiz could not complete this request. Check deployment logs.')
       : err.message || 'Server error',
