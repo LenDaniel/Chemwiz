@@ -7,9 +7,7 @@ async function fetchBackend(path, options = {}) {
     return await fetch(url, options);
   } catch (error) {
     console.error("ChemWiz Admin backend request failed:", { url, error });
-    throw new Error(
-      "Could not connect to ChemWiz. Check your connection and try again."
-    );
+    throw Object.assign(new Error("Could not connect to ChemWiz. Check your connection and try again."), { code: 'NETWORK_ERROR', status: 0 });
   }
 }
 
@@ -36,7 +34,11 @@ async function apiRequest(path, options = {}) {
   }
 
   if (!res.ok) {
-    throw new Error(data.message || `Request failed with status ${res.status}`);
+    throw Object.assign(new Error(data.message || `Request failed with status ${res.status}`), { status: res.status, code: data.code || 'API_ERROR' });
+  }
+
+  if (!res.headers.get('content-type')?.includes('application/json')) {
+    throw Object.assign(new Error('The server returned a page instead of API data. Confirm this is the unified ChemWiz address and current deployment.'), { status: res.status, code: 'INVALID_API_RESPONSE' });
   }
 
   return data;
