@@ -1,5 +1,5 @@
 import { ChemWizBrand } from '../ChemWizBrand.jsx';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { GlobalSearch } from '../search/GlobalSearch.jsx';
 import { WizFab } from '../WizFab.jsx';
 
@@ -17,6 +17,7 @@ export function AppShell({
   onBack,
   canGoBack,
   contentMode = 'default',
+  navigationKey,
   user,
   onSearchSelect,
   wizContext,
@@ -26,6 +27,14 @@ export function AppShell({
 }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
+  const mainRef = useRef(null);
+  const previousNavigation = useRef(navigationKey);
+  useEffect(() => {
+    if (previousNavigation.current === navigationKey) return;
+    previousNavigation.current = navigationKey;
+    mainRef.current?.scrollTo({ top: 0 });
+    mainRef.current?.focus({ preventScroll: true });
+  }, [navigationKey]);
   const openSearch = useCallback(() => setSearchOpen(true), []);
   const closeSearch = useCallback(() => setSearchOpen(false), []);
   const logout = async () => {
@@ -74,6 +83,7 @@ export function AppShell({
                 className={`cw-sidebar-link ${tab === key ? 'is-active' : ''}`}
                 onClick={() => onSwitchTab(key)}
                 type="button"
+                aria-current={tab === key ? 'page' : undefined}
               >
                 <span className="cw-sidebar-icon">{icon}</span>
                 <span className="cw-sidebar-copy">
@@ -127,9 +137,11 @@ export function AppShell({
             {canGoBack && (
               <button className="cw-back-button" onClick={onBack} type="button">‹ BACK</button>
             )}
+            {user && <button className="cw-topbar-logout" type="button" onClick={logout}
+              disabled={loggingOut} aria-label="Log out">{loggingOut ? 'Leaving…' : 'Log out'}</button>}
           </header>
 
-          <main id="cw-main-content" tabIndex={-1} className={`cw-screen cw-content-${contentMode}`}>
+          <main ref={mainRef} id="cw-main-content" tabIndex={-1} className={`cw-screen cw-content-${contentMode}`}>
             <div className="cw-screen-stage">{children}</div>
           </main>
 
@@ -140,6 +152,7 @@ export function AppShell({
                 className={`cw-mobile-tab ${tab === key ? 'is-active' : ''}`}
                 onClick={() => onSwitchTab(key)}
                 type="button"
+                aria-current={tab === key ? 'page' : undefined}
               >
                 <span className="cw-mobile-tab-icon">{icon}</span>
                 <span>{label}</span>
