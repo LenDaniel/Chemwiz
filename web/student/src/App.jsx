@@ -364,6 +364,7 @@ if (action === 'tutor') {
       onBack={pop}
       canGoBack={canGoBack}
       contentMode={contentMode}
+      navigationKey={`${tab}:${current?.view || ''}:${current?.topicId || current?.topic?.id || ''}:${current?.chapterId || current?.chapter?.id || ''}`}
       user={user}
       onSearchSelect={openSearchResult}
       wizContext={user ? wizContext : null}
