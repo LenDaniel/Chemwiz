@@ -89,6 +89,7 @@ export function UsersPanel({
 
         <form className="search-row" onSubmit={handleSearch}>
           <input
+            aria-label="Search users by name or email"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search name or email..."
@@ -100,14 +101,14 @@ export function UsersPanel({
       </div>
 
       <div className="filters-row">
-        <select value={roleFilter} onChange={(e) => setRoleFilter(e.target.value)}>
+        <select aria-label="Filter users by role" value={roleFilter} onChange={(e) => setRoleFilter(e.target.value)}>
           <option value="">All roles</option>
           <option value="student">students</option>
           <option value="teacher">teachers</option>
           <option value="admin">admins</option>
         </select>
 
-        <select value={tierFilter} onChange={(e) => setTierFilter(e.target.value)}>
+        <select aria-label="Filter users by subscription tier" value={tierFilter} onChange={(e) => setTierFilter(e.target.value)}>
           <option value="">All tiers</option>
           <option value="free">free</option>
           <option value="premium">premium</option>
@@ -116,7 +117,7 @@ export function UsersPanel({
         </select>
 
         <select
-          value={subStatusFilter}
+          aria-label="Filter users by subscription status" value={subStatusFilter}
           onChange={(e) => setSubStatusFilter(e.target.value)}
         >
           <option value="">All subscriptions</option>
@@ -127,7 +128,7 @@ export function UsersPanel({
         </select>
 
         <select
-          value={accountStatusFilter}
+          aria-label="Filter users by account status" value={accountStatusFilter}
           onChange={(e) => setAccountStatusFilter(e.target.value)}
         >
           <option value="">All accounts</option>
@@ -150,7 +151,7 @@ export function UsersPanel({
         </button>
       </div>
 
-      <div className="table-wrap">
+      <div className="table-wrap" role="region" tabIndex={0} aria-label="Users and subscriptions; scroll horizontally for all columns">
         <table>
           <thead>
             <tr>
@@ -181,7 +182,7 @@ export function UsersPanel({
 
                   <td>
                     <select
-                      value={user.role || "student"}
+                      aria-label={`Role for ${user.email}`} value={user.role || "student"}
                       disabled={busy}
                       onChange={(e) => confirmRoleChange(user, e.target.value)}
                     >
@@ -193,7 +194,7 @@ export function UsersPanel({
 
                   <td>
                     <select
-                      value={user.subscriptionTier || "free"}
+                      aria-label={`Subscription tier for ${user.email}`} value={user.subscriptionTier || "free"}
                       disabled={busy}
                       onChange={(e) =>
                         confirmSubscriptionChange(user, {
@@ -210,7 +211,7 @@ export function UsersPanel({
 
                   <td>
                     <select
-                      value={user.subscriptionStatus || "active"}
+                      aria-label={`Subscription status for ${user.email}`} value={user.subscriptionStatus || "active"}
                       disabled={busy}
                       onChange={(e) =>
                         confirmSubscriptionChange(user, {
@@ -227,7 +228,7 @@ export function UsersPanel({
 
                   <td>
                     <input
-                      type="date"
+                      aria-label={`Subscription expiry for ${user.email}`} type="date"
                       disabled={busy}
                       value={
                         user.subscriptionExpiresAt
@@ -244,7 +245,7 @@ export function UsersPanel({
 
                   <td>
                     <select
-                      value={user.accountStatus || "active"}
+                      aria-label={`Account status for ${user.email}`} value={user.accountStatus || "active"}
                       disabled={busy || isCurrentAdmin}
                       title={
                         isCurrentAdmin
