@@ -38,7 +38,7 @@ export function Balancer({ t }) {
 
       <div style={{ padding: 12, background: t.panel, borderRadius: 8, marginBottom: 10 }}>
         <div style={{ fontSize: 9, letterSpacing: '0.2em', color: t.textDim, marginBottom: 6, fontFamily: 'monospace' }}>UNBALANCED EQUATION</div>
-        <textarea value={input} onChange={e => { setInput(e.target.value); setResult(null); }} placeholder="e.g. H2 + O2 = H2O" style={{ width: '100%', minHeight: 50, padding: 10, background: t.bg, border: `1px solid ${t.border}`, color: t.text, fontFamily: 'monospace', fontSize: 13, outline: 'none', resize: 'vertical', borderRadius: 4, boxSizing: 'border-box' }} />
+        <textarea aria-label="Unbalanced chemical equation" value={input} onChange={e => { setInput(e.target.value); setResult(null); }} placeholder="e.g. H2 + O2 = H2O" style={{ width: '100%', minHeight: 50, padding: 10, background: t.bg, border: `1px solid ${t.border}`, color: t.text, fontFamily: 'monospace', fontSize: 13, outline: 'none', resize: 'vertical', borderRadius: 4, boxSizing: 'border-box' }} />
         <div style={{ fontSize: 10, color: t.textDim, marginTop: 6 }}>Tip: write digits inline — H2, CO2, Ca(OH)2. Separate with + and = (or →)</div>
       </div>
 
