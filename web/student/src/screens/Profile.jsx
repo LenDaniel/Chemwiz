@@ -129,6 +129,8 @@ export function Profile({
             <button
               key={o.v}
               type="button"
+              aria-pressed={active}
+              aria-label={key === 'fontSize' ? `${o.v[0].toUpperCase()}${o.v.slice(1)} reading text` : undefined}
               onClick={() =>
                 onSettingsChange?.({
                   ...safeSettings,
