@@ -13,11 +13,13 @@ const required = ['package.json', 'package-lock.json', 'server.js', '.env.exampl
   'web/student/src/content/index.js', 'web/student/src/components/Diagram.jsx',
   'web/student/src/components/Primitives.jsx', 'web/student/scripts/verify-content.mjs',
   'web/student/scripts/verify-k4.mjs', 'RENDER_PRODUCTION.md',
-  'CHEMWIZ_MASTER_ROADMAP_V4_2_2026-10-14.md', 'AGENTS.md', 'BUILD_RULES.md', 'INTEGRATION_CHECKS.md',
+  'CHEMWIZ_MASTER_ROADMAP_V4_3_2026-10-14.md', 'AGENTS.md', 'BUILD_RULES.md', 'INTEGRATION_CHECKS.md',
   'scripts/check-integration.mjs', 'scripts/run-local-checks.mjs', 'scripts/release-gate.mjs',
   'scripts/check-local-browser.mjs', 'scripts/probe-api-connections.mjs',
   'scripts/lib/source-checks.mjs', 'scripts/lib/gate-state.mjs', 'scripts/lib/fixture-config.cjs',
-  'scripts/integration-contracts.json', 'scripts/build-guard.mjs', 'tests/build-gate.test.mjs'];
+  'scripts/integration-contracts.json', 'scripts/build-guard.mjs', 'tests/build-gate.test.mjs',
+  'shared/useDialog.js', 'web/student/src/utils/diagramLayout.mjs', 'web/admin/src/config/session.mjs',
+  'scripts/diagnose-admin.mjs', 'scripts/lib/admin-diagnostics.mjs', 'scripts/lib/w2-browser-checks.mjs', 'tests/w2-admin.test.mjs', 'ADMIN_LOGIN_GUIDE.md'];
 const failures = required.filter((file) => !fs.existsSync(path.join(root, file)));
 function files(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((item) => item.isDirectory()
