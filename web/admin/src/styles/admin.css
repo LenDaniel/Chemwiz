@@ -616,3 +616,33 @@ td input[type="date"] {
 .login-card a { color:#9dbbff; font-size:13px; }
 .workspace-link { padding:11px 14px; border-radius:10px; font-size:13px; font-weight:700; }
 .search-row button { flex-shrink:0; white-space:nowrap; }
+
+/* W2 admin reflow and keyboard access. */
+.admin-shell :is(button,input,select,textarea) { min-height:44px; }
+.admin-shell :is(button,a,input,select,textarea,[tabindex]):focus-visible { outline:3px solid #22d3ee; outline-offset:3px; }
+.admin-shell :is(h1,h2,p,strong,small) { overflow-wrap:anywhere; }
+.user-modal { margin:auto; color:#e5e7eb; max-height:calc(100dvh - 32px); border:1px solid #334155; }
+.user-modal::backdrop { background:rgba(0,0,0,.75); }
+.table-wrap { max-width:100%; overscroll-behavior-x:contain; }
+.login-card { overflow-wrap:anywhere; }
+.admin-login-help { padding:10px 0; line-height:1.6; font-size:13px; }
+.admin-build-version { color:#94a3b8; font-size:12px; margin-top:16px; }
+.admin-skip-link { position:fixed; top:8px; left:8px; transform:translateY(-200%); z-index:1200; padding:12px; background:#111827; color:#e5e7eb; border:2px solid #22d3ee; }
+.admin-skip-link:focus { transform:translateY(0); }
+@media(max-width:700px) {
+  .panel-header,.topbar { flex-wrap:wrap; gap:12px; }
+  .main-content { min-width:0; padding:16px; }
+  .filters-row { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .filters-row > *,.search-row > * { min-width:0; max-width:100%; }
+  .search-row { flex-wrap:wrap; }
+  .search-row input { flex:1 1 160px; }
+  .pagination { flex-wrap:wrap; gap:10px; }
+}
+@media(max-width:420px) { .filters-row { grid-template-columns:1fr; } .login-shell { padding:16px; } }
+@media(prefers-reduced-motion:reduce) { .admin-shell * { scroll-behavior:auto !important; transition:none !important; animation:none !important; } }
+.table-wrap th { white-space:nowrap; }
+.table-wrap :is(button,select,input,small) { white-space:nowrap; overflow-wrap:normal; word-break:normal; }
+.table-wrap td:first-child { min-width:200px; }
+.table-wrap th:last-child,.table-wrap td:last-child { min-width:110px; }
+.table-wrap td:last-child button { min-width:70px; }
+.table-wrap td:nth-last-child(2) { min-width:105px; }
