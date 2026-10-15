@@ -1,0 +1,81 @@
+{
+  "status": "PASS",
+  "browser": "155.0.8059.40",
+  "checks": [
+    "Unified home has both workspace links",
+    "Public signup reaches the backend and creates a Free student",
+    "A chapter reader saves progress through the API to the backend",
+    "Completing a quiz saves its result through the backend",
+    "Sidebar logout clears the session and login restores saved settings",
+    "A second browser/device restores the saved account progress",
+    "All 24 production topic chunks load on desktop and mobile",
+    "Universal search loads and navigates into the chemistry content",
+    "Wiz UI reaches the backend using the controlled local response",
+    "Admin frontend signs in and receives its backend dashboard",
+    "Student credentials cannot open the admin dashboard",
+    "Search dialog contains keyboard focus and Escape returns to its trigger",
+    "Learner screens/tools, keyboard controls and navigation reflow at 320×640",
+    "Learner screens/tools, keyboard controls and navigation reflow at 390×844",
+    "Learner screens/tools, keyboard controls and navigation reflow at 768×1024",
+    "Learner screens/tools, keyboard controls and navigation reflow at 1366×768",
+    "Learner screens/tools, keyboard controls and navigation reflow at 1366×460",
+    "Learner screens/tools, keyboard controls and navigation reflow at 683×384",
+    "Saved small/medium/large reading setting changes actual lesson text size",
+    "Mobile topbar logout clears the learner session without opening Profile",
+    "Admin login/session survives a temporary dashboard panel outage and refresh recovers",
+    "Temporary admin authority/network failure retains the token and offers a safe retry",
+    "Admin filters/table reflow and user-details dialog supports keyboard/Escape/focus return",
+    "A genuinely invalid/expired administrator token is removed",
+    "Read-only live-site diagnostic probes classify version, origin, readiness and protected routes correctly",
+    "All 218 actual React diagrams fit every text label at mobile/desktop, expose text alternatives and can be enlarged",
+    "Learner password visibility toggles preserve input and expose accessible state",
+    "Signup rejects a predictable password despite digits and punctuation",
+    "student legacy password is upgraded before sign-in and retains its original role",
+    "admin legacy password is upgraded before sign-in and retains its original role",
+    "Administrator forgot-password sends a captured EmailJS message and accepts its one-hour code",
+    "A learner reset link overrides a saved session, clears its URL token and permits the new password",
+    "Home shows the requested copyright, developer attribution and WhatsApp helpline without mobile overflow"
+  ],
+  "w2": {
+    "status": "PASS",
+    "checks": [
+      "Search dialog contains keyboard focus and Escape returns to its trigger",
+      "Learner screens/tools, keyboard controls and navigation reflow at 320×640",
+      "Learner screens/tools, keyboard controls and navigation reflow at 390×844",
+      "Learner screens/tools, keyboard controls and navigation reflow at 768×1024",
+      "Learner screens/tools, keyboard controls and navigation reflow at 1366×768",
+      "Learner screens/tools, keyboard controls and navigation reflow at 1366×460",
+      "Learner screens/tools, keyboard controls and navigation reflow at 683×384",
+      "Saved small/medium/large reading setting changes actual lesson text size",
+      "Mobile topbar logout clears the learner session without opening Profile",
+      "Admin login/session survives a temporary dashboard panel outage and refresh recovers",
+      "Temporary admin authority/network failure retains the token and offers a safe retry",
+      "Admin filters/table reflow and user-details dialog supports keyboard/Escape/focus return",
+      "A genuinely invalid/expired administrator token is removed",
+      "Read-only live-site diagnostic probes classify version, origin, readiness and protected routes correctly",
+      "All 218 actual React diagrams fit every text label at mobile/desktop, expose text alternatives and can be enlarged"
+    ],
+    "diagrams": 218,
+    "diagramTextClipping": 0,
+    "viewports": [
+      "320×640",
+      "390×844",
+      "768×1024",
+      "1366×768",
+      "1366×460",
+      "683×384 (200% layout equivalent)"
+    ]
+  },
+  "accountRecovery": {
+    "status": "PASS",
+    "checks": [
+      "Learner password visibility toggles preserve input and expose accessible state",
+      "Signup rejects a predictable password despite digits and punctuation",
+      "student legacy password is upgraded before sign-in and retains its original role",
+      "admin legacy password is upgraded before sign-in and retains its original role",
+      "Administrator forgot-password sends a captured EmailJS message and accepts its one-hour code",
+      "A learner reset link overrides a saved session, clears its URL token and permits the new password",
+      "Home shows the requested copyright, developer attribution and WhatsApp helpline without mobile overflow"
+    ]
+  }
+}
