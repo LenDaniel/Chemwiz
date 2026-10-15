@@ -1,0 +1,13 @@
+# Optional local Worker emulator secrets. Deployed Worker secrets are set privately.
+# Do not put real values in this example file or include .dev.vars in release ZIPs.
+MONGODB_URI=
+JWT_SECRET=
+OPENAI_API_KEY=
+
+# EmailJS recovery: backend-only keys. Never use a VITE_ prefix.
+EMAILJS_SERVICE_ID=
+EMAILJS_RESET_TEMPLATE_ID=
+EMAILJS_PUBLIC_KEY=
+EMAILJS_PRIVATE_KEY=
+# Optional separate notification template, containing no reset token/password.
+EMAILJS_PASSWORD_CHANGED_TEMPLATE_ID=
