@@ -3,3 +3,5 @@
 
 /* Preserve contrast of the approved dark wordmark on the home background. */
 .home-logo { background:#f4f9fd; border:1px solid #cae6f8; border-radius:12px; padding:9px 12px; }
+
+.home-footer{overflow-wrap:anywhere;line-height:1.8}.home-footer a{display:inline-block;padding:8px;color:#c2f5e6;text-underline-offset:3px}.home-footer a:focus-visible{outline:2px solid currentColor;outline-offset:3px}
