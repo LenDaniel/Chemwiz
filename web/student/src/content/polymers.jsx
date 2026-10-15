@@ -1,0 +1,650 @@
+// Polymerisation — OC-20 — full content
+// ZIMSEC Form 5/6 Chemistry, Section 6.3 — Topic 20
+// Syllabus coverage:
+//   Addition polymerisation (alkenes); characteristics of addition polymers
+//   Condensation polymerisation; polyesters and polyamides
+//   Predicting polymerisation type from monomer; deducing repeat units
+//   Identifying monomers from a polymer fragment
+//   Uses of polymers and environmental implications
+
+/* ============================================================
+   Diagram specs (Phase K3 migration)
+   ============================================================ */
+
+const polymerOverviewSpec = {
+  title: 'POLYMER · MONOMER · REPEAT UNIT',
+  blocks: [
+    { type: 'panel', title: 'POLYMER', body: [
+      'large Mr macromolecule of many repeats',
+    ], color: 'primary' },
+    { type: 'panel', title: 'MONOMER', body: [
+      'small molecule that joins to form polymer',
+    ], color: 'accent' },
+    { type: 'panel', title: 'REPEAT UNIT', body: [
+      'smallest pattern, in brackets [...]ₙ',
+    ], color: 'pink' },
+    { type: 'equation', text: 'n × M  →  –[ R ]–ₙ', big: true },
+    { type: 'note', text: 'n monomer units → polymer chain' },
+    { type: 'note', text: 'typical n = 10² to 10⁵; Mr from 10³ to > 10⁶' },
+  ],
+};
+
+const additionMechSpec = {
+  title: 'ADDITION POLYMERISATION (FREE RADICAL)',
+  blocks: [
+    { type: 'panel', title: 'INITIATION', body: [
+      'R–O–O–R → 2 R–O•   (peroxide initiator, heat)',
+    ], hint: 'generate radicals to start chain', color: 'primary' },
+    { type: 'panel', title: 'PROPAGATION', body: [
+      'R–O• + CH₂=CH₂ → R–O–CH₂–CH₂•',
+    ], hint: 'radical adds to C=C; new radical on terminal C; repeats', color: 'accent' },
+    { type: 'panel', title: 'TERMINATION', body: [
+      "R'–CH₂• + •CH₂–R'' → R'–CH₂–CH₂–R''",
+    ], hint: 'two radicals combine; chain stops', color: 'pink' },
+    { type: 'equation', text: 'NET:  n CH₂=CH₂ → –[CH₂–CH₂]–ₙ', big: true },
+    { type: 'note', text: 'C=C → 2 × C–C bonds; no atoms lost' },
+  ],
+};
+
+const commonAdditionSpec = {
+  title: 'COMMON ADDITION POLYMERS',
+  blocks: [
+    { type: 'table',
+      headers: ['monomer', 'polymer', 'repeat', 'uses'],
+      colWidths: [85, 65, 80, 60],
+      rows: [
+        ['CH₂=CH₂',          'polythene',    '[CH₂CH₂]',          'bags, film'],
+        ['CH₂=CHCH₃',        'polypropene',  '[CH₂CH(CH₃)]',      'fibres, rope'],
+        ['CH₂=CHCl',         'PVC',          '[CH₂CHCl]',         'pipes, floor'],
+        ['CH₂=CHC₆H₅',       'polystyrene',  '[CH₂CH(C₆H₅)]',     'packaging'],
+        ['CF₂=CF₂',          'PTFE/Teflon',  '[CF₂CF₂]',          'non-stick'],
+        ['CH₂=C(CH₃)CO₂CH₃', 'perspex',      '[CH₂C(CH₃)…]',      'panels'],
+      ],
+    },
+    { type: 'note', text: 'ALL formed from C=C; backbone is saturated –C–C–C–', emphasis: true },
+  ],
+};
+
+const condensationOverviewSpec = {
+  title: 'CONDENSATION POLYMERISATION',
+  blocks: [
+    { type: 'panel', title: 'CONCEPT', body: [
+      'Two functional groups react;',
+      'SMALL MOLECULE (e.g. H₂O) released',
+    ], color: 'primary' },
+    { type: 'panel', title: 'POLYESTER (ester linkage)', body: [
+      'n diol + n diacid → polyester + 2n H₂O',
+      'repeat: –[O–R–O–CO–R\'–CO]–ₙ',
+    ], hint: 'each new bond is –CO–O– (ester); one H₂O lost per link', color: 'accent' },
+    { type: 'panel', title: 'POLYAMIDE (amide linkage)', body: [
+      'n diamine + n diacid → polyamide + 2n H₂O',
+      'repeat: –[NH–R–NH–CO–R\'–CO]–ₙ',
+    ], hint: 'each new bond is –CO–NH– (amide); one H₂O lost per link', color: 'pink' },
+    { type: 'note', text: 'Bifunctional monomers required (one group at each end)' },
+    { type: 'note', text: 'Repeat-unit equations omit chain end groups.' },
+  ],
+};
+
+const polyesterSpec = {
+  title: 'TERYLENE / PET — A POLYESTER',
+  blocks: [
+    { type: 'panel', title: 'MONOMERS', body: [
+      'HO–CH₂CH₂–OH  +  HOOC–C₆H₄–COOH',
+    ], hint: 'ethane-1,2-diol + benzene-1,4-dicarboxylic acid', color: 'primary' },
+    { type: 'arrow', text: '↓  condensation, –H₂O at each new ester bond' },
+    { type: 'panel', title: 'POLYMER (REPEAT UNIT)', body: [
+      '–[O–CH₂CH₂–O–CO–C₆H₄–CO]–ₙ',
+    ], color: 'accent' },
+    { type: 'note', text: 'strong fibres · transparent · low O₂ permeability', emphasis: true },
+    { type: 'note', text: 'Trade names: Terylene (fibres), Dacron (textile), Mylar (film)' },
+    { type: 'note', text: 'PET = bottles for soft drinks · used as film, fibre, container' },
+    { type: 'note', text: 'alkaline hydrolysis → diol + diacid salt' },
+    { type: 'note', text: 'acidify the salt to recover the diacid' },
+  ],
+};
+
+const polyamideSpec = {
+  title: 'POLYAMIDES — NYLON FAMILY',
+  blocks: [
+    { type: 'panel', title: 'NYLON-6,6', body: [
+      'Monomers: H₂N–(CH₂)₆–NH₂ + HOOC–(CH₂)₄–COOH',
+      '(hexane-1,6-diamine + hexanedioic acid)',
+      'repeat: –[NH–(CH₂)₆–NH–CO–(CH₂)₄–CO]–ₙ',
+    ], hint: '"6,6" = each monomer has 6 carbons', color: 'primary' },
+    { type: 'panel', title: 'NYLON-6 (one monomer)', body: [
+      'From caprolactam (7-membered ring: 6 C + 1 N)',
+      'repeat: –[NH–(CH₂)₅–CO]–ₙ',
+    ], color: 'accent' },
+    { type: 'panel', title: 'KEVLAR (aromatic polyamide, "aramid")', body: [
+      '–[NH–C₆H₄–NH–CO–C₆H₄–CO]–ₙ',
+    ], hint: 'ring-stacking + interchain H-bonds → bulletproof vests', color: 'pink' },
+    { type: 'note', text: 'Uses: textiles, ropes, gears, surgical sutures, body armour' },
+  ],
+};
+
+const repeatUnitSkillSpec = {
+  title: 'FROM MONOMER → REPEAT UNIT',
+  blocks: [
+    { type: 'panel', title: 'ADDITION (alkene → polymer)', body: [
+      '1. Identify the C=C in the monomer',
+      '2. Convert C=C → C–C; OPEN the bond',
+      '3. Wrap in [ ] and add ₙ — done.',
+    ], hint: 'e.g. CH₂=CHCl → –[CH₂–CHCl]–ₙ  (PVC)', color: 'primary' },
+    { type: 'panel', title: "CONDENSATION (X–R–X + Y–R'–Y)", body: [
+      '1. Identify the linkage (ester or amide)',
+      '2. Lose H₂O (or HCl) per new linkage',
+      '3. One pair minus 2 H₂O (or 2 HCl)',
+    ], hint: 'e.g. HOCH₂CH₂OH + HOOC-C₆H₄-COOH → –[O-CH₂CH₂-O-CO-C₆H₄-CO]–ₙ', color: 'accent' },
+    { type: 'note', text: 'Reverse: cut linkages and put back H₂O to recover monomers', emphasis: true },
+  ],
+};
+
+const envIssuesSpec = {
+  title: 'ENVIRONMENTAL ISSUES',
+  blocks: [
+    { type: 'panel', title: '1. NON-BIODEGRADABILITY', body: [
+      'Saturated C-C backbone resists microbial attack',
+      'centuries-long persistence',
+    ], hint: 'microplastics in ocean food chain', color: 'pink' },
+    { type: 'panel', title: '2. BURNING RELEASES TOXIC GASES', body: [
+      'PVC → HCl(g) + dioxins',
+      'polyurethane → HCN(g)',
+    ], hint: 'incineration must control T and treat off-gas', color: 'primary' },
+    { type: 'panel', title: '3. RECYCLING POSSIBLE BUT LIMITED', body: [
+      'addition: melt and reform',
+      'condensation: hydrolyse to monomers',
+    ], hint: 'contamination & mixed-resin streams limit yield', color: 'accent' },
+    { type: 'panel', title: 'GREENER ALTERNATIVES', body: [
+      'PLA (polylactic acid) from corn',
+      'biodegrades to CO₂ + H₂O',
+    ], hint: 'biopolymers + designed-for-recycling chemistry', color: 'green' },
+  ],
+};
+
+/* ============================================================
+   Chapters
+   ============================================================ */
+
+const chapters = [
+  { id: 'pl1', title: 'What is a Polymer?', minutes: 6, blocks: [
+    { type: 'p', text: 'A polymer is a very large molecule made by joining together many small molecules called monomers. The structure repeats over and over, often hundreds or thousands of times. Polymers are responsible for an enormous range of materials in our daily lives — from plastic bags and clothing fibres to proteins, DNA, and rubber. In this topic we focus on the two main classes of synthetic polymer chemistry: addition polymerisation and condensation polymerisation.' },
+    { type: 'd', spec: polymerOverviewSpec, caption: 'Three terms to internalise: polymer, monomer, repeat unit' },
+    { type: 'h', text: 'Three definitions to keep straight' },
+    { type: 'ul', items: [
+      'Polymer: a large macromolecule (Mr ≈ 10⁴ to 10⁶) built from many small repeat units. e.g. polythene, PVC, nylon.',
+      'Monomer: the small molecule that joins together in many copies to form the polymer. e.g. ethene is the monomer for polythene.',
+      'Repeat unit: the smallest section of the polymer that, when repeated, generates the whole chain. Always written in square brackets with subscript n: –[A]ₙ–.',
+      'Degree of polymerisation, n: the number of repeat units in the chain. Typically 10² to 10⁵.',
+    ]},
+    { type: 'h', text: 'Two ways monomers can join' },
+    { type: 'ul', items: [
+      'Addition polymerisation: monomers contain a C=C double bond, which opens to form new C–C single bonds. NO atoms are lost. The polymer has the same empirical formula as the monomer.',
+      'Condensation polymerisation: monomers have TWO functional groups each. Each new bond loses a small molecule (H₂O or HCl). The polymer\'s empirical formula DIFFERS from the monomer\'s.',
+      'Examples we will meet: polythene (addition, from ethene), PVC (addition, from chloroethene), Terylene/PET (condensation polyester), nylon (condensation polyamide), Kevlar (aromatic condensation polyamide).',
+    ]},
+    { type: 'h', text: 'A note on biological polymers' },
+    { type: 'ul', items: [
+      'Proteins are condensation polymers of amino acids — peptide bonds release H₂O at each linkage. Encountered in OC-19.',
+      'Polysaccharides (starch, cellulose) are condensation polymers of sugars — glycosidic bonds release H₂O at each linkage.',
+      'DNA and RNA are condensation polymers of nucleotides — phosphodiester bonds release H₂O at each linkage.',
+      'The same chemistry rules in nature and in factories.',
+    ]},
+    { type: 'callout', kind: 'definition', title: 'Repeat unit', body: 'The smallest section that, repeated n times, gives the polymer chain. Always written in square brackets and subscripted n: –[CH₂CH₂]–ₙ for polythene. Distinct from the monomer (CH₂=CH₂) — the repeat unit has the C=C opened.' },
+    { type: 'takeaway', items: [
+      'Polymer = macromolecule of repeated small units.',
+      'Two main mechanisms: addition (C=C → C–C, no loss) vs condensation (loss of H₂O or HCl per linkage).',
+      'Monomer → repeat unit → polymer.',
+      'Biological polymers (proteins, polysaccharides, DNA) all use the same condensation logic.',
+    ]},
+  ]},
+
+  { id: 'pl2', title: 'Addition Polymerisation', minutes: 7, blocks: [
+    { type: 'p', text: 'Addition polymerisation joins alkene monomers head-to-tail to form a long, saturated carbon chain. The C=C double bond opens up; one π-bond breaks, and the electrons end up forming new C–C single bonds to neighbouring monomers. No atoms are lost. Free-radical, cationic, anionic and coordination mechanisms are used industrially; Ziegler–Natta catalysts use coordination polymerisation.' },
+    { type: 'd', spec: additionMechSpec, caption: 'Three stages: initiation, propagation, termination' },
+    { type: 'h', text: 'Free radical mechanism' },
+    { type: 'ul', items: [
+      'Initiation: a peroxide initiator R–O–O–R is heated and breaks homolytically to give two oxy-radicals: R–O–O–R → 2 R–O•.',
+      'Propagation step 1: the radical adds to a C=C, forming a new C–O bond and leaving the unpaired electron on the terminal C: R–O• + CH₂=CH₂ → R–O–CH₂–CH₂•.',
+      'Propagation step 2: this new radical attacks ANOTHER monomer the same way: R–O–CH₂–CH₂• + CH₂=CH₂ → R–O–CH₂–CH₂–CH₂–CH₂•. The radical chain marches along, adding one monomer at a time.',
+      'Termination: two growing chains meet and the unpaired electrons combine: R\'–CH₂• + •CH₂–R\'\' → R\'–CH₂–CH₂–R\'\'. Or the chain abstracts a H from elsewhere (chain-transfer).',
+      'Each propagation step adds 2 carbon atoms to the chain. The repeat unit has 2 C atoms.',
+    ]},
+    { type: 'h', text: 'Conditions and tuning' },
+    { type: 'ul', items: [
+      'Temperature: typically 100–300 °C (high T favours initiation but also termination — there is an optimum).',
+      'Pressure: from a few atmospheres to several thousand atmospheres, depending on the polymer. Polythene: low-density (LDPE) made at very high P with branched chains; high-density (HDPE) made at moderate P with Ziegler–Natta catalyst, giving linear chains.',
+      'Initiator: organic peroxides for free-radical; transition-metal catalysts (Ti, Al) for Ziegler–Natta.',
+      'Chain length depends on the ratio of propagation rate to termination rate. Higher monomer concentration → longer chains.',
+    ]},
+    { type: 'h', text: 'General equation' },
+    { type: 'ul', items: [
+      'For a generic substituted alkene CH₂=CHR: n CH₂=CHR → –[CH₂–CHR]–ₙ.',
+      'For ethene specifically: n CH₂=CH₂ → –[CH₂–CH₂]–ₙ (polythene).',
+      'For propene: n CH₂=CH(CH₃) → –[CH₂–CH(CH₃)]–ₙ (polypropene).',
+      'For chloroethene: n CH₂=CHCl → –[CH₂–CHCl]–ₙ (PVC).',
+      'For tetrafluoroethene: n CF₂=CF₂ → –[CF₂–CF₂]–ₙ (PTFE/Teflon).',
+    ]},
+    { type: 'callout', kind: 'key', title: 'No atoms lost', body: 'In addition polymerisation, the empirical formula of the repeat unit equals the molecular formula of the monomer. Mr of the polymer = n × (Mr of monomer). This is the chemical signature of addition polymerisation. Use it to recognise it in exam questions.' },
+    { type: 'takeaway', items: [
+      'Addition polymerisation: alkene C=C opens; no atoms lost.',
+      'Free radical mechanism: initiation (peroxide), propagation (radical adds to C=C), termination (radicals combine).',
+      'Repeat unit has 2 C atoms (the two C of the C=C).',
+      'Pressure, temperature, and catalyst control chain length and branching.',
+    ]},
+  ]},
+
+  { id: 'pl3', title: 'Common Addition Polymers', minutes: 7, blocks: [
+    { type: 'p', text: 'A handful of addition polymers dominate plastic production worldwide. Their properties differ because of one feature only — the substituent on the alkene monomer. Different substituents change packing, intermolecular forces, and crystallinity, giving anything from soft, transparent film to hard, rigid pipe.' },
+    { type: 'd', spec: commonAdditionSpec, caption: 'Five major addition polymers and their uses' },
+    { type: 'h', text: 'Polythene (polyethene)' },
+    { type: 'ul', items: [
+      'Monomer: ethene CH₂=CH₂. Repeat: –[CH₂CH₂]–ₙ.',
+      'Two main grades: low-density polythene (LDPE) and high-density polythene (HDPE).',
+      'LDPE: made at very high pressure (1000–3000 atm) with peroxide initiator. The chain has many short branches → cannot pack tightly → low density, flexible, low m.p. (~110 °C). Used in: plastic bags, cling film, squeezy bottles.',
+      'HDPE: made at moderate P with Ziegler–Natta catalyst. Chains are linear → pack tightly → higher density, stronger, higher m.p. (~135 °C). Used in: milk bottles, gas pipes, ropes.',
+      'Both are chemically inert (saturated C-C and C-H bonds, no functional groups). Both float on water. Both are very poor electrical conductors.',
+    ]},
+    { type: 'h', text: 'PVC (poly(chloroethene))' },
+    { type: 'ul', items: [
+      'Monomer: chloroethene CH₂=CHCl. Repeat: –[CH₂CHCl]–ₙ.',
+      'Polar C-Cl bonds give relatively strong dipole-dipole interactions between chains → harder, stiffer than polythene.',
+      'Pure (rigid) PVC: brittle. Used in pipes, gutters, window frames, vinyl flooring.',
+      'Plasticised PVC: phthalate plasticisers added to make the polymer flexible. Used in cable insulation, "leatherette" upholstery, blood-bag tubing, garden hoses.',
+      'Issue: burning PVC releases HCl(g) and small amounts of dioxins. Recycling difficult because of plasticiser contamination.',
+    ]},
+    { type: 'h', text: 'Polypropene (polypropylene, PP)' },
+    { type: 'ul', items: [
+      'Monomer: propene CH₂=CH(CH₃). Repeat: –[CH₂CH(CH₃)]–ₙ.',
+      'Methyl group gives stereochemistry: isotactic (all CH₃ on the same side, regular packing, high crystallinity, strong) vs atactic (random CH₃ orientation, soft, useless commercially) vs syndiotactic (alternating).',
+      'Industrial PP is mostly isotactic, made with Ziegler–Natta catalysts.',
+      'Uses: ropes, fibres (carpets), containers, packaging crates, surgical instruments.',
+      'Higher m.p. than HDPE (~165 °C); good chemical resistance.',
+    ]},
+    { type: 'h', text: 'Polystyrene' },
+    { type: 'ul', items: [
+      'Monomer: phenylethene (styrene) CH₂=CH(C₆H₅). Repeat: –[CH₂CH(C₆H₅)]–ₙ.',
+      'Bulky phenyl groups disrupt packing → glassy, transparent material.',
+      'Solid (atactic) polystyrene: disposable cutlery, plastic models, CD cases.',
+      'Expanded polystyrene (foam): blowing agent injected during polymerisation creates closed-cell foam — light, insulating. Used in packaging, takeaway containers, building insulation.',
+      'Brittle and burns very easily — banned in many countries for food packaging.',
+    ]},
+    { type: 'h', text: 'PTFE (Teflon)' },
+    { type: 'ul', items: [
+      'Monomer: tetrafluoroethene CF₂=CF₂. Repeat: –[CF₂CF₂]–ₙ.',
+      'C-F bonds are very strong (484 kJ/mol). The fluorine atoms also coat the chain, making it extremely non-polar and unreactive.',
+      'Properties: chemically inert (resists acids, alkalis, organic solvents), low coefficient of friction (slippery surface), high m.p. (327 °C), good electrical insulator.',
+      'Uses: non-stick pans, plumbers\' tape, gaskets in chemical plants, insulation for high-frequency cables.',
+      'Manufacture: high pressure radical polymerisation in water emulsion.',
+    ]},
+    { type: 'h', text: 'Perspex (PMMA)' },
+    { type: 'ul', items: [
+      'Monomer: methyl 2-methylpropenoate CH₂=C(CH₃)CO₂CH₃. Repeat: –[CH₂C(CH₃)(CO₂CH₃)]–ₙ.',
+      'Hard, transparent, weather-resistant — often called "acrylic glass" or "Plexiglas".',
+      'Uses: aircraft canopies, signs, dental fillings, contact lenses, optical fibres.',
+      'Note that the substituent is a -CO₂CH₃ ester group, but the polymer is still ADDITION (the C=C of the monomer is what polymerises).',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Pattern', body: 'For any monomer of the form CH₂=CHX (or CH₂=CXY), the repeat unit is –[CH₂CHX]– (or –[CH₂CXY]–). The C=C opens; the substituents stay where they were. Memorise the pattern, not the individual examples — you can derive any polymer from its monomer this way.' },
+    { type: 'takeaway', items: [
+      'All addition polymers come from C=C monomers; backbone is saturated.',
+      'Side group → properties: polythene (none, soft) → PP (CH₃, stronger) → PVC (Cl, stiff) → polystyrene (C₆H₅, glassy) → PTFE (F, inert).',
+      'LDPE vs HDPE: branching changes density, strength, m.p.',
+      'Common uses are exam-staples — learn at least three.',
+    ]},
+  ]},
+
+  { id: 'pl4', title: 'Condensation Polymerisation', minutes: 7, blocks: [
+    { type: 'p', text: 'Condensation polymerisation joins monomers by forming a new bond AND releasing a small molecule (H₂O or HCl) at each step. Each monomer must have TWO functional groups — one at each end — so that it can react on both sides and become part of a long chain. The two main classes are polyesters (the new bond is an ester, –CO–O–) and polyamides (the new bond is an amide, –CO–NH–).' },
+    { type: 'd', spec: condensationOverviewSpec, caption: 'Polyesters and polyamides — same logic, different linkage' },
+    { type: 'h', text: 'The key requirement: bifunctional monomers' },
+    { type: 'ul', items: [
+      'Each monomer must have TWO reactive groups, one at each end. e.g. HOOC–R–COOH (dicarboxylic acid), HO–R–OH (diol), H₂N–R–NH₂ (diamine), HOOC–R–NH₂ (a single bifunctional monomer with both groups).',
+      'If one of the monomers had only ONE functional group, it could only react once, terminating the chain — so the polymer would never grow.',
+      'Two-monomer schemes (the most common): (a) diol + diacid → polyester; (b) diamine + diacid → polyamide.',
+      'One-monomer schemes: a single molecule with one acid and one amine (or acid and alcohol) — e.g. an amino acid → polypeptide; lactic acid → PLA.',
+    ]},
+    { type: 'h', text: 'Why H₂O is lost' },
+    { type: 'ul', items: [
+      'When –COOH reacts with –OH, the –OH of the acid combines with the H of the alcohol to leave as H₂O. The new bond is –CO–O– (an ester linkage). Same as ester formation in OC-18.',
+      'When –COOH reacts with –NH₂, the –OH of the acid combines with one of the H atoms on the amine to leave as H₂O. The new bond is –CO–NH– (an amide linkage). Same chemistry as amide formation in OC-19.',
+      'Each new linkage = one H₂O released. For a polymer of n monomers: (n−1) bonds = (n−1) H₂O released.',
+      'Industrially the H₂O has to be removed continuously (high temperature, vacuum) — by Le Chatelier, removing the by-product drives the equilibrium forwards.',
+    ]},
+    { type: 'h', text: 'Acid chloride alternative' },
+    { type: 'ul', items: [
+      'In place of a dicarboxylic acid, an industrial process can use the di-acyl chloride (e.g. ClOC–R–COCl). The leaving group is then HCl(g), not H₂O.',
+      'Advantage: the reaction is much faster, irreversible, and works at lower temperatures. Used for high-melting polymers like Kevlar.',
+      'Disadvantage: acyl chlorides are expensive and corrosive (HCl by-product needs scrubbing).',
+    ]},
+    { type: 'h', text: 'Comparison with addition polymerisation' },
+    { type: 'ul', items: [
+      'Addition: monomer has C=C; no atoms lost; backbone is saturated C–C; mechanism is chain-growth via radicals/ions.',
+      'Condensation: monomer has –COOH/–OH/–NH₂; H₂O (or HCl) lost per linkage; backbone contains heteroatoms (O or N) at every linkage; mechanism is step-growth.',
+      'Step-growth has a useful consequence: the polymer chain length grows slowly, and average Mr only becomes high near the end of the reaction (~99% conversion needed for Mr ~10 000).',
+    ]},
+    { type: 'callout', kind: 'definition', title: 'Condensation polymerisation', body: 'A polymerisation in which a small molecule (most commonly H₂O) is eliminated each time two monomers join. Always involves bifunctional monomers carrying –COOH, –OH, –NH₂ or related groups.' },
+    { type: 'takeaway', items: [
+      'Condensation: bifunctional monomers + small-molecule loss per linkage.',
+      'Polyester: diol + diacid (or diacyl chloride) → –CO–O– linkages.',
+      'Polyamide: diamine + diacid (or diacyl chloride) → –CO–NH– linkages.',
+      'Lose 1 H₂O (or 1 HCl) per linkage formed.',
+    ]},
+  ]},
+
+  { id: 'pl5', title: 'Polyesters', minutes: 6, blocks: [
+    { type: 'p', text: 'A polyester is a polymer joined by repeated ester linkages (–CO–O–). The most important polyester by volume is polyethylene terephthalate, PET — the same plastic that bottles soft drinks, Terylene clothing fibres, and Mylar film. Both monomers are made on a vast industrial scale from oil refining intermediates.' },
+    { type: 'd', spec: polyesterSpec, caption: 'Terylene/PET — the textbook polyester' },
+    { type: 'h', text: 'Terylene / PET — structure' },
+    { type: 'ul', items: [
+      'Monomer 1: ethane-1,2-diol HOCH₂CH₂OH (also called ethylene glycol). A diol — two –OH groups.',
+      'Monomer 2: benzene-1,4-dicarboxylic acid HOOC–C₆H₄–COOH (also called terephthalic acid). A diacid — two –COOH groups, one at each para position of a benzene ring.',
+      'Equation: n HOCH₂CH₂OH + n HOOC–C₆H₄–COOH → –[O–CH₂CH₂–O–CO–C₆H₄–CO]–ₙ + 2n H₂O.',
+      'Repeat unit: –[O–CH₂CH₂–O–CO–C₆H₄–CO]–ₙ. Two ester linkages per repeat (one on each side of the benzene ring), made by losing two H₂O molecules per repeat.',
+      'Conditions: ~280 °C with a catalyst (e.g. antimony(III) oxide); water removed continuously by vacuum to drive equilibrium forwards.',
+    ]},
+    { type: 'h', text: 'Forms and uses of PET' },
+    { type: 'ul', items: [
+      'As a fibre: Terylene. Mixed with cotton (e.g. polycotton) — strong, wrinkle-resistant, easy to wash. Major textile fibre.',
+      'As film: Mylar. Used for magnetic tape, food packaging, balloons, archival document protection.',
+      'As bottles: PET. Stretch-blow moulded; transparent, lightweight, low O₂ permeability — ideal for fizzy drinks. Recyclable: marked with the "1" recycling symbol.',
+      'As engineering plastic: glass-reinforced PET for car parts, electrical components.',
+    ]},
+    { type: 'h', text: 'Hydrolysis: recycling and biodegradation' },
+    { type: 'ul', items: [
+      'Acid-catalysed hydrolysis cleaves the ester linkages to give the diol and diacid. Alkaline hydrolysis gives the diol and the dicarboxylate salt; acidify the salt to recover the diacid. These recovered monomers can be used again in chemical recycling. Ignoring end groups, acid hydrolysis is represented by: –[O–CH₂CH₂–O–CO–C₆H₄–CO]–ₙ + 2n H₂O → n HOCH₂CH₂OH + n HOOC–C₆H₄–COOH.',
+      'In practice, mechanical recycling (melt and reform) is more common because it is cheaper. Chemical recycling is reserved for contaminated streams.',
+      'Slow biodegradation: the ester linkages CAN be hydrolysed by some bacterial enzymes (PETase, discovered 2016), but the rate is slow at ambient temperatures.',
+    ]},
+    { type: 'h', text: 'Polylactic acid (PLA) — a single-monomer polyester' },
+    { type: 'ul', items: [
+      'Lactic acid CH₃CH(OH)COOH has BOTH –OH and –COOH on the same molecule. Two molecules can condense head-to-tail.',
+      'Equation: n CH₃CH(OH)COOH → –[O–CH(CH₃)–CO]–ₙ + n H₂O.',
+      'PLA is biodegradable: enzymes in compost facilities hydrolyse the ester linkages back to lactic acid (which is metabolised by microbes).',
+      'Made from renewable corn starch, fermented to lactic acid. Uses: bioplastics, 3D printing filament, surgical sutures, food packaging.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Spotting a polyester', body: 'In a polymer chain, count the linkages. If they are –CO–O–C– (carbonyl carbon then oxygen then carbon), it is a polyester. The polymer can be hydrolysed back to a diol + diacid (or one bifunctional monomer with both groups).' },
+    { type: 'takeaway', items: [
+      'PET = ethane-1,2-diol + benzene-1,4-dicarboxylic acid; ester linkage; loses H₂O.',
+      'Brand names: Terylene (fibre), Dacron, Mylar (film), PET (bottles).',
+      'Recyclable by chemical hydrolysis or by melt-reform.',
+      'PLA: a one-monomer biodegradable polyester from lactic acid.',
+    ]},
+  ]},
+
+  { id: 'pl6', title: 'Polyamides', minutes: 7, blocks: [
+    { type: 'p', text: 'A polyamide is a polymer joined by repeated amide linkages (–CO–NH–). The amide bond is exactly the same chemistry as the peptide bond in proteins — only the monomers differ. Synthetic polyamides include the nylons (used for fabrics, ropes, gears) and Kevlar (aromatic polyamide, used for body armour). All are valuable for high tensile strength and good wear resistance.' },
+    { type: 'd', spec: polyamideSpec, caption: 'Three industrially important polyamides' },
+    { type: 'h', text: 'Nylon-6,6' },
+    { type: 'ul', items: [
+      'Monomer 1: hexane-1,6-diamine H₂N–(CH₂)₆–NH₂ (a diamine).',
+      'Monomer 2: hexanedioic acid HOOC–(CH₂)₄–COOH (a diacid; also called adipic acid). Note: 4 carbons in the chain + 2 from the COOH groups = 6 total.',
+      'Equation: n H₂N–(CH₂)₆–NH₂ + n HOOC–(CH₂)₄–COOH → –[NH–(CH₂)₆–NH–CO–(CH₂)₄–CO]–ₙ + 2n H₂O.',
+      'Why "6,6"? Each monomer has 6 carbon atoms. Numbers count C atoms in each starting material.',
+      'Industrial process: melt-mix at ~270 °C, water removed continuously. Often the diacid chloride is used instead of the acid for faster reaction.',
+      'Properties: strong tensile fibres, abrasion-resistant, m.p. ~265 °C.',
+      'Uses: textiles (stockings, parachutes, ropes, carpets), engineering parts (gears, bearings — strong yet self-lubricating), surgical sutures.',
+    ]},
+    { type: 'h', text: 'Nylon-6 — one monomer' },
+    { type: 'ul', items: [
+      'Made from a single monomer: caprolactam, a 7-membered cyclic amide. The ring has six carbon atoms and one nitrogen atom; the carbonyl carbon is one of the six carbons.',
+      'In ring-opening polymerisation, the cyclic amide ring opens and monomer units join into a continuous chain: ...CO–NH–(CH₂)₅–CO–NH–(CH₂)₅–CO–... . No small molecule is eliminated when caprolactam undergoes ring-opening polymerisation. Nylon-6 can also be made by condensation of 6-aminohexanoic acid, which does eliminate water.',
+      'Repeat unit: –[NH–(CH₂)₅–CO]–ₙ. Six carbon atoms in the repeat (5 in the chain + 1 from C=O). Hence "Nylon-6".',
+      'Properties similar to Nylon-6,6 but slightly lower m.p. and softer feel — preferred for delicate textiles.',
+    ]},
+    { type: 'h', text: 'Kevlar — aromatic polyamide' },
+    { type: 'ul', items: [
+      'Monomers: benzene-1,4-diamine H₂N–C₆H₄–NH₂ and benzene-1,4-dicarbonyl chloride ClOC–C₆H₄–COCl.',
+      'Repeat unit: –[NH–C₆H₄–NH–CO–C₆H₄–CO]–ₙ.',
+      'Both rings are para-substituted, so the chain is RIGID and almost straight. The chains pack into sheets, with extensive H-bonding between –C=O···H–N– on neighbouring chains.',
+      'Properties: very high tensile strength (5× steel by weight), high m.p. (~500 °C), low extensibility — extreme rigidity and toughness.',
+      'Uses: bulletproof vests, helmets, fire-resistant clothing, motorcycle brake-cable cores, optical fibre cables.',
+    ]},
+    { type: 'h', text: 'Hydrolysis of polyamides' },
+    { type: 'ul', items: [
+      'Like proteins (which are polyamides), nylons can be hydrolysed back to monomers.',
+      'Acid hydrolysis: 6 M HCl, reflux for many hours → diamine (as ammonium salt) + diacid. Same conditions as for protein hydrolysis (OC-19, chapter 11).',
+      'Base hydrolysis: NaOH, reflux → diamine + carboxylate salt of the diacid.',
+      'Resistance to hydrolysis: amide bonds are hard to break (stronger than ester bonds because N is a worse leaving group than O). Nylons last in clothing and ropes for years; Kevlar resists chemical attack from most acids/bases under normal conditions.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Spotting a polyamide', body: 'Look for –CO–NH– linkages along the chain. Count carbons in each monomer to deduce the nylon name (Nylon-6,6 = two C₆ monomers; Nylon-6 = one C₆ ring monomer).' },
+    { type: 'takeaway', items: [
+      'Polyamide linkage: –CO–NH–. Same as the peptide bond.',
+      'Nylon-6,6: hexane-1,6-diamine + hexanedioic acid. Strong, high m.p.',
+      'Nylon-6: from caprolactam (single monomer, ring-opening).',
+      'Kevlar: aromatic polyamide, rigid, bulletproof.',
+      'Hydrolysed by acid or base (slow); nylons can be recycled chemically.',
+    ]},
+  ]},
+
+  { id: 'pl7', title: 'Identifying Monomers & Repeat Units', minutes: 7, blocks: [
+    { type: 'p', text: 'Two skills the exam tests routinely: (1) given the monomer(s), draw the repeat unit and write the equation; (2) given a section of polymer, deduce the monomer(s). The rules for each are simple and worth practising. The trick to (2) is recognising the linkage and "putting back" what was lost — a C=C for addition polymers, an H₂O for condensation.' },
+    { type: 'd', spec: repeatUnitSkillSpec, caption: 'Reverse the polymerisation: cut linkages, restore lost atoms' },
+    { type: 'h', text: 'Forward direction — monomer → repeat unit' },
+    { type: 'ul', items: [
+      'For an addition (alkene) monomer: identify the C=C, change it to C–C, wrap in [ ]ₙ. The substituents do not move. Example: CH₂=CHCN → –[CH₂–CH(CN)]–ₙ (poly(propenenitrile), used in fibres).',
+      'For a condensation pair (e.g. diol + diacid): pair them up, drop H₂O at each new bond. Ignoring end groups: n HOCH₂CH₂OH + n HOOC–CH₂–COOH → –[O–CH₂CH₂–O–CO–CH₂–CO]–ₙ + 2n H₂O.',
+      'For a single bifunctional condensation monomer (e.g. an amino acid or hydroxyacid): join –NH₂ of one to –COOH of next, drop H₂O. Ignoring end groups, for glycine: n H₂N–CH₂–COOH → –[NH–CH₂–CO]–ₙ + n H₂O.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Counting water: include the chain ends', body: 'Repeat-unit equations omit end groups, so a diol/diacid pair corresponds to two ester linkages and 2 H₂O. For an exact finite open chain made from n diol molecules and n diacid molecules, 2n starting molecules form 2n − 1 new linkages: 2n − 1 H₂O molecules are released. Likewise, n amino-acid molecules form n − 1 links in one open chain. State which convention you are using.' },
+    { type: 'h', text: 'Reverse direction — polymer → monomer(s)' },
+    { type: 'ul', items: [
+      'Step 1: identify the repeat unit. Look for the smallest pattern that repeats along the chain. The repeat unit will contain ALL the atoms of one (or two) original monomer(s).',
+      'Step 2: identify the linkage type. (a) Saturated –C–C–C– backbone with side groups → addition polymer. (b) –CO–O–C– link → polyester. (c) –CO–NH–C– link → polyamide.',
+      'Step 3: cut the linkages and restore lost atoms. (a) For addition: re-introduce a C=C between the same two carbons. (b) For polyester: cut the –CO–O– bond, add H back to the –O– end (making –OH) and add –OH back to the –CO– end (making –COOH). (c) For polyamide: same idea — cut –CO–NH– and add –OH to –CO– (giving –COOH) and add H to –NH (giving –NH₂).',
+      'Step 4: check by writing the polymerisation equation in the forward direction with your proposed monomer(s).',
+    ]},
+    { type: 'h', text: 'Worked example A — addition' },
+    { type: 'ul', items: [
+      'Polymer fragment: –CH₂–CH(CH₃)–CH₂–CH(CH₃)–CH₂–CH(CH₃)–...',
+      'Repeat unit: –[CH₂–CH(CH₃)]–ₙ (the smallest section that repeats).',
+      'Linkage type: saturated C–C; no heteroatoms in backbone → addition polymer.',
+      'Monomer: re-insert a C=C between the two C atoms of the repeat unit: CH₂=CH(CH₃) (propene).',
+      'This is polypropene.',
+    ]},
+    { type: 'h', text: 'Worked example B — polyester' },
+    { type: 'ul', items: [
+      'Polymer fragment: –O–CH₂CH₂CH₂–O–CO–CH₂CH₂–CO–O–CH₂CH₂CH₂–O–CO–CH₂CH₂–CO–...',
+      'Repeat unit: –[O–CH₂CH₂CH₂–O–CO–CH₂CH₂–CO]–.',
+      'Linkage type: –CO–O–C– → polyester.',
+      'Cut the two ester linkages in the repeat unit and restore H₂O at each cut.',
+      'Monomer A: HO–CH₂CH₂CH₂–OH = propane-1,3-diol.',
+      'Monomer B: HOOC–CH₂CH₂–COOH = butanedioic acid (succinic acid).',
+    ]},
+    { type: 'h', text: 'Worked example C — polyamide' },
+    { type: 'ul', items: [
+      'Polymer fragment: –NH–CH₂CH₂–NH–CO–CH₂CH₂CH₂CH₂CH₂CH₂–CO–NH–CH₂CH₂–NH–CO...',
+      'Repeat unit: –[NH–CH₂CH₂–NH–CO–(CH₂)₆–CO]–.',
+      'Linkage type: –CO–NH– → polyamide.',
+      'Cut the two amide linkages and restore H₂O at each cut.',
+      'Monomer A: H₂N–CH₂CH₂–NH₂ = ethane-1,2-diamine.',
+      'Monomer B: HOOC–(CH₂)₆–COOH = octanedioic acid.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Restoring atoms', body: 'When you cut a polyester or polyamide linkage to find monomers, ALWAYS add a –H to the heteroatom side (giving –OH or –NH₂) and –OH to the carbonyl carbon side (giving –COOH). For an acyl-chloride-derived polymer the question may ask you to write –Cl on the C=O side instead.' },
+    { type: 'takeaway', items: [
+      'Forward: open C=C (addition) or drop H₂O (condensation) at each linkage.',
+      'Reverse: re-form C=C (addition) or restore H₂O at each linkage.',
+      'Ester linkage –CO–O–C–: hydrolysis gives a –COOH and an –OH.',
+      'Amide linkage –CO–NH–C–: hydrolysis gives a –COOH and an –NH₂.',
+    ]},
+  ]},
+
+  { id: 'pl8', title: 'Uses and Environmental Issues', minutes: 6, blocks: [
+    { type: 'p', text: 'Synthetic polymers transformed the 20th century: light, cheap, durable, mouldable. The same properties that make plastics so useful — chemical inertness, high melting point, low density — also make them an environmental burden. The chemistry of disposal and recycling closes our look at this topic.' },
+    { type: 'd', spec: envIssuesSpec, caption: 'Three main environmental problems and the alternatives' },
+    { type: 'h', text: 'Why most plastics are non-biodegradable' },
+    { type: 'ul', items: [
+      'Addition polymers (polythene, PVC, polystyrene, PTFE) have a saturated C–C backbone. There are no functional groups for enzymes to attack. Bacteria and fungi have no metabolic pathway evolved for these synthetic materials.',
+      'Decomposition by sunlight (photodegradation) breaks chains slowly into smaller fragments — but the underlying C–C bonds remain. The small fragments are MICROPLASTICS (< 5 mm), now found in oceans, soils, and the human bloodstream.',
+      'Some condensation polymers ARE more easily degraded — PLA (polylactic acid) is biodegradable in industrial composters because the ester linkages are hydrolysed by microbes back to lactic acid. But common condensation polymers (PET, nylon) hydrolyse only slowly at ambient temperature.',
+    ]},
+    { type: 'h', text: 'Disposal options and their drawbacks' },
+    { type: 'ul', items: [
+      'Landfill: cheap, but plastics persist for centuries; toxic plasticisers (e.g. phthalates from PVC) leach into groundwater; increasingly land-limited.',
+      'Incineration: reduces volume, generates electricity; but BURNING PVC releases HCl(g) and dioxins (highly toxic at trace levels); polyurethane releases HCN(g). Modern incinerators have flue-gas treatment but the cost is high.',
+      'Mechanical recycling: melt and reform. Works well for thermoplastic addition polymers (LDPE, HDPE, PP, PET). Quality drops with each recycle (chains shorten, contamination accumulates) — typically only 1–3 recycle cycles before the plastic is "downcycled" to lower-grade products.',
+      'Chemical recycling: hydrolyse condensation polymers back to monomers, then re-polymerise. Works in principle for PET and nylons but is energy-intensive and only commercial for high-purity feedstocks.',
+      'Open dumping: the world\'s commonest practice. Wind-blown plastic ends up in rivers and the ocean (the Great Pacific Garbage Patch contains an estimated 80 000 tonnes of floating plastic).',
+    ]},
+    { type: 'h', text: 'Greener alternatives' },
+    { type: 'ul', items: [
+      'PLA (polylactic acid): made from corn or sugarcane, biodegradable in industrial composts, Mr 50–100 kDa. Used in food packaging, single-use cutlery, 3D printing filament.',
+      'PHA (polyhydroxyalkanoates): bacterial polyesters that are fully biodegradable (even in seawater). Currently expensive but production is scaling up.',
+      'Designed-for-recycling polymers: ester or imine linkages built in deliberately so that the polymer can be cleanly hydrolysed at end of life.',
+      'Bio-based PET: same chemistry as PET but with monomers derived from plant sugars rather than oil. Reduces fossil-carbon footprint but does not solve the persistence problem.',
+      'Reusable systems: deposit-return for glass and PET bottles dramatically reduces waste; refillable consumer packaging is gaining ground.',
+    ]},
+    { type: 'h', text: 'Major use categories — a quick reference' },
+    { type: 'ul', items: [
+      'Packaging (~40% of plastic use): LDPE film, HDPE bottles, PET bottles, polystyrene foam, PP containers. Most is single-use.',
+      'Construction (~20%): PVC pipes, window frames, flooring; polythene damp-proof course.',
+      'Textiles (~15%): polyester (PET), nylon, polypropene fibres, acrylic.',
+      'Consumer goods, electronics, transport (~25% combined): polystyrene, ABS, PMMA (Perspex), PTFE (Teflon).',
+    ]},
+    { type: 'callout', kind: 'key', title: 'The environmental dilemma', body: 'Polymers improve resource use in transport (lighter cars), packaging (less food waste), insulation (lower heating energy) — they often save more carbon than they emit. The problem is end-of-life: persistent waste accumulating in the environment. The solutions are policy (deposit returns, single-use bans) and chemistry (biodegradable polymers, designed-for-recycling).' },
+    { type: 'takeaway', items: [
+      'Addition polymers are non-biodegradable; saturated C-C backbone resists microbes.',
+      'Disposal: landfill (slow), incineration (toxic gases for some), recycling (limited).',
+      'Burning PVC → HCl + dioxins; burning polyurethane → HCN.',
+      'Greener: PLA (compostable polyester from corn), PHA, bio-based PET.',
+      'Plastics often save carbon in use; the challenge is end-of-life waste.',
+    ]},
+  ]},
+];
+
+/* ============================================================
+   Quiz — 26 MCQs
+   ============================================================ */
+const quizzes = [
+  { q: 'A polymer is best defined as:', opts: ['Any large molecule', 'A small molecule that can join others', 'A macromolecule made of many repeating units', 'An ionic compound'], ans: 2, hint: 'Repeat units linked together → polymer.' },
+  { q: 'In addition polymerisation:', opts: ['H₂O is lost at each step', 'C=C opens to form new C–C bonds, no atoms lost', 'HCl is released', 'Two functional groups react'], ans: 1, hint: 'No atoms lost — empirical formula of repeat = monomer.' },
+  { q: 'In condensation polymerisation:', opts: ['No atoms lost', 'C=C opens', 'A small molecule (e.g. H₂O) is released at each linkage', 'Only one type of monomer used'], ans: 2, hint: 'Each new bond loses H₂O or HCl.' },
+  { q: 'Which monomer gives polythene?', opts: ['CH₂=CHCl', 'CH₂=CH₂', 'CH₂=CH(CH₃)', 'CH≡CH'], ans: 1, hint: 'Polythene = polymer of ethene.' },
+  { q: 'The repeat unit of PVC is:', opts: ['–[CH₂CH₂]–', '–[CH₂CHCl]–', '–[CHClCHCl]–', '–[CH₂CCl₂]–'], ans: 1, hint: 'Open the C=C of CH₂=CHCl.' },
+  { q: 'What is the monomer for polypropene?', opts: ['CH₂=CH₂', 'CH₂=CHCl', 'CH₂=CHCH₃', 'CH₃CHO'], ans: 2, hint: 'Repeat unit –[CH₂CH(CH₃)]– → opens back to CH₂=CHCH₃.' },
+  { q: 'PTFE (Teflon) is the polymer of:', opts: ['CH₂=CF₂', 'CHF=CHF', 'CF₂=CF₂', 'CF₃CHF₂'], ans: 2, hint: 'All four positions on the C=C are F.' },
+  { q: 'Which is the radical initiator most often used for addition polymerisation?', opts: ['NaOH', 'AlCl₃', 'Organic peroxide', 'KMnO₄'], ans: 2, hint: 'Heat → R-O-O-R splits into 2 R-O• radicals.' },
+  { q: 'In free-radical polymerisation, the chain-growing step is:', opts: ['Initiation', 'Propagation', 'Termination', 'Hydrolysis'], ans: 1, hint: 'Radical adds to C=C, new radical on terminal C, repeats.' },
+  { q: 'A polyester is formed by reacting:', opts: ['Two diols', 'Two diacids', 'A diol + a dicarboxylic acid', 'A diamine + a diol'], ans: 2, hint: 'Acid + alcohol → ester. Both bifunctional → polyester.' },
+  { q: 'A polyamide is formed by reacting:', opts: ['A diol + a diacid', 'A diamine + a diacid (or diacyl chloride)', 'A diol + a diamine', 'Two alkenes'], ans: 1, hint: 'Acid + amine → amide. Both bifunctional → polyamide.' },
+  { q: 'Terylene/PET is made from:', opts: ['Ethanol + ethanoic acid', 'Ethane-1,2-diol + benzene-1,4-dicarboxylic acid', 'Glycerol + fatty acids', 'Phenol + methanal'], ans: 1, hint: 'Diol + diacid; benzene ring gives strength.' },
+  { q: 'When n diol molecules and n diacid molecules join into ONE open polyester chain, how many H₂O molecules are released?', opts: ['n', '2n − 1', '2n', 'n²'], ans: 1, hint: 'There are 2n starting molecules. Joining them into one open chain forms 2n − 1 ester links, each releasing one H₂O. The usual 2n repeat-unit equation ignores end groups.' },
+  { q: 'Nylon-6,6 is made from:', opts: ['Caprolactam', 'Hexane-1,6-diamine + hexanedioic acid', 'Glycine + alanine', 'Ethene + nitrogen'], ans: 1, hint: 'The "6,6" refers to 6 C atoms in each of the two monomers.' },
+  { q: 'The repeat unit of Nylon-6,6 is:', opts: ['–[NH-CH₂-CO]–', '–[NH-(CH₂)₆-NH-CO-(CH₂)₄-CO]–', '–[O-CH₂-CO]–', '–[CH₂CH₂]–'], ans: 1, hint: '6-C diamine + 4-C chain in the diacid (the 2 C of COOH count too → 6).' },
+  { q: 'Kevlar gains its strength from:', opts: ['Long branched chains', 'Rigid aromatic chains with extensive H-bonding between strands', 'Oxidation', 'Cross-linking with sulphur'], ans: 1, hint: 'Para-aromatic rings + interchain –CO···HN– H-bonds → near-crystalline sheets.' },
+  { q: 'The repeat unit –[CH₂CHF]– corresponds to which monomer?', opts: ['CH₂=CHF', 'CHF=CHF', 'CHF=CF₂', 'CH₃F'], ans: 0, hint: 'Re-insert the C=C between the same two carbons.' },
+  { q: 'Identify the monomer pair for the polymer –[O–CH₂CH₂–O–CO–(CH₂)₄–CO]–ₙ:', opts: ['Ethanol + ethanoic acid', 'Ethane-1,2-diol + hexanedioic acid', 'Ethane-1,2-diol + butanedioic acid', 'Ethanediamine + butanedioic acid'], ans: 1, hint: 'Cut both –CO–O– links; restore H₂O. Diol = HOCH₂CH₂OH; diacid = HOOC(CH₂)₄COOH (6 C total).' },
+  { q: 'Which polymer is biodegradable?', opts: ['LDPE', 'PVC', 'PLA (polylactic acid)', 'Polystyrene'], ans: 2, hint: 'Ester linkages from lactic acid are hydrolysable in compost.' },
+  { q: 'Why is polythene non-biodegradable?', opts: ['Hydrophobic', 'Saturated C–C backbone with no functional groups for enzymes to attack', 'Too small a Mr', 'Too crystalline'], ans: 1, hint: 'Microbes have no enzymes for the unfunctionalised backbone.' },
+  { q: 'Burning PVC produces:', opts: ['Only CO₂ and H₂O', 'HCl(g) and dioxins', 'NO₂ and SO₂', 'NH₃ only'], ans: 1, hint: 'C-Cl bonds release HCl; partial combustion gives dioxins.' },
+  { q: 'Mechanical recycling works best for:', opts: ['Thermosets', 'Thermoplastic addition polymers (LDPE, HDPE, PP, PET)', 'Vulcanised rubber', 'Carbon fibre composites'], ans: 1, hint: 'Melt and reform — only thermoplastics survive this process.' },
+  { q: 'Which ONE statement about condensation polymerisation is FALSE?', opts: ['It loses a small molecule per linkage', 'It requires bifunctional monomers', 'It involves opening of a C=C', 'It can use diols + diacids OR diamines + diacids'], ans: 2, hint: 'Opening of C=C is ADDITION polymerisation.' },
+  { q: 'Hydrolysis of a polyester gives:', opts: ['Diol + diol', 'Diol + diacid', 'Diacid + diacid', 'Acyl chloride + alcohol'], ans: 1, hint: 'Reverse of polyester formation: each ester linkage adds back H₂O.' },
+  { q: 'Hydrolysis of a polyamide gives:', opts: ['Two diols', 'A diamine + a diacid (or two amino acids)', 'Two acyl chlorides', 'No products'], ans: 1, hint: 'Cut each amide; restore H₂O; recover the two original monomers.' },
+  { q: 'Why do nylons make excellent textiles?', opts: ['Cheap', 'Strong, abrasion-resistant, dye well, drape softly', 'Biodegradable', 'Fire-retardant'], ans: 1, hint: 'High m.p., aligned chains, good H-bonding → strong fibres.' },
+];
+
+/* ============================================================
+   Structured questions — 5
+   ============================================================ */
+const structured = [
+  { title: 'Addition vs condensation', marks: 8, q: 'Polymers can be grouped into addition polymers and condensation polymers.', parts: [
+    { q: '(a) Define addition polymerisation and condensation polymerisation, and state ONE difference between them in terms of the structure of the resulting backbone.', marks: 3, ans: 'Addition polymerisation is a polymerisation in which monomers containing a C=C double bond join together by opening the π-bond, with no other atoms gained or lost. Condensation polymerisation is a polymerisation in which monomers join through reaction of two functional groups (e.g. –COOH + –OH), with elimination of a small molecule (most commonly H₂O) at each linkage. Difference in backbone: addition polymers have a continuous saturated C–C–C–C backbone (only carbon atoms in the main chain); condensation polymers have heteroatoms (O or N) at every linkage along the backbone, breaking up the carbon-only sequence.' },
+    { q: '(b) Write the equation for the polymerisation of (i) propene, and (ii) ethane-1,2-diol with butanedioic acid. State the type of polymerisation in each case.', marks: 4, ans: '(i) Propene: n CH₂=CH(CH₃) → –[CH₂–CH(CH₃)]–ₙ. Type: ADDITION polymerisation. The C=C opens to a C–C single bond; no other atoms gained or lost. (ii) Ethane-1,2-diol + butanedioic acid: n HO–CH₂CH₂–OH + n HOOC–CH₂CH₂–COOH → –[O–CH₂CH₂–O–CO–CH₂CH₂–CO]–ₙ + 2n H₂O. Type: CONDENSATION polymerisation. Each repeat unit is formed by losing TWO H₂O molecules — one for each ester linkage formed.' },
+    { q: '(c) State ONE physical or chemical difference between polythene and a polyester (e.g. Terylene) that follows from the structural difference of their backbones.', marks: 1, ans: 'Polythene has a saturated all-carbon backbone with no polar bonds, so chains interact only through weak London (van der Waals) forces — polythene is soft, low-melting (LDPE m.p. ~110 °C), and chemically inert. Terylene has polar ester groups in the backbone — chains interact through stronger dipole-dipole forces and the rigid benzene rings stiffen the chain — so Terylene fibres are much stronger and have higher m.p. (~260 °C). Equally acceptable: Terylene can be hydrolysed by acid or base to recover monomers, whereas polythene cannot be chemically broken down at ambient conditions.' },
+  ]},
+  { title: 'Identifying monomers from a polymer', marks: 8, q: 'Three polymer fragments are shown.', parts: [
+    { q: '(a) Polymer A: –CH₂CH(CH₃)–CH₂CH(CH₃)–CH₂CH(CH₃)–. Identify the repeat unit, the type of polymerisation and the monomer.', marks: 2, ans: 'Repeat unit: –[CH₂CH(CH₃)]–. The backbone is saturated –C–C–C–C– with no heteroatoms, so the polymer is an ADDITION polymer. To find the monomer, re-introduce the C=C between the two carbons of the repeat unit: CH₂=CH(CH₃) → propene. So this is polypropene.' },
+    { q: '(b) Polymer B: –NH–CH₂CH₂CH₂CH₂CH₂CH₂–NH–CO–CH₂CH₂CH₂CH₂–CO–. Identify the repeat unit, the type of polymerisation and the two monomers.', marks: 3, ans: 'Repeat unit: –[NH–(CH₂)₆–NH–CO–(CH₂)₄–CO]–. The backbone contains –CO–NH– linkages (amide bonds), so the polymer is a CONDENSATION polyamide. To find the monomers, cut each –CO–NH– link and restore a H₂O. The diamine fragment becomes H₂N–(CH₂)₆–NH₂ = hexane-1,6-diamine. The diacid fragment becomes HOOC–(CH₂)₄–COOH = hexanedioic acid (6 C in total: 4 in the chain + 2 from –COOH groups). The polymer is therefore Nylon-6,6.' },
+    { q: '(c) Polymer C: –O–CH(CH₃)–CO–O–CH(CH₃)–CO–O–CH(CH₃)–CO–. Identify the repeat unit, the type of polymerisation, and any single monomer that could give it.', marks: 3, ans: 'Repeat unit: –[O–CH(CH₃)–CO]–. The backbone contains –O–CO– (ester) linkages, so the polymer is a CONDENSATION polyester. To find the monomer, cut a –CO–O– link and restore H₂O. The fragment –O–CH(CH₃)–CO– would split into HO–CH(CH₃)–COOH on either side of the cut, so the monomer is 2-hydroxypropanoic acid (LACTIC ACID). The polymer is polylactic acid (PLA), a biodegradable polyester used in compostable food packaging and 3D printing.' },
+  ]},
+  { title: 'PET — manufacture and properties', marks: 8, q: 'Polyethylene terephthalate (PET) is a polyester used as a fibre (Terylene), film (Mylar) and container (drinks bottles).', parts: [
+    { q: '(a) Draw the displayed structures of the two monomers used to make PET, and write the equation for the polymerisation showing the repeat unit.', marks: 3, ans: 'Monomer 1: ethane-1,2-diol HO–CH₂CH₂–OH (a diol). Monomer 2: benzene-1,4-dicarboxylic acid HOOC–C₆H₄–COOH where C₆H₄ is the para-substituted benzene ring (a dicarboxylic acid; also called terephthalic acid). Equation: n HOCH₂CH₂OH + n HOOC–C₆H₄–COOH → –[O–CH₂CH₂–O–CO–C₆H₄–CO]–ₙ + 2n H₂O.' },
+    { q: '(b) State the conditions for the industrial manufacture of PET and explain why removing water during the reaction is important.', marks: 2, ans: 'Conditions: typically 280 °C with an antimony(III) oxide or titanium-based catalyst, in a vacuum or under a stream of inert gas to remove water as it forms. Removing water is essential because the polymerisation is reversible (acid + alcohol ⇌ ester + water — the same equilibrium as small-molecule esterification). By Le Chatelier\'s principle, removing the water by-product drives the equilibrium towards the polymer. Without continuous water removal, the polymer would never reach a high enough Mr (10⁴ or more) to be useful as a fibre or bottle.' },
+    { q: '(c) PET bottles can be recycled by either (i) mechanical recycling or (ii) chemical recycling. Outline ONE advantage and ONE disadvantage of each method.', marks: 3, ans: 'Mechanical recycling: the used bottles are sorted, washed, shredded, melted and re-formed into new products (often fibres or lower-grade containers). Advantage: cheap and energy-efficient (one melt step). Disadvantage: each cycle shortens the chains slightly and accumulates impurities — the recycled polymer is of lower quality and cannot be used for food contact. Chemical recycling: the polymer is hydrolysed (with acid or base, or by methanolysis) back to the original monomers, which are then re-polymerised. Advantage: the recycled polymer is INDISTINGUISHABLE from virgin material — no quality loss; can be used for food-contact bottles. Disadvantage: requires high-purity feedstock and substantial energy to drive the hydrolysis and the re-polymerisation; currently more expensive than mechanical recycling.' },
+  ]},
+  { title: 'Polyamides and proteins', marks: 8, q: 'Nylon-6,6 and proteins are both polyamides.', parts: [
+    { q: '(a) State the chemical similarity that makes both nylon-6,6 and a protein polyamides. Write the structure of the linkage.', marks: 2, ans: 'Both nylon-6,6 and proteins contain repeated –CO–NH– (amide) linkages along the polymer backbone. The chemistry of the linkage is the same in both: a carbonyl carbon bonded to a nitrogen, with the nitrogen carrying a hydrogen. (In proteins this is called the "peptide bond" but it is just an amide.) The structure: –C(=O)–N(H)– between adjacent residues.' },
+    { q: '(b) Compare and contrast the monomers and the chain structure of nylon-6,6 and a typical protein.', marks: 3, ans: 'Monomers: nylon-6,6 is made from TWO different bifunctional monomers — hexane-1,6-diamine (H₂N(CH₂)₆NH₂) and hexanedioic acid (HOOC(CH₂)₄COOH). Each monomer has the same group at both ends. A protein is made from MANY different α-amino acids, each of which carries BOTH groups (–NH₂ and –COOH) on the same molecule, so each amino acid is a single bifunctional monomer. There are 20 standard amino acids, varying in their R side chains. Chain: nylon-6,6 has a regularly alternating pattern of diamine and diacid units, and the side chains are simply (CH₂)ₙ groups — so nylon chains are quite uniform and align easily for crystalline packing. Protein chains carry a sequence of 20 different R side chains in a specific order encoded by DNA — the side chains determine the folding and function of each protein, which is why proteins exhibit immense structural and functional variety, while nylon does not.' },
+    { q: '(c) State the products of complete acid hydrolysis of nylon-6,6 and of a protein. Give the conditions used.', marks: 3, ans: 'Conditions: heat under reflux with aqueous hydrochloric acid for sufficient time to hydrolyse the amide links. For nylon-6,6, the products in acid are hexanedioic acid HOOC(CH₂)₄COOH and the protonated diamine H₃N⁺(CH₂)₆NH₃⁺ (with chloride counterions). The diamine is hexane-1,6-diamine, H₂N(CH₂)₆NH₂, when liberated with alkali. Excess alkali also converts the diacid to its dicarboxylate salt, so acidification is needed to recover the free diacid from that salt. A protein gives its constituent amino acids, present as protonated amino acids in the acidic solution. They can be separated by chromatography and detected with ninhydrin.' },
+  ]},
+  { title: 'Plastics and the environment', marks: 9, q: 'The widespread use of synthetic polymers has created environmental problems.', parts: [
+    { q: '(a) Explain, in terms of structure, why addition polymers such as polythene and PVC are not readily biodegradable.', marks: 2, ans: 'Addition polymers have a saturated, all-carbon backbone (–C–C–C–C–) made of strong C–C and C–H single bonds. There are no functional groups along the backbone for biological enzymes to attack, and microbes have not evolved metabolic pathways to handle these synthetic substrates. Unlike biological polymers (proteins, polysaccharides), which have hydrolysable amide or glycosidic linkages, the addition-polymer backbone offers no point of attack. Consequently these plastics persist in the environment for decades to centuries, with only slow photodegradation breaking long chains into microplastic fragments.' },
+    { q: '(b) Identify TWO environmental problems associated with the disposal of common plastics, and explain the chemistry behind each.', marks: 3, ans: 'Problem 1: BURNING PVC. Combustion releases hydrogen chloride gas (HCl) from the C–Cl bonds: this contributes to acid rain and is corrosive and toxic to humans. Incomplete combustion in poorly-controlled fires also generates DIOXINS — chlorinated aromatic compounds that are highly toxic at trace levels and bioaccumulate in fatty tissues. Problem 2: PERSISTENT MICROPLASTICS in oceans and soils. Sunlight slowly cleaves the C–C backbone of addition polymers, breaking large pieces into smaller and smaller fragments — but the fragments retain their hydrophobicity. They concentrate persistent organic pollutants on their surfaces and enter food chains; microplastics have now been detected in human blood, breast milk, and lung tissue. The chemical inertness that makes plastics useful is exactly what makes them persistent. (Other accepted answers: leaching of plasticisers from PVC into food/water; release of HCN from burning polyurethane; CO₂ emissions from manufacture; fish ingestion of plastic fragments leading to starvation.)' },
+    { q: '(c) Compare PLA (polylactic acid) with PET as a packaging material in terms of their chemistry and end-of-life options.', marks: 4, ans: 'Chemistry: both are polyesters, but with very different feedstocks and degradability. PET is a polyester of a diol (ethane-1,2-diol) and an aromatic diacid (benzene-1,4-dicarboxylic acid), both petrochemically derived. The aromatic ring stiffens the chain, giving high m.p. (~260 °C) and excellent gas-barrier properties. PLA is a polyester of lactic acid (2-hydroxypropanoic acid), made by fermenting plant sugars (corn, sugarcane). Its m.p. is much lower (~170 °C) and the methyl side chain disrupts crystallinity. End-of-life options: PET is recyclable both mechanically (melt and reform) and chemically (hydrolyse to monomers) but does NOT biodegrade in the natural environment — landfilled PET persists for centuries. PLA is also recyclable mechanically and chemically, but more importantly it BIODEGRADES in industrial composts (60 °C, microbial activity) within a few months — the ester linkages are hydrolysed back to lactic acid, which microbes metabolise to CO₂ and H₂O. Drawbacks of PLA: requires industrial composting (does not break down in normal landfill or seawater); it contaminates PET recycling streams if mixed; gas-barrier properties are poorer than PET (so unsuitable for fizzy drinks). On balance: PLA is favourable for short-life packaging that will reach a compost facility; PET remains better for long-life containers requiring strong barrier and recyclability.' },
+  ]},
+];
+
+/* ============================================================
+   Worked examples — 6
+   ============================================================ */
+const worked = [
+  { title: 'From monomer to repeat unit', diff: 'easy', q: 'Draw the repeat unit of the polymer formed from the monomer CH₂=CHCN (propenenitrile, "acrylonitrile") and write the equation for its polymerisation.', steps: [
+    { label: 'STEP 1', text: 'Identify the C=C in the monomer. CH₂=CHCN has the C=C between the first two carbons; the substituents are H, H on one C and H, CN on the other C.' },
+    { label: 'STEP 2', text: 'Open the C=C — convert it to a single C–C bond. The substituents stay where they were.' },
+    { label: 'STEP 3', text: 'Wrap the resulting fragment in square brackets and add subscript n. Repeat unit: –[CH₂–CH(CN)]–ₙ.' },
+    { label: 'STEP 4', text: 'Write the equation: n CH₂=CHCN → –[CH₂–CH(CN)]–ₙ. No atoms lost — addition polymerisation.' },
+    { label: 'STEP 5', text: 'This is poly(propenenitrile), PAN, used in acrylic fibres ("Acrilan", "Orlon") and as the precursor to carbon fibre.' },
+  ], ans: 'Repeat unit: –[CH₂CH(CN)]–ₙ. Equation: n CH₂=CHCN → –[CH₂CH(CN)]–ₙ.' },
+
+  { title: 'From polymer to monomers (polyester)', diff: 'medium', q: 'A section of polymer X has the repeating structure –O–CH₂CH₂CH₂CH₂–O–CO–CH₂CH₂–CO–. Identify the type of polymerisation and the two monomers.', steps: [
+    { label: 'STEP 1', text: 'Look at the backbone. It contains –CO–O– linkages (the carbonyl carbon then oxygen then carbon). This is an ESTER linkage, so X is a polyester — formed by condensation polymerisation.' },
+    { label: 'STEP 2', text: 'Identify the repeat unit. The pattern –O–CH₂CH₂CH₂CH₂–O–CO–CH₂CH₂–CO– repeats; this is the repeat unit.' },
+    { label: 'STEP 3', text: 'To recover the monomers, "cut" each ester linkage and restore an H₂O. Each cut adds an H to the –O– side (giving –OH) and an –OH to the –CO– side (giving –COOH).' },
+    { label: 'STEP 4', text: 'After cutting, the diol fragment is HO–CH₂CH₂CH₂CH₂–OH = butane-1,4-diol.' },
+    { label: 'STEP 5', text: 'The diacid fragment is HOOC–CH₂CH₂–COOH = butanedioic acid (succinic acid).' },
+    { label: 'STEP 6', text: 'Equation: n HO(CH₂)₄OH + n HOOC(CH₂)₂COOH → polymer X + 2n H₂O.' },
+  ], ans: 'Polymer X is a polyester. Monomers: butane-1,4-diol HO(CH₂)₄OH and butanedioic acid HOOC(CH₂)₂COOH.' },
+
+  { title: 'From polymer to monomer (polyamide, single)', diff: 'medium', q: 'A polymer Y has the repeating structure –NH–CH(CH₂COOH)–CO–. Identify the polymer and the monomer that gave it.', steps: [
+    { label: 'STEP 1', text: 'Recognise the linkage. –CO–NH– (amide) → polyamide; this is condensation polymerisation.' },
+    { label: 'STEP 2', text: 'The repeat unit –[NH–CH(CH₂COOH)–CO]– has only ONE N and ONE C=O — so a single bifunctional monomer must contain both an –NH₂ and a –COOH on the same molecule.' },
+    { label: 'STEP 3', text: 'Cut the amide linkage (–CO–NH–) and restore H₂O at each cut: add H to the –NH– side (giving –NH₂) and –OH to the –CO– side (giving –COOH).' },
+    { label: 'STEP 4', text: 'Restoring: the monomer is H₂N–CH(CH₂COOH)–COOH.' },
+    { label: 'STEP 5', text: 'Recognise the structure: an α-amino acid with R = CH₂COOH side chain. This is ASPARTIC ACID (Asp, D). The polymer Y is poly(aspartic acid).' },
+  ], ans: 'Y is a polyamide of aspartic acid. Monomer = HOOC–CH₂–CH(NH₂)–COOH (aspartic acid).' },
+
+  { title: 'Calculate Mr of a polymer', diff: 'easy', q: 'A sample of polythene contains chains of average length n = 5000. Calculate the average Mr of the polymer.', steps: [
+    { label: 'STEP 1', text: 'Repeat unit of polythene: –[CH₂CH₂]–. Mr of repeat unit = 2(12) + 4(1) = 28.' },
+    { label: 'STEP 2', text: 'Average Mr of the polymer = n × (Mr of repeat unit) = 5000 × 28 = 140 000.' },
+    { label: 'STEP 3', text: 'End-group contributions are negligible for this long chain, so the repeat-unit calculation gives Mr ≈ 140 000.' },
+  ], ans: 'Average Mr ≈ 140 000.' },
+
+  { title: 'Predict the type from a monomer', diff: 'easy', q: 'A monomer has the structure HOCH₂CH₂CH₂CH₂NH₂ (4-aminobutan-1-ol). Can it form a polyester or polyamide on its own under the usual A-Level condensation conditions? If not, suggest a suitable co-monomer.', steps: [
+    { label: 'STEP 1', text: 'Identify the functional groups. The monomer has an –OH group (alcohol) at one end and an –NH₂ group (amine) at the other. Both groups can participate in condensation reactions, but they are NOT a matched pair — alcohol + amine does not directly form a bond by losing H₂O.' },
+    { label: 'STEP 2', text: 'For polymerisation we need a –COOH or a –CO– group to react with the –OH (giving an ester) or with –NH₂ (giving an amide). 4-aminobutan-1-ol has neither.' },
+    { label: 'STEP 3', text: 'A suitable co-monomer has TWO –COOH (or –COCl) groups. Hexanedioic acid HOOC(CH₂)₄COOH can react with both the alcohol and amine ends, giving a polymer containing ester and amide linkages. An idealised chain segment is –O(CH₂)₄NH–CO(CH₂)₄CO–; the actual order also depends on which ends join.' },
+    { label: 'STEP 4', text: 'Compare with 4-aminobutanoic acid, H₂N(CH₂)₃COOH: it already has the matched –NH₂ and –COOH groups and can self-condense to a polyamide with repeat unit –[NH(CH₂)₃CO]–ₙ.' },
+  ], ans: 'It cannot form a polyester or polyamide by self-condensation under the usual A-Level conditions: its alcohol and amine groups are not a matched pair. A suitable co-monomer is hexanedioic acid; the resulting polymer contains ester and amide linkages.' },
+
+  { title: 'Identify the polymer from a hydrolysis experiment', diff: 'hard', q: 'Complete hydrolysis of polymer P with hot concentrated aqueous NaOH gives hexane-1,6-diamine, H₂N(CH₂)₆NH₂, and a dicarboxylate salt. Acidifying the carboxylate fraction gives hexanedioic acid, HOOC(CH₂)₄COOH. Identify P, write its repeat unit and state its polymer class.', steps: [
+    { label: 'STEP 1', text: 'The organic diamine comes from the nitrogen-containing side of the hydrolysed amide linkages. The dicarboxylate salt comes from the carbonyl side; acidification restores the –COOH groups.' },
+    { label: 'STEP 2', text: 'The original monomers are hexane-1,6-diamine H₂N(CH₂)₆NH₂ and hexanedioic acid HOOC(CH₂)₄COOH. Each has six carbon atoms, including the two carboxyl carbons in the acid.' },
+    { label: 'STEP 3', text: 'Join the diamine and diacid residues with –CO–NH– linkages. The repeat unit is –[NH–(CH₂)₆–NH–CO–(CH₂)₄–CO]–ₙ.' },
+    { label: 'STEP 4', text: 'P is Nylon-6,6, a polyamide formed by condensation polymerisation. Hydrolysis of its backbone releases the diamine, not ammonia; damp red litmus alone cannot distinguish an amine from ammonia.' },
+  ], ans: 'P is Nylon-6,6, a condensation polyamide. Repeat unit: –[NH–(CH₂)₆–NH–CO–(CH₂)₄–CO]–ₙ. Its monomers are hexane-1,6-diamine and hexanedioic acid. Alkaline hydrolysis initially gives the diamine and the hexanedioate salt; acidification of that salt recovers the diacid.' },
+];
+
+export const POLYMERS = {
+  id: 'polymer',
+  objectives: [
+    'Distinguish addition from condensation polymerisation in terms of mechanism and atom economy',
+    'Describe the free-radical mechanism of addition polymerisation: initiation, propagation, termination',
+    'Recognise common addition polymers (polythene, PVC, PP, polystyrene, PTFE) and their uses',
+    'Predict the products of condensation polymerisation between diols, diacids and diamines',
+    'Describe polyesters (Terylene/PET, PLA) and polyamides (Nylon-6,6, Nylon-6, Kevlar)',
+    'Deduce the repeat unit from a given monomer and vice versa',
+    'Identify the monomer(s) that gave a particular section of polymer chain',
+    'Discuss the environmental implications of plastic use, disposal and recycling',
+  ],
+  chapters,
+  quizzes,
+  multi: [],
+  structured,
+  worked,
+  tutorPrompts: [
+    'Walk me through the addition vs condensation distinction',
+    'Show me how to find the monomer from a polymer fragment',
+    'Why do polythene and PVC behave differently?',
+    'Explain how Kevlar gets its strength',
+    'Compare PET with PLA as packaging materials',
+  ],
+};

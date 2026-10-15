@@ -1,0 +1,889 @@
+// Chemical Energetics — PC-05 — full content
+// ZIMSEC Form 5/6 Chemistry, Section 6.1 — Topic 5
+// Syllabus coverage:
+//   - Enthalpy changes (reaction, formation, combustion, neutralisation, hydration, solution, lattice, electron affinity)
+//   - Hess' Law and Born-Haber cycles
+//   - Charge density and factors affecting lattice energy
+//   - Calorimetry (q = mcΔT) and thermometric titrations
+
+/* ============================================================
+   Diagram specs (Phase K3.4 migration)
+   Unused legacy JSX removed in K-Cleanup; active specs are unchanged.
+   ============================================================ */
+const energeticsProfilesSpec = {
+  "title": "ENERGY PROFILE DIAGRAMS",
+  "blocks": [
+    {
+      "type": "compare",
+      "left": {
+        "title": "EXOTHERMIC · ΔH < 0",
+        "color": "green",
+        "body": [
+          "products lower than reactants",
+          "heat released to surroundings",
+          "ΔH is negative"
+        ]
+      },
+      "right": {
+        "title": "ENDOTHERMIC · ΔH > 0",
+        "color": "red",
+        "body": [
+          "products higher than reactants",
+          "heat absorbed from surroundings",
+          "ΔH is positive"
+        ]
+      }
+    },
+    {
+      "type": "panel",
+      "title": "Activation energy, Ea",
+      "color": "amber",
+      "body": [
+        "minimum energy barrier from reactants to transition state",
+        "Ea is positive for both exothermic and endothermic reactions"
+      ]
+    }
+  ]
+};
+
+const energeticsSummaryTableSpec = {
+  "title": "KEY STANDARD ENTHALPY CHANGES",
+  "blocks": [
+    {
+      "type": "table",
+      "headers": [
+        "name",
+        "definition per mole"
+      ],
+      "colWidths": [
+        110,
+        180
+      ],
+      "rowH": 20,
+      "rows": [
+        [
+          "ΔHf° Formation",
+          "elements → 1 mol compound"
+        ],
+        [
+          "ΔHc° Combustion",
+          "1 mol substance + O₂ → products"
+        ],
+        [
+          "ΔHneut Neutralisation",
+          "acid + base → 1 mol H₂O"
+        ],
+        [
+          "ΔHat Atomisation",
+          "element → 1 mol gaseous atoms"
+        ],
+        [
+          "ΔHhyd Hydration",
+          "1 mol gaseous ion → aqueous ion"
+        ],
+        [
+          "ΔHsol Solution",
+          "1 mol solid → aqueous solution"
+        ],
+        [
+          "ΔHlatt Lattice",
+          "gaseous ions → 1 mol ionic solid"
+        ],
+        [
+          "EA Electron affinity",
+          "gaseous atom + e⁻ → gaseous anion"
+        ],
+        [
+          "IE Ionisation energy",
+          "gaseous atom → gaseous cation + e⁻"
+        ]
+      ]
+    },
+    {
+      "type": "note",
+      "text": "Standard conditions used here: 298 K and 100 kPa."
+    }
+  ]
+};
+
+const energeticsFormationSpec = {
+  "title": "STANDARD ENTHALPY OF FORMATION",
+  "blocks": [
+    {
+      "type": "steps",
+      "items": [
+        {
+          "number": "1",
+          "color": "primary",
+          "body": "start with constituent elements in their standard states"
+        },
+        {
+          "number": "2",
+          "color": "green",
+          "body": "form exactly 1 mol of the compound"
+        }
+      ]
+    },
+    {
+      "type": "equation",
+      "text": "C(graphite) + O₂(g) → CO₂(g)     ΔH = ΔHf°"
+    },
+    {
+      "type": "note",
+      "text": "Elements in standard states have ΔHf° = 0.",
+      "emphasis": true
+    }
+  ]
+};
+
+const energeticsCalorimetrySpec = {
+  "title": "SIMPLE CALORIMETRY · q = mcΔT",
+  "blocks": [
+    {
+      "type": "panel",
+      "title": "Typical apparatus",
+      "color": "primary",
+      "body": [
+        "insulated polystyrene cup + lid",
+        "solution / reacting mixture",
+        "thermometer to measure ΔT",
+        "lid and insulation reduce heat loss"
+      ]
+    },
+    {
+      "type": "equation",
+      "text": "q = m × c × ΔT",
+      "big": true
+    },
+    {
+      "type": "note",
+      "text": "For dilute aqueous solutions, c ≈ 4.18 J g⁻¹ K⁻¹."
+    },
+    {
+      "type": "equation",
+      "text": "ΔH = −q ÷ moles of limiting reagent"
+    }
+  ]
+};
+
+const energeticsSolutionSpec = {
+  "title": "ENTHALPY OF SOLUTION CYCLE",
+  "blocks": [
+    {
+      "type": "steps",
+      "items": [
+        {
+          "number": "1",
+          "color": "red",
+          "body": "separate ionic lattice into gaseous ions: −ΔHlatt"
+        },
+        {
+          "number": "2",
+          "color": "cyan",
+          "body": "hydrate gaseous ions to aqueous ions: ΔHhyd"
+        },
+        {
+          "number": "3",
+          "color": "green",
+          "body": "overall solid → aqueous ions: ΔHsol"
+        }
+      ]
+    },
+    {
+      "type": "equation",
+      "text": "ΔHsol = −ΔHlatt + ΔHhyd",
+      "big": true
+    },
+    {
+      "type": "note",
+      "text": "The sign of ΔHsol depends on which contribution dominates."
+    }
+  ]
+};
+
+const energeticsBondEnergySpec = {
+  "title": "BOND ENERGY CALCULATION · CH₄ COMBUSTION",
+  "blocks": [
+    {
+      "type": "equation",
+      "text": "CH₄ + 2O₂ → CO₂ + 2H₂O"
+    },
+    {
+      "type": "compare",
+      "left": {
+        "title": "BONDS BROKEN (+)",
+        "color": "red",
+        "body": [
+          "4 × C–H = 1648 kJ",
+          "2 × O=O = 992 kJ",
+          "total = +2640 kJ"
+        ]
+      },
+      "right": {
+        "title": "BONDS FORMED (−)",
+        "color": "green",
+        "body": [
+          "2 × C=O = 1610 kJ",
+          "4 × O–H = 1852 kJ",
+          "released = 3462 kJ"
+        ]
+      }
+    },
+    {
+      "type": "equation",
+      "text": "ΔH = Σ(bonds broken) − Σ(bonds formed)"
+    },
+    {
+      "type": "note",
+      "text": "2640 − 3462 = −822 kJ mol⁻¹ → exothermic",
+      "emphasis": true
+    }
+  ]
+};
+
+const energeticsHessCycleSpec = {
+  "title": "HESS'S LAW · ENERGY CYCLE",
+  "blocks": [
+    {
+      "type": "steps",
+      "items": [
+        {
+          "number": "A",
+          "color": "primary",
+          "body": "Reactants → Products directly: ΔH"
+        },
+        {
+          "number": "B",
+          "color": "amber",
+          "body": "Reactants → Intermediates: ΔH₁"
+        },
+        {
+          "number": "C",
+          "color": "green",
+          "body": "Intermediates → Products: ΔH₂"
+        }
+      ]
+    },
+    {
+      "type": "equation",
+      "text": "ΔH = ΔH₁ + ΔH₂",
+      "big": true
+    },
+    {
+      "type": "note",
+      "text": "Total enthalpy change is independent of the route taken.",
+      "emphasis": true
+    }
+  ]
+};
+
+const energeticsBornHaberSpec = {
+  "title": "BORN–HABER CYCLE · NaCl",
+  "blocks": [
+    {
+      "type": "steps",
+      "stepH": 28,
+      "items": [
+        {
+          "number": "1",
+          "color": "primary",
+          "body": "Na(s) + ½Cl₂(g) → gaseous atoms  · atomisation"
+        },
+        {
+          "number": "2",
+          "color": "red",
+          "body": "Na(g) → Na⁺(g) + e⁻  · IE₁"
+        },
+        {
+          "number": "3",
+          "color": "green",
+          "body": "Cl(g) + e⁻ → Cl⁻(g)  · electron affinity"
+        },
+        {
+          "number": "4",
+          "color": "cyan",
+          "body": "Na⁺(g) + Cl⁻(g) → NaCl(s)  · lattice enthalpy"
+        }
+      ]
+    },
+    {
+      "type": "equation",
+      "text": "ΔHf° = ΔHat(Na) + ΔHat(½Cl₂) + IE₁ + EA + ΔHlatt"
+    }
+  ]
+};
+
+const energeticsChargeDensitySpec = {
+  "title": "CHARGE DENSITY · LATTICE ENERGY",
+  "blocks": [
+    {
+      "type": "compare",
+      "left": {
+        "title": "Mg²⁺",
+        "color": "green",
+        "body": [
+          "radius ≈ 72 pm",
+          "charge = +2",
+          "high charge density"
+        ]
+      },
+      "right": {
+        "title": "K⁺",
+        "color": "amber",
+        "body": [
+          "radius ≈ 138 pm",
+          "charge = +1",
+          "lower charge density"
+        ]
+      }
+    },
+    {
+      "type": "note",
+      "text": "High charge density gives larger lattice energy.",
+      "emphasis": true
+    }
+  ]
+};
+
+const energeticsThermometricSpec = {
+  "title": "THERMOMETRIC TITRATION",
+  "blocks": [
+    {
+      "type": "raw",
+      "height": 130,
+      "primitives": [
+        {
+          "p": "line",
+          "x1": 38,
+          "y1": 105,
+          "x2": 295,
+          "y2": 105,
+          "color": "dim",
+          "width": 1
+        },
+        {
+          "p": "line",
+          "x1": 38,
+          "y1": 20,
+          "x2": 38,
+          "y2": 105,
+          "color": "dim",
+          "width": 1
+        },
+        {
+          "p": "path",
+          "d": "M45 95 L90 75 L135 55 L165 38 L195 55 L240 76 L285 94",
+          "color": "primary",
+          "width": 2
+        },
+        {
+          "p": "line",
+          "x1": 165,
+          "y1": 35,
+          "x2": 165,
+          "y2": 108,
+          "color": "accent",
+          "width": 1,
+          "dash": true
+        },
+        {
+          "p": "text",
+          "x": 165,
+          "y": 18,
+          "text": "endpoint",
+          "color": "accent",
+          "size": 9,
+          "bold": true
+        },
+        {
+          "p": "text",
+          "x": 170,
+          "y": 125,
+          "text": "volume of acid added / cm³",
+          "color": "dim",
+          "size": 8
+        },
+        {
+          "p": "text",
+          "x": 18,
+          "y": 62,
+          "text": "T / °C",
+          "color": "dim",
+          "size": 8,
+          "anchor": "start"
+        }
+      ]
+    },
+    {
+      "type": "compare",
+      "left": {
+        "title": "before endpoint",
+        "color": "green",
+        "body": [
+          "exothermic reaction",
+          "temperature rises"
+        ]
+      },
+      "right": {
+        "title": "after endpoint",
+        "color": "cyan",
+        "body": [
+          "acid in excess",
+          "dilution dominates",
+          "temperature falls"
+        ]
+      }
+    }
+  ]
+};
+
+/* ============================================================
+   Chapters
+   ============================================================ */
+const chapters = [
+  // CH.1 — Introduction to energy changes
+  { id: 'e1', title: 'Why Energy Matters in Chemistry', minutes: 8, blocks: [
+    { type: 'p', text: 'Every chemical reaction involves an energy change. Bonds must break (costs energy) and new bonds form (releases energy). The NET energy change determines whether the reaction gives out heat to its surroundings or absorbs heat from them. This net change is called the ENTHALPY CHANGE, symbol ΔH.' },
+    { type: 'h', text: 'System and surroundings' },
+    { type: 'ul', items: [
+      'The SYSTEM is the chemicals undergoing the reaction — the reactants turning into products.',
+      'The SURROUNDINGS are everything else: the solvent, the container, the air, the thermometer, you.',
+      'In an exothermic reaction, energy flows FROM the system TO the surroundings; the surroundings warm up, ΔH is negative.',
+      'In an endothermic reaction, energy flows FROM the surroundings INTO the system; the surroundings cool down, ΔH is positive.',
+    ]},
+    { type: 'd', spec: energeticsProfilesSpec, caption: 'Exothermic vs endothermic energy profiles' },
+    { type: 'callout', kind: 'key', title: 'Sign convention', body: 'ΔH < 0 means exothermic (heat out). ΔH > 0 means endothermic (heat in). This is from the system\'s perspective: the system loses energy when exothermic.' },
+    { type: 'h', text: 'Standard conditions' },
+    { type: 'p', text: 'To compare enthalpy values fairly we measure them under STANDARD CONDITIONS: temperature 298 K (25 °C), pressure 100 kPa, all substances in their standard states (the most stable physical form at 298 K and 100 kPa). Standard enthalpy changes are denoted with the symbol °, e.g. ΔH°.' },
+    { type: 'takeaway', items: [
+      'Enthalpy change ΔH = energy change at constant pressure.',
+      'Exothermic: ΔH < 0, surroundings heat up.',
+      'Endothermic: ΔH > 0, surroundings cool down.',
+      'Standard conditions: 298 K, 100 kPa, standard states.',
+    ]},
+  ]},
+
+  // CH.2 — Types of enthalpy change
+  { id: 'e2', title: 'Standard Enthalpy Changes', minutes: 10, blocks: [
+    { type: 'p', text: 'The syllabus requires you to know several specific enthalpy changes. Each is defined as the enthalpy change per mole of a key participant, under standard conditions.' },
+    { type: 'd', spec: energeticsSummaryTableSpec, caption: 'Summary of all standard enthalpy changes' },
+    { type: 'h', text: 'Formation (ΔHf°)' },
+    { type: 'p', text: 'The enthalpy change when ONE MOLE of a compound is formed from its constituent elements, each in their standard states, under standard conditions. For example: C(graphite) + O₂(g) → CO₂(g), ΔHf° = −394 kJ mol⁻¹.' },
+    { type: 'callout', kind: 'definition', title: 'Key rule', body: 'The standard enthalpy of formation of any element in its standard state is ZERO by definition. So ΔHf°[O₂(g)] = 0, ΔHf°[C(graphite)] = 0, ΔHf°[Na(s)] = 0.' },
+    { type: 'd', spec: energeticsFormationSpec, caption: 'Enthalpy level diagram for formation' },
+    { type: 'h', text: 'Combustion (ΔHc°)' },
+    { type: 'p', text: 'The enthalpy change when ONE MOLE of a substance is completely burned in excess oxygen under standard conditions. Combustion values are always NEGATIVE (exothermic). For example: CH₄(g) + 2O₂(g) → CO₂(g) + 2H₂O(l), ΔHc° = −890 kJ mol⁻¹.' },
+    { type: 'h', text: 'Neutralisation (ΔHneut)' },
+    { type: 'p', text: 'The enthalpy change when an acid and a base react to form ONE MOLE of water, under standard conditions. For strong acid + strong base, the value is approximately −57.1 kJ mol⁻¹, since the net ionic equation is always: H⁺(aq) + OH⁻(aq) → H₂O(l). Weak acids or bases give slightly less exothermic values because energy is also used to dissociate them.' },
+    { type: 'h', text: 'Atomisation (ΔHat)' },
+    { type: 'p', text: 'The enthalpy change when ONE MOLE of gaseous atoms is formed from the element in its standard state. Always endothermic (positive). For example: ½Cl₂(g) → Cl(g), ΔHat = +121 kJ mol⁻¹. For metals: Na(s) → Na(g), ΔHat = +107 kJ mol⁻¹.' },
+    { type: 'takeaway', items: [
+      'Each standard enthalpy change is defined per mole of a specific participant.',
+      'ΔHf° of all elements in standard states = 0.',
+      'ΔHc° is always negative.',
+      'ΔHneut ≈ −57 kJ mol⁻¹ for strong acid + strong base.',
+      'ΔHat is always positive (bond-breaking requires energy).',
+    ]},
+  ]},
+
+  // CH.3 — Measuring enthalpy changes
+  { id: 'e3', title: 'Calorimetry: Measuring ΔH', minutes: 9, blocks: [
+    { type: 'p', text: 'In the lab, we measure enthalpy changes using CALORIMETRY. The basic idea: carry out the reaction in solution, measure the temperature change, and calculate the heat transferred using q = mcΔT.' },
+    { type: 'd', spec: energeticsCalorimetrySpec, caption: 'Simple calorimetry apparatus' },
+    { type: 'h', text: 'The calculation' },
+    { type: 'ul', items: [
+      'Measure the temperature before and after the reaction: ΔT = T_final − T_initial.',
+      'Calculate q = m × c × ΔT, where m is the mass of solution (not solid), c is the specific heat capacity of water (4.18 J g⁻¹ K⁻¹), and ΔT is in Kelvin or °C (same magnitude for differences).',
+      'q gives the heat absorbed by the solution. For an exothermic reaction the solution warms up, so q is positive — but ΔH for the reaction is NEGATIVE (energy left the system).',
+      'Convert to molar: ΔH = −q ÷ (moles of limiting reagent). The sign flip accounts for the system/surroundings convention.',
+    ]},
+    { type: 'callout', kind: 'warning', title: 'Common exam error', body: 'Students often forget the negative sign when converting q to ΔH. If the solution temperature goes UP, the reaction is exothermic, so ΔH must be NEGATIVE. Always check: warm surroundings = exothermic = negative ΔH.' },
+    { type: 'h', text: 'Sources of error in calorimetry' },
+    { type: 'ul', items: [
+      'Heat loss to the surroundings — the main error. Polystyrene cups and lids help, but cannot eliminate it entirely.',
+      'Incomplete reaction — if not all the reactant reacts, the measured ΔT is too small.',
+      'Assuming the specific heat capacity of the solution equals that of water — reasonable for dilute aqueous solutions, but less accurate for concentrated ones.',
+      'Assuming density of solution = 1.00 g cm⁻³ — again, reasonable for dilute solutions.',
+    ]},
+    { type: 'takeaway', items: [
+      'q = mcΔT gives heat absorbed by the solution.',
+      'ΔH = −q / n, where n is moles of limiting reagent.',
+      'Heat loss is the main source of error.',
+      'Polystyrene cup + lid minimises but doesn\'t eliminate error.',
+    ]},
+  ]},
+
+  // CH.4 — Enthalpy of neutralisation and solution
+  { id: 'e4', title: 'Neutralisation, Hydration & Solution', minutes: 10, blocks: [
+    { type: 'p', text: 'Three more enthalpy changes that the syllabus requires: neutralisation, hydration and solution. They are connected to each other by a Hess cycle that is frequently examined.' },
+    { type: 'h', text: 'Enthalpy of neutralisation' },
+    { type: 'p', text: 'Defined as the enthalpy change when an acid reacts with a base to produce ONE MOLE of water under standard conditions. For any strong acid + strong base, the reaction effectively reduces to H⁺(aq) + OH⁻(aq) → H₂O(l), so ΔHneut ≈ −57.1 kJ mol⁻¹ regardless of which strong acid or base is used.' },
+    { type: 'ul', items: [
+      'HCl(aq) + NaOH(aq) → NaCl(aq) + H₂O(l), ΔH ≈ −57.1 kJ mol⁻¹.',
+      'HNO₃(aq) + KOH(aq) → KNO₃(aq) + H₂O(l), ΔH ≈ −57.1 kJ mol⁻¹.',
+      'With a weak acid (e.g. CH₃COOH), ΔHneut is less exothermic (e.g. −55.2 kJ mol⁻¹) because some energy is used to fully dissociate the weak acid.',
+    ]},
+    { type: 'h', text: 'Enthalpy of hydration (ΔHhyd)' },
+    { type: 'p', text: 'The enthalpy change when ONE MOLE of a gaseous ion is dissolved in water to form an aqueous ion, under standard conditions: Na⁺(g) → Na⁺(aq). Always exothermic (negative), because ion-dipole attractions form between the ion and water molecules.' },
+    { type: 'ul', items: [
+      'Hydration enthalpy becomes MORE exothermic with higher charge density — smaller ions and more highly charged ions attract water more strongly.',
+      'Trend: Li⁺ > Na⁺ > K⁺ > Rb⁺ (more exothermic for smaller cations).',
+      'For anions: F⁻ > Cl⁻ > Br⁻ > I⁻.',
+    ]},
+    { type: 'h', text: 'Enthalpy of solution (ΔHsol)' },
+    { type: 'p', text: 'The enthalpy change when ONE MOLE of a solute is dissolved in a solvent (usually water) to form an infinitely dilute solution. The sign can be positive or negative — it depends on the balance between lattice energy and hydration energy.' },
+    { type: 'd', spec: energeticsSolutionSpec, caption: 'Hess cycle connecting solution, lattice and hydration enthalpies' },
+    { type: 'callout', kind: 'key', title: 'The key relationship', body: 'ΔHsol = −ΔHlatt + ΔHhyd (sum of cation and anion hydration). If hydration releases more energy than it costs to break the lattice, ΔHsol is negative (exothermic dissolving). If not, ΔHsol is positive (endothermic dissolving).' },
+    { type: 'takeaway', items: [
+      'ΔHneut ≈ −57 kJ mol⁻¹ for strong acid + strong base; less exothermic for weak.',
+      'ΔHhyd is always negative; more exothermic for smaller/more charged ions.',
+      'ΔHsol = −ΔHlatt + ΔHhyd (cation + anion) — sign depends on balance.',
+    ]},
+  ]},
+
+  // CH.5 — Bond energies
+  { id: 'e5', title: 'Bond Energy Calculations', minutes: 9, blocks: [
+    { type: 'p', text: 'Bond energy (also called bond dissociation enthalpy) is the energy required to break ONE MOLE of a specific covalent bond in the GAS PHASE, forming two free radicals. It is always positive (endothermic). We can estimate ΔH for a reaction by comparing the total energy needed to break ALL bonds in the reactants with the energy released when ALL bonds in the products form.' },
+    { type: 'd', spec: energeticsBondEnergySpec, caption: 'Bond energy calculation for combustion of methane' },
+    { type: 'h', text: 'The method' },
+    { type: 'ul', items: [
+      'Step 1: Draw out full structural formulae so you can count every bond.',
+      'Step 2: Sum the energies of ALL bonds broken in the reactants — this total is positive.',
+      'Step 3: Sum the energies of ALL bonds formed in the products — this total is negative.',
+      'Step 4: ΔH ≈ Σ(bonds broken) − Σ(bonds formed). If the answer is negative, the reaction is exothermic.',
+    ]},
+    { type: 'callout', kind: 'warning', title: 'Why "approximate"?', body: 'Bond energies are MEAN values averaged over many different molecules. The actual C–H bond energy in CH₄ is slightly different from C–H in CH₃OH. So bond-energy calculations give estimates, not exact values. Hess\'s Law calculations with formation or combustion data are more accurate.' },
+    { type: 'h', text: 'Useful bond energies to know' },
+    { type: 'ul', items: [
+      'C–H: 412 kJ mol⁻¹, C–C: 348, C=C: 612, C≡C: 837.',
+      'O=O: 496, O–H: 463, C=O (in CO₂): 805.',
+      'C–O: 360, C=O (in aldehydes/ketones): 740.',
+      'H–H: 436, Cl–Cl: 242, N≡N: 944.',
+      'You do NOT need to memorise these — they will be given in a data table. But familiarity speeds you up.',
+    ]},
+    { type: 'takeaway', items: [
+      'Bond energy = energy to break 1 mol of bond in gas phase (always +ve).',
+      'ΔH ≈ Σ(broken) − Σ(formed).',
+      'This gives APPROXIMATE answers because mean bond energies are used.',
+      'Draw full structural formulae to count bonds correctly.',
+    ]},
+  ]},
+
+  // CH.6 — Hess's Law
+  { id: 'e6', title: 'Hess\'s Law & Energy Cycles', minutes: 12, blocks: [
+    { type: 'p', text: 'Hess\'s Law states that the total enthalpy change for a reaction is independent of the route taken, provided the initial and final conditions are the same. This is a direct consequence of the conservation of energy. It allows us to calculate enthalpy changes that cannot be measured directly by constructing energy CYCLES.' },
+    { type: 'd', spec: energeticsHessCycleSpec, caption: 'General Hess cycle' },
+    { type: 'h', text: 'Cycle using enthalpies of formation' },
+    { type: 'p', text: 'To find ΔH for a reaction: ΔH = Σ ΔHf°(products) − Σ ΔHf°(reactants). This is the most common Hess cycle at A-level. The "intermediates" at the bottom of the cycle are the ELEMENTS in their standard states (all with ΔHf° = 0).' },
+    { type: 'ul', items: [
+      'Example: CH₄(g) + 2O₂(g) → CO₂(g) + 2H₂O(l).',
+      'ΔH = [ΔHf°(CO₂) + 2 × ΔHf°(H₂O)] − [ΔHf°(CH₄) + 2 × ΔHf°(O₂)].',
+      'ΔH = [(−394) + 2(−286)] − [(−75) + 2(0)] = −966 − (−75) = −891 kJ mol⁻¹.',
+    ]},
+    { type: 'h', text: 'Cycle using enthalpies of combustion' },
+    { type: 'p', text: 'Useful when you know combustion data but not formation data: ΔH = Σ ΔHc°(reactants) − Σ ΔHc°(products). Note the REVERSAL: reactants on top, products on bottom — the arrows flip compared to the formation cycle.' },
+    { type: 'ul', items: [
+      'Example: C₂H₅OH(l) + 3O₂(g) → 2CO₂(g) + 3H₂O(l) — this IS the combustion equation for ethanol directly.',
+      'But to find ΔHf°(ethanol), construct: ΔHf° = [2 × ΔHc°(C) + 3 × ΔHc°(H₂)] − ΔHc°(C₂H₅OH).',
+      'This gives the formation enthalpy of ethanol from combustion data of carbon, hydrogen and ethanol.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Arrow direction matters', body: 'When you reverse a reaction, you reverse the sign of ΔH. When you multiply a reaction by a coefficient, you multiply ΔH by the same coefficient. These two rules, plus Hess\'s Law, let you calculate ANY unknown ΔH from known values.' },
+    { type: 'takeaway', items: [
+      'Hess\'s Law: ΔH is independent of route.',
+      'Using ΔHf°: ΔH = Σ ΔHf°(products) − Σ ΔHf°(reactants).',
+      'Using ΔHc°: ΔH = Σ ΔHc°(reactants) − Σ ΔHc°(products).',
+      'Reversing a reaction reverses the sign of ΔH.',
+    ]},
+  ]},
+
+  // CH.7 — Born-Haber cycles
+  { id: 'e7', title: 'Born-Haber Cycles', minutes: 14, blocks: [
+    { type: 'p', text: 'A Born-Haber cycle is a special Hess cycle used to calculate LATTICE ENERGY — the enthalpy change when ONE MOLE of an ionic compound is formed from its gaseous ions. Lattice energy cannot be measured directly, so we compute it from quantities that CAN be measured: atomisation, ionisation, electron affinity and formation.' },
+    { type: 'd', spec: energeticsBornHaberSpec, caption: 'Born-Haber cycle for NaCl' },
+    { type: 'h', text: 'Building the cycle step by step' },
+    { type: 'ul', items: [
+      'Start with elements in standard states: Na(s) + ½Cl₂(g).',
+      'Step 1 — Atomise: convert each element to gaseous atoms. Na(s) → Na(g), ΔHat = +107 kJ. ½Cl₂(g) → Cl(g), ΔHat = +121 kJ.',
+      'Step 2 — Ionise the metal: Na(g) → Na⁺(g) + e⁻, IE₁ = +496 kJ.',
+      'Step 3 — Add electron to non-metal: Cl(g) + e⁻ → Cl⁻(g), EA₁ = −349 kJ (exothermic — Cl gains stability).',
+      'Step 4 — Form the lattice: Na⁺(g) + Cl⁻(g) → NaCl(s), ΔHlatt = ? (this is what we\'re calculating).',
+      'The whole cycle connects back to ΔHf°[NaCl] = −411 kJ mol⁻¹.',
+    ]},
+    { type: 'h', text: 'Applying Hess\'s Law' },
+    { type: 'p', text: 'By Hess\'s Law, the direct route (formation) must equal the sum of all the individual steps: ΔHf° = ΔHat(Na) + ΔHat(Cl) + IE₁(Na) + EA₁(Cl) + ΔHlatt. Rearranging: ΔHlatt = ΔHf° − ΔHat(Na) − ΔHat(Cl) − IE₁(Na) − EA₁(Cl).' },
+    { type: 'ul', items: [
+      'ΔHlatt(NaCl) = (−411) − (+107) − (+121) − (+496) − (−349)',
+      '= −411 − 107 − 121 − 496 + 349 = −786 kJ mol⁻¹.',
+      'The large negative value confirms the strong electrostatic attraction in the NaCl lattice.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'For MgO and Al₂O₃', body: 'Compounds with higher-charged ions (Mg²⁺, O²⁻, Al³⁺) have MUCH larger lattice energies because the cycle includes IE₁ + IE₂ (for Mg) or IE₁ + IE₂ + IE₃ (for Al), and the second electron affinity for O²⁻ (which is endothermic: O⁻(g) + e⁻ → O²⁻(g), ΔH ≈ +798 kJ). Despite this cost, the enormous lattice energy of MgO (−3850 kJ mol⁻¹) more than compensates.' },
+    { type: 'h', text: 'Electron affinity details' },
+    { type: 'ul', items: [
+      'First electron affinity (EA₁): adding the first electron to a neutral gaseous atom — usually exothermic (atom gains a full/half-full subshell).',
+      'Second electron affinity (EA₂): adding a second electron to an already negative ion — always endothermic because you are forcing an electron onto a species that already repels it.',
+      'For oxygen: O(g) + e⁻ → O⁻(g), EA₁ = −141 kJ. O⁻(g) + e⁻ → O²⁻(g), EA₂ = +798 kJ. The O²⁻ ion only exists in lattices because the lattice energy compensates for the endothermic EA₂.',
+    ]},
+    { type: 'takeaway', items: [
+      'Born-Haber cycles link ΔHf°, ΔHat, IE, EA and ΔHlatt.',
+      'Lattice energy is always large and negative (exothermic formation of lattice).',
+      'Rearrange: ΔHlatt = ΔHf° − (all the other steps).',
+      '2nd electron affinities are endothermic, but lattice energy compensates.',
+    ]},
+  ]},
+
+  // CH.8 — Charge density and lattice energy
+  { id: 'e8', title: 'Charge Density & Lattice Energy Factors', minutes: 8, blocks: [
+    { type: 'p', text: 'Lattice energy depends on the electrostatic attraction between the ions in the lattice. Two factors control this: the CHARGE on the ions and the SIZE (radius) of the ions. Together, these determine the CHARGE DENSITY.' },
+    { type: 'd', spec: energeticsChargeDensitySpec, caption: 'Charge density: small + highly charged = stronger attraction' },
+    { type: 'h', text: 'Factors affecting lattice energy' },
+    { type: 'ul', items: [
+      'IONIC CHARGE: higher charges create stronger electrostatic attraction. MgO (Mg²⁺ and O²⁻) has a much larger lattice energy than NaCl (Na⁺ and Cl⁻), because the 2+ and 2− charges multiply the force.',
+      'IONIC RADIUS: smaller ions bring their charges closer together, increasing the force. LiF has a larger lattice energy than NaF because Li⁺ (76 pm) is smaller than Na⁺ (102 pm).',
+      'Combined effect — charge density = charge / (ionic radius)². High charge density → strong attraction → large |ΔHlatt|.',
+    ]},
+    { type: 'h', text: 'Comparing lattice energies' },
+    { type: 'ul', items: [
+      'NaF (−923) vs NaCl (−786) vs NaBr (−747) vs NaI (−704) kJ mol⁻¹: as the anion gets LARGER, lattice energy decreases in magnitude.',
+      'LiCl (−861) vs NaCl (−786) vs KCl (−717) vs RbCl (−689) kJ mol⁻¹: as the cation gets LARGER, lattice energy decreases.',
+      'NaCl (−786) vs MgO (−3850) kJ mol⁻¹: doubling the charges roughly quadruples the attraction (Coulomb\'s law: F ∝ q₁q₂/r²).',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Coulomb\'s Law link', body: 'Lattice energy ∝ (q⁺ × q⁻) / (r⁺ + r⁻). Higher charges in the numerator and smaller radii in the denominator both increase lattice energy. This single relationship explains ALL the trends.' },
+    { type: 'takeaway', items: [
+      'Lattice energy increases with higher ionic charges.',
+      'Lattice energy increases with smaller ionic radii.',
+      'Charge density = charge / volume; high charge density → large lattice energy.',
+      'Coulomb\'s Law: ΔHlatt ∝ q⁺q⁻ / (r⁺ + r⁻).',
+    ]},
+  ]},
+
+  // CH.9 — Thermometric titration
+  { id: 'e9', title: 'Thermometric Titrations', minutes: 7, blocks: [
+    { type: 'p', text: 'A thermometric titration is a way to find the endpoint of a reaction by tracking temperature change instead of using an indicator. It works because the reaction is exothermic: as the reactant is added, the temperature rises. Once the endpoint is passed, no more reaction occurs and the excess reagent simply dilutes and cools the mixture.' },
+    { type: 'd', spec: energeticsThermometricSpec, caption: 'Thermometric titration curve' },
+    { type: 'h', text: 'How to read the curve' },
+    { type: 'ul', items: [
+      'The temperature rises steadily during the reaction — each added drop of reagent reacts exothermically.',
+      'At the ENDPOINT, all the other reagent has been consumed. The peak temperature marks this point.',
+      'After the endpoint, adding more reagent produces no reaction. The solution cools because the added liquid dilutes it.',
+      'Draw tangent lines to the rising and falling portions of the curve; their intersection gives the endpoint volume.',
+    ]},
+    { type: 'h', text: 'Why use a thermometric titration?' },
+    { type: 'ul', items: [
+      'Useful when no suitable indicator exists for the reaction.',
+      'Can be used for any exothermic (or endothermic) reaction, not just acid-base.',
+      'The method is often used for neutralisation, displacement reactions, and precipitation reactions.',
+      'Errors come from heat loss (makes the peak less sharp) and from not stirring fast enough.',
+    ]},
+    { type: 'takeaway', items: [
+      'Plot T against volume of reagent added.',
+      'Endpoint = peak temperature (tangent intersection).',
+      'Works for any reaction with a measurable heat change.',
+    ]},
+  ]},
+
+  // CH.10 — Exam technique
+  { id: 'e10', title: 'Exam Technique & Common Pitfalls', minutes: 8, blocks: [
+    { type: 'p', text: 'Energetics questions span calculation, definition and explanation. Here are the most common exam-question types and how to approach them.' },
+    { type: 'h', text: 'Definitions — get the wording right' },
+    { type: 'ul', items: [
+      'Every definition must include: "per mole of ..." and "under standard conditions (298 K, 100 kPa)".',
+      'Formation: "... ONE MOLE of the compound from its ELEMENTS in their STANDARD STATES."',
+      'Combustion: "... ONE MOLE of the substance is completely burned in EXCESS OXYGEN."',
+      'Lattice energy: "... when ONE MOLE of the ionic compound is formed from its constituent GASEOUS IONS." (Some syllabi define it in the reverse direction; ZIMSEC uses formation direction.)',
+    ]},
+    { type: 'h', text: 'Born-Haber calculation — the routine' },
+    { type: 'ul', items: [
+      '1. Write the formation equation for the compound.',
+      '2. List ALL the steps: atomisation of each element, ionisation of the metal, electron affinities for the non-metal, lattice energy.',
+      '3. Apply Hess\'s Law: ΔHf° = sum of all steps.',
+      '4. Rearrange for the unknown (usually lattice energy).',
+      '5. Watch signs: IE is always +ve, EA₁ is usually −ve, EA₂ for O is +ve.',
+    ]},
+    { type: 'h', text: 'Common mistakes' },
+    { type: 'ul', items: [
+      'Forgetting to halve Cl₂ or O₂ when writing atomisation steps for 1 mol of compound containing one Cl or one O.',
+      'Using the wrong sign for electron affinity — the first EA for halogens is exothermic (negative).',
+      'In q = mcΔT, using the mass of the SOLID instead of the mass of the SOLUTION.',
+      'Confusing bond energy calculations (approximate) with Hess\'s Law calculations (exact for the given data).',
+      'Not stating "under standard conditions" in definitions.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Mark-scheme tip', body: 'For a "define" question, the three elements that typically earn marks are: (1) "one mole of ...", (2) the correct specification of reactants/products, and (3) "under standard conditions". Missing any one of these usually costs a mark.' },
+    { type: 'takeaway', items: [
+      'Definitions must state "per mole" and "standard conditions".',
+      'Born-Haber: list all steps, apply Hess, solve for unknown.',
+      'q = mcΔT uses mass of SOLUTION, not solid.',
+      'Bond energy ≠ Hess cycle accuracy.',
+    ]},
+  ]},
+];
+
+/* ============================================================
+   Quizzes — 32 MCQs
+   ============================================================ */
+const quizzes = [
+  { q: 'Which of the following is ALWAYS exothermic?', opts: ['Enthalpy of formation', 'Enthalpy of combustion', 'Enthalpy of solution', 'Enthalpy of atomisation'], ans: 1, hint: 'Burning something always releases heat.' },
+  { q: 'What is the standard enthalpy of formation of O₂(g)?', opts: ['+496 kJ mol⁻¹', '−286 kJ mol⁻¹', '0 kJ mol⁻¹', '+249 kJ mol⁻¹'], ans: 2, hint: 'Think about what the definition says about elements in their standard states.' },
+  { q: 'In an exothermic reaction, the enthalpy of the products is...', opts: ['Higher than reactants', 'Lower than reactants', 'Equal to reactants', 'Cannot be determined'], ans: 1, hint: 'Energy has left the system to warm the surroundings.' },
+  { q: 'The enthalpy of neutralisation for strong acid + strong base is approximately:', opts: ['−57 kJ mol⁻¹', '+57 kJ mol⁻¹', '−286 kJ mol⁻¹', '−411 kJ mol⁻¹'], ans: 0, hint: 'This value is constant because the net ionic equation is always H⁺ + OH⁻ → H₂O.' },
+  { q: 'Why is ΔHneut for weak acid + strong base less exothermic than for strong acid + strong base?', opts: ['The weak acid has lower concentration', 'Energy is used to dissociate the weak acid', 'The product water is different', 'Weak acids produce more heat'], ans: 1, hint: 'Weak acids are not fully dissociated in solution.' },
+  { q: 'In q = mcΔT, what does m represent?', opts: ['Mass of solid added', 'Mass of solution', 'Moles of reactant', 'Mass of water only'], ans: 1, hint: 'It\'s the substance whose temperature we\'re measuring.' },
+  { q: 'Which statement about bond energy is correct?', opts: ['It is the energy released when a bond forms', 'It is always negative', 'It is the energy needed to break one mole of bonds in the gas phase', 'It equals the lattice energy'], ans: 2, hint: 'Breaking bonds requires energy input.' },
+  { q: 'Using bond energies: ΔH = ?', opts: ['Bonds formed − bonds broken', 'Bonds broken − bonds formed', 'Bonds broken + bonds formed', 'Bonds broken × bonds formed'], ans: 1, hint: 'You spend energy breaking, then get energy back forming.' },
+  { q: 'Hess\'s Law states that enthalpy change is independent of:', opts: ['Temperature', 'Pressure', 'The route taken', 'The catalyst used'], ans: 2, hint: 'Same start and end, any path in between.' },
+  { q: 'Using ΔHf° values: ΔH(reaction) = ?', opts: ['Σ ΔHf°(reactants) − Σ ΔHf°(products)', 'Σ ΔHf°(products) − Σ ΔHf°(reactants)', 'Σ ΔHf°(products) + Σ ΔHf°(reactants)', 'Σ ΔHf°(products) × Σ ΔHf°(reactants)'], ans: 1, hint: 'Products minus reactants — the "PmR" rule.' },
+  { q: 'Using ΔHc° values: ΔH(reaction) = ?', opts: ['Σ ΔHc°(products) − Σ ΔHc°(reactants)', 'Σ ΔHc°(reactants) − Σ ΔHc°(products)', 'Σ ΔHc°(reactants) + Σ ΔHc°(products)', 'Σ ΔHc°(products) × 2'], ans: 1, hint: 'Note: reversed compared to formation! Reactants minus products.' },
+  { q: 'A Born-Haber cycle is used to calculate:', opts: ['Bond energy', 'Activation energy', 'Lattice energy', 'Ionisation energy'], ans: 2, hint: 'It connects formation to atomisation, ionisation, electron affinity and lattice.' },
+  { q: 'Which of these steps in a Born-Haber cycle is endothermic?', opts: ['Lattice formation', 'First electron affinity of chlorine', 'Atomisation of sodium', 'Formation of NaCl'], ans: 2, hint: 'Converting a solid metal to gaseous atoms requires energy.' },
+  { q: 'The second electron affinity of oxygen is:', opts: ['Exothermic', 'Endothermic', 'Zero', 'Same as the first'], ans: 1, hint: 'Pushing an electron onto an already negative ion requires energy.' },
+  { q: 'Which compound has the largest lattice energy (most exothermic)?', opts: ['NaCl', 'MgO', 'KBr', 'CsI'], ans: 1, hint: 'Higher charges AND smaller ions both increase lattice energy.' },
+  { q: 'Why does LiF have a larger lattice energy than NaF?', opts: ['Li has more electrons', 'Li⁺ is smaller than Na⁺', 'F⁻ is larger in NaF', 'LiF has covalent character'], ans: 1, hint: 'Smaller cation = higher charge density = stronger attraction.' },
+  { q: 'What is meant by "standard state"?', opts: ['The state at 0 °C and 1 atm', 'The most stable form at 298 K and 100 kPa', 'The gaseous form at STP', 'Any pure form of the element'], ans: 1, hint: 'Standard means 298 K and 100 kPa, most stable physical form.' },
+  { q: 'For carbon, the standard state is:', opts: ['Diamond', 'Graphite', 'Fullerene', 'Carbon dioxide'], ans: 1, hint: 'Graphite is the most thermodynamically stable allotrope at 298 K.' },
+  { q: 'In a thermometric titration, the endpoint is found at:', opts: ['The lowest temperature', 'The highest temperature', 'Where the gradient is steepest', 'Where temperature equals room temperature'], ans: 1, hint: 'The peak of the temperature curve.' },
+  { q: 'If ΔT = 5.2 °C, mass of solution = 100 g, c = 4.18 J g⁻¹ K⁻¹, what is q?', opts: ['2174 J', '2094 J', '2173.6 J', '21736 J'], ans: 0, hint: 'q = 100 × 4.18 × 5.2 = ?' },
+  { q: 'The enthalpy of atomisation is always:', opts: ['Negative', 'Zero', 'Positive', 'Depends on the element'], ans: 2, hint: 'Breaking bonds/metallic lattice to form gaseous atoms always needs energy.' },
+  { q: 'Which of these has ΔHf° = 0?', opts: ['CO₂(g)', 'H₂O(l)', 'N₂(g)', 'NaCl(s)'], ans: 2, hint: 'Only elements in their standard states have ΔHf° = 0.' },
+  { q: 'In an enthalpy level diagram for an exothermic reaction, the products are drawn:', opts: ['Above the reactants', 'Below the reactants', 'At the same level', 'At the activation energy level'], ans: 1, hint: 'Products have less enthalpy, so they sit lower on the diagram.' },
+  { q: 'Lattice energy is defined as the enthalpy change when:', opts: ['A solid dissolves in water', 'Gaseous ions form one mole of ionic solid', 'A solid is atomised', 'An ion gains an electron'], ans: 1, hint: 'Gaseous ions → ionic lattice, always exothermic.' },
+  { q: 'Which factor does NOT affect lattice energy?', opts: ['Ionic charge', 'Ionic radius', 'Electronegativity of the metal', 'Inter-ionic distance'], ans: 2, hint: 'Lattice energy depends on charge and size, not electronegativity directly.' },
+  { q: 'ΔHsol = −ΔHlatt + ΔHhyd. If |ΔHhyd| > |ΔHlatt|, dissolving is:', opts: ['Endothermic', 'Exothermic', 'Neutral', 'Impossible'], ans: 1, hint: 'More energy released by hydration than spent breaking the lattice.' },
+  { q: 'Mean bond energies give only APPROXIMATE values of ΔH because:', opts: ['They are measured at non-standard conditions', 'Bond energies vary slightly between different molecules', 'Hess\'s Law does not apply to bonds', 'They include lattice energy'], ans: 1, hint: 'The C–H bond in methane is slightly different from C–H in ethanol.' },
+  { q: 'Which enthalpy change is most accurately determined by calorimetry?', opts: ['Lattice energy', 'Enthalpy of combustion', 'Enthalpy of atomisation', 'Electron affinity'], ans: 1, hint: 'Combustion can be carried out and measured directly in a bomb calorimeter.' },
+  { q: 'In a Born-Haber cycle for MgCl₂, how many ionisation energies are needed?', opts: ['One (IE₁)', 'Two (IE₁ + IE₂)', 'Three (IE₁ + IE₂ + IE₃)', 'None'], ans: 1, hint: 'Mg forms Mg²⁺, so you need the first AND second ionisation energies.' },
+  { q: 'The enthalpy of hydration of Mg²⁺ is more exothermic than Na⁺ because:', opts: ['Mg has more protons', 'Mg²⁺ has higher charge density', 'Na⁺ is more electronegative', 'Mg²⁺ has more lone pairs'], ans: 1, hint: 'Smaller radius AND higher charge = higher charge density.' },
+  { q: 'What happens to the temperature of the surroundings during an endothermic reaction?', opts: ['It increases', 'It decreases', 'It stays the same', 'It fluctuates'], ans: 1, hint: 'Energy flows FROM surroundings into the system.' },
+  { q: 'A reaction has ΔH = −200 kJ mol⁻¹. If the reaction is reversed, the new ΔH is:', opts: ['+200 kJ mol⁻¹', '−200 kJ mol⁻¹', '−400 kJ mol⁻¹', '+100 kJ mol⁻¹'], ans: 0, hint: 'Reversing a reaction reverses the sign of ΔH.' },
+];
+
+/* ============================================================
+   Structured questions — 6
+   ============================================================ */
+const structured = [
+  { title: 'Calorimetry calculation', marks: 8, q: '50.0 cm³ of 1.00 mol dm⁻³ HCl is mixed with 50.0 cm³ of 1.00 mol dm⁻³ NaOH in a polystyrene cup. The temperature rises from 22.0 °C to 28.8 °C.', parts: [
+    { q: '(a) Calculate the heat released, q, in joules. (Assume density = 1.00 g cm⁻³, c = 4.18 J g⁻¹ K⁻¹.)', marks: 2, ans: 'Total volume = 100.0 cm³, so mass = 100.0 g. ΔT = 28.8 − 22.0 = 6.8 °C. q = 100.0 × 4.18 × 6.8 = 2842 J (2.84 kJ).' },
+    { q: '(b) Calculate the moles of water formed.', marks: 1, ans: 'HCl and NaOH react 1:1. Moles = 0.0500 × 1.00 = 0.0500 mol of water formed.' },
+    { q: '(c) Calculate the enthalpy of neutralisation, ΔHneut, in kJ mol⁻¹.', marks: 2, ans: 'ΔHneut = −q/n = −2842 / 0.0500 = −56 840 J mol⁻¹ = −56.8 kJ mol⁻¹.' },
+    { q: '(d) The accepted value is −57.1 kJ mol⁻¹. Explain why the experimental value differs.', marks: 2, ans: 'Heat is lost to the surroundings (cup, air, thermometer), so the measured ΔT is slightly less than the true value. This makes the calculated |ΔHneut| slightly smaller than the accepted value.' },
+    { q: '(e) Suggest one improvement to reduce the error.', marks: 1, ans: 'Use a lid on the polystyrene cup to reduce heat loss to the air. OR Use a better-insulated calorimeter (e.g. vacuum flask).' },
+  ]},
+  { title: 'Hess cycle using ΔHf°', marks: 8, q: 'Given: ΔHf°[CO₂(g)] = −394 kJ mol⁻¹, ΔHf°[H₂O(l)] = −286 kJ mol⁻¹, ΔHf°[C₂H₆(g)] = −85 kJ mol⁻¹.', parts: [
+    { q: '(a) Write the balanced equation for the complete combustion of ethane.', marks: 1, ans: '2C₂H₆(g) + 7O₂(g) → 4CO₂(g) + 6H₂O(l). [Or per mole of ethane: C₂H₆(g) + 3½O₂(g) → 2CO₂(g) + 3H₂O(l).]' },
+    { q: '(b) Using the data, calculate ΔHc° for ethane.', marks: 3, ans: 'ΔH = Σ ΔHf°(products) − Σ ΔHf°(reactants) = [2(−394) + 3(−286)] − [(−85) + 3½(0)] = [−788 + (−858)] − [−85] = −1646 + 85 = −1561 kJ mol⁻¹.' },
+    { q: '(c) Draw an energy cycle showing the relationship between ΔHf° values and ΔHc° for ethane.', marks: 2, ans: 'Cycle: Top route = C₂H₆ + 3½O₂ → 2CO₂ + 3H₂O (ΔHc°). Bottom route = Elements (2C + 3H₂ + 3½O₂) forming C₂H₆ via ΔHf°(C₂H₆) on one side, and forming products via 2ΔHf°(CO₂) + 3ΔHf°(H₂O) on the other. Arrows must show correct directions.' },
+    { q: '(d) Explain why the value obtained from ΔHf° data is more accurate than one from bond energy calculations.', marks: 2, ans: 'ΔHf° values are measured directly for specific compounds, whereas bond energies are MEAN values averaged over many different molecular environments. Bond energy calculations give only approximate ΔH values because the actual bond energy of a C–H bond varies slightly between different molecules.' },
+  ]},
+  { title: 'Born-Haber cycle for NaCl', marks: 10, q: 'Use the following data: ΔHf°[NaCl] = −411 kJ mol⁻¹, ΔHat[Na] = +107, ΔHat[½Cl₂] = +121, IE₁[Na] = +496, EA₁[Cl] = −349 kJ mol⁻¹.', parts: [
+    { q: '(a) Define the term "lattice energy".', marks: 2, ans: 'The enthalpy change when one mole of an ionic compound is formed from its constituent gaseous ions under standard conditions. [Na⁺(g) + Cl⁻(g) → NaCl(s)].' },
+    { q: '(b) Draw a Born-Haber cycle for NaCl, labelling each step.', marks: 3, ans: 'Cycle starts with Na(s) + ½Cl₂(g). Steps: (1) ΔHat(Na): Na(s)→Na(g), (2) ΔHat(½Cl₂): ½Cl₂(g)→Cl(g), (3) IE₁: Na(g)→Na⁺(g)+e⁻, (4) EA₁: Cl(g)+e⁻→Cl⁻(g), (5) ΔHlatt: Na⁺(g)+Cl⁻(g)→NaCl(s). Direct route: ΔHf° from elements to NaCl(s).' },
+    { q: '(c) Calculate the lattice energy of NaCl.', marks: 3, ans: 'ΔHf° = ΔHat(Na) + ΔHat(½Cl₂) + IE₁ + EA₁ + ΔHlatt. −411 = 107 + 121 + 496 + (−349) + ΔHlatt. −411 = 375 + ΔHlatt. ΔHlatt = −411 − 375 = −786 kJ mol⁻¹.' },
+    { q: '(d) Explain why MgO has a much larger lattice energy than NaCl.', marks: 2, ans: 'MgO contains Mg²⁺ and O²⁻ ions — both doubly charged. Higher charges create much stronger electrostatic attraction (Coulomb\'s law: force ∝ q₁q₂/r²). Additionally, Mg²⁺ (72 pm) is smaller than Na⁺ (102 pm), giving even higher charge density. The combined effect makes ΔHlatt(MgO) ≈ −3850 kJ mol⁻¹, roughly 5× that of NaCl.' },
+  ]},
+  { title: 'Bond energy calculation', marks: 7, q: 'Use the bond energies: C–H = 412, C=C = 612, H–H = 436, C–C = 348 kJ mol⁻¹.', parts: [
+    { q: '(a) Write the equation for the hydrogenation of ethene (C₂H₄ + H₂ → C₂H₆).', marks: 1, ans: 'CH₂=CH₂(g) + H₂(g) → CH₃CH₃(g).' },
+    { q: '(b) Identify the bonds broken and bonds formed.', marks: 2, ans: 'Broken: 1 × C=C (612) + 1 × H–H (436) = 1048 kJ. Formed: 1 × C–C (348) + 2 × C–H (2 × 412 = 824) = 1172 kJ.' },
+    { q: '(c) Calculate ΔH for the reaction.', marks: 2, ans: 'ΔH = bonds broken − bonds formed = 1048 − 1172 = −124 kJ mol⁻¹.' },
+    { q: '(d) Explain why the experimental value (−137 kJ mol⁻¹) differs from this calculated value.', marks: 2, ans: 'Bond energies used are MEAN values averaged over many molecules, not exact for these specific bonds in ethene and ethane. The actual C=C bond in ethene may be slightly stronger or weaker than the tabulated mean. This introduces an inherent error in the calculation.' },
+  ]},
+  { title: 'Enthalpy of solution', marks: 8, q: 'The lattice energy of KCl is −711 kJ mol⁻¹. The enthalpy of hydration of K⁺ is −322 kJ mol⁻¹ and Cl⁻ is −363 kJ mol⁻¹.', parts: [
+    { q: '(a) Define enthalpy of hydration.', marks: 2, ans: 'The enthalpy change when one mole of gaseous ions is dissolved in sufficient water to form an infinitely dilute solution, under standard conditions. e.g. K⁺(g) → K⁺(aq).' },
+    { q: '(b) Calculate the enthalpy of solution of KCl.', marks: 2, ans: 'ΔHsol = −ΔHlatt + ΔHhyd(K⁺) + ΔHhyd(Cl⁻) = −(−711) + (−322) + (−363) = +711 − 685 = +26 kJ mol⁻¹.' },
+    { q: '(c) Is the dissolving of KCl exothermic or endothermic? Justify.', marks: 1, ans: 'Endothermic (ΔHsol is positive). More energy is required to break apart the lattice than is released by hydrating the ions.' },
+    { q: '(d) Explain why KCl still dissolves despite ΔHsol being positive.', marks: 3, ans: 'Dissolving is also driven by ENTROPY change. When the ordered ionic lattice breaks up and ions spread through the solvent, disorder (entropy) increases significantly. This positive ΔS makes the Gibbs free energy change (ΔG = ΔH − TΔS) negative at room temperature, so dissolving is thermodynamically favourable even though ΔH is positive.' },
+  ]},
+  { title: 'Comparing lattice energies', marks: 7, q: 'Consider the following compounds: NaF, NaCl, MgO, CaO.', parts: [
+    { q: '(a) Arrange NaF and NaCl in order of increasing lattice energy (least exothermic first). Explain.', marks: 2, ans: 'NaCl (−786) < NaF (−923). F⁻ is smaller than Cl⁻, so the ions are closer in NaF, giving stronger electrostatic attraction and a more exothermic lattice energy.' },
+    { q: '(b) Explain why MgO has a much larger lattice energy than NaF.', marks: 2, ans: 'MgO has Mg²⁺ and O²⁻ (both 2+ and 2−), whereas NaF has Na⁺ and F⁻ (both 1+ and 1−). The product of charges is 4 for MgO vs 1 for NaF. Also Mg²⁺ is smaller than Na⁺. Both factors increase the lattice energy enormously.' },
+    { q: '(c) Predict which has the larger lattice energy: MgO or CaO. Explain.', marks: 2, ans: 'MgO. Both have 2+ and 2− ions, but Mg²⁺ (72 pm) is much smaller than Ca²⁺ (100 pm). The smaller Mg²⁺ gives a shorter inter-ionic distance and higher charge density, leading to stronger attraction and larger lattice energy.' },
+    { q: '(d) State the relationship between lattice energy and ionic charges/radii in terms of Coulomb\'s law.', marks: 1, ans: 'Lattice energy ∝ (q⁺ × q⁻) / (r⁺ + r⁻). It increases with higher charges and decreases with larger radii.' },
+  ]},
+];
+
+/* ============================================================
+   Worked examples — 8
+   ============================================================ */
+const worked = [
+  { title: 'Simple q = mcΔT', diff: 'easy', q: '25.0 cm³ of 2.00 mol dm⁻³ NaOH is mixed with 25.0 cm³ of 2.00 mol dm⁻³ HCl. The temperature rises by 13.6 °C. Calculate ΔHneut.', steps: [
+    { label: 'STEP 1', text: 'Total volume = 50.0 cm³. Assume density = 1.00 g cm⁻³, so mass = 50.0 g.' },
+    { label: 'STEP 2', text: 'q = mcΔT = 50.0 × 4.18 × 13.6 = 2842 J = 2.84 kJ.' },
+    { label: 'STEP 3', text: 'Moles of H₂O formed = 0.0250 × 2.00 = 0.0500 mol.' },
+    { label: 'STEP 4', text: 'ΔHneut = −q/n = −2842 / 0.0500 = −56 840 J mol⁻¹ = −56.8 kJ mol⁻¹.' },
+  ], ans: 'ΔHneut = −56.8 kJ mol⁻¹ (close to the accepted −57.1 kJ mol⁻¹).' },
+
+  { title: 'Hess with ΔHf°', diff: 'medium', q: 'Calculate ΔH for the combustion of propane: C₃H₈(g) + 5O₂(g) → 3CO₂(g) + 4H₂O(l). Given: ΔHf°[C₃H₈] = −104, ΔHf°[CO₂] = −394, ΔHf°[H₂O] = −286 kJ mol⁻¹.', steps: [
+    { label: 'STEP 1', text: 'ΔH = Σ ΔHf°(products) − Σ ΔHf°(reactants).' },
+    { label: 'STEP 2', text: 'Products: 3(−394) + 4(−286) = −1182 + (−1144) = −2326 kJ.' },
+    { label: 'STEP 3', text: 'Reactants: (−104) + 5(0) = −104 kJ.' },
+    { label: 'STEP 4', text: 'ΔH = −2326 − (−104) = −2326 + 104 = −2222 kJ mol⁻¹.' },
+  ], ans: 'ΔHc°[C₃H₈] = −2222 kJ mol⁻¹.' },
+
+  { title: 'Born-Haber for KCl', diff: 'hard', q: 'Calculate the lattice energy of KCl. Data: ΔHf°[KCl] = −437, ΔHat[K] = +89, ΔHat[½Cl₂] = +121, IE₁[K] = +419, EA₁[Cl] = −349 kJ mol⁻¹.', steps: [
+    { label: 'STEP 1', text: 'Write the Hess equation: ΔHf° = ΔHat(K) + ΔHat(½Cl₂) + IE₁(K) + EA₁(Cl) + ΔHlatt.' },
+    { label: 'STEP 2', text: 'Substitute: −437 = 89 + 121 + 419 + (−349) + ΔHlatt.' },
+    { label: 'STEP 3', text: 'Sum the known steps: 89 + 121 + 419 − 349 = 280.' },
+    { label: 'STEP 4', text: 'Solve: ΔHlatt = −437 − 280 = −717 kJ mol⁻¹.' },
+  ], ans: 'ΔHlatt[KCl] = −717 kJ mol⁻¹.' },
+
+  { title: 'Bond energy — combustion of ethanol', diff: 'medium', q: 'Use bond energies to estimate ΔH for: C₂H₅OH + 3O₂ → 2CO₂ + 3H₂O. Bond energies: C–H 412, C–C 348, C–O 360, O–H 463, O=O 496, C=O 805 kJ mol⁻¹.', steps: [
+    { label: 'STEP 1', text: 'Bonds in C₂H₅OH: 1×C–C, 5×C–H, 1×C–O, 1×O–H. In 3O₂: 3×O=O.' },
+    { label: 'STEP 2', text: 'Broken: 348 + 5(412) + 360 + 463 + 3(496) = 348 + 2060 + 360 + 463 + 1488 = 4719 kJ.' },
+    { label: 'STEP 3', text: 'Bonds in products: 2CO₂ = 4×C=O. 3H₂O = 6×O–H.' },
+    { label: 'STEP 4', text: 'Formed: 4(805) + 6(463) = 3220 + 2778 = 5998 kJ.' },
+    { label: 'STEP 5', text: 'ΔH = 4719 − 5998 = −1279 kJ mol⁻¹.' },
+  ], ans: 'ΔH ≈ −1279 kJ mol⁻¹ (experimental: −1371 kJ mol⁻¹; difference due to mean bond energies).' },
+
+  { title: 'Enthalpy of solution from cycle', diff: 'medium', q: 'Calculate ΔHsol for NaCl. Data: ΔHlatt[NaCl] = −786, ΔHhyd[Na⁺] = −406, ΔHhyd[Cl⁻] = −363 kJ mol⁻¹.', steps: [
+    { label: 'STEP 1', text: 'Use the relationship: ΔHsol = −ΔHlatt + ΔHhyd(cation) + ΔHhyd(anion).' },
+    { label: 'STEP 2', text: 'ΔHsol = −(−786) + (−406) + (−363).' },
+    { label: 'STEP 3', text: '= +786 − 406 − 363 = +17 kJ mol⁻¹.' },
+  ], ans: 'ΔHsol[NaCl] = +17 kJ mol⁻¹ (endothermic — lattice breaking costs slightly more than hydration releases).' },
+
+  { title: 'Comparing neutralisation values', diff: 'easy', q: 'Explain why ΔHneut for CH₃COOH + NaOH is −55.2 kJ mol⁻¹, not −57.1 kJ mol⁻¹.', steps: [
+    { label: 'STEP 1', text: 'CH₃COOH is a weak acid — it is only partially dissociated in solution.' },
+    { label: 'STEP 2', text: 'Before neutralisation can occur, the undissociated molecules must break apart: CH₃COOH → CH₃COO⁻ + H⁺. This dissociation is endothermic.' },
+    { label: 'STEP 3', text: 'Some of the heat released by H⁺ + OH⁻ → H₂O (exothermic, −57.1 kJ) is used up to dissociate the weak acid.' },
+    { label: 'STEP 4', text: 'Net result: less exothermic overall, giving −55.2 instead of −57.1 kJ mol⁻¹.' },
+  ], ans: 'Dissociation of the weak acid absorbs some energy, reducing the net exothermic value to −55.2 kJ mol⁻¹.' },
+
+  { title: 'Born-Haber for MgO', diff: 'hard', q: 'Calculate ΔHlatt for MgO. Data: ΔHf°[MgO] = −602, ΔHat[Mg] = +148, ΔHat[½O₂] = +249, IE₁[Mg] = +738, IE₂[Mg] = +1451, EA₁[O] = −141, EA₂[O] = +798 kJ mol⁻¹.', steps: [
+    { label: 'STEP 1', text: 'ΔHf° = ΔHat(Mg) + ΔHat(½O₂) + IE₁ + IE₂ + EA₁ + EA₂ + ΔHlatt.' },
+    { label: 'STEP 2', text: '−602 = 148 + 249 + 738 + 1451 + (−141) + 798 + ΔHlatt.' },
+    { label: 'STEP 3', text: 'Sum known steps: 148 + 249 + 738 + 1451 − 141 + 798 = 3243.' },
+    { label: 'STEP 4', text: 'ΔHlatt = −602 − 3243 = −3845 kJ mol⁻¹.' },
+  ], ans: 'ΔHlatt[MgO] = −3845 kJ mol⁻¹ (enormous — explains the very high m.p. of MgO, 2852 °C).' },
+
+  { title: 'Thermometric titration endpoint', diff: 'easy', q: 'In a thermometric titration, the temperature readings as 10.0 cm³ portions of 1.0 mol dm⁻³ HCl are added to 50.0 cm³ of NaOH are: 22.0, 24.5, 27.0, 29.5, 31.2, 30.5, 29.8, 29.1 °C. Estimate the endpoint volume.', steps: [
+    { label: 'STEP 1', text: 'List the volumes: 10, 20, 30, 40, 50, 60, 70, 80 cm³ with corresponding temperatures.' },
+    { label: 'STEP 2', text: 'The temperature rises from 22.0 to a peak of 31.2 at 50 cm³, then starts falling.' },
+    { label: 'STEP 3', text: 'The endpoint is where the peak occurs — approximately 50 cm³ of HCl.' },
+    { label: 'STEP 4', text: 'More precisely, draw tangent lines to the rising and falling portions; their intersection confirms 50 cm³.' },
+  ], ans: 'Endpoint ≈ 50 cm³ of HCl. This means 0.0500 mol HCl reacted with the NaOH present.' },
+];
+
+/* ============================================================
+   Exported module
+   ============================================================ */
+export const ENERGETICS = {
+  id: 'energetics',
+  objectives: [
+    'Explain exothermic and endothermic reactions in terms of enthalpy changes and energy profiles',
+    'Define standard enthalpy changes: formation, combustion, neutralisation, atomisation, hydration, solution, lattice energy and electron affinity',
+    'Calculate enthalpy changes using q = mcΔT (calorimetry)',
+    'Apply Hess\'s Law to construct energy cycles using ΔHf° and ΔHc° data',
+    'Construct and use Born-Haber cycles to calculate lattice energies',
+    'Calculate enthalpy changes from mean bond energy data',
+    'Explain how charge density (ionic charge and radius) affects lattice energy',
+    'Describe thermometric titrations and identify endpoints from temperature-volume graphs',
+  ],
+  chapters,
+  quizzes,
+  multi: [],
+  structured,
+  worked,
+  tutorPrompts: [
+    'Walk me through a Born-Haber cycle for CaCl₂ step by step',
+    'Why is the second electron affinity of oxygen endothermic?',
+    'Give me a hard Hess\'s Law calculation using combustion data',
+    'Explain why NaCl dissolves even though ΔHsol is positive',
+    'How do I decide whether to use bond energies or ΔHf° for a calculation?',
+  ],
+};

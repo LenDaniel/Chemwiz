@@ -1,0 +1,942 @@
+// Chemical Bonding — PC-03 — full content
+// ZIMSEC Form 5/6 Chemistry, Section 6.1 — Topic 3
+// Syllabus coverage:
+//   - Ionic bonding (NaCl, MgO, Al2O3)
+//   - Covalent bonding (incl. orbital overlap; benzene as exemplar)
+//   - Bond reactivity (length, energy, polarity)
+//   - Dative bonding (NH4+, Al2Cl6)
+//   - Shapes of molecules (VSEPR)
+//   - Metallic bonding
+//   - Intermolecular forces (van der Waals, permanent dipole, H-bond)
+//   - Effect of bonding on physical properties
+
+/* ============================================================
+   Diagram specs (Phase K3.4 migration)
+   Unused legacy JSX removed in K-Cleanup; active specs are unchanged.
+   ============================================================ */
+const bondingIonicNaClSpec = {
+  "title": "IONIC · Na + Cl → Na⁺ + Cl⁻",
+  "blocks": [
+    {
+      "type": "compare",
+      "left": {
+        "title": "Na atom",
+        "color": "amber",
+        "body": [
+          "loses 1 e⁻",
+          "Na → Na⁺ + e⁻",
+          "Na⁺ configuration: [2,8]"
+        ]
+      },
+      "right": {
+        "title": "Cl atom",
+        "color": "green",
+        "body": [
+          "gains 1 e⁻",
+          "Cl + e⁻ → Cl⁻",
+          "Cl⁻ configuration: [2,8,8]"
+        ]
+      }
+    },
+    {
+      "type": "equation",
+      "text": "Na⁺  ··· electrostatic attraction ···  Cl⁻",
+      "big": true
+    },
+    {
+      "type": "note",
+      "text": "Complete outer shells; ions attract electrostatically.",
+      "emphasis": true
+    }
+  ]
+};
+
+const bondingOrbitalOverlapSpec = {
+  "title": "σ AND π BONDS · ETHENE C₂H₄",
+  "blocks": [
+    {
+      "type": "compare",
+      "left": {
+        "title": "σ bond · head-on",
+        "color": "primary",
+        "body": [
+          "orbitals overlap end-to-end",
+          "electron density on bond axis",
+          "stronger; fixes basic geometry"
+        ]
+      },
+      "right": {
+        "title": "π bond · sideways",
+        "color": "accent",
+        "body": [
+          "parallel p orbitals overlap",
+          "density above/below σ axis",
+          "weaker; prevents free rotation"
+        ]
+      }
+    },
+    {
+      "type": "equation",
+      "text": "C=C  =  1σ + 1π"
+    },
+    {
+      "type": "equation",
+      "text": "C≡C  =  1σ + 2π"
+    }
+  ]
+};
+
+const bondingBenzeneSpec = {
+  "title": "BENZENE · DELOCALISED π SYSTEM",
+  "blocks": [
+    {
+      "type": "panel",
+      "title": "Six-carbon aromatic ring",
+      "color": "primary",
+      "body": [
+        "each carbon is sp² hybridised",
+        "six parallel p orbitals overlap around the ring",
+        "π electrons are delocalised above and below the ring"
+      ]
+    },
+    {
+      "type": "equation",
+      "text": "all C–C bonds ≈ 139 pm"
+    },
+    {
+      "type": "compare",
+      "left": {
+        "title": "single C–C",
+        "color": "dim",
+        "body": [
+          "≈154 pm"
+        ]
+      },
+      "right": {
+        "title": "double C=C",
+        "color": "dim",
+        "body": [
+          "≈134 pm"
+        ]
+      }
+    },
+    {
+      "type": "note",
+      "text": "Equal C–C bonds show delocalisation and extra stability.",
+      "emphasis": true
+    }
+  ]
+};
+
+const bondingPolaritySpec = {
+  "title": "BOND POLARITY · H—Cl",
+  "blocks": [
+    {
+      "type": "compare",
+      "left": {
+        "title": "H",
+        "color": "red",
+        "body": [
+          "EN = 2.20",
+          "partial charge δ+"
+        ]
+      },
+      "right": {
+        "title": "Cl",
+        "color": "green",
+        "body": [
+          "EN = 3.16",
+          "partial charge δ−",
+          "electron density shifts toward Cl"
+        ]
+      }
+    },
+    {
+      "type": "equation",
+      "text": "Hδ+  ———→  Clδ−"
+    },
+    {
+      "type": "note",
+      "text": "ΔEN ≈ 1 → polar covalent bond",
+      "emphasis": true
+    },
+    {
+      "type": "note",
+      "text": "Rule of thumb: >1.7 ionic · 0.4–1.7 polar · <0.4 non-polar"
+    }
+  ]
+};
+
+const bondingDativeSpec = {
+  "title": "DATIVE BOND · NH₄⁺",
+  "blocks": [
+    {
+      "type": "steps",
+      "items": [
+        {
+          "number": "1",
+          "color": "amber",
+          "body": "NH₃ has a lone pair on nitrogen"
+        },
+        {
+          "number": "2",
+          "color": "primary",
+          "body": "H⁺ has an empty 1s orbital"
+        },
+        {
+          "number": "3",
+          "color": "green",
+          "body": "N donates both bonding electrons to H⁺"
+        },
+        {
+          "number": "4",
+          "color": "accent",
+          "body": "NH₃ + H⁺ → NH₄⁺"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "text": "The donated N–H bond becomes equivalent to the others.",
+      "emphasis": true
+    }
+  ]
+};
+
+const bondingVSEPRSpec = {
+  "title": "VSEPR · COMMON MOLECULAR SHAPES",
+  "blocks": [
+    {
+      "type": "table",
+      "headers": [
+        "electron arrangement",
+        "shape",
+        "angle / example"
+      ],
+      "colWidths": [
+        95,
+        95,
+        100
+      ],
+      "rows": [
+        [
+          "2 bonding pairs",
+          "linear",
+          "180° · BeCl₂ / CO₂"
+        ],
+        [
+          "3 bonding pairs",
+          "trigonal planar",
+          "120° · BF₃"
+        ],
+        [
+          "4 bonding pairs",
+          "tetrahedral",
+          "109.5° · CH₄"
+        ],
+        [
+          "3 bond + 1 lone",
+          "pyramidal",
+          "107° · NH₃"
+        ],
+        [
+          "2 bond + 2 lone",
+          "bent",
+          "104.5° · H₂O"
+        ],
+        [
+          "6 bonding pairs",
+          "octahedral",
+          "90° · SF₆"
+        ]
+      ],
+      "rowH": 23
+    },
+    {
+      "type": "note",
+      "text": "LP–LP > LP–BP > BP–BP; lone pairs reduce angles.",
+      "emphasis": true
+    }
+  ]
+};
+
+const bondingMetallicSpec = {
+  "title": "METALLIC BONDING",
+  "blocks": [
+    {
+      "type": "panel",
+      "title": "Structure",
+      "color": "primary",
+      "body": [
+        "regular lattice of positive metal ions",
+        "surrounded by mobile delocalised electrons",
+        "electrostatic attraction binds ions to the electron sea"
+      ]
+    },
+    {
+      "type": "cards",
+      "cards": [
+        {
+          "title": "conductivity",
+          "color": "cyan",
+          "body": [
+            "mobile electrons",
+            "carry charge"
+          ]
+        },
+        {
+          "title": "malleability",
+          "color": "amber",
+          "body": [
+            "layers slide",
+            "bonding retained"
+          ]
+        },
+        {
+          "title": "high m.p.",
+          "color": "green",
+          "body": [
+            "strong attraction",
+            "many particles"
+          ]
+        }
+      ]
+    }
+  ]
+};
+
+const bondingHBondSpec = {
+  "title": "HYDROGEN BONDING IN H₂O",
+  "blocks": [
+    {
+      "type": "equation",
+      "text": "Oδ− — Hδ+ ··· Oδ− — Hδ+"
+    },
+    {
+      "type": "panel",
+      "title": "Why it forms",
+      "color": "primary",
+      "body": [
+        "O is strongly electronegative → Oδ− and Hδ+",
+        "Hδ+ on one molecule is attracted to a lone pair on another O",
+        "the dotted intermolecular attraction is a hydrogen bond"
+      ]
+    },
+    {
+      "type": "note",
+      "text": "Strongest intermolecular force listed here.",
+      "emphasis": true
+    }
+  ]
+};
+
+const bondingIceWaterSpec = {
+  "title": "ICE LESS DENSE THAN LIQUID WATER",
+  "blocks": [
+    {
+      "type": "compare",
+      "left": {
+        "title": "ICE",
+        "color": "cyan",
+        "body": [
+          "open hexagonal H-bond lattice",
+          "molecules held further apart",
+          "lower density"
+        ]
+      },
+      "right": {
+        "title": "LIQUID WATER",
+        "color": "primary",
+        "body": [
+          "H-bonds continually break/reform",
+          "molecules pack more closely",
+          "higher density"
+        ]
+      }
+    },
+    {
+      "type": "note",
+      "text": "Ice floats, insulating liquid water below.",
+      "emphasis": true
+    }
+  ]
+};
+
+const bondingLatticesSpec = {
+  "title": "FOUR LATTICE TYPES",
+  "blocks": [
+    {
+      "type": "table",
+      "headers": [
+        "type",
+        "example",
+        "key particles / bonding"
+      ],
+      "colWidths": [
+        75,
+        65,
+        150
+      ],
+      "rows": [
+        [
+          "ionic",
+          "NaCl",
+          "ions · strong electrostatic attraction"
+        ],
+        [
+          "molecular",
+          "I₂ / ice",
+          "molecules · intermolecular forces"
+        ],
+        [
+          "giant covalent",
+          "diamond / SiO₂",
+          "atoms · covalent network"
+        ],
+        [
+          "metallic",
+          "Cu / Fe",
+          "cations + delocalised electrons"
+        ]
+      ],
+      "rowH": 25
+    },
+    {
+      "type": "note",
+      "text": "Bonding controls m.p., conductivity, hardness and solubility.",
+      "emphasis": true
+    }
+  ]
+};
+
+/* ============================================================
+   Chapters (11)
+   ============================================================ */
+
+const chapters = [
+  // CH.1 — Why bonds form
+  { id: 'b1', title: 'Why Atoms Bond', minutes: 7, blocks: [
+    { type: 'p', text: 'Almost no element exists naturally as isolated atoms. Apart from the noble gases (He, Ne, Ar...), atoms form bonds with one another. Why? Because bonded systems have LOWER energy than the separated atoms — and nature trends towards lower energy.' },
+    { type: 'callout', kind: 'key', title: 'The driving force', body: 'Atoms bond to achieve a more stable electron arrangement, usually a noble-gas configuration (full outer shell). The energy released when bonds form (the bond energy) is what stabilises the new system.' },
+    { type: 'h', text: 'Three main bond types' },
+    { type: 'ul', items: [
+      'IONIC — electron transfer; metal + non-metal; produces +ve and −ve ions held by electrostatic attraction.',
+      'COVALENT — electron sharing; non-metal + non-metal; produces molecules with discrete bonded pairs.',
+      'METALLIC — electron pooling; metal + metal; produces a lattice of cations in a sea of mobile electrons.',
+    ]},
+    { type: 'h', text: 'And then between molecules' },
+    { type: 'p', text: 'Once molecules exist, they can attract each other through weaker forces — van der Waals, permanent dipoles, and hydrogen bonds. These INTERMOLECULAR forces explain melting and boiling points, solubility, surface tension. They are NOT the same as the strong INTRAMOLECULAR bonds within the molecule.' },
+    { type: 'takeaway', items: [
+      'Bonds form because they LOWER total energy.',
+      'Three intramolecular types: ionic, covalent, metallic.',
+      'Intermolecular forces are separate, weaker attractions BETWEEN molecules.',
+    ]},
+  ]},
+
+  // CH.2 — Ionic bonding
+  { id: 'b2', title: 'Ionic Bonding', minutes: 11, blocks: [
+    { type: 'p', text: 'Ionic bonding occurs when a metal donates one or more electrons to a non-metal. Both species end up with full outer shells. The resulting cation and anion are held together by strong electrostatic attraction.' },
+    { type: 'd', spec: bondingIonicNaClSpec, caption: 'Sodium chloride — Na loses 1 e⁻, Cl gains 1 e⁻' },
+    { type: 'h', text: 'Examples to memorise' },
+    { type: 'ul', items: [
+      'NaCl — Na (1 valence e⁻) loses to Cl (7 valence e⁻). Both attain 8.',
+      'MgO — Mg loses 2 e⁻ to O. Both attain 8.',
+      'Al₂O₃ — 2 Al each lose 3 e⁻; 3 O each gain 2 e⁻. Total electrons exchanged = 6 each side. Formula 2:3.',
+    ]},
+    { type: 'h', text: 'Drawing dot-and-cross diagrams' },
+    { type: 'ul', items: [
+      'Use crosses (×) for one element\'s electrons and dots (•) for the other.',
+      'Show only the OUTER shell.',
+      'Indicate the charge with [ ]ⁿ⁺ or [ ]ⁿ⁻ around the ion.',
+      'Make sure each ion has 8 in its outer shell (or 2 for H, Li⁺, Be²⁺).',
+    ]},
+    { type: 'h', text: 'Properties of ionic compounds' },
+    { type: 'ul', items: [
+      'High melting and boiling points — strong electrostatic forces throughout the lattice.',
+      'Hard but brittle — like-charges align under stress, then repel and crack.',
+      'Conduct electricity when MOLTEN or DISSOLVED — ions become mobile. Solid: ions fixed, no conduction.',
+      'Often soluble in polar solvents like water (which can stabilise the separated ions).',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Ionic radius vs atomic radius', body: 'A cation is SMALLER than its parent atom (lost an outer shell, plus higher Z_eff for remaining electrons). An anion is LARGER than its parent atom (gained an electron, more inter-electron repulsion in the outer shell).' },
+    { type: 'takeaway', items: [
+      'Ionic = electron transfer + electrostatic attraction.',
+      'Both ions reach a noble-gas configuration.',
+      'High m.p., conducts when molten/dissolved, brittle.',
+    ]},
+  ]},
+
+  // CH.3 — Covalent bonding
+  { id: 'b3', title: 'Covalent Bonding', minutes: 13, blocks: [
+    { type: 'p', text: 'A covalent bond is a SHARED pair of electrons between two atoms — usually two non-metals. Both atoms count the shared pair towards their outer-shell octet (or duet for H), so both achieve a noble-gas configuration without a net charge transfer.' },
+    { type: 'h', text: 'Single, double, triple bonds' },
+    { type: 'ul', items: [
+      'Single bond — one shared pair (e.g. H–H, Cl–Cl, H–Cl). Two electrons total in the bond.',
+      'Double bond — two shared pairs (e.g. O=O, C=O). Four electrons total.',
+      'Triple bond — three shared pairs (e.g. N≡N, C≡C). Six electrons total.',
+    ]},
+    { type: 'h', text: 'Sigma (σ) and pi (π) bonds — orbital overlap' },
+    { type: 'd', spec: bondingOrbitalOverlapSpec, caption: 'Two ways orbitals overlap' },
+    { type: 'ul', items: [
+      'σ bond — orbitals overlap HEAD-ON along the line between the nuclei. Strong; allows free rotation.',
+      'π bond — orbitals overlap SIDEWAYS, with electron density above and below the bond axis. Weaker; prevents rotation (so cis/trans isomerism in alkenes).',
+      'A single bond is 1 σ. A double bond is 1 σ + 1 π. A triple bond is 1 σ + 2 π.',
+    ]},
+    { type: 'h', text: 'Worked examples — drawing dot-and-cross' },
+    { type: 'ul', items: [
+      'H₂ — each H contributes 1 e⁻ to a single shared pair. Each H has 2 in its "shell".',
+      'O₂ — each O has 6 outer; share 2 pairs (double bond). Each O has 8.',
+      'CO₂ — C shares 2 pairs with EACH O (two double bonds). All atoms hit 8.',
+      'HCl — H shares 1 with Cl. Cl has 6 lone + 1 bonded pair = 8. H has 2.',
+      'C₂H₆ (ethane) — single C–C, six C–H. All carbons have 8.',
+      'C₂H₄ (ethene) — C=C double bond, four C–H. Planar around each C.',
+    ]},
+    { type: 'd', spec: bondingBenzeneSpec, caption: 'Benzene — a special case' },
+    { type: 'h', text: 'Benzene — delocalised system' },
+    { type: 'p', text: 'Benzene (C₆H₆) is special. Each C is sp² hybridised: it forms three σ bonds (to two neighbouring C and one H) using sp² hybrid orbitals in a plane. The remaining p-orbital, with one electron, is perpendicular to the plane. The six p-orbitals overlap sideways, forming a continuous DELOCALISED π cloud above and below the ring. All six C–C bonds are equal length (139 pm — between single 154 and double 134), and the molecule has extra stability beyond what 3 separate double bonds would give.' },
+    { type: 'callout', kind: 'key', title: 'Why benzene matters', body: 'The delocalised π system makes benzene unusually stable — about 150 kJ/mol more stable than the hypothetical "cyclohexatriene" with 3 isolated double bonds. This is the resonance / aromatic stabilisation energy. It explains why benzene resists addition (which would break the ring\'s aromaticity) and prefers substitution.' },
+    { type: 'takeaway', items: [
+      'Covalent bond = shared pair, achieving full outer shell for both.',
+      '1 bond = 1 σ; double = 1σ + 1π; triple = 1σ + 2π.',
+      'σ allows rotation; π locks geometry.',
+      'Benzene\'s 6 C have a single delocalised π system → extra stability.',
+    ]},
+  ]},
+
+  // CH.4 — Bond reactivity
+  { id: 'b4', title: 'Bond Reactivity — Length, Energy, Polarity', minutes: 12, blocks: [
+    { type: 'p', text: 'Not all covalent bonds are equally strong. Three properties — bond length, bond energy, and bond polarity — determine how readily a bond breaks and what kind of reactions follow.' },
+    { type: 'h', text: 'Bond length' },
+    { type: 'ul', items: [
+      'The distance between the two bonded nuclei.',
+      'Single bonds are LONGER than double, which are longer than triple (between the same two atoms).',
+      'C–C: 154 pm  ;  C=C: 134 pm  ;  C≡C: 120 pm.',
+      'Longer bonds are generally weaker.',
+    ]},
+    { type: 'h', text: 'Bond energy (bond enthalpy)' },
+    { type: 'callout', kind: 'definition', title: 'Bond energy', body: 'The energy required to break ONE MOLE of a particular bond in the GAS phase. Always positive (breaking bonds costs energy).' },
+    { type: 'ul', items: [
+      'C–C ≈ 348 kJ/mol  ;  C=C ≈ 612  ;  C≡C ≈ 838.',
+      'Higher bond energy = stronger bond = harder to break = less reactive at that site.',
+      'Weak bonds are reactive sites — e.g. the π component of C=C is the reactive part in alkene addition.',
+    ]},
+    { type: 'h', text: 'Bond polarity' },
+    { type: 'd', spec: bondingPolaritySpec, caption: 'Polar covalent bond' },
+    { type: 'ul', items: [
+      'Caused by a difference in electronegativity (EN) between the bonded atoms.',
+      'The more electronegative atom acquires δ− (partial negative); the less electronegative atom is δ+.',
+      'EN trends: increases across a period, decreases down a group. F is the most electronegative element (4.0).',
+      'ΔEN = 0 → pure non-polar covalent (H–H, Cl–Cl).',
+      'ΔEN = 0.4 to 1.7 → polar covalent (H–Cl, C=O).',
+      'ΔEN > 1.7 → ionic (Na–Cl).',
+    ]},
+    { type: 'h', text: 'Polarity drives reactivity' },
+    { type: 'p', text: 'Polar bonds have an electron-deficient (δ+) end and an electron-rich (δ−) end. This sets up sites that attract incoming reagents:' },
+    { type: 'ul', items: [
+      'Nucleophiles (electron-rich, e.g. OH⁻, NH₃) attack the δ+ atom.',
+      'Electrophiles (electron-poor, e.g. Br⁺, NO₂⁺) attack the δ− atom or electron-rich π bonds.',
+      'This is why halogenoalkanes (C–X bonds polar towards X) undergo nucleophilic substitution at C.',
+    ]},
+    { type: 'callout', kind: 'warning', title: 'Polar bond ≠ polar molecule', body: 'A molecule with polar bonds may still be NON-POLAR if the dipoles cancel by symmetry. Example: CO₂ has two polar C=O bonds but they point in opposite directions (linear molecule), so the molecule has no net dipole moment. Same for CCl₄ (tetrahedral). Compare with H₂O: two polar O–H bonds, but the molecule is BENT, dipoles add, water IS polar.' },
+    { type: 'takeaway', items: [
+      'Length: triple < double < single (between same atoms).',
+      'Energy: triple > double > single. Higher energy = harder to break.',
+      'Polarity: arises from ΔEN; sets up attack sites for nucleophiles/electrophiles.',
+      'Net molecular dipole depends on shape, not just bonds.',
+    ]},
+  ]},
+
+  // CH.5 — Dative bonding
+  { id: 'b5', title: 'Dative (Coordinate) Bonding', minutes: 9, blocks: [
+    { type: 'p', text: 'A dative bond (also called a coordinate bond) is a covalent bond in which BOTH bonding electrons come from the SAME atom. Once formed, a dative bond is identical to any other covalent bond — only its origin is different.' },
+    { type: 'callout', kind: 'definition', title: 'Dative bond', body: 'A shared electron pair where both electrons originate on one atom (the donor). Drawn with an arrow from donor to acceptor, or shown using "lone pair × lone pair" notation.' },
+    { type: 'd', spec: bondingDativeSpec, caption: 'NH₃ + H⁺ → NH₄⁺' },
+    { type: 'h', text: 'NH₄⁺ — formation' },
+    { type: 'p', text: 'In NH₃, the N atom has 3 bonded pairs (to 3 H) and 1 LONE pair. When NH₃ meets H⁺ (a bare proton with empty 1s orbital), the lone pair on N is donated into the H⁺\'s 1s orbital. The result is a fourth N–H bond with both electrons from N. NH₄⁺ has FOUR equivalent N–H bonds — once formed, you cannot tell which one is "the dative bond". The +1 charge is shared across the whole ion.' },
+    { type: 'h', text: 'Al₂Cl₆ — the dimer of AlCl₃' },
+    { type: 'p', text: 'AlCl₃ has only 6 electrons around Al — short of an octet. In the gas phase or non-polar solvents, two AlCl₃ molecules join via two dative bonds. Each bridging Cl donates a lone pair into the empty orbital on the OTHER Al.' },
+    { type: 'ul', items: [
+      'Each Al has 4 Cl around it (octet completed).',
+      'Two of those Cl atoms BRIDGE between the two Al — they form 2 dative bonds.',
+      'This is a common A-level diagram; learn to draw it with the chlorine bridges.',
+    ]},
+    { type: 'h', text: 'Other examples worth knowing' },
+    { type: 'ul', items: [
+      'BF₃·NH₃ — the lone pair on N donates into B\'s empty p orbital.',
+      'CO — one of the three C–O bonds in carbon monoxide is a dative bond from O to C, giving C a full octet.',
+      'Transition metal complexes — every M–L bond in [Cu(H₂O)₆]²⁺ etc. is a dative bond from the ligand.',
+      'H₃O⁺ — the third O–H bond in the hydroxonium ion is dative (O donates lone pair to H⁺).',
+    ]},
+    { type: 'takeaway', items: [
+      'Both bonding electrons come from one atom (the donor with a lone pair).',
+      'Acceptor needs an empty orbital (e.g. H⁺, B in BF₃, Al in AlCl₃).',
+      'Once formed, indistinguishable from a regular covalent bond.',
+    ]},
+  ]},
+
+  // CH.6 — VSEPR shapes
+  { id: 'b6', title: 'Shapes of Molecules — VSEPR', minutes: 14, blocks: [
+    { type: 'p', text: 'The shape of a molecule is determined by the arrangement of electron pairs around its central atom. Electron pairs repel each other — they arrange themselves as far apart as possible. This is Valence Shell Electron Pair Repulsion theory (VSEPR).' },
+    { type: 'd', spec: bondingVSEPRSpec, caption: 'The five most-tested shapes' },
+    { type: 'h', text: 'The repulsion ranking' },
+    { type: 'p', text: 'Not all electron pairs repel equally. Lone pairs (LP) sit closer to the central atom (only one nucleus pulling them) while bonding pairs (BP) are stretched between two nuclei. Hence:' },
+    { type: 'ul', items: [
+      'LP–LP repulsion >  LP–BP  >  BP–BP.',
+      'Each lone pair "squeezes" the bond angles slightly smaller than the ideal.',
+    ]},
+    { type: 'h', text: 'Shapes you must know' },
+    { type: 'ul', items: [
+      '2 BP — LINEAR — 180° — e.g. CO₂, BeCl₂, HCN.',
+      '3 BP — TRIGONAL PLANAR — 120° — e.g. BF₃, BCl₃.',
+      '4 BP — TETRAHEDRAL — 109.5° — e.g. CH₄, NH₄⁺, SiH₄.',
+      '3 BP + 1 LP — TRIGONAL PYRAMIDAL — ~107° — e.g. NH₃, PH₃. Lone pair compresses to slightly less than 109.5°.',
+      '2 BP + 2 LP — BENT — ~104.5° — e.g. H₂O. Two lone pairs compress further.',
+      '5 BP — TRIGONAL BIPYRAMIDAL — 120° equatorial, 90° axial — e.g. PCl₅.',
+      '6 BP — OCTAHEDRAL — 90° — e.g. SF₆, [Co(NH₃)₆]³⁺.',
+    ]},
+    { type: 'h', text: 'Workflow for any molecule' },
+    { type: 'ul', items: [
+      '1. Count valence electrons on the central atom.',
+      '2. Add 1 e⁻ per atom bonded (for halogens, H — they donate 1 to the bond).',
+      '3. Add or subtract for charge (cation: subtract; anion: add).',
+      '4. Divide by 2 to get total ELECTRON pairs (bonding + lone).',
+      '5. Subtract bonded atoms to find LONE PAIRS.',
+      '6. Match (BP, LP) pattern to the standard shape.',
+    ]},
+    { type: 'h', text: 'Worked: H₂O' },
+    { type: 'ul', items: [
+      'Central atom O: 6 valence e⁻.',
+      'Bonded atoms: 2 H × 1 = 2 e⁻ contributed.',
+      'Total = 6 + 2 = 8 e⁻ → 4 pairs.',
+      'Bonded pairs = 2 (one to each H). Lone pairs = 4 − 2 = 2.',
+      'Pattern: 2 BP + 2 LP → BENT. Bond angle ~104.5°.',
+    ]},
+    { type: 'h', text: 'Worked: SF₆' },
+    { type: 'ul', items: [
+      'S: 6 valence e⁻. 6 F × 1 = 6 e⁻. Total = 12 e⁻ → 6 pairs.',
+      '6 BP, 0 LP → OCTAHEDRAL, all bond angles 90°.',
+      'Yes, S can have more than 8 electrons (expanded octet — only Period 3 and below, where empty d orbitals are accessible).',
+    ]},
+    { type: 'callout', kind: 'warning', title: 'Don\'t forget multiple bonds count as ONE region', body: 'For VSEPR purposes, a double or triple bond counts as ONE electron-pair region (because all the electrons are between the same two nuclei). Example: CO₂ has 2 double bonds = 2 regions = LINEAR. SO₂ has 2 double bonds + 1 lone pair = 3 regions = BENT (~120°).' },
+    { type: 'takeaway', items: [
+      'Electron pairs arrange to minimise repulsion.',
+      'Lone pairs repel more strongly → squeeze bond angles smaller.',
+      'Multiple bonds count as one region for VSEPR.',
+      'Memorise the (BP, LP) pattern → shape mapping.',
+    ]},
+  ]},
+
+  // CH.7 — Metallic bonding
+  { id: 'b7', title: 'Metallic Bonding', minutes: 9, blocks: [
+    { type: 'p', text: 'In a metal, the outer-shell electrons are not held by any individual atom. They drift freely through the entire piece of metal — the famous "sea of delocalised electrons". The atoms have effectively become positive ions (cations), arranged in a regular lattice, with the electron sea binding them all together.' },
+    { type: 'd', spec: bondingMetallicSpec, caption: 'Lattice of cations in a sea of mobile electrons' },
+    { type: 'h', text: 'Why metals do what they do' },
+    { type: 'ul', items: [
+      'GOOD ELECTRICAL CONDUCTORS — delocalised electrons move freely under an applied voltage.',
+      'GOOD THERMAL CONDUCTORS — kinetic energy passes rapidly through the mobile-electron network.',
+      'MALLEABLE AND DUCTILE — layers of cations can slide past each other; the electron sea adjusts and the bond is preserved. (Compare ionic compounds, which crack under stress.)',
+      'HIGH M.P. AND B.P. — many electrostatic attractions throughout the lattice.',
+      'LUSTROUS — free electrons absorb and re-emit photons of visible light.',
+    ]},
+    { type: 'h', text: 'What controls the strength of a metallic bond?' },
+    { type: 'ul', items: [
+      'Number of valence electrons donated to the sea — more electrons = stronger bond. Group I metals (1 valence e⁻) have lower m.p. than Group II (2). Transition metals donate up to 6 electrons (4s + several 3d) → much stronger bonds, much higher m.p.',
+      'Charge density of the cation — smaller, more highly charged cations bind the electron sea more tightly. Mg²⁺ > Na⁺ in metallic-bond strength.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Why TMs have higher m.p. than Group I/II', body: 'Transition metals contribute BOTH 4s and (some) 3d electrons to the metallic bond. With more electrons in the sea AND a higher cation charge, the bonding is much stronger. Compare Na (m.p. 98 °C) with Fe (1538 °C). Pure delocalised d electrons are why TMs are dense, hard, and high-melting.' },
+  ]},
+
+  // CH.8 — Intermolecular forces
+  { id: 'b8', title: 'Intermolecular Forces', minutes: 14, blocks: [
+    { type: 'p', text: 'Intermolecular forces are the attractions BETWEEN separate molecules. They are MUCH weaker than the intramolecular bonds (covalent, ionic, metallic) inside a molecule, but they are responsible for melting points, boiling points, surface tension, viscosity, and miscibility — most of the everyday physical behaviour of substances.' },
+    { type: 'h', text: 'Three types — in ascending strength' },
+    { type: 'ul', items: [
+      '1. Van der Waals (London / dispersion) forces — between ALL molecules.',
+      '2. Permanent dipole-dipole — between POLAR molecules.',
+      '3. Hydrogen bonding — between molecules with H bonded to N, O, or F.',
+    ]},
+    { type: 'h', text: 'Van der Waals (induced dipole — induced dipole)' },
+    { type: 'p', text: 'Even a non-polar molecule has electrons in constant motion. At any instant the electron cloud may be slightly more on one side, creating a TEMPORARY dipole. This induces an opposite dipole in a neighbouring molecule, and the two attract weakly. The bigger the molecule (more electrons, larger surface area), the stronger the vdW.' },
+    { type: 'ul', items: [
+      'Always present, between every pair of molecules.',
+      'STRENGTH increases with: more electrons, larger molecule, longer chain.',
+      'Branched isomers have weaker vdW than straight chains (less surface contact).',
+      'Examples: explains why I₂ (large) is a solid but Cl₂ (smaller) is a gas at room temp; why butane is a gas but pentane a liquid.',
+    ]},
+    { type: 'h', text: 'Permanent dipole — permanent dipole' },
+    { type: 'p', text: 'Polar molecules have permanent δ+ and δ− regions. The δ+ end of one molecule attracts the δ− end of a neighbour. Stronger than vdW (because dipoles are permanent, not fluctuating).' },
+    { type: 'ul', items: [
+      'Examples: HCl, ICl, CHCl₃, propanone (CH₃COCH₃).',
+      'Boost m.p. and b.p. compared to non-polar molecules of similar size.',
+      'Compare propane (M = 44, b.p. −42 °C) with propanone (M = 58, b.p. 56 °C) — almost 100 °C difference, mostly from permanent dipoles.',
+    ]},
+    { type: 'h', text: 'Hydrogen bonding — the special case' },
+    { type: 'd', spec: bondingHBondSpec, caption: 'H-bonding in water' },
+    { type: 'ul', items: [
+      'A hydrogen atom bonded to N, O or F (very electronegative) becomes strongly δ+.',
+      'It is attracted to a LONE PAIR on N, O or F of a NEIGHBOURING molecule.',
+      'Roughly 5–10× stronger than ordinary dipole-dipole, but still weaker than covalent bonds (which are ~100× stronger).',
+      'Drawn as a dotted line: X—H ··· :Y where X, Y ∈ {N, O, F}.',
+    ]},
+    { type: 'h', text: 'Why hydrogen bonding matters' },
+    { type: 'd', spec: bondingIceWaterSpec, caption: 'Ice less dense than water — vital for aquatic life' },
+    { type: 'ul', items: [
+      'Water has anomalously high m.p. and b.p. for its molecular mass.',
+      'Ice has lower density than liquid water — fish survive winter under ice.',
+      'NH₃, HF also have unusually high b.p. compared to PH₃, HCl in their respective groups.',
+      'DNA double helix: the two strands are held together by H-bonds between base pairs (A-T two H-bonds, G-C three).',
+      'Proteins: secondary structure (α-helix, β-sheet) maintained by backbone H-bonds.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'How to tell which IMF is dominant', body: 'List the molecule\'s features in order: (1) Does it have H bonded to N/O/F? → H-bonding (strongest). (2) Otherwise, is it polar? → permanent dipole-dipole. (3) Otherwise → only vdW. The strongest force present is what mostly determines b.p.' },
+  ]},
+
+  // CH.9 — Bonding → physical properties
+  { id: 'b9', title: 'Effect of Bonding on Properties', minutes: 12, blocks: [
+    { type: 'p', text: 'Substances fall into four broad structural types. Each has a characteristic profile of physical properties — melting point, conductivity, hardness, solubility — that traces directly back to its bonding.' },
+    { type: 'd', spec: bondingLatticesSpec, caption: 'Four lattice structures, four behaviour profiles' },
+    { type: 'h', text: 'IONIC LATTICE (e.g. NaCl)' },
+    { type: 'ul', items: [
+      'High m.p. (NaCl 801 °C) and b.p. — strong electrostatic forces in 3-D throughout the lattice.',
+      'Hard but brittle — like-charges repel under stress, lattice cracks.',
+      'Conducts when MOLTEN or DISSOLVED but not when solid.',
+      'Often soluble in water; insoluble in non-polar solvents.',
+    ]},
+    { type: 'h', text: 'SIMPLE MOLECULAR (e.g. I₂, CO₂, ice)' },
+    { type: 'ul', items: [
+      'Low m.p. and b.p. — only weak intermolecular forces holding the molecules together.',
+      'Soft solids; some sublime (CO₂(s) → CO₂(g) directly).',
+      'Do NOT conduct electricity (no free charges; even when molten).',
+      'Soluble in non-polar solvents; polar molecules also dissolve in water if H-bonding is possible (e.g. ethanol).',
+    ]},
+    { type: 'h', text: 'GIANT COVALENT (e.g. diamond, graphite, SiO₂)' },
+    { type: 'ul', items: [
+      'VERY high m.p. — covalent bonds extend through the whole solid; melting requires breaking covalent bonds.',
+      'Diamond: each C tetrahedral, every C–C bond covalent → hardest natural material; insulator (no free electrons).',
+      'Graphite: layers of hexagons, weak vdW between layers (slippery), one delocalised electron per C → conducts.',
+      'SiO₂ (quartz): tetrahedral SiO₄ units linked → very high m.p., insulator.',
+    ]},
+    { type: 'h', text: 'METALLIC (e.g. Cu, Fe, Mg)' },
+    { type: 'ul', items: [
+      'High m.p., dense, hard, lustrous.',
+      'Conducts heat and electricity even when SOLID — delocalised electrons.',
+      'Malleable and ductile — layers slide while electron sea adjusts.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'Diagnostic — given properties, deduce structure', body: 'High m.p. + conducts when molten only → IONIC. Low m.p. + non-conductor → MOLECULAR. Very high m.p. + non-conductor (or graphite, conducts in one direction) → GIANT COVALENT. High m.p. + conducts as solid + malleable → METALLIC.' },
+  ]},
+
+  // CH.10 — Acidic vs basic oxides (link to periodicity)
+  { id: 'b10', title: 'Bonding & Periodicity Link', minutes: 8, blocks: [
+    { type: 'p', text: 'A foreshadow of Period 3 chemistry. As you cross from Group I to Group VII, the bonding type of the binary chloride or oxide changes from ionic to covalent. This shift drives every other property change you will meet later (PC-09 Periodicity).' },
+    { type: 'h', text: 'Period 3 chlorides — bonding shift' },
+    { type: 'ul', items: [
+      'NaCl, MgCl₂ — ionic. White crystalline solids, dissolve in water giving neutral or slightly acidic solutions.',
+      'AlCl₃ — borderline. Ionic with covalent character; dimer in vapour as Al₂Cl₆.',
+      'SiCl₄, PCl₅, SCl₂, Cl₂ — molecular covalent. Volatile, often hydrolysed by water to acidic solutions.',
+    ]},
+    { type: 'h', text: 'Period 3 oxides — bonding shift' },
+    { type: 'ul', items: [
+      'Na₂O, MgO — ionic. Basic (or neutral / alkaline in water).',
+      'Al₂O₃ — amphoteric (reacts with both acids and bases).',
+      'SiO₂ — giant covalent; weakly acidic (reacts with hot conc. NaOH).',
+      'P₄O₁₀, SO₂, SO₃, Cl₂O — molecular covalent; acidic in water.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'The pattern', body: 'Across Period 3: bonding goes ionic → covalent; oxide character goes basic → amphoteric → acidic. This is one of the most important threads through inorganic chemistry; you will revisit it when you study periodicity.' },
+  ]},
+
+  // CH.11 — Exam strategy
+  { id: 'b11', title: 'Exam Technique & Diagnostics', minutes: 9, blocks: [
+    { type: 'p', text: 'A few high-leverage habits get most bonding marks.' },
+    { type: 'h', text: 'Drawing dot-and-cross — the rules' },
+    { type: 'ul', items: [
+      'Show ONLY the outer shell.',
+      'Use × for one element\'s electrons, • for the other (consistent throughout).',
+      'For ions, show charges with [ ]ⁿ⁺ or [ ]ⁿ⁻ around the brackets.',
+      'For dative bonds, indicate the donor (some teachers use an arrow; check your exam board\'s convention).',
+      'Make sure each atom\'s outer shell totals 8 (or 2 for H, Li, Be).',
+    ]},
+    { type: 'h', text: 'Predicting shape — exam-ready procedure' },
+    { type: 'ul', items: [
+      '1. Identify central atom.',
+      '2. Count electron pairs (bonded + lone) using the workflow from chapter 6.',
+      '3. Place pairs as far apart as possible (the "parent" geometry).',
+      '4. Identify which pairs are lone — they\'re NOT in the molecule\'s shape but they SQUEEZE the bond angles.',
+      '5. State both the SHAPE and the BOND ANGLE; account for any squeeze from lone pairs.',
+    ]},
+    { type: 'h', text: 'Common mistakes' },
+    { type: 'ul', items: [
+      'Saying "trigonal planar" for NH₃ — it\'s pyramidal because N has a lone pair.',
+      'Forgetting that double bonds count as ONE region for VSEPR.',
+      'Stating CO₂ is polar — bonds ARE polar but the linear shape cancels them.',
+      'Calling all dative bonds "ionic" — they\'re covalent (just both electrons from one donor).',
+      'Ignoring that diamond and graphite are both giant covalent — diamond hardest, graphite conducts because of delocalised electrons.',
+    ]},
+    { type: 'callout', kind: 'key', title: 'A quick deduction trick', body: 'For "what is the shape of XY₄?" with no further info: if X is in Group IV (4 valence e⁻), no lone pair → tetrahedral. If X is in Group V (5 valence e⁻), one bond uses 4 of those + still 1 lone pair → see-saw or similar (5 regions). Always count electrons on the CENTRAL atom; this turns shape questions into 3-step arithmetic.' },
+  ]},
+];
+
+/* ============================================================
+   Quiz banks
+   ============================================================ */
+
+const quizzes = [
+  { q: 'Atoms bond because:', opts: ['They get heavier', 'The bonded system has lower energy than the separated atoms', 'They like company', 'Mass increases'], ans: 1, hint: 'Bonds release energy when forming.' },
+  { q: 'Which is an ionic bond?', opts: ['H–H', 'Na⁺Cl⁻', 'C=O', 'C–H'], ans: 1, hint: 'Electron transfer, electrostatic attraction.' },
+  { q: 'In Al₂O₃, the ratio of charges balances because:', opts: ['Al⁺ + O⁻', '2 Al³⁺ × 3 O²⁻ = 6+ : 6−', 'Al²⁺ + O²⁻', 'It does not balance'], ans: 1, hint: 'Total charge must be zero.' },
+  { q: 'A covalent bond is:', opts: ['Transfer of electrons', 'A shared pair of electrons', 'Movement of protons', 'Magnetic attraction'], ans: 1, hint: 'Both atoms keep "their" electron in the shared pair.' },
+  { q: 'A double bond consists of:', opts: ['Two σ bonds', 'One σ and one π', 'Two π bonds', 'Two single bonds'], ans: 1, hint: '1σ + 1π = double.' },
+  { q: 'A triple bond like N≡N is:', opts: ['1σ + 2π', '3σ', '2σ + 1π', 'Three π'], ans: 0, hint: 'One head-on overlap + two side-on.' },
+  { q: 'σ bond differs from π bond because:', opts: ['σ is weaker', 'σ overlaps head-on; π overlaps sideways', 'π is bigger', 'σ has no rotation'], ans: 1, hint: 'Geometry of the overlap.' },
+  { q: 'Why is benzene more stable than expected?', opts: ['Three fixed double bonds', 'Delocalised π system over 6 carbons', 'It has H-bonds', 'It is ionic'], ans: 1, hint: '6 p-orbitals, 6 electrons, full ring delocalisation.' },
+  { q: 'In benzene, all C–C bond lengths are:', opts: ['Different lengths', 'Equal — between single and double', 'Single bond length', 'Triple bond length'], ans: 1, hint: '139 pm, between 154 and 134.' },
+  { q: 'In a single bond C–C the bond length is approximately:', opts: ['120 pm', '134 pm', '154 pm', '200 pm'], ans: 2, hint: 'Single longer than double.' },
+  { q: 'Order of increasing bond strength:', opts: ['C–C < C=C < C≡C', 'C≡C < C=C < C–C', 'C=C < C–C < C≡C', 'All equal'], ans: 0, hint: 'More shared pairs = stronger.' },
+  { q: 'Polar covalent bond arises from:', opts: ['Equal sharing', 'Unequal sharing due to electronegativity difference', 'Complete electron transfer', 'Magnetic field'], ans: 1, hint: 'ΔEN > 0 → polarity.' },
+  { q: 'Which has the greatest bond polarity?', opts: ['H–H', 'C–H', 'O–H', 'F–H'], ans: 3, hint: 'Largest ΔEN.' },
+  { q: 'CO₂ has polar bonds but is non-polar overall because:', opts: ['Electronegativities are equal', 'Linear shape — dipoles cancel', 'C is positive', 'It has lone pairs'], ans: 1, hint: 'Symmetry matters.' },
+  { q: 'A dative bond is:', opts: ['Ionic with extra electrons', 'Covalent bond where both electrons come from one atom', 'An electrostatic attraction', 'A hydrogen bond'], ans: 1, hint: 'Donor + acceptor.' },
+  { q: 'In NH₄⁺, the dative bond is between:', opts: ['Two H atoms', 'N (donor) and H⁺ (acceptor)', 'Two lone pairs', 'N and N'], ans: 1, hint: 'N has a lone pair to donate.' },
+  { q: 'Al₂Cl₆ exists because:', opts: ['Al likes pairs', 'Each Al in AlCl₃ has only 6 electrons; bridging Cl atoms donate lone pairs', 'AlCl₃ is heavy', 'Cl is too small'], ans: 1, hint: 'Octet completion via dative bonds.' },
+  { q: 'According to VSEPR, electron pairs:', opts: ['Attract each other', 'Repel and arrange to minimise repulsion', 'Cluster together', 'Are randomly placed'], ans: 1, hint: 'Repulsion minimisation.' },
+  { q: 'Methane (CH₄) shape and bond angle:', opts: ['Trigonal planar, 120°', 'Tetrahedral, 109.5°', 'Square planar, 90°', 'Bent, 105°'], ans: 1, hint: '4 BP, no LP.' },
+  { q: 'NH₃ shape:', opts: ['Tetrahedral 109.5°', 'Trigonal pyramidal ~107°', 'Trigonal planar 120°', 'Bent 104.5°'], ans: 1, hint: '3 BP + 1 LP, lone pair compresses.' },
+  { q: 'H₂O bond angle is approximately:', opts: ['180°', '120°', '109.5°', '104.5°'], ans: 3, hint: '2 LP squeeze the angle further than NH₃.' },
+  { q: 'BF₃ shape:', opts: ['Tetrahedral', 'Trigonal pyramidal', 'Trigonal planar 120°', 'Bent'], ans: 2, hint: '3 BP, 0 LP.' },
+  { q: 'SF₆ shape:', opts: ['Tetrahedral', 'Trigonal bipyramidal', 'Octahedral 90°', 'Square planar'], ans: 2, hint: '6 BP, 0 LP.' },
+  { q: 'For VSEPR, a double bond counts as:', opts: ['Two electron-pair regions', 'One electron-pair region', 'Half a region', 'Three regions'], ans: 1, hint: 'Same nuclei, one region.' },
+  { q: 'Metallic bonding is best described as:', opts: ['Sharing of electrons between two metals', 'Lattice of cations in a sea of delocalised electrons', 'Ionic bonds in a row', 'Hydrogen bonds'], ans: 1, hint: 'Outer e⁻ delocalise across all atoms.' },
+  { q: 'Why are metals malleable?', opts: ['Electrons hold them rigid', 'Layers of cations slide; electron sea adjusts', 'They are heavy', 'Bonds are weak'], ans: 1, hint: 'Bond is non-directional.' },
+  { q: 'Strongest type of intermolecular force is:', opts: ['Van der Waals', 'Permanent dipole-dipole', 'Hydrogen bonding', 'Ionic'], ans: 2, hint: 'Of the three IMFs.' },
+  { q: 'Hydrogen bonding requires H bonded to:', opts: ['Any non-metal', 'C, N, O', 'N, O, or F', 'Halogens'], ans: 2, hint: 'Highest electronegativities.' },
+  { q: 'Van der Waals forces are caused by:', opts: ['Permanent charges', 'Instantaneous induced dipoles from electron motion', 'H-bonds', 'Ionic attraction'], ans: 1, hint: 'Temporary fluctuations.' },
+  { q: 'Why is ice LESS dense than liquid water?', opts: ['Ice has fewer molecules', 'H-bonds force an open hexagonal lattice with empty space', 'Water boils', 'Ice has no molecules'], ans: 1, hint: 'Crystal structure of ice has gaps.' },
+  { q: 'Boiling-point order: H₂O, H₂S, H₂Se. The trend is anomalous because:', opts: ['H₂S boils highest', 'H₂O boils unexpectedly high due to H-bonding', 'They all boil the same', 'H₂Se has H-bonds'], ans: 1, hint: 'O is small enough for strong H-bonds.' },
+  { q: 'Which substance is a giant covalent solid with very high m.p.?', opts: ['NaCl', 'I₂', 'Diamond', 'Cu'], ans: 2, hint: 'Carbon network throughout.' },
+];
+
+const structured = [
+  { title: 'Bond types and dot-and-cross', marks: 8, q: 'Compare ionic and covalent bonding.', parts: [
+    { q: '(a) Define ionic bonding.', marks: 2, ans: 'Ionic bonding is the strong electrostatic attraction between oppositely-charged ions, formed by the COMPLETE TRANSFER of one or more electrons from a metal atom to a non-metal atom. Both ions achieve a noble-gas (full outer shell) configuration.' },
+    { q: '(b) Draw a dot-and-cross diagram for MgO showing only outer-shell electrons.', marks: 2, ans: 'Mg loses 2 electrons → Mg²⁺ with [Ne] outer arrangement (no outer electrons shown). O gains 2 electrons → O²⁻ with 8 outer electrons (6 dots from O + 2 crosses from Mg). Brackets and 2+/2− charges shown.' },
+    { q: '(c) Define a covalent bond.', marks: 2, ans: 'A covalent bond is a shared pair of electrons between two atoms (usually non-metals). Each atom contributes one electron to the shared pair, and both atoms count the shared pair towards a full outer shell.' },
+    { q: '(d) Draw a dot-and-cross diagram for CO₂.', marks: 2, ans: 'C in centre with 4 outer electrons (4 crosses). Each O has 6 outer (6 dots). C=O double bond shown as TWO shared pairs (2 dots + 2 crosses, between C and each O). Each O ends with 8 (4 lone-pair electrons + 4 in 2 shared pairs); C has 8 (4 in each double bond).' },
+  ]},
+
+  { title: 'Bond reactivity — length, energy, polarity', marks: 9, q: 'The reactivity of covalent compounds depends on bond length, bond energy and bond polarity.', parts: [
+    { q: '(a) Explain how bond length and bond energy are related.', marks: 2, ans: 'Generally, shorter bonds are stronger (higher bond energy) and longer bonds are weaker. Shorter bonds bring the bonded atoms closer to each other and enable greater orbital overlap, which strengthens the attraction.' },
+    { q: '(b) Place these bonds in order of INCREASING bond energy: C–C, C=C, C≡C. Justify your order.', marks: 2, ans: 'Order: C–C < C=C < C≡C. Single bond has 1 shared pair; double has 2; triple has 3. More shared electron pairs between the same nuclei = stronger attraction = higher bond energy. Approximate values 348, 612, 838 kJ/mol respectively.' },
+    { q: '(c) Define electronegativity and explain how it determines bond polarity.', marks: 3, ans: 'Electronegativity is the ability of an atom to attract a bonded pair of electrons towards itself in a covalent bond. When two atoms in a bond have DIFFERENT electronegativities, the bonding electrons are pulled more towards the more electronegative atom, giving it a partial negative charge (δ−) and leaving the other atom with a partial positive charge (δ+). The bond is then POLAR. The greater the electronegativity difference, the more polar the bond.' },
+    { q: '(d) Explain why CO₂ has polar bonds but is a non-polar molecule overall.', marks: 2, ans: 'Each C=O bond is polar because O is more electronegative than C, giving O a δ− and C a δ+ contribution. However, CO₂ is LINEAR (O=C=O), so the two C=O dipoles point in EXACTLY OPPOSITE directions and cancel. The molecule has no net dipole moment and is therefore non-polar overall.' },
+  ]},
+
+  { title: 'Shapes by VSEPR', marks: 10, q: 'Use VSEPR theory to predict the shape and bond angle of each species.', parts: [
+    { q: '(a) BeCl₂', marks: 2, ans: 'Be: 2 valence e⁻. 2 Cl × 1 = 2. Total 4 e⁻ = 2 pairs, both bonding (no lone pair). 2 BP, 0 LP → LINEAR, 180°.' },
+    { q: '(b) NH₃', marks: 2, ans: 'N: 5 valence e⁻. 3 H × 1 = 3. Total 8 e⁻ = 4 pairs. 3 BP + 1 LP → TRIGONAL PYRAMIDAL. Bond angle ~107° (slightly less than 109.5° because the lone pair compresses the bond pairs).' },
+    { q: '(c) H₂O', marks: 2, ans: 'O: 6 valence e⁻. 2 H × 1 = 2. Total 8 = 4 pairs. 2 BP + 2 LP → BENT. Bond angle ~104.5° (compressed even more by 2 lone pairs).' },
+    { q: '(d) NH₄⁺', marks: 2, ans: 'N: 5 valence e⁻. 4 H × 1 = 4. Subtract 1 for + charge. Total = 8 e⁻ = 4 pairs. 4 BP + 0 LP → TETRAHEDRAL, 109.5°. (Same as CH₄.)' },
+    { q: '(e) SF₆', marks: 2, ans: 'S: 6 valence e⁻. 6 F × 1 = 6. Total 12 = 6 pairs. 6 BP + 0 LP → OCTAHEDRAL, 90° (S has expanded octet using d orbitals).' },
+  ]},
+
+  { title: 'Intermolecular forces and physical properties', marks: 10, q: 'Boiling points (°C): CH₄ −161; SiH₄ −112; H₂S −60; H₂O 100; HF 19; HCl −85.', parts: [
+    { q: '(a) Explain why H₂O has an exceptionally high boiling point compared to H₂S.', marks: 3, ans: 'H₂O molecules form HYDROGEN BONDS with each other (H bonded to highly electronegative O can interact with a lone pair on O of a neighbouring molecule). H-bonding is much stronger than ordinary dipole-dipole forces, so significantly more energy is needed to separate water molecules into the gas phase. H₂S cannot form H-bonds (S is not electronegative enough); it has only weaker permanent dipole-dipole and vdW forces — much lower b.p.' },
+    { q: '(b) Explain why CH₄ has a lower boiling point than SiH₄, even though both have only weak forces between molecules.', marks: 2, ans: 'Both molecules are non-polar (4 X–H bonds in tetrahedral arrangement → dipoles cancel), so only van der Waals (London / dispersion) forces operate. SiH₄ has more electrons than CH₄ (Si has 14 e⁻ vs C 6), so its electron cloud is more polarisable → stronger induced-dipole interactions → higher b.p.' },
+    { q: '(c) Predict whether HCl or HF has stronger intermolecular forces, and justify.', marks: 2, ans: 'HF has stronger intermolecular forces. F is highly electronegative AND has lone pairs, so HF molecules H-bond. HCl is polar but Cl is not electronegative enough for true H-bonding; HCl shows only permanent dipole-dipole forces. The b.p. data confirm: HF 19 °C >> HCl −85 °C.' },
+    { q: '(d) Sketch and label TWO water molecules H-bonded to each other, indicating donor and acceptor positions.', marks: 3, ans: 'Two H₂O molecules: oxygen with 2 lone pairs and 2 O–H bonds. The H of one molecule (δ+) is shown pointing towards a lone pair on the O of a second molecule (δ−). The H-bond is drawn as a dotted line. Lengths approximately: covalent O–H 96 pm, H-bond ~180 pm.' },
+  ]},
+
+  { title: 'Bonding and physical properties', marks: 8, q: 'Four substances P, Q, R, S have the following properties (m.p./°C, conductivity in solid, conductivity when molten).', parts: [
+    { q: '(a) Substance P: m.p. 801 °C, no conductivity solid, conducts molten. Suggest the bonding type and an example.', marks: 2, ans: 'IONIC. The high m.p. comes from strong electrostatic forces in a 3-D lattice. Solid does not conduct (ions fixed in lattice); molten conducts (ions free to move). Example: NaCl.' },
+    { q: '(b) Substance Q: m.p. 1538 °C, conducts when solid AND when molten, malleable. Bonding type and example.', marks: 2, ans: 'METALLIC. Very high m.p., conducts in both states (delocalised electrons), malleable. Example: Fe (iron).' },
+    { q: '(c) Substance R: m.p. 114 °C, no conductivity in any state, soft. Bonding type and example.', marks: 2, ans: 'SIMPLE MOLECULAR. Low m.p. (only weak intermolecular forces to overcome), no free charges. Example: I₂.' },
+    { q: '(d) Substance S: m.p. > 3500 °C, no conductivity. Suggest a bonding type and an example.', marks: 2, ans: 'GIANT COVALENT (macromolecular). Extremely high m.p. (covalent bonds throughout the structure must break to melt). Example: diamond. (Note: graphite is also giant covalent but conducts due to delocalised electrons; if the question specified "no conductivity" then diamond is the cleaner answer.)' },
+  ]},
+];
+
+const worked = [
+  { title: 'Identify bond type', diff: 'easy', q: 'Predict the bond type in (a) MgF₂, (b) CO₂, (c) Cu, (d) HF.', steps: [
+    { label: 'STEP 1', text: 'Use ΔEN: ionic if > 1.7, polar covalent if 0.4-1.7, non-polar covalent if < 0.4. For metals, metallic.' },
+    { label: 'STEP 2', text: 'MgF₂: Mg (1.31) and F (3.98). ΔEN = 2.67 → IONIC.' },
+    { label: 'STEP 3', text: 'CO₂: C (2.55) and O (3.44). ΔEN = 0.89 → polar covalent bonds (and bent → wait, CO₂ is linear; we\'ll address polarity of the WHOLE molecule separately).' },
+    { label: 'STEP 4', text: 'Cu: pure metal → METALLIC bonding.' },
+    { label: 'STEP 5', text: 'HF: H (2.20) and F (3.98). ΔEN = 1.78 → just on the borderline; in practice treated as POLAR COVALENT (HF is a molecular gas, and forms H-bonds in liquid).' },
+  ], ans: 'MgF₂ ionic; CO₂ polar covalent (but molecule non-polar overall, linear); Cu metallic; HF polar covalent.' },
+
+  { title: 'Predict the shape of NH₃', diff: 'easy', q: 'Use VSEPR to predict the shape and approximate bond angle of NH₃.', steps: [
+    { label: 'STEP 1', text: 'Central atom N has 5 valence electrons.' },
+    { label: 'STEP 2', text: '3 H bonded; each contributes 1 electron to the bond. Add 3 to give 8 outer electrons on N.' },
+    { label: 'STEP 3', text: '8 / 2 = 4 electron pairs. 3 are bonding pairs, leaving 4 − 3 = 1 lone pair.' },
+    { label: 'STEP 4', text: '4 electron-pair regions arrange tetrahedrally. With 1 LP and 3 BP, the molecular shape is TRIGONAL PYRAMIDAL.' },
+    { label: 'STEP 5', text: 'Lone pairs repel more than bonding pairs, so the H–N–H angle is squeezed below 109.5° to about 107°.' },
+  ], ans: 'Trigonal pyramidal, bond angle ~107°.' },
+
+  { title: 'Compare bond energies', diff: 'medium', q: 'Why is the C=O bond stronger and shorter than the C–O bond?', steps: [
+    { label: 'STEP 1', text: 'A C–O single bond is one σ — one shared pair, one head-on overlap.' },
+    { label: 'STEP 2', text: 'A C=O double bond adds a π component — one σ AND one π = two shared pairs total.' },
+    { label: 'STEP 3', text: 'More shared electrons between the same two nuclei = more electrostatic attraction = stronger and SHORTER bond.' },
+    { label: 'STEP 4', text: 'Approximate values: C–O ≈ 358 kJ/mol, 143 pm; C=O ≈ 745 kJ/mol, 122 pm.' },
+  ], ans: 'C=O has both σ and π components; the additional π electron-pair pulls the atoms closer (shorter) and the increased shared density makes the bond stronger.' },
+
+  { title: 'Decide whether a molecule is polar', diff: 'medium', q: 'Are the following molecules polar? (a) H₂O (b) CCl₄ (c) NH₃ (d) BF₃.', steps: [
+    { label: 'STEP 1', text: 'Step 1: Are any bonds polar? Step 2: Does the molecular shape allow the dipoles to cancel?' },
+    { label: 'STEP 2', text: 'H₂O: O–H polar (ΔEN ≈ 1.4). Bent shape — dipoles do NOT cancel. POLAR.' },
+    { label: 'STEP 3', text: 'CCl₄: C–Cl polar (ΔEN ≈ 0.6). Tetrahedral shape — 4 identical bonds, dipoles cancel by symmetry. NON-POLAR.' },
+    { label: 'STEP 4', text: 'NH₃: N–H polar. Pyramidal shape — dipoles do NOT cancel; lone pair pushes the dipoles to add up. POLAR.' },
+    { label: 'STEP 5', text: 'BF₃: B–F polar. Trigonal planar — three identical bonds at 120°, dipoles cancel by symmetry. NON-POLAR.' },
+  ], ans: 'Polar: H₂O, NH₃. Non-polar: CCl₄, BF₃ (despite polar bonds, symmetry cancels the dipoles).' },
+
+  { title: 'Why does ice float', diff: 'medium', q: 'Explain why ice has a lower density than liquid water.', steps: [
+    { label: 'STEP 1', text: 'In liquid water, H₂O molecules are constantly forming and breaking H-bonds with each other; molecules pack relatively closely on average.' },
+    { label: 'STEP 2', text: 'When water freezes, every H₂O molecule forms 4 H-bonds in a fixed arrangement: each O hydrogen-bonds to 4 others tetrahedrally.' },
+    { label: 'STEP 3', text: 'This rigid tetrahedral H-bonding produces an OPEN HEXAGONAL lattice with measurable empty space between molecules.' },
+    { label: 'STEP 4', text: 'Open structure has more volume per molecule (less packing density) → LOWER DENSITY than the liquid where the same molecules are crowded together.' },
+  ], ans: 'Ice\'s open hexagonal H-bonded lattice contains gaps; in liquid water the same molecules pack more closely (no fixed H-bond geometry), giving water a higher density. So ice floats.' },
+
+  { title: 'Identify intermolecular forces', diff: 'medium', q: 'Identify the dominant intermolecular force between molecules of (a) hexane, (b) propanone, (c) ethanol, (d) HF.', steps: [
+    { label: 'STEP 1', text: 'Order of strength: H-bonding > permanent dipole-dipole > vdW. Check from strongest down.' },
+    { label: 'STEP 2', text: 'Hexane (C₆H₁₄): no H bonded to N/O/F, non-polar molecule. Only vdW.' },
+    { label: 'STEP 3', text: 'Propanone (CH₃COCH₃): no H on N/O/F (the H atoms are bonded to C), but has a polar C=O bond → permanent dipole-dipole.' },
+    { label: 'STEP 4', text: 'Ethanol (CH₃CH₂OH): has H bonded to O → H-bonding (the O–H is the main IMF).' },
+    { label: 'STEP 5', text: 'HF: H bonded to F → H-bonding.' },
+  ], ans: 'Hexane: vdW only. Propanone: dipole-dipole. Ethanol: H-bonding. HF: H-bonding.' },
+
+  { title: 'Bonding deduction from properties', diff: 'medium', q: 'A white solid has m.p. 770 °C, dissolves in water giving a conducting solution, and does NOT conduct in the solid state. What type of bonding does it have?', steps: [
+    { label: 'STEP 1', text: 'High m.p. (770 °C) suggests strong inter-particle forces.' },
+    { label: 'STEP 2', text: 'Dissolves in water → polar solvent compatibility → suggests an ionic OR polar substance.' },
+    { label: 'STEP 3', text: 'Conducts in solution but NOT as a solid → mobile charged particles only when dissolved → IONS.' },
+    { label: 'STEP 4', text: 'Combination matches an IONIC compound. Solid: ions fixed in lattice (no conduction). Dissolved: ions mobile (conducts).' },
+  ], ans: 'Ionic bonding. The ions are immobilised in the solid state but free to move and carry charge once dissolved.' },
+
+  { title: 'Drawing Al₂Cl₆', diff: 'hard', q: 'Explain how Al₂Cl₆ forms from two AlCl₃ molecules. Show which bonds are dative.', steps: [
+    { label: 'STEP 1', text: 'Each AlCl₃ has Al with only 6 electrons in its valence shell (3 bonded pairs from 3 Cl) — short of the octet, with an empty p orbital.' },
+    { label: 'STEP 2', text: 'Each Cl atom has 3 lone pairs. A Cl from one AlCl₃ can donate a lone pair into the empty p orbital of the Al on the OTHER AlCl₃.' },
+    { label: 'STEP 3', text: 'Two such dative bonds form, with two bridging Cl atoms — one Cl from each original AlCl₃ molecule.' },
+    { label: 'STEP 4', text: 'Each Al ends up with 4 Cl around it (4 bonded pairs = full octet). Both bridging Cls are bonded to BOTH Al atoms.' },
+  ], ans: 'Two AlCl₃ join via two dative bonds, where bridging Cl atoms donate lone pairs into the empty p orbital of Al. The structure has 2 terminal Cl per Al + 2 bridging Cl shared between the Als. Each Al achieves an octet.' },
+];
+
+/* ============================================================
+   Exported module
+   ============================================================ */
+export const BONDING = {
+  id: 'bonding',
+  objectives: [
+    'Describe ionic bonding (NaCl, MgO, Al₂O₃) and draw dot-and-cross diagrams',
+    'Describe covalent bonding in terms of orbital overlap (σ and π); use H₂, O₂, Cl₂, CO₂, HCl, ethane, ethene, benzene as exemplars',
+    'Compare bond reactivity in terms of bond length, bond energy, bond polarity',
+    'Describe dative bonding in NH₄⁺ and Al₂Cl₆',
+    'Explain shapes and bond angles of molecules using VSEPR',
+    'Describe metallic bonding as a lattice of cations in a sea of mobile electrons',
+    'Describe intermolecular forces (van der Waals, permanent dipole-dipole, hydrogen bonding) and link to physical properties',
+    'Predict effects of bonding type on physical properties (m.p., conductivity, hardness, solubility)',
+  ],
+  chapters,
+  quizzes,
+  multi: [],
+  structured,
+  worked,
+  tutorPrompts: [
+    'Walk me through how to predict the shape of any molecule using VSEPR',
+    'Explain why benzene is more stable than expected from 3 C=C bonds',
+    'Why does CO₂ have polar bonds but no net dipole?',
+    'Compare the bond strengths of C–C, C=C, C≡C and explain why',
+    'Give me a tough past-paper question on intermolecular forces',
+  ],
+};
