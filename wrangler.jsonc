@@ -1,0 +1,33 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "chemwiz-unified",
+  "main": "./cloudflare/worker.mjs",
+  "compatibility_date": "2026-10-12",
+  "compatibility_flags": ["nodejs_compat"],
+  "define": { "process.env.NODE_ENV": "\"production\"" },
+  "workers_dev": true,
+  "limits": { "cpu_ms": 30000 },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "html_handling": "none",
+    "not_found_handling": "none"
+  },
+  "alias": { "mongoose": "./node_modules/mongoose/index.js" },
+  "vars": {
+    "CHEMWIZ_RUNTIME": "cloudflare-worker",
+    "NODE_ENV": "production",
+    "DATA_MODE": "mongodb",
+    "JWT_EXPIRES_IN": "7d",
+    "AI_MODEL": "gpt-5-mini",
+    "AI_TRANSCRIPTION_MODEL": "gpt-4o-mini-transcribe",
+    "AI_DAILY_MESSAGE_LIMIT": "20",
+    "AI_DAILY_VOICE_LIMIT": "20",
+    "AI_LIVE_VOICE_ENABLED": "false",
+    "AI_REALTIME_MODEL": "gpt-realtime-2.1-mini",
+    "AI_DAILY_LIVE_SESSIONS_LIMIT": "3",
+    "PAYMENT_PROVIDER": "manual"
+  },
+  "observability": { "enabled": true }
+}
