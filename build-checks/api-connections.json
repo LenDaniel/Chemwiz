@@ -1,0 +1,224 @@
+{
+  "status": "PASS",
+  "calls": [
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "registerUser",
+      "method": "POST",
+      "path": "/api/auth/register",
+      "status": 201,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "loginUser",
+      "method": "POST",
+      "path": "/api/auth/login",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getCurrentUser",
+      "method": "GET",
+      "path": "/api/auth/me",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getLearningState",
+      "method": "GET",
+      "path": "/api/progress/me",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "validateLearningImport",
+      "method": "POST",
+      "path": "/api/progress/validate",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "putLearningState",
+      "method": "PUT",
+      "path": "/api/progress/me",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "loginAdmin",
+      "method": "POST",
+      "path": "/api/auth/login",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "checkAdmin",
+      "method": "GET",
+      "path": "/api/admin/test",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "getAdminStats",
+      "method": "GET",
+      "path": "/api/admin/stats",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "getAdminUsers",
+      "method": "GET",
+      "path": "/api/admin/users",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "updateUserSubscription",
+      "method": "PATCH",
+      "path": "/api/admin/users/:userId/subscription",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "updateUserStatus",
+      "method": "PATCH",
+      "path": "/api/admin/users/:userId/status",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "getAdminLogs",
+      "method": "GET",
+      "path": "/api/admin/logs",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "updateUserRole",
+      "method": "PATCH",
+      "path": "/api/admin/users/:userId/role",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "requestPasswordReset",
+      "method": "POST",
+      "path": "/api/auth/forgot-password",
+      "status": 202,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "resetPassword",
+      "method": "POST",
+      "path": "/api/auth/reset-password",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "upgradePassword",
+      "method": "POST",
+      "path": "/api/auth/upgrade-password",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "requestPasswordReset",
+      "method": "POST",
+      "path": "/api/auth/forgot-password",
+      "status": 202,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "resetPassword",
+      "method": "POST",
+      "path": "/api/auth/reset-password",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "upgradePassword",
+      "method": "POST",
+      "path": "/api/auth/upgrade-password",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "askTutor",
+      "method": "POST",
+      "path": "/api/tutor/message",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "transcribeTutorNote",
+      "method": "POST",
+      "path": "/api/tutor/transcribe",
+      "status": 503,
+      "result": "PASS",
+      "mode": "auth/transport/disabled-provider response; live provider not called"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "createLiveVoiceSession",
+      "method": "POST",
+      "path": "/api/tutor/live/session",
+      "status": 503,
+      "result": "PASS",
+      "mode": "auth/transport/disabled-provider response; live provider not called"
+    }
+  ],
+  "controls": [
+    "All protected routes reject anonymous requests; all admin routes reject student tokens",
+    "Invalid JWT rejected; public registration ignores role/subscription escalation",
+    "Frontend save persists to the authenticated learner and leaves the second learner separate",
+    "Stale progress save conflicts instead of replacing newer data",
+    "Unlisted origin rejected; Render HTTPS origin works through internal HTTP",
+    "Private configuration, data and backend/tool source are not publicly served",
+    "Production scripts restricted by CSP and framework identification header removed",
+    "Invalid learner records rejected by backend validation"
+  ],
+  "backendRoutesCovered": 27,
+  "externalServices": "Not called: fixture data only; live voice/transcription connection requires separate provider/device acceptance."
+}
