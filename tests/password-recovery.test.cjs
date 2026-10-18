@@ -1,3 +1,4 @@
+const {adultOnboarding}=require('../scripts/lib/privacy-fixture.cjs');
 const test=require('node:test');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
@@ -17,7 +18,7 @@ async function api(path,body,token,method='POST',headers={}){
 async function account({role='student',password=original,legacy=false}={}){
  const email=`account-${++sequence}@recovery.test`;
  if(legacy||role==='admin') await User.create({name:'Preserved account',email,password:await bcrypt.hash(password,10),role,passwordPolicyVersion:legacy?0:1,subscriptionTier:role==='admin'?'admin':'premium'});
- else assert.equal((await api('/api/auth/register',{name:'Preserved account',email,password})).status,201);
+ else assert.equal((await api('/api/auth/register',{name:'Preserved account',email,password,onboarding:adultOnboarding()})).status,201);
  const login=await api('/api/auth/login',{email,password});
  return {email,password,login};
 }
@@ -36,9 +37,9 @@ test('password policy rejects short, numberless, punctuation-free, common, repea
  assert.deepEqual(passwordIssues(null).length>0,true);
 });
 test('public signup enforces policy, validates types and ignores injected security fields',async()=>{
- for(const password of ['simple123','LongPassword2026','Password2026!'])assert.equal((await api('/api/auth/register',{name:'Learner',email:'weak@recovery.test',password})).data.code,'PASSWORD_POLICY');
+ for(const password of ['simple123','LongPassword2026','Password2026!'])assert.equal((await api('/api/auth/register',{onboarding:adultOnboarding(),name:'Learner',email:'weak@recovery.test',password})).data.code,'PASSWORD_POLICY');
  assert.equal((await api('/api/auth/login',{email:{$ne:null},password:'anything'})).status,400);
- const result=await api('/api/auth/register',{name:'Learner',email:'new@recovery.test',password:original,role:'admin',authVersion:99,passwordReset:{tokenHash:'injected'}});
+ const result=await api('/api/auth/register',{onboarding:adultOnboarding(),name:'Learner',email:'new@recovery.test',password:original,role:'admin',authVersion:99,passwordReset:{tokenHash:'injected'}});
  assert.equal(result.status,201);assert.equal(result.data.user.role,'student');
  const stored=await User.findOne({email:'new@recovery.test'}).select('+passwordReset');assert.equal(stored.authVersion,0);assert.equal(stored.passwordReset,null);
 });
@@ -129,7 +130,7 @@ test('unknown legacy sessions require reauthentication; access tokens cannot upg
 test('email casing is accepted and signup cannot duplicate an account',async()=>{
  const user=await account();
  assert.equal((await api('/api/auth/login',{email:user.email.toUpperCase(),password:original})).status,200);
- assert.equal((await api('/api/auth/register',{name:'Duplicate',email:user.email.toUpperCase(),password:original})).status,409);
+ assert.equal((await api('/api/auth/register',{onboarding:adultOnboarding(),name:'Duplicate',email:user.email.toUpperCase(),password:original})).status,409);
 });
 test('inactive accounts cannot request or use recovery; normal account status is preserved',async()=>{
  const user=await account();const mail=await issue(user);const stored=await User.findOne({email:user.email});

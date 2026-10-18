@@ -1,3 +1,4 @@
+const {adultOnboarding,seedPrivacyFixture}=require('../scripts/lib/privacy-fixture.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -13,6 +14,7 @@ process.env.LOCAL_ADMIN_EMAIL = 'admin@unified.test';
 process.env.LOCAL_ADMIN_PASSWORD = 'Admin-test-password!2026';
 process.env.LOCAL_STUDENT_EMAIL = 'student@unified.test';
 process.env.LOCAL_STUDENT_PASSWORD = 'Student-test-password!2026';
+seedPrivacyFixture(process.env.LOCAL_DATA_FILE);
 const { createApplication } = require('../server');
 const { defaultState } = require('../backend/src/services/learningState.service');
 let instance, base, admin, first, second;
@@ -30,8 +32,8 @@ test.before(async () => {
   await new Promise((resolve) => instance.server.listen(0, '127.0.0.1', resolve));
   base = `http://127.0.0.1:${instance.server.address().port}`;
   admin = (await request('/api/auth/login', null, 'POST', { email: process.env.LOCAL_ADMIN_EMAIL, password: process.env.LOCAL_ADMIN_PASSWORD })).data;
-  first = (await request('/api/auth/register', null, 'POST', { name: 'First', email: 'first@unified.test', password: 'Learner-password!2026', role: 'admin' })).data;
-  second = (await request('/api/auth/register', null, 'POST', { name: 'Second', email: 'second@unified.test', password: 'Learner-password!2026' })).data;
+  first = (await request('/api/auth/register', null, 'POST', { onboarding:adultOnboarding(), name: 'First', email: 'first@unified.test', password: 'Learner-password!2026', role: 'admin' })).data;
+  second = (await request('/api/auth/register', null, 'POST', { onboarding:adultOnboarding(), name: 'Second', email: 'second@unified.test', password: 'Learner-password!2026' })).data;
 });
 test.after(async () => {
   if (instance?.server.listening) await new Promise((resolve) => instance.server.close(resolve));

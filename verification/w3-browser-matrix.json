@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "fingerprint": "a8398fce0accd1f44c9f6734f276f36f2d6285fb3d73e17ca621c569c5347237",
+  "version": "1.5.3",
+  "checkedAt": "2026-10-18T20:11:28.328Z",
+  "browsers": [
+    {
+      "name": "firefox",
+      "status": "PASS",
+      "checks": [
+        "A temporary 503 preserves the learner token across reloads; explicit retry revalidates before opening the workspace",
+        "A connection failure preserves the learner session and can recover",
+        "An unreadable success response retains the token and fails closed with a retry",
+        "The skip link and screen navigation move keyboard focus into the main landmark",
+        "The learner workspace honours reduced-motion preferences",
+        "Offline feedback appears, a setting stays pending, and reconnect saves it to the same learner record",
+        "Reload is blocked while learning changes cannot be saved, then reconnect preserves those changes",
+        "A failed topic chunk exposes retry/reload; explicit reload restores current lessons and retains sign-in",
+        "Search load failure can recover; results/empty states are announced and Escape restores keyboard focus",
+        "Enter opens the best search result into the current chemistry content",
+        "A separate 390px touch context restores the account and opens a lesson without page-wide overflow (emulated, not a physical Android device)",
+        "A genuinely invalid token is removed while the account learning cache stays intact"
+      ],
+      "browser": "153.0",
+      "scope": "Isolated local API and controlled network failures; desktop and touch emulation. No live provider, real school, assistive-technology or physical-device acceptance."
+    }
+  ],
+  "environment": {
+    "chromiumExecutableOverride": false,
+    "firefoxContentSandboxDisabled": false
+  },
+  "scope": "Only the explicitly requested browsers. Touch emulation does not establish Android-device acceptance; screen-reader and physical-device review remain separate."
+}

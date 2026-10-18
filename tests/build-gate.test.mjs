@@ -26,10 +26,10 @@ function evidence() {
   const fingerprint = sourceFingerprint(root).digest;
   const preflight = { status: 'PASS', version, fingerprint, installation: { status: 'PASS' },
     source: { passed: true, issues: [] }, dependencies: { status: 'PASS', counts: { high: 0, critical: 0 } },
-    compile: { status: 'PASS', fingerprint: compiledFingerprint(root) },
+    compile: { status: 'PASS', fingerprint: compiledFingerprint(root) }, performance: {status:'PASS'},
     connections: { status: 'PASS', calls: contracts.frontendProbes.map((probe) => ({ ...probe, result: 'PASS' })) } };
   return { status: 'PASS', version, fingerprint, preflight,
-    local: { status: 'PASS', browser: { status: 'PASS', checks: ['Fixture browser acceptance'], accountRecovery:{status:'PASS',checks:Array(6).fill('fixture account recovery')}, w2: { status:'PASS', diagramTextClipping:0, diagrams:218, viewports:Array(6).fill('fixture viewport') } },
+    local: { status: 'PASS', browserMatrix:{status:'PASS',fingerprint,version,browsers:[{name:'firefox',status:'PASS',checks:Array(9).fill('fixture Firefox acceptance')}]}, browser: { status: 'PASS', checks: ['Fixture browser acceptance'], w3:{status:'PASS',checks:Array(9).fill('fixture W3 acceptance')}, accountRecovery:{status:'PASS',checks:Array(6).fill('fixture account recovery')}, privacySchools:{status:'PASS',checks:Array(11).fill('fixture privacy and school acceptance')}, w2: { status:'PASS', diagramTextClipping:0, diagrams:218, viewports:Array(6).fill('fixture viewport') } },
       steps: ['check', 'verify:content', 'verify:k4', 'test'].map((command) => ({ command: 'npm run ' + command, status: 'PASS' })) } };
 }
 
@@ -58,7 +58,7 @@ test('admin guards in the wrong order block the build', () => {
   rejects(changed(admin, 'router.use(protect);\nrouter.use(adminOnly);', 'router.use(adminOnly);\nrouter.use(protect);'), 'ADMIN_MIDDLEWARE_MISSING');
 });
 test('a broken fetch wrapper blocks the middle layer', () => {
-  rejects(changed(student, 'return await fetch(url, options);', 'return { ok: true };'), 'BROKEN_TRANSPORT');
+  rejects(changed(student, 'const response = await fetch(url, options);', 'const response = { ok: true };'), 'BROKEN_TRANSPORT');
 });
 test('a new frontend API without an executable contract blocks the build', () => {
   const original = fs.readFileSync(path.join(root, student), 'utf8');
@@ -112,8 +112,17 @@ test('failed, unavailable or skipped preflight/local checks block deployment', (
     (record) => { record.preflight.dependencies.status = 'UNAVAILABLE'; },
     (record) => { record.preflight.dependencies.counts.high = 1; },
     (record) => { record.preflight.compile.status = 'FAIL'; },
+    (record) => { delete record.preflight.performance; },
+    (record) => { record.preflight.performance.status = 'FAIL'; },
+    (record) => { delete record.local.browser.w3; },
+    (record) => { record.local.browser.w3.status = 'FAIL'; },
+    (record) => { delete record.local.browserMatrix; },
+    (record) => { record.local.browserMatrix.fingerprint = 'old-source'; },
+    (record) => { record.local.browserMatrix.browsers[0].status = 'FAIL'; },
     (record) => { record.local.browser.status = 'NOT_RUN'; },
     (record) => { delete record.local.browser.w2; },
+    (record) => { delete record.local.browser.privacySchools; },
+    (record) => { record.local.browser.privacySchools.status = 'FAIL'; },
     (record) => { delete record.local.browser.accountRecovery; },
     (record) => { record.local.browser.accountRecovery.status = 'FAIL'; },
     (record) => { record.local.browser.w2.diagramTextClipping = 1; },
