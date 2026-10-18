@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "browser": "155.0.8059.40",
+  "browser": "151.0.7922.34",
   "checks": [
     "Unified home has both workspace links",
     "Public signup reaches the backend and creates a Free student",
@@ -34,7 +34,30 @@
     "admin legacy password is upgraded before sign-in and retains its original role",
     "Administrator forgot-password sends a captured EmailJS message and accepts its one-hour code",
     "A learner reset link overrides a saved session, clears its URL token and permits the new password",
-    "Home shows the requested copyright, developer attribution and WhatsApp helpline without mobile overflow"
+    "Home shows the requested copyright, developer attribution and WhatsApp helpline without mobile overflow",
+    "All seven public legal pages load without login and reflow at desktop and 320px",
+    "A legacy learner completes explicit age/legal onboarding and retains saved progress",
+    "Optional AI choices persist through the real frontend and backend",
+    "The account privacy export is downloadable through the real browser",
+    "A learner can submit and track an account privacy request",
+    "A teacher opens a school roster through their learner workspace with no other-school records",
+    "Privacy choices, school membership and reporting controls reflow on a 320px screen",
+    "Admin can publish reviewed operator information through the real settings form",
+    "Admin records verified written guardian authority and receives a private limited enrolment link",
+    "The verified invitation opens over an old saved login and activates only the intended child with optional AI off",
+    "Guardian withdrawal returns an already signed-in child to restricted account setup",
+    "A temporary 503 preserves the learner token across reloads; explicit retry revalidates before opening the workspace",
+    "A connection failure preserves the learner session and can recover",
+    "An unreadable success response retains the token and fails closed with a retry",
+    "The skip link and screen navigation move keyboard focus into the main landmark",
+    "The learner workspace honours reduced-motion preferences",
+    "Offline feedback appears, a setting stays pending, and reconnect saves it to the same learner record",
+    "Reload is blocked while learning changes cannot be saved, then reconnect preserves those changes",
+    "A failed topic chunk exposes retry/reload; explicit reload restores current lessons and retains sign-in",
+    "Search load failure can recover; results/empty states are announced and Escape restores keyboard focus",
+    "Enter opens the best search result into the current chemistry content",
+    "A separate 390px touch context restores the account and opens a lesson without page-wide overflow (emulated, not a physical Android device)",
+    "A genuinely invalid token is removed while the account learning cache stays intact"
   ],
   "w2": {
     "status": "PASS",
@@ -77,5 +100,40 @@
       "A learner reset link overrides a saved session, clears its URL token and permits the new password",
       "Home shows the requested copyright, developer attribution and WhatsApp helpline without mobile overflow"
     ]
+  },
+  "privacySchools": {
+    "status": "PASS",
+    "checks": [
+      "All seven public legal pages load without login and reflow at desktop and 320px",
+      "A legacy learner completes explicit age/legal onboarding and retains saved progress",
+      "Optional AI choices persist through the real frontend and backend",
+      "The account privacy export is downloadable through the real browser",
+      "A learner can submit and track an account privacy request",
+      "A teacher opens a school roster through their learner workspace with no other-school records",
+      "Privacy choices, school membership and reporting controls reflow on a 320px screen",
+      "Admin can publish reviewed operator information through the real settings form",
+      "Admin records verified written guardian authority and receives a private limited enrolment link",
+      "The verified invitation opens over an old saved login and activates only the intended child with optional AI off",
+      "Guardian withdrawal returns an already signed-in child to restricted account setup"
+    ]
+  },
+  "w3": {
+    "status": "PASS",
+    "checks": [
+      "A temporary 503 preserves the learner token across reloads; explicit retry revalidates before opening the workspace",
+      "A connection failure preserves the learner session and can recover",
+      "An unreadable success response retains the token and fails closed with a retry",
+      "The skip link and screen navigation move keyboard focus into the main landmark",
+      "The learner workspace honours reduced-motion preferences",
+      "Offline feedback appears, a setting stays pending, and reconnect saves it to the same learner record",
+      "Reload is blocked while learning changes cannot be saved, then reconnect preserves those changes",
+      "A failed topic chunk exposes retry/reload; explicit reload restores current lessons and retains sign-in",
+      "Search load failure can recover; results/empty states are announced and Escape restores keyboard focus",
+      "Enter opens the best search result into the current chemistry content",
+      "A separate 390px touch context restores the account and opens a lesson without page-wide overflow (emulated, not a physical Android device)",
+      "A genuinely invalid token is removed while the account learning cache stays intact"
+    ],
+    "browser": "151.0.7922.34",
+    "scope": "Isolated local API and controlled network failures; desktop and touch emulation. No live provider, real school, assistive-technology or physical-device acceptance."
   }
 }

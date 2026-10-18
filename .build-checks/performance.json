@@ -1,0 +1,93 @@
+{
+  "status": "PASS",
+  "metrics": {
+    "entryJsGzipBytes": {
+      "index.html": 0,
+      "student/index.html": 95876,
+      "admin/index.html": 62602,
+      "legal/index.html": 53240
+    },
+    "totalJsGzipBytes": 722759,
+    "totalCssGzipBytes": 10701,
+    "largestLazyJsGzipBytes": 200856,
+    "totalRawBytes": 4302442,
+    "largestFileRawBytes": 1244466,
+    "deferredTopics": 24,
+    "searchDeferred": true
+  },
+  "checks": [
+    {
+      "name": "Initial JavaScript: index.html",
+      "value": 0,
+      "limit": 120000,
+      "status": "PASS"
+    },
+    {
+      "name": "Initial JavaScript: student/index.html",
+      "value": 95876,
+      "limit": 120000,
+      "status": "PASS"
+    },
+    {
+      "name": "Initial JavaScript: admin/index.html",
+      "value": 62602,
+      "limit": 120000,
+      "status": "PASS"
+    },
+    {
+      "name": "Initial JavaScript: legal/index.html",
+      "value": 53240,
+      "limit": 120000,
+      "status": "PASS"
+    },
+    {
+      "name": "totalJsGzipBytes",
+      "value": 722759,
+      "limit": 800000,
+      "status": "PASS"
+    },
+    {
+      "name": "totalCssGzipBytes",
+      "value": 10701,
+      "limit": 20000,
+      "status": "PASS"
+    },
+    {
+      "name": "largestLazyJsGzipBytes",
+      "value": 200856,
+      "limit": 220000,
+      "status": "PASS"
+    },
+    {
+      "name": "totalRawBytes",
+      "value": 4302442,
+      "limit": 5000000,
+      "status": "PASS"
+    },
+    {
+      "name": "largestFileRawBytes",
+      "value": 1244466,
+      "limit": 1300000,
+      "status": "PASS"
+    },
+    {
+      "name": "Topics stay deferred",
+      "value": 24,
+      "minimum": 24,
+      "status": "PASS"
+    },
+    {
+      "name": "Search stays deferred",
+      "status": "PASS"
+    }
+  ],
+  "limits": {
+    "entryJsGzipBytes": 120000,
+    "totalJsGzipBytes": 800000,
+    "totalCssGzipBytes": 20000,
+    "largestLazyJsGzipBytes": 220000,
+    "totalRawBytes": 5000000,
+    "largestFileRawBytes": 1300000
+  },
+  "scope": "Compiled payload and lazy-loading regression checks; not Core Web Vitals or physical-device performance."
+}

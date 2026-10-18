@@ -1,7 +1,7 @@
 {
   "status": "PASS",
-  "version": "1.4.0",
-  "fingerprint": "cf3362cd8d753c3b75ce0eaa80254004e12e4a92da04ddc9479b4c5f2cda29fc",
+  "version": "1.5.3",
+  "fingerprint": "a8398fce0accd1f44c9f6734f276f36f2d6285fb3d73e17ca621c569c5347237",
   "fileHashes": {
     ".dev.vars.example": "4c0cefa834a101de751b3a39dc454bfeb105536166674eb9135cacefedca3850",
     ".env.example": "6c0063df624cdfa73b7af766fcfd5db120374ed313e74d1edb77e6504e4edab6",
@@ -10,7 +10,7 @@
     ".node-version": "73fb1b615e2043a933be1c0895cde4358036acc28d785692509b822aa53c761f",
     "AGENTS.md": "a85db47679a5ccb0fec4c54ab88bbf4c5575baa0a5046141f7c715176d62f102",
     "BUILD_RULES.md": "4e2b7fef11bbe7c14d7dfe088a7f7c40fef3c51729fb949ee1d97796a6bdea5f",
-    "backend/app.js": "aec89e52046849c495c0f013b9ab2f503e565cb8e1354c84ae11b78f8d7e5749",
+    "backend/app.js": "02339dc3d060e8a9e0feaf79502a8a5eda40604b56948ace09436895998e4689",
     "backend/scripts/resetLocalData.js": "b73124cbd08c31c38e66712ea227389b6bee891be6214519e6ea295b55e37862",
     "backend/scripts/resetUserPassword.js": "49998486ae3769e93fdea380b2835d65d44bb408ad320a910084f8bab28bd1da",
     "backend/src/config/cors.js": "36a3751c36c18534c39a11a76bf06c291d0eac630583ee4987ef1637c4661dd2",
@@ -24,41 +24,49 @@
     "backend/src/controllers/subscription.controller.js": "466fa199d6194f40a67f3a8331acc1ae00dce043dfc1dbf940f00e6b11f94b46",
     "backend/src/controllers/tutor.controller.js": "cc8d5a7dadb249f954ec3778e4d8bfbc6c8e7226b7a82bf9e2e65255616243c7",
     "backend/src/controllers/user.controller.js": "2b33dfecc8ac4028402f8f78bbd01ac68abacd2ad3a79e10b945fc207960d4eb",
-    "backend/src/data/localModels.js": "227ddfaba12ab0f119f9c00caa1fc731faf1da0e53854f09ca92e5a9b849e6bf",
+    "backend/src/data/localModels.js": "fcd1aa27bcca76009e45c5df346f05f26e5ad7a3fc542217522f8da77f83b2db",
     "backend/src/data/modelProvider.js": "022e479bb8f1a8330f63db706d1a480823bef1781083ae53ad2969f9d780815c",
     "backend/src/data/plans.js": "cebe1d39d1549c8e186a1c805e72c265534353b3fc5f915bfad2f28adc4698ea",
     "backend/src/data/syllabusTopics.js": "55fed06458d360e5e1f5a6ff0a6bfd666bcd16202428133a92d3f2f865aab54a",
     "backend/src/data/workerMongoContext.js": "119271d90f67c846e2102642b4286428087904045465abc71309cf6de2c452a4",
-    "backend/src/middleware/access.middleware.js": "15e7c98bd02a944a062c4025af93ae3c7e13fa584492bfc37b05ebc9e3327a23",
+    "backend/src/middleware/access.middleware.js": "29a094f2a9e2d9b3e107485de7f8629c9d39c43a89e67b46509a4cb54507f750",
     "backend/src/middleware/admin.middleware.js": "762e061868b12903a12556b7f380623343253d258499b1e76565e3df94006f2a",
     "backend/src/middleware/auth-limits.js": "2fd1c6b868095f1e1ad2081b83fd5edb77a99b2df86d7d1cd0a28d3e90118d8e",
-    "backend/src/middleware/auth.middleware.js": "073748a856484cd693a280a37a57ecf9181154a23c0d54a66091816d2aff56e0",
-    "backend/src/middleware/errorHandler.js": "21cf6855d8cc4d8796b8a49f4ad84e1fa6c12737165c0d10edf5e8f7f28df640",
+    "backend/src/middleware/auth.middleware.js": "3cfaa48349d3b9679f10aa6d688fe43b004ca3c4cfbabdca88fd0ec16ba55aeb",
+    "backend/src/middleware/errorHandler.js": "fe5137dfe9ac2c8d316d8d99dd60a14d92822f47709c666fce5d846ffbd28330",
+    "backend/src/middleware/privacy.middleware.js": "0060c7e0f9896a7c1b9f5be538038654c9a8cefcfe3f377cf9f3070c81b878d1",
     "backend/src/middleware/rateLimit.js": "0d3549eff985690b0fe6526bbac27867d46bc1dcaeb927c3994f45e55554d7da",
     "backend/src/middleware/requireAdmin.js": "19426275b804720fad6fb553c3dd36d6a3f0b44a3890fe9eadf7cebf8ceac1bb",
     "backend/src/middleware/requireSubscription.js": "67d4a52c061c736fe7ecb1e437f1836f411cef0abaa50a628e56c9e43422e9c8",
     "backend/src/models/AdminLog.js": "423be05b9abdb9dd151c97ea448d666ef2253b691ef41e7ddcae5370b8924ac3",
+    "backend/src/models/Governance.js": "dad67f7d9e27049e6117b61033b4197f421b8839c579f39a2f438e7766f67f98",
     "backend/src/models/LearningState.js": "7e639aba89d0def006592d1b03bbbf5b57b5b44d445f35fe87eda5820e3f96bb",
     "backend/src/models/Payment.js": "788d89ab68a98a0cc4c5cf28d3d70e5ee8a68a32ca572b2334588e72794170e1",
     "backend/src/models/QuizResult.js": "3b92c3a16807d1259bdde9e1f740b0cb04bf0e7bb8e6543dcc845c9437f63419",
     "backend/src/models/Subscription.js": "580cc507b992774496686677731f2bfda9ad6abe165ee1d6d10f2368a037f1c1",
     "backend/src/models/TopicProgress.js": "377c2af699133bbc01a7ae38f308d343855258bc5443133b4d91eee20e627a10",
     "backend/src/models/TutorMessage.js": "db33b9d209b17bc110c7286bf2d61dce5f495ebd99bf09b6d0a9d3226d87b7d1",
-    "backend/src/models/User.js": "40321e605bbb9f51ce79f522fc21091c8d9ef82636b516d3248973a8d99937c0",
+    "backend/src/models/User.js": "50b0af1e7c9daf1293cf2404ed5247d1dcf2728e7bf76b06dc0e7ecc83045348",
     "backend/src/routes/admin.routes.js": "cef2cab2310cf3710095308c5fb2ec580d927737cf945861cf7f2db70bf18f10",
-    "backend/src/routes/auth.routes.js": "9c1e210640da35af12c4d355186ecb625c56b244c99b284f12741c240f4e5eba",
-    "backend/src/routes/liveVoice.routes.js": "a1b8fe7e8942a27723aa7786b8f1e1f37541b58b3755d58550d5bf91d50df918",
+    "backend/src/routes/auth.routes.js": "55dff7599ec98f040792bc7ae0de44c01ec58393d392ffb6d9711bf9ecf00ab7",
+    "backend/src/routes/liveVoice.routes.js": "20637b1462011f828e4f7ba55b853b2330a28bdda7190f019dd659de2ccc0d07",
     "backend/src/routes/payment.routes.js": "00b62d70b61d0407051ba899d353389a3b8800e3cac98915bce6fb9d2245587a",
-    "backend/src/routes/progress.routes.js": "f8495f0de4559dde295062febf3ff54e391edbab72d4d93eb809465db25ec57a",
+    "backend/src/routes/privacy.routes.js": "fa2ec18dd0add27d1937dd463f5b0e4d30326eb6f028d037fd77195ab8bd0a60",
+    "backend/src/routes/progress.routes.js": "30c5d7b65195c44628f5dd83684a4d1cbb22f0a8bbfef6b8a1d81c57e3e00716",
     "backend/src/routes/quiz.routes.js": "f56d2431924c8cb57d59656b4633a16357c6405eb81370188de1b2dbf03e38f4",
+    "backend/src/routes/schools.routes.js": "caeaf0b5adf2aaa596e31a409bc352abb6c12721c003f752cfe4274bb6ec7d08",
     "backend/src/routes/subscription.routes.js": "abc2394a5d9d83f915e8e5e2597f821a12552045c3bbd2fb21bd1f28b99ae19c",
-    "backend/src/routes/tutor.routes.js": "3508e4d2fcb04fd4d2dd1c328755a4faf01f0302ef126200a7136fa738961769",
+    "backend/src/routes/tutor.routes.js": "d3e9b5026ec6156078c8458b2625d163aef46b05ee87c7f395500de52baee140",
     "backend/src/routes/user.routes.js": "88ba0f014b45ae79e40a2ca4c06e3c112b3c82f0d20090ba281979e5b74369f9",
-    "backend/src/services/ai.service.js": "a51916a5efe6b60527c0be12f30227814742c54c59b8f0c775e9d31b76c1ab2d",
+    "backend/src/services/ai.service.js": "0098baab7983f3a4e9b12caaa9a095b55172922ba79db029f2fdd165dc0a7549",
     "backend/src/services/email.service.js": "33b41f4a73f34d4a2a116348246ced9bbde08d7a0122a69bdffe04bf74932a10",
+    "backend/src/services/governanceStore.js": "06e242710c0e3eb4d88cbd8963bf7769f8d5e791bcbedcafce782b1be87d980d",
     "backend/src/services/learningState.service.js": "e36efcc75edc58e212b6381ffe0c9e306508ab4683591922181682634f353b40",
     "backend/src/services/liveVoice.service.js": "570cf8abddfca51a936b18a3d24f54fb9535d9536a346307e63ba373184176df",
     "backend/src/services/payment.service.js": "6b4042751d8bf0bb7f0c27d873e77e3f067a18bfd9bead118657c7e9434a237b",
+    "backend/src/services/privacy.service.js": "db170f4239ab42e83d5da25ee7f3ee5d9e6ec2f80fd2ea14f39285e557f82927",
+    "backend/src/services/privacyMaintenance.service.js": "821adfd9a8cd3b7e48b92dce79c4fb0ec272150d5d8ece4f414e325a0175f9d9",
+    "backend/src/services/schools.service.js": "435dde7d99567e76af56d7995fcff1279bbfc0b675c6f122637171801673f545",
     "backend/src/services/subscription.service.js": "74812e2a14424cec3d8316cc091c3eb2785c31c95c0a2584d69435e630ae0f4a",
     "backend/src/services/token.service.js": "b0fbfb9b329c7c9d34d98236336d7e10a30ffddff11d7a77ba714697efb1f11f",
     "backend/src/services/tutorQuota.service.js": "425b92a169404da22da6391faf1d5d7723cee2ace72e46fef31df3cc840e0386",
@@ -68,23 +76,25 @@
     "backend/src/utils/generateToken.js": "20b3ce67d7161d15ef4924a1463ec8d41e2f470e033ed8901721bc8a8eba11cf",
     "backend/src/utils/validators.js": "641072c67bdb134b118547cafc43e686b53047fedac93860cac3af9388276005",
     "backend/tests/auth.test.js": "cb0f65cfc9fa89fcf129703d6119a3ede5818938cfa5a7f1977de36cfbc8b294",
-    "backend/tests/liveVoice.test.js": "7360e22f1b986edf522552cc02a43cf7bb09f3fda2b19eb1fc666adfcfe83e53",
+    "backend/tests/liveVoice.test.js": "6998692e957f68e58d64fa09b97213781bfa7b0bc0a4a04a24c860e32882b047",
     "backend/tests/subscription.test.js": "b430af16cc83e2e37898baedc66bf4ccc37d98ebe0c597aa63034808392044d6",
-    "backend/tests/tutor.test.js": "c9c5b7720d5095578ae65e368874e49379c83884a44fe718fbcfd8b70d2ec9b5",
-    "backend/tests/voice.test.js": "1c7bfc9c6d775f5488849d7369314f6c9d96d13fd599f4c9961bc15a1b704223",
-    "cloudflare/routing.mjs": "40b7228d0e287fc468caf97a36cc1110fd9535bcac365b2444a7a0ff39d5f31e",
+    "backend/tests/tutor.test.js": "9339ff53ff410f212413c272f27a3abd6a4a29c27cc95d5f26ed27388a00872b",
+    "backend/tests/voice.test.js": "9fb8c8a7b96633354bca75495a8b53abcbead542c0181c3f43a7ebee0b40c1c8",
+    "cloudflare/routing.mjs": "dae8290db94d7144bf810586581575542b2ac9ffc8bf37dc89dcda1770c58a6d",
     "cloudflare/worker.mjs": "61224b29941bcff3460675af30f1e413d787f5863f8a1493b473c73aa79c460e",
     "docs/RELEASE-MANIFEST.json": "21472459ba9d756ff712f3787d65906c9baed8aaea2b2b15836d854764ca6b46",
-    "docs/emailjs/password-changed.html": "56e72c60adf97fb2c24d7c4d4d0cb7d7bb5bf1a23d84e5a898fcdada4f05960b",
-    "docs/emailjs/password-reset.html": "8a03b7b961e5de060df62f1368d9e4df0aa23c48d2ceea516765b4dd8a0c89f3",
-    "package-lock.json": "e84464fb433f8cb8447503e7542f06f3ace9933dc99df3cd1d3012171ff5aaa3",
-    "package.json": "7c6dc640d3972d51cb4a634e0ff5411075834482e272c5a0b9137df2be7f6fc1",
+    "docs/emailjs/password-changed.html": "883e6ed616168ca34d08602937eb23e20396c05f5740e5030f612f4a86a91b64",
+    "docs/emailjs/password-reset.html": "73b99128955ea46da3c850c672cc9ddd9496e138d7005b9baef9c1a9cd80a3c6",
+    "package-lock.json": "22139aa5fb868b77af98ef522672fdb523b3b1df60030e0d9e7089aa3573e025",
+    "package.json": "34525b2419d559ca7b39c8debdd1037c5d319af292fec5fb7cb81ab3e3db83a0",
     "scripts/build-guard.mjs": "016ab93ff9f94e4fe21153df2e9b569c92a6e4132f83ef60df9b274461ad150f",
-    "scripts/check-installation.cjs": "58c667d16c188d79d7a010ba336bc8153feaf9412193c0a95e7d925c2d9de3f4",
-    "scripts/check-integration.mjs": "a1efb9085679a9e9f1e2f04bb00acaa6e9ca107ab19a09aa8701367863cdb2e9",
-    "scripts/check-local-browser.mjs": "5e814f7ae75bc43f1e5485a889a1529fedd839741c58ccc9f32625c8f403c8b6",
+    "scripts/check-installation.cjs": "a78a9edfe75d85befac757f1f6aca125524fee7c148953cf0e68e991817e76d2",
+    "scripts/check-integration.mjs": "01491c306536f09cf90ea9e107f10c4559fe6d44bf8d25f4e70784dee02f58e2",
+    "scripts/check-local-browser.mjs": "bc860980bb99d32942ab17a70a4642dbd675366b260bd68f0f40e9b06305f7ac",
     "scripts/check-mongo.cjs": "fe6e2809ab9af7897437afea0e0e0ce1a812aad8aa4660290770c337e139f1fc",
+    "scripts/check-performance.mjs": "b731df0a0bbeae9164a78713a60df2be887f8b6774eb2e01988456309f0f2aa1",
     "scripts/check-production.cjs": "78f18e6dd97efd1c08892e00a10e7c00ba41184321a666481b5b1035f4a9d58d",
+    "scripts/check-w3-browsers.mjs": "63b08f9ce44e2b26b6000b31c58909ddb9cc1eee8e8c91ee7abc6822f489d29f",
     "scripts/cloudflare-dev.cjs": "ff009885e22c6d83ab17abb4325b0e63d2fe133d4f41629e5fbc917c2e0771e8",
     "scripts/create-admin.cjs": "79ac2d3bbc67e39a54e81440c71ee239b8567de7b77a9ee3e8d8cabd57921cf5",
     "scripts/dev.cjs": "9ecf39a881a530cf9b49374185df649d290390ec5d67127fc3f0ff4544295ba6",
@@ -93,42 +103,59 @@
     "scripts/export-old-progress.js": "e76276fb758b3ef9ae7e2700b727f1a1e0074b8d622ed62e8e4d74acf35e7ce6",
     "scripts/import-config.cjs": "3692dd16a20ab2140f58f28941d7fa698bece7ce73103cdd43040b84075d3182",
     "scripts/import-local.cjs": "553a13b6a58815c959f3473b122443be2a224479dcdc0feeb18a1c626ce84adb",
-    "scripts/integration-contracts.json": "29167003bc5d2c5aa415de8fbde19ba2ac2e4f6b02b0b7f5e604d6bef2d8eb9d",
-    "scripts/lib/account-browser-checks.mjs": "0ce726c97116c3f2dbe3d6e950d64ea805ce66cd228f0d3b91105cb1d24ad08c",
+    "scripts/integration-contracts.json": "0de5a269a2b199f068147f16ba943b8ff78ca7a6feae7479ab78d1c7f2b42fda",
+    "scripts/lib/account-browser-checks.mjs": "aec8f09d7794d9e12b8d1b092a7db3d9966600d46b1b2eb245b124fec43bfa68",
     "scripts/lib/admin-diagnostics.mjs": "7d7f6f5fc3d4ad5d5acc9ae66254cb64dbd2bfe2a5331f3828090d6f85687d86",
-    "scripts/lib/fixture-config.cjs": "a663f329152f116ee77f38089919947680b913d82a76e2b4a872c1f9d7d979f1",
-    "scripts/lib/gate-state.mjs": "26bbfc36a63600c42e37fc747708da0375fa535a37c097344323da56fc03501d",
+    "scripts/lib/fixture-config.cjs": "194d8c1b6f0af664013960c82c9da36c1003462caa55101d0c166c126bdbc2d1",
+    "scripts/lib/gate-state.mjs": "02d4f5755f5b93ff3554746d537946e8b5e824d75a998508500796753cf5d2a1",
+    "scripts/lib/performance-checks.mjs": "f8658085ba24412fa3bba3869ffba67b9ec7568fbce9db6827a440aca7e6095f",
+    "scripts/lib/privacy-browser-checks.mjs": "124c549aa60dc9b53eba116445519f2362e086f3a88419af627ac7bca24b4d56",
+    "scripts/lib/privacy-fixture.cjs": "f04da365e1f3eaeced0623c6a569d1b1147aab16fa1e1affb9248485fb1817d3",
     "scripts/lib/release-diagnostics.mjs": "c94e0041ec3c716bc2bff02c15a6008190b37b14d4cdbf1bc31b7c323d8dd3f2",
     "scripts/lib/source-checks.mjs": "8ede9a7d7675ee00494d559a8aade14137433f5a25c8285d880336fb670ba088",
     "scripts/lib/w2-browser-checks.mjs": "9b98174f217b427b97055e958cc34cdc75449b762f9dfedcc6b5143ecacb3123",
-    "scripts/probe-api-connections.mjs": "6db2dde5c907b112cd5762b0819ddaec79d0c72e6d82a066705e3eb86d302b37",
+    "scripts/lib/w3-browser-checks.mjs": "f21767c66ac7b591f4fa4981404c5974f90b09a75a67d7b14168eff807ae629d",
+    "scripts/lib/wiz-luna-cases.cjs": "6411eda4e541222d03891e5378e0d12615180d32c98ba2f7f5d2bc47a831b45c",
+    "scripts/performance-budgets.json": "5ea1cec032f7853e3f6ca813980454b10a1c249ac84b8a9ac051e3923c4bb278",
+    "scripts/privacy-maintenance.cjs": "6d0dd722cd7ba0cda928d77520704f2586c188306a7218465d2b640972c6d5bb",
+    "scripts/probe-api-connections.mjs": "6559e444b7645fc1a203d43e4e912ee0ab9a04f8546fdc0b2076d79889cc1dad",
     "scripts/release-gate.mjs": "f603aa764aaea779a91ab95cc2e87a250facb894508df31e358f2b061c5e620c",
-    "scripts/run-local-checks.mjs": "2df3bbd2559a17d9028e228a0b7916700de3e20ecd98874f444ac1b8c0109c46",
+    "scripts/run-local-checks.mjs": "a257f9900c54b41edb144972b2d4e0736d9f59099135c41cae38c7bbdf176107",
     "scripts/setup.cjs": "d8e705023d25c5f7faabf47b5991a77946d4ee1bb2e736b527e2a90d709fc7f7",
+    "scripts/test-wiz-live.cjs": "e4f6266825b42f9c7a8c557cb33e6472b03260d9d03c255eca663f733c4e1524",
     "scripts/verify-worker-bundle.cjs": "7ce16ef275408d83fe81c5241d82922172c46c946353abc8c8c76761dc2bfbb1",
-    "server.js": "6ea25aa40920c55bf7c6429682e07745d6cc82fac6996c429a6bda3fa8a1a57e",
+    "server.js": "8a9bf8cbba26c712f0a7fd31ce86f947b5cbaaf22407bd7a43cf121c4196fb30",
     "shared/AccountRecovery.jsx": "d2b1b3736ff2db7af8f5181cf5eb14d3567acaea9c065256a115e287e24bb917",
     "shared/PasswordField.jsx": "bb3e0769c290576be5fbdd24fb08d4e19d2dea4c59a384e349066c8fcb10d6d9",
+    "shared/PrivacyLinks.jsx": "dd458513def4c30f404c1fccf433e4fbb9319f452b53d09749efe78f7055eabc",
+    "shared/PrivacyPanel.jsx": "9131cef1d6207be26e0644803a9ca4dce3433ee2cbbc299f675057e7592b5939",
     "shared/account.css": "a081cb94588c6e34212e47b8d74c8d0a087e24a999f776a2606537ae9ff66966",
     "shared/learning-defaults.json": "8dd1abd8dd9f114a494e7126fc17b185bdba547c8aba91b2864181808cf6082d",
+    "shared/legal-documents.json": "14ae6f57104a214beb53c2d01882dfd31deaef2e83b33c64f0447092f18c53af",
+    "shared/legal-version.json": "db06c83e60e8157e25760fd7e2fa5476d62083a750f363fd6fd5c39a0754c72c",
     "shared/password-policy.mjs": "b01d77fad77a00c5ad8c76472c9159788e3d53fb84c889a233ca0b266b75f220",
+    "shared/privacy.css": "854218d1df0aced4f61048b939098dce98ebe5f260605d7a08dc53cb068ab0d4",
     "shared/useDialog.js": "17c420004a5e6c18f77233209b699078e8ce7412df04887f3550f83dac35411e",
-    "tests/build-gate.test.mjs": "79c85ed7ee932d10de808aebf3d11e40e3a6a046d78169f7a171cd8f281444db",
+    "tests/build-gate.test.mjs": "ea2a9a576b09127465335b6c77525dc211222f4dc37f2d5ed7338a1baa803b10",
     "tests/cors.test.cjs": "dae67bb9f02d8bca196dad64e17f22eae3870fd15b21c57fd761104e419d1d38",
     "tests/learning-sync.test.cjs": "76dbf78681a2e5a8253986c9350e776d0809bbbbb34b6394eb8b859a5e35cb93",
-    "tests/password-recovery.test.cjs": "0b0f8a75b678dde28a1001bf7be617ba2eca70f328d67b03733f3df5f8a29579",
+    "tests/password-recovery.test.cjs": "1b542c3659ba32f5e32d3656cd83ca15136f6016578d055360e9b6457cdbf900",
+    "tests/privacy-schools.test.cjs": "ee8b2d65e1d38c390b1df5ce3615c5045ab14ea07e436bac04bab0ee20de5b0e",
     "tests/production-config.test.cjs": "f6d109bd149e87470932ca43831cb6ce43455decfea881742e1b5faac76ab08d",
     "tests/release-recovery.test.mjs": "26e05c6705bdd1a344f15eed373f6c5652335f702f171ac21f12fb501140a512",
-    "tests/unified.test.cjs": "b777a4e9ad0fcbd42a06a1cbf73d8567e6e8dce2aa58973ad00b967d740aec37",
+    "tests/unified.test.cjs": "326dc423642863deaab014a102fd8cf21bde39f1408cbc71bd08cec8543d9382",
     "tests/w2-admin.test.mjs": "c4b654b0527a6b367780d88c05ec0fe0e306bad85fdeb074a3f6efd71d2821ba",
+    "tests/w3-regression.test.cjs": "067f803093484a4b76feb1c3444164e70db8959394e419736780221b1d965c3f",
+    "tests/wiz-luna-trial.test.cjs": "536344ba42f8b81a867b76ab7f186194b58393fd3504d1f2f88c09be33da5b32",
+    "tests/wiz-text-provider.test.cjs": "bcde869b78fee8cda73d745a99d6d6711d5548f4b9e8f63ebcad87d1cc815cca",
     "tests/worker-mongo.test.cjs": "93aa651563c04cbefee562f5c2b5ff9da100f561b754ee06c8e9f410a1857a93",
-    "vite.config.mjs": "7ce8e5fd40dc107b688a7543c4bffd1a88cb32957946f6d3e534e9ce52bec9b1",
+    "vite.config.mjs": "cc0eea25686589a260492f8e518da9756490755e3dc970bf0d191aa9c2feaad8",
     "web/admin/eslint.config.js": "0197d9a843aaae267303c4d1ab1a43afad1afacc7646cdf6cf94a5af6b815fb8",
     "web/admin/index.html": "4b189996bfcd226a08da591f2bf351022d930b6bf0716894054a9b8f1d2cb5cd",
     "web/admin/public/favicon.svg": "61bc9a161de58248288e6905425d7180f0624c2865007b97d763fdac12043a66",
     "web/admin/public/icons.svg": "b45fa506195cfcdef406ba9f0c77b36ddc1a7c224040926ec70abc2fdea7b93a",
     "web/admin/src/App.css": "6e25a776d3e8102da5bacb3cb99f4a5fc662a2e01e6143140671a556d28c3d5c",
-    "web/admin/src/App.jsx": "499beac8a4eda22135eee9cb459707de6d77bea111062ad13d687655425394dc",
+    "web/admin/src/App.jsx": "24e410511666d88190a03b3928505ce54aaa8f3c17114ba3592104687029c81c",
     "web/admin/src/assets/brand/chemwiz-logo.png": "92524bd02e5d1ba3a51d9848cd8fe68617ce47ee6420fc63d85c8e8b1540345f",
     "web/admin/src/assets/brand/wiz-emblem.png": "07d6b75a525c2ee850c5ce1d10b25443ee59c8f2627f97061442d88c8d779669",
     "web/admin/src/assets/hero.png": "881ffbcaafc212e49addad08846a5b82761355fa20624253af3477ba33262c5c",
@@ -138,6 +165,7 @@
     "web/admin/src/components/AdminSidebar.jsx": "af0d0f0f9e691bb77398577c84ecb0f588a16707597fb25b6c9446987516ddd8",
     "web/admin/src/components/ChemWizBrand.css": "b24e18a33772b216dddc39d2d96c99d0b35f02d24145475712c8c10fb6ca467c",
     "web/admin/src/components/ChemWizBrand.jsx": "b0f2d54e65a8dbc4989857a65f22a6275662f42249f454d62489912336d38f7d",
+    "web/admin/src/components/PrivacyAdmin.jsx": "50bec321b6975bf7f18c39ad9463173ed36d57076317b68f198830cbc829f63a",
     "web/admin/src/components/StatCard.jsx": "1c1b66a8cfa668a6d03180dc322fa32c575b2da1d4986803e1a7b7fe649cbc52",
     "web/admin/src/components/StatsGrid.jsx": "d72212153ba3c9c52d6c7b5ffe99e4e350c6b347e639602e282527aad2e00e5a",
     "web/admin/src/components/UserDetailsModal.jsx": "99583d17aa5da9463020508a87ddda269622225c6d2edc98444a8884f6d6bc5e",
@@ -146,29 +174,32 @@
     "web/admin/src/config/session.mjs": "cc1238e60fd38bf74591dca776f37ebef67ec1525314229782490c2ab8ef2207",
     "web/admin/src/index.css": "1a9ef3e4d457a6055de7be59307438cc6041adb87cf935c3446114d678482688",
     "web/admin/src/main.jsx": "4b4b864dbe45253425d0c925337180ec07e204295179f80f59551216f466f618",
-    "web/admin/src/screens/AdminDashboard.jsx": "7e92bffc102b603dc245832e16036086e4c73f7b3bacfb7e58eb25cf68d5b0bc",
-    "web/admin/src/screens/AdminLogin.jsx": "b53b404cfb16851e6ea4ed0447cdcd42b7c237f8602d753be2cfc633a9fe88df",
+    "web/admin/src/screens/AdminDashboard.jsx": "ce200cf8d41b09a96997a4f39215532d0b49afadfe1383d3f0ce0157d73cf6dd",
+    "web/admin/src/screens/AdminLogin.jsx": "2d7cf2f0621a61ad7bcd054c471fe98a525b806519aa980a899459e2814ea4c5",
     "web/admin/src/styles/admin.css": "02850f1cda58d28a879bb5e14dc0099b5330236f31968ee9dc4c0687766ec07f",
     "web/home.css": "10383ba4fb440a24537b3aa0b71a296c0070fef3abbcf6c65fcf2fe652a09cfd",
-    "web/index.html": "747b5486b1504fc6b8561605eb8347e46d89634bf5c7af97f6b5ee97280fd6d8",
+    "web/index.html": "81322e371e851028a77b44853ed5e837f18d07b5dc80eb6ce975b95f61dfaf94",
+    "web/legal/index.html": "34a8ae3f2c96f418b6a2dfd096358de2858e6d880afe5c251fa345725db468c3",
+    "web/legal/main.jsx": "856e305dc6fd7a00a38f59ffd3ac31019c181ffc0f874fca0e7debddcffa3dc3",
     "web/student/index.html": "fe672fbd5016dafffbd53c3d22ff7fe7269b8a12874b5a18f257873cd79fdca5",
     "web/student/scripts/generate-search.mjs": "0aba5dc116c5c052acebca566b5c7c7a2f2a62118dc5de149d213393521a7964",
     "web/student/scripts/verify-content.mjs": "a13f8f8a191f788af43190e133df5f008d62d884e04f5586bfc282ea494a81fd",
     "web/student/scripts/verify-k4.mjs": "1cbcebb5d6d179c774312aebd5494e1b9cae0de4658ad16b3bf97ae2716a6021",
-    "web/student/src/App.jsx": "3f29484405c0f46fd8b5ace8acc63b18f0933ec2b4b8693ad64c5ea3d9d7797b",
+    "web/student/src/App.jsx": "a9800e7335ce6791bdba7e71598334c57719fc22a3931486543731ee030997cf",
     "web/student/src/assets/brand/chemwiz-logo.png": "92524bd02e5d1ba3a51d9848cd8fe68617ce47ee6420fc63d85c8e8b1540345f",
     "web/student/src/assets/brand/wiz-emblem.png": "07d6b75a525c2ee850c5ce1d10b25443ee59c8f2627f97061442d88c8d779669",
     "web/student/src/components/ChemWizBrand.css": "b24e18a33772b216dddc39d2d96c99d0b35f02d24145475712c8c10fb6ca467c",
     "web/student/src/components/ChemWizBrand.jsx": "b0f2d54e65a8dbc4989857a65f22a6275662f42249f454d62489912336d38f7d",
+    "web/student/src/components/ConnectionStatus.jsx": "ef78368f4914fc476848da2089012d9aa70e54fdecee0e8d95fe045d6e602a35",
     "web/student/src/components/Diagram.jsx": "1c680ef90ec5b356b09d8e305ae1f86887f0598ee8aa2e8c3b4de2ae1a190b18",
     "web/student/src/components/LearningDataTransfer.jsx": "17db96b2292638f81ea538c09e57180de3f8b6fa06f54581ac8049c03d4d18d7",
     "web/student/src/components/LearningSaveStatus.jsx": "a0b71c127e5bf60611b1f7021dd7c73aac729e80dfdc43c6a76adfcfc3be5ccd",
     "web/student/src/components/Primitives.jsx": "3cd719b8110d8755d571c7dcf58796e4bf0ee93cafc28118bc11758e6c9a8a82",
     "web/student/src/components/ReadAloudControls.jsx": "da48dd4887d149a87eafde04bf863cadb95c21bf46cf899a5ba5159dc5afe065",
     "web/student/src/components/WizFab.jsx": "d26ff0e1fb8c75f251baffe910e046a62ebc98dd78826a52d444f4c8d56aa8e5",
-    "web/student/src/components/layout/AppShell.jsx": "67f41027a6130bd4fbc4d561f7249d34c6f55b3c5f8f0407d881a88e25c16b87",
-    "web/student/src/components/search/GlobalSearch.jsx": "9a66d25dd1e11eee7f4b5badcafa98d7092d8a8d9a4360ec2301cd558c5f4782",
-    "web/student/src/config/api.js": "6a4d42910daca04ff148ab372b105a075a5f5f35bbbee958a250aacbb602cb60",
+    "web/student/src/components/layout/AppShell.jsx": "15d266a624b111d85e266e35771936087327eba8972fcd58ff128dc030a2f6bd",
+    "web/student/src/components/search/GlobalSearch.jsx": "b15ad81a8d114e781d4c700029a58a0f67f1856781fd322c3e65149a790c8ee9",
+    "web/student/src/config/api.js": "18f3b71383a2a5e462004a1e138b0a3b53086dac77ffd2db606cabd8784f3456",
     "web/student/src/config/theme.js": "88b6f64a00ec0cb7f8916eee3c075f1ab7035a33e54094b51b1683222fca8d41",
     "web/student/src/config/topics.js": "7df3684adfc758b91736870f041579ca8784a703025404e579686bf731d4999f",
     "web/student/src/config/wizContext.js": "bf7ecf9126e7ea8687439d1a60ab8f772798b5bedca375bc3748659061119bda",
@@ -203,7 +234,7 @@
     "web/student/src/hooks/useReadAloud.js": "5a4bebbe44fa7e48c09dac9d08c421cf1e17aab869c085d12d36a8c811398360",
     "web/student/src/hooks/useTopicContent.js": "6c6810b9e3020af62018ebf86634e55e9c7c5b8fc7ea8ec2bebda1ee769e395e",
     "web/student/src/main.jsx": "ad0249d77b4d1cfa109ef92f5ac708195a0e8594e1f1a928cb20030efd2a212f",
-    "web/student/src/screens/Auth.jsx": "304155f294ed9a47e08a75923ad51a41bcd948ca0b774d4d50d5731ac52507e8",
+    "web/student/src/screens/Auth.jsx": "aada0b763b111c3b96fe1ae5aba36b6dcad1c6152805a7b9262a9666b5aa47f8",
     "web/student/src/screens/Chapters.jsx": "a1dc42461b834bdc970586002589b795522de30b0e5acef5580d08f56fb076c0",
     "web/student/src/screens/Home.jsx": "db4e6894aa460b03d1e156b3f11e3d1dbbb360e93047051366dc00222872f865",
     "web/student/src/screens/LiveVoice.jsx": "c969aa19fb1775bc10dbd330a32c135bf3107c7b16aa94c883e66d4bda3b912a",
@@ -216,7 +247,7 @@
     "web/student/src/screens/TutorChat.jsx": "f79674dd6f8d603b3fb3ac3b6e6d8f1cdcb0200fb9bb29a666c12a8cca99dc34",
     "web/student/src/search/buildLessonEntries.js": "0c841d6c02d9ecbdc6e712480d9c8fea69a4eb56facfc8a7afcddcd3d90afa5f",
     "web/student/src/search/searchEngine.js": "f066ccc3c8d37d5afce4fe3894222ddd20709e8150f4124f5a14037b369d90cb",
-    "web/student/src/styles/responsive.css": "3b99151a6562f010dcfba9a34f1475a359b970a1c3760046e6bada84c28a3e85",
+    "web/student/src/styles/responsive.css": "ec1cfdb2e72554d7b5297bf23e8523c3e64cd969898cc33a8b4dcc2ecc05220b",
     "web/student/src/tools/Balancer.jsx": "59f4f83d59392e6d8be9ebddd2d2db0924693bd7e93f5e2657c9b4c7a1281b90",
     "web/student/src/tools/ElementDetail.jsx": "c84ff142df564f6561c649989aee19d9453f6732b4c1d60bf4cfd9d44740327e",
     "web/student/src/tools/MoleCalc.jsx": "03832cd18a5067cbf80f8ef260e61dd69283e6cd18823bb260cfa5cc0f6844d2",
@@ -233,14 +264,14 @@
     "web/student/src/utils/storage.js": "200844f56d0fd616b419f7b68df474da3443651b8a94ddb0c1f52d8c1732bafa",
     "wrangler.jsonc": "03c19b66036f19223c7f6660d46d189e3c1222833c8e1ee175a0bd861e6d931e"
   },
-  "checkedAt": "2026-10-15T20:00:54.395Z",
+  "checkedAt": "2026-10-18T20:02:17.029Z",
   "installation": {
     "status": "PASS"
   },
   "source": {
     "passed": true,
-    "files": 194,
-    "imports": 538,
+    "files": 220,
+    "imports": 697,
     "frontend": [
       {
         "file": "web/admin/src/config/api.js",
@@ -605,6 +636,7 @@
             "urlencoded",
             "ensureDataReady",
             "protect",
+            "requireLearningConsent",
             "inline",
             "inline"
           ]
@@ -626,6 +658,7 @@
             "urlencoded",
             "ensureDataReady",
             "protect",
+            "requireLearningConsent",
             "inline",
             "inline"
           ]
@@ -647,6 +680,7 @@
             "urlencoded",
             "ensureDataReady",
             "protect",
+            "requireLearningConsent",
             "inline",
             "inline"
           ]
@@ -669,6 +703,7 @@
             "ensureDataReady",
             "protect",
             "requirePremium",
+            "requireAIConsent",
             "tutorRateLimit",
             "inline"
           ]
@@ -691,6 +726,7 @@
             "ensureDataReady",
             "protect",
             "requirePremium",
+            "requireAIConsent",
             "inline",
             "voiceRateLimit",
             "voiceDailyLimit",
@@ -716,11 +752,401 @@
             "ensureDataReady",
             "protect",
             "requirePremium",
+            "requireAIConsent",
             "inline",
             "minuteLimit",
             "dailyLimit",
             "text",
             "inline"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "getPublicPrivacy",
+        "method": "GET",
+        "path": "/api/privacy/public",
+        "backend": {
+          "file": "backend/src/routes/privacy.routes.js",
+          "path": "/api/privacy/public",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "inline",
+            "wrap"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "getMyPrivacy",
+        "method": "GET",
+        "path": "/api/privacy/me",
+        "backend": {
+          "file": "backend/src/routes/privacy.routes.js",
+          "path": "/api/privacy/me",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "inline",
+            "protect",
+            "wrap"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "completeOnboarding",
+        "method": "POST",
+        "path": "/api/privacy/onboarding",
+        "backend": {
+          "file": "backend/src/routes/privacy.routes.js",
+          "path": "/api/privacy/onboarding",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "inline",
+            "protect",
+            "writeLimit",
+            "wrap"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "updatePrivacyChoices",
+        "method": "PATCH",
+        "path": "/api/privacy/preferences",
+        "backend": {
+          "file": "backend/src/routes/privacy.routes.js",
+          "path": "/api/privacy/preferences",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "inline",
+            "protect",
+            "writeLimit",
+            "wrap"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "submitPrivacyRequest",
+        "method": "POST",
+        "path": "/api/privacy/requests",
+        "backend": {
+          "file": "backend/src/routes/privacy.routes.js",
+          "path": "/api/privacy/requests",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "inline",
+            "protect",
+            "recoveryLimiter",
+            "wrap"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "exportPrivacyData",
+        "method": "GET",
+        "path": "/api/privacy/export",
+        "backend": {
+          "file": "backend/src/routes/privacy.routes.js",
+          "path": "/api/privacy/export",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "inline",
+            "protect",
+            "wrap"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "updateSchoolSharing",
+        "method": "PATCH",
+        "path": "/api/privacy/schools/:param/sharing",
+        "backend": {
+          "file": "backend/src/routes/privacy.routes.js",
+          "path": "/api/privacy/schools/:schoolId/sharing",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "inline",
+            "protect",
+            "wrap"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "getPrivacySettings",
+        "method": "GET",
+        "path": "/api/privacy/admin/settings",
+        "backend": {
+          "file": "backend/src/routes/privacy.routes.js",
+          "path": "/api/privacy/admin/settings",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "inline",
+            "protect",
+            "adminOnly",
+            "wrap"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "savePrivacySettings",
+        "method": "PUT",
+        "path": "/api/privacy/admin/settings",
+        "backend": {
+          "file": "backend/src/routes/privacy.routes.js",
+          "path": "/api/privacy/admin/settings",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "inline",
+            "protect",
+            "adminOnly",
+            "wrap"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "getPrivacyQueue",
+        "method": "GET",
+        "path": "/api/privacy/admin/queue",
+        "backend": {
+          "file": "backend/src/routes/privacy.routes.js",
+          "path": "/api/privacy/admin/queue",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "inline",
+            "protect",
+            "adminOnly",
+            "wrap"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "createGuardianAuthorisation",
+        "method": "POST",
+        "path": "/api/privacy/admin/guardians",
+        "backend": {
+          "file": "backend/src/routes/privacy.routes.js",
+          "path": "/api/privacy/admin/guardians",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "inline",
+            "protect",
+            "adminOnly",
+            "wrap"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "revokeGuardianAuthorisation",
+        "method": "DELETE",
+        "path": "/api/privacy/admin/guardians/:param",
+        "backend": {
+          "file": "backend/src/routes/privacy.routes.js",
+          "path": "/api/privacy/admin/guardians/:id",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "inline",
+            "protect",
+            "adminOnly",
+            "wrap"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "reviewPrivacyRequest",
+        "method": "PATCH",
+        "path": "/api/privacy/admin/requests/:param",
+        "backend": {
+          "file": "backend/src/routes/privacy.routes.js",
+          "path": "/api/privacy/admin/requests/:id",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "inline",
+            "protect",
+            "adminOnly",
+            "wrap"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "getSchools",
+        "method": "GET",
+        "path": "/api/schools",
+        "backend": {
+          "file": "backend/src/routes/schools.routes.js",
+          "path": "/api/schools",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "protect",
+            "inline",
+            "wrap"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "createSchool",
+        "method": "POST",
+        "path": "/api/schools",
+        "backend": {
+          "file": "backend/src/routes/schools.routes.js",
+          "path": "/api/schools",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "protect",
+            "inline",
+            "adminOnly",
+            "wrap"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "updateSchool",
+        "method": "PUT",
+        "path": "/api/schools/:param",
+        "backend": {
+          "file": "backend/src/routes/schools.routes.js",
+          "path": "/api/schools/:schoolId",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "protect",
+            "inline",
+            "adminOnly",
+            "wrap"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "updateSchoolMembership",
+        "method": "PUT",
+        "path": "/api/schools/:param/membership",
+        "backend": {
+          "file": "backend/src/routes/schools.routes.js",
+          "path": "/api/schools/:schoolId/membership",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "protect",
+            "inline",
+            "adminOnly",
+            "wrap"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "getSchoolRoster",
+        "method": "GET",
+        "path": "/api/schools/:param/roster",
+        "backend": {
+          "file": "backend/src/routes/schools.routes.js",
+          "path": "/api/schools/:schoolId/roster",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "protect",
+            "inline",
+            "wrap"
           ]
         }
       }
@@ -897,6 +1323,7 @@
           "ensureDataReady",
           "protect",
           "requirePremium",
+          "requireAIConsent",
           "inline",
           "minuteLimit",
           "dailyLimit",
@@ -931,6 +1358,7 @@
           "ensureDataReady",
           "protect",
           "requirePremium",
+          "requireAIConsent",
           "inline",
           "voiceRateLimit",
           "voiceDailyLimit",
@@ -951,6 +1379,7 @@
           "ensureDataReady",
           "protect",
           "requirePremium",
+          "requireAIConsent",
           "tutorRateLimit",
           "inline"
         ]
@@ -967,6 +1396,7 @@
           "urlencoded",
           "ensureDataReady",
           "protect",
+          "requireLearningConsent",
           "inline",
           "inline"
         ]
@@ -983,6 +1413,7 @@
           "urlencoded",
           "ensureDataReady",
           "protect",
+          "requireLearningConsent",
           "inline",
           "inline"
         ]
@@ -999,6 +1430,7 @@
           "urlencoded",
           "ensureDataReady",
           "protect",
+          "requireLearningConsent",
           "inline",
           "inline"
         ]
@@ -1015,6 +1447,7 @@
           "urlencoded",
           "ensureDataReady",
           "protect",
+          "requireLearningConsent",
           "inline",
           "inline"
         ]
@@ -1144,6 +1577,305 @@
           "adminOnly",
           "inline"
         ]
+      },
+      {
+        "file": "backend/src/routes/privacy.routes.js",
+        "method": "GET",
+        "path": "/api/privacy/public",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "wrap"
+        ]
+      },
+      {
+        "file": "backend/src/routes/privacy.routes.js",
+        "method": "GET",
+        "path": "/api/privacy/me",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "wrap"
+        ]
+      },
+      {
+        "file": "backend/src/routes/privacy.routes.js",
+        "method": "POST",
+        "path": "/api/privacy/onboarding",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "writeLimit",
+          "wrap"
+        ]
+      },
+      {
+        "file": "backend/src/routes/privacy.routes.js",
+        "method": "PATCH",
+        "path": "/api/privacy/preferences",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "writeLimit",
+          "wrap"
+        ]
+      },
+      {
+        "file": "backend/src/routes/privacy.routes.js",
+        "method": "POST",
+        "path": "/api/privacy/requests",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "recoveryLimiter",
+          "wrap"
+        ]
+      },
+      {
+        "file": "backend/src/routes/privacy.routes.js",
+        "method": "GET",
+        "path": "/api/privacy/export",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "wrap"
+        ]
+      },
+      {
+        "file": "backend/src/routes/privacy.routes.js",
+        "method": "PATCH",
+        "path": "/api/privacy/schools/:schoolId/sharing",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "wrap"
+        ]
+      },
+      {
+        "file": "backend/src/routes/privacy.routes.js",
+        "method": "GET",
+        "path": "/api/privacy/admin/settings",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "adminOnly",
+          "wrap"
+        ]
+      },
+      {
+        "file": "backend/src/routes/privacy.routes.js",
+        "method": "PUT",
+        "path": "/api/privacy/admin/settings",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "adminOnly",
+          "wrap"
+        ]
+      },
+      {
+        "file": "backend/src/routes/privacy.routes.js",
+        "method": "GET",
+        "path": "/api/privacy/admin/queue",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "adminOnly",
+          "wrap"
+        ]
+      },
+      {
+        "file": "backend/src/routes/privacy.routes.js",
+        "method": "POST",
+        "path": "/api/privacy/admin/guardians",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "adminOnly",
+          "wrap"
+        ]
+      },
+      {
+        "file": "backend/src/routes/privacy.routes.js",
+        "method": "DELETE",
+        "path": "/api/privacy/admin/guardians/:id",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "adminOnly",
+          "wrap"
+        ]
+      },
+      {
+        "file": "backend/src/routes/privacy.routes.js",
+        "method": "PATCH",
+        "path": "/api/privacy/admin/requests/:id",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "adminOnly",
+          "wrap"
+        ]
+      },
+      {
+        "file": "backend/src/routes/schools.routes.js",
+        "method": "GET",
+        "path": "/api/schools",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "inline",
+          "wrap"
+        ]
+      },
+      {
+        "file": "backend/src/routes/schools.routes.js",
+        "method": "POST",
+        "path": "/api/schools",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "inline",
+          "adminOnly",
+          "wrap"
+        ]
+      },
+      {
+        "file": "backend/src/routes/schools.routes.js",
+        "method": "PUT",
+        "path": "/api/schools/:schoolId",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "inline",
+          "adminOnly",
+          "wrap"
+        ]
+      },
+      {
+        "file": "backend/src/routes/schools.routes.js",
+        "method": "PUT",
+        "path": "/api/schools/:schoolId/membership",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "inline",
+          "adminOnly",
+          "wrap"
+        ]
+      },
+      {
+        "file": "backend/src/routes/schools.routes.js",
+        "method": "GET",
+        "path": "/api/schools/:schoolId/roster",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "inline",
+          "wrap"
+        ]
       }
     ],
     "issues": [],
@@ -1160,11 +1892,104 @@
       "total": 0
     },
     "affectedPackages": [],
-    "checkedAt": "2026-10-15T20:00:57.763Z"
+    "checkedAt": "2026-10-18T20:02:21.885Z"
   },
   "compile": {
     "status": "PASS",
-    "fingerprint": "a566201c7adf3ea046254b519f400bcaf5f66db74de80e7f4fc2eac382d93919"
+    "fingerprint": "8d58d56b3e41229d56e66645c387216660da38c80c422b568547c1c282aa0b93"
+  },
+  "performance": {
+    "status": "PASS",
+    "metrics": {
+      "entryJsGzipBytes": {
+        "index.html": 0,
+        "student/index.html": 95876,
+        "admin/index.html": 62602,
+        "legal/index.html": 53240
+      },
+      "totalJsGzipBytes": 722759,
+      "totalCssGzipBytes": 10701,
+      "largestLazyJsGzipBytes": 200856,
+      "totalRawBytes": 4302442,
+      "largestFileRawBytes": 1244466,
+      "deferredTopics": 24,
+      "searchDeferred": true
+    },
+    "checks": [
+      {
+        "name": "Initial JavaScript: index.html",
+        "value": 0,
+        "limit": 120000,
+        "status": "PASS"
+      },
+      {
+        "name": "Initial JavaScript: student/index.html",
+        "value": 95876,
+        "limit": 120000,
+        "status": "PASS"
+      },
+      {
+        "name": "Initial JavaScript: admin/index.html",
+        "value": 62602,
+        "limit": 120000,
+        "status": "PASS"
+      },
+      {
+        "name": "Initial JavaScript: legal/index.html",
+        "value": 53240,
+        "limit": 120000,
+        "status": "PASS"
+      },
+      {
+        "name": "totalJsGzipBytes",
+        "value": 722759,
+        "limit": 800000,
+        "status": "PASS"
+      },
+      {
+        "name": "totalCssGzipBytes",
+        "value": 10701,
+        "limit": 20000,
+        "status": "PASS"
+      },
+      {
+        "name": "largestLazyJsGzipBytes",
+        "value": 200856,
+        "limit": 220000,
+        "status": "PASS"
+      },
+      {
+        "name": "totalRawBytes",
+        "value": 4302442,
+        "limit": 5000000,
+        "status": "PASS"
+      },
+      {
+        "name": "largestFileRawBytes",
+        "value": 1244466,
+        "limit": 1300000,
+        "status": "PASS"
+      },
+      {
+        "name": "Topics stay deferred",
+        "value": 24,
+        "minimum": 24,
+        "status": "PASS"
+      },
+      {
+        "name": "Search stays deferred",
+        "status": "PASS"
+      }
+    ],
+    "limits": {
+      "entryJsGzipBytes": 120000,
+      "totalJsGzipBytes": 800000,
+      "totalCssGzipBytes": 20000,
+      "largestLazyJsGzipBytes": 220000,
+      "totalRawBytes": 5000000,
+      "largestFileRawBytes": 1300000
+    },
+    "scope": "Compiled payload and lazy-loading regression checks; not Core Web Vitals or physical-device performance."
   },
   "connections": {
     "status": "PASS",
@@ -1351,6 +2176,168 @@
       },
       {
         "file": "web/student/src/config/api.js",
+        "export": "getPublicPrivacy",
+        "method": "GET",
+        "path": "/api/privacy/public",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "getMyPrivacy",
+        "method": "GET",
+        "path": "/api/privacy/me",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "completeOnboarding",
+        "method": "POST",
+        "path": "/api/privacy/onboarding",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "updatePrivacyChoices",
+        "method": "PATCH",
+        "path": "/api/privacy/preferences",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "submitPrivacyRequest",
+        "method": "POST",
+        "path": "/api/privacy/requests",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "exportPrivacyData",
+        "method": "GET",
+        "path": "/api/privacy/export",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "getPrivacySettings",
+        "method": "GET",
+        "path": "/api/privacy/admin/settings",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "savePrivacySettings",
+        "method": "PUT",
+        "path": "/api/privacy/admin/settings",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "getPrivacyQueue",
+        "method": "GET",
+        "path": "/api/privacy/admin/queue",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "createGuardianAuthorisation",
+        "method": "POST",
+        "path": "/api/privacy/admin/guardians",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "revokeGuardianAuthorisation",
+        "method": "DELETE",
+        "path": "/api/privacy/admin/guardians/:id",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "reviewPrivacyRequest",
+        "method": "PATCH",
+        "path": "/api/privacy/admin/requests/:id",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "getSchools",
+        "method": "GET",
+        "path": "/api/schools",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "createSchool",
+        "method": "POST",
+        "path": "/api/schools",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "updateSchool",
+        "method": "PUT",
+        "path": "/api/schools/:schoolId",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "updateSchoolMembership",
+        "method": "PUT",
+        "path": "/api/schools/:schoolId/membership",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "updateSchoolSharing",
+        "method": "PATCH",
+        "path": "/api/privacy/schools/:schoolId/sharing",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "getSchoolRoster",
+        "method": "GET",
+        "path": "/api/schools/:schoolId/roster",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
         "export": "askTutor",
         "method": "POST",
         "path": "/api/tutor/message",
@@ -1387,7 +2374,7 @@
       "Production scripts restricted by CSP and framework identification header removed",
       "Invalid learner records rejected by backend validation"
     ],
-    "backendRoutesCovered": 27,
+    "backendRoutesCovered": 45,
     "externalServices": "Not called: fixture data only; live voice/transcription connection requires separate provider/device acceptance."
   }
 }

@@ -1,7 +1,7 @@
 {
   "passed": true,
-  "files": 194,
-  "imports": 538,
+  "files": 220,
+  "imports": 697,
   "frontend": [
     {
       "file": "web/admin/src/config/api.js",
@@ -366,6 +366,7 @@
           "urlencoded",
           "ensureDataReady",
           "protect",
+          "requireLearningConsent",
           "inline",
           "inline"
         ]
@@ -387,6 +388,7 @@
           "urlencoded",
           "ensureDataReady",
           "protect",
+          "requireLearningConsent",
           "inline",
           "inline"
         ]
@@ -408,6 +410,7 @@
           "urlencoded",
           "ensureDataReady",
           "protect",
+          "requireLearningConsent",
           "inline",
           "inline"
         ]
@@ -430,6 +433,7 @@
           "ensureDataReady",
           "protect",
           "requirePremium",
+          "requireAIConsent",
           "tutorRateLimit",
           "inline"
         ]
@@ -452,6 +456,7 @@
           "ensureDataReady",
           "protect",
           "requirePremium",
+          "requireAIConsent",
           "inline",
           "voiceRateLimit",
           "voiceDailyLimit",
@@ -477,11 +482,401 @@
           "ensureDataReady",
           "protect",
           "requirePremium",
+          "requireAIConsent",
           "inline",
           "minuteLimit",
           "dailyLimit",
           "text",
           "inline"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getPublicPrivacy",
+      "method": "GET",
+      "path": "/api/privacy/public",
+      "backend": {
+        "file": "backend/src/routes/privacy.routes.js",
+        "path": "/api/privacy/public",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "wrap"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getMyPrivacy",
+      "method": "GET",
+      "path": "/api/privacy/me",
+      "backend": {
+        "file": "backend/src/routes/privacy.routes.js",
+        "path": "/api/privacy/me",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "wrap"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "completeOnboarding",
+      "method": "POST",
+      "path": "/api/privacy/onboarding",
+      "backend": {
+        "file": "backend/src/routes/privacy.routes.js",
+        "path": "/api/privacy/onboarding",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "writeLimit",
+          "wrap"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "updatePrivacyChoices",
+      "method": "PATCH",
+      "path": "/api/privacy/preferences",
+      "backend": {
+        "file": "backend/src/routes/privacy.routes.js",
+        "path": "/api/privacy/preferences",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "writeLimit",
+          "wrap"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "submitPrivacyRequest",
+      "method": "POST",
+      "path": "/api/privacy/requests",
+      "backend": {
+        "file": "backend/src/routes/privacy.routes.js",
+        "path": "/api/privacy/requests",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "recoveryLimiter",
+          "wrap"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "exportPrivacyData",
+      "method": "GET",
+      "path": "/api/privacy/export",
+      "backend": {
+        "file": "backend/src/routes/privacy.routes.js",
+        "path": "/api/privacy/export",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "wrap"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "updateSchoolSharing",
+      "method": "PATCH",
+      "path": "/api/privacy/schools/:param/sharing",
+      "backend": {
+        "file": "backend/src/routes/privacy.routes.js",
+        "path": "/api/privacy/schools/:schoolId/sharing",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "wrap"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getPrivacySettings",
+      "method": "GET",
+      "path": "/api/privacy/admin/settings",
+      "backend": {
+        "file": "backend/src/routes/privacy.routes.js",
+        "path": "/api/privacy/admin/settings",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "adminOnly",
+          "wrap"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "savePrivacySettings",
+      "method": "PUT",
+      "path": "/api/privacy/admin/settings",
+      "backend": {
+        "file": "backend/src/routes/privacy.routes.js",
+        "path": "/api/privacy/admin/settings",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "adminOnly",
+          "wrap"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getPrivacyQueue",
+      "method": "GET",
+      "path": "/api/privacy/admin/queue",
+      "backend": {
+        "file": "backend/src/routes/privacy.routes.js",
+        "path": "/api/privacy/admin/queue",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "adminOnly",
+          "wrap"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "createGuardianAuthorisation",
+      "method": "POST",
+      "path": "/api/privacy/admin/guardians",
+      "backend": {
+        "file": "backend/src/routes/privacy.routes.js",
+        "path": "/api/privacy/admin/guardians",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "adminOnly",
+          "wrap"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "revokeGuardianAuthorisation",
+      "method": "DELETE",
+      "path": "/api/privacy/admin/guardians/:param",
+      "backend": {
+        "file": "backend/src/routes/privacy.routes.js",
+        "path": "/api/privacy/admin/guardians/:id",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "adminOnly",
+          "wrap"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "reviewPrivacyRequest",
+      "method": "PATCH",
+      "path": "/api/privacy/admin/requests/:param",
+      "backend": {
+        "file": "backend/src/routes/privacy.routes.js",
+        "path": "/api/privacy/admin/requests/:id",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "adminOnly",
+          "wrap"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getSchools",
+      "method": "GET",
+      "path": "/api/schools",
+      "backend": {
+        "file": "backend/src/routes/schools.routes.js",
+        "path": "/api/schools",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "inline",
+          "wrap"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "createSchool",
+      "method": "POST",
+      "path": "/api/schools",
+      "backend": {
+        "file": "backend/src/routes/schools.routes.js",
+        "path": "/api/schools",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "inline",
+          "adminOnly",
+          "wrap"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "updateSchool",
+      "method": "PUT",
+      "path": "/api/schools/:param",
+      "backend": {
+        "file": "backend/src/routes/schools.routes.js",
+        "path": "/api/schools/:schoolId",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "inline",
+          "adminOnly",
+          "wrap"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "updateSchoolMembership",
+      "method": "PUT",
+      "path": "/api/schools/:param/membership",
+      "backend": {
+        "file": "backend/src/routes/schools.routes.js",
+        "path": "/api/schools/:schoolId/membership",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "inline",
+          "adminOnly",
+          "wrap"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getSchoolRoster",
+      "method": "GET",
+      "path": "/api/schools/:param/roster",
+      "backend": {
+        "file": "backend/src/routes/schools.routes.js",
+        "path": "/api/schools/:schoolId/roster",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "inline",
+          "wrap"
         ]
       }
     }
@@ -658,6 +1053,7 @@
         "ensureDataReady",
         "protect",
         "requirePremium",
+        "requireAIConsent",
         "inline",
         "minuteLimit",
         "dailyLimit",
@@ -692,6 +1088,7 @@
         "ensureDataReady",
         "protect",
         "requirePremium",
+        "requireAIConsent",
         "inline",
         "voiceRateLimit",
         "voiceDailyLimit",
@@ -712,6 +1109,7 @@
         "ensureDataReady",
         "protect",
         "requirePremium",
+        "requireAIConsent",
         "tutorRateLimit",
         "inline"
       ]
@@ -728,6 +1126,7 @@
         "urlencoded",
         "ensureDataReady",
         "protect",
+        "requireLearningConsent",
         "inline",
         "inline"
       ]
@@ -744,6 +1143,7 @@
         "urlencoded",
         "ensureDataReady",
         "protect",
+        "requireLearningConsent",
         "inline",
         "inline"
       ]
@@ -760,6 +1160,7 @@
         "urlencoded",
         "ensureDataReady",
         "protect",
+        "requireLearningConsent",
         "inline",
         "inline"
       ]
@@ -776,6 +1177,7 @@
         "urlencoded",
         "ensureDataReady",
         "protect",
+        "requireLearningConsent",
         "inline",
         "inline"
       ]
@@ -904,6 +1306,305 @@
         "protect",
         "adminOnly",
         "inline"
+      ]
+    },
+    {
+      "file": "backend/src/routes/privacy.routes.js",
+      "method": "GET",
+      "path": "/api/privacy/public",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "inline",
+        "wrap"
+      ]
+    },
+    {
+      "file": "backend/src/routes/privacy.routes.js",
+      "method": "GET",
+      "path": "/api/privacy/me",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "inline",
+        "protect",
+        "wrap"
+      ]
+    },
+    {
+      "file": "backend/src/routes/privacy.routes.js",
+      "method": "POST",
+      "path": "/api/privacy/onboarding",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "inline",
+        "protect",
+        "writeLimit",
+        "wrap"
+      ]
+    },
+    {
+      "file": "backend/src/routes/privacy.routes.js",
+      "method": "PATCH",
+      "path": "/api/privacy/preferences",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "inline",
+        "protect",
+        "writeLimit",
+        "wrap"
+      ]
+    },
+    {
+      "file": "backend/src/routes/privacy.routes.js",
+      "method": "POST",
+      "path": "/api/privacy/requests",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "inline",
+        "protect",
+        "recoveryLimiter",
+        "wrap"
+      ]
+    },
+    {
+      "file": "backend/src/routes/privacy.routes.js",
+      "method": "GET",
+      "path": "/api/privacy/export",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "inline",
+        "protect",
+        "wrap"
+      ]
+    },
+    {
+      "file": "backend/src/routes/privacy.routes.js",
+      "method": "PATCH",
+      "path": "/api/privacy/schools/:schoolId/sharing",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "inline",
+        "protect",
+        "wrap"
+      ]
+    },
+    {
+      "file": "backend/src/routes/privacy.routes.js",
+      "method": "GET",
+      "path": "/api/privacy/admin/settings",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "inline",
+        "protect",
+        "adminOnly",
+        "wrap"
+      ]
+    },
+    {
+      "file": "backend/src/routes/privacy.routes.js",
+      "method": "PUT",
+      "path": "/api/privacy/admin/settings",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "inline",
+        "protect",
+        "adminOnly",
+        "wrap"
+      ]
+    },
+    {
+      "file": "backend/src/routes/privacy.routes.js",
+      "method": "GET",
+      "path": "/api/privacy/admin/queue",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "inline",
+        "protect",
+        "adminOnly",
+        "wrap"
+      ]
+    },
+    {
+      "file": "backend/src/routes/privacy.routes.js",
+      "method": "POST",
+      "path": "/api/privacy/admin/guardians",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "inline",
+        "protect",
+        "adminOnly",
+        "wrap"
+      ]
+    },
+    {
+      "file": "backend/src/routes/privacy.routes.js",
+      "method": "DELETE",
+      "path": "/api/privacy/admin/guardians/:id",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "inline",
+        "protect",
+        "adminOnly",
+        "wrap"
+      ]
+    },
+    {
+      "file": "backend/src/routes/privacy.routes.js",
+      "method": "PATCH",
+      "path": "/api/privacy/admin/requests/:id",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "inline",
+        "protect",
+        "adminOnly",
+        "wrap"
+      ]
+    },
+    {
+      "file": "backend/src/routes/schools.routes.js",
+      "method": "GET",
+      "path": "/api/schools",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "inline",
+        "wrap"
+      ]
+    },
+    {
+      "file": "backend/src/routes/schools.routes.js",
+      "method": "POST",
+      "path": "/api/schools",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "inline",
+        "adminOnly",
+        "wrap"
+      ]
+    },
+    {
+      "file": "backend/src/routes/schools.routes.js",
+      "method": "PUT",
+      "path": "/api/schools/:schoolId",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "inline",
+        "adminOnly",
+        "wrap"
+      ]
+    },
+    {
+      "file": "backend/src/routes/schools.routes.js",
+      "method": "PUT",
+      "path": "/api/schools/:schoolId/membership",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "inline",
+        "adminOnly",
+        "wrap"
+      ]
+    },
+    {
+      "file": "backend/src/routes/schools.routes.js",
+      "method": "GET",
+      "path": "/api/schools/:schoolId/roster",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "inline",
+        "wrap"
       ]
     }
   ],

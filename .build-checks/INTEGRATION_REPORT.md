@@ -2,9 +2,9 @@
 
 Status: PASS
 
-Version: 1.4.0
+Version: 1.5.3
 
-Source fingerprint: cf3362cd8d753c3b75ce0eaa80254004e12e4a92da04ddc9479b4c5f2cda29fc
+Source fingerprint: a8398fce0accd1f44c9f6734f276f36f2d6285fb3d73e17ca621c569c5347237
 
 | Frontend function | Method | API path | Backend file | Declared middleware |
 | --- | --- | --- | --- | --- |
@@ -25,12 +25,30 @@ Source fingerprint: cf3362cd8d753c3b75ce0eaa80254004e12e4a92da04ddc9479b4c5f2cda
 | resetPassword | POST | /api/auth/reset-password | backend/src/routes/auth.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, recoveryLimiter, inline |
 | upgradePassword | POST | /api/auth/upgrade-password | backend/src/routes/auth.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, recoveryLimiter, inline |
 | getCurrentUser | GET | /api/auth/me | backend/src/routes/auth.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, inline |
-| getLearningState | GET | /api/progress/me | backend/src/routes/progress.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, inline, inline |
-| validateLearningImport | POST | /api/progress/validate | backend/src/routes/progress.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, inline, inline |
-| putLearningState | PUT | /api/progress/me | backend/src/routes/progress.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, inline, inline |
-| askTutor | POST | /api/tutor/message | backend/src/routes/tutor.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, requirePremium, tutorRateLimit, inline |
-| transcribeTutorNote | POST | /api/tutor/transcribe | backend/src/routes/tutor.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, requirePremium, inline, voiceRateLimit, voiceDailyLimit, raw, inline |
-| createLiveVoiceSession | POST | /api/tutor/live/session | backend/src/routes/liveVoice.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, requirePremium, inline, minuteLimit, dailyLimit, text, inline |
+| getLearningState | GET | /api/progress/me | backend/src/routes/progress.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, requireLearningConsent, inline, inline |
+| validateLearningImport | POST | /api/progress/validate | backend/src/routes/progress.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, requireLearningConsent, inline, inline |
+| putLearningState | PUT | /api/progress/me | backend/src/routes/progress.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, requireLearningConsent, inline, inline |
+| askTutor | POST | /api/tutor/message | backend/src/routes/tutor.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, requirePremium, requireAIConsent, tutorRateLimit, inline |
+| transcribeTutorNote | POST | /api/tutor/transcribe | backend/src/routes/tutor.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, requirePremium, requireAIConsent, inline, voiceRateLimit, voiceDailyLimit, raw, inline |
+| createLiveVoiceSession | POST | /api/tutor/live/session | backend/src/routes/liveVoice.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, requirePremium, requireAIConsent, inline, minuteLimit, dailyLimit, text, inline |
+| getPublicPrivacy | GET | /api/privacy/public | backend/src/routes/privacy.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, inline, wrap |
+| getMyPrivacy | GET | /api/privacy/me | backend/src/routes/privacy.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, inline, protect, wrap |
+| completeOnboarding | POST | /api/privacy/onboarding | backend/src/routes/privacy.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, inline, protect, writeLimit, wrap |
+| updatePrivacyChoices | PATCH | /api/privacy/preferences | backend/src/routes/privacy.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, inline, protect, writeLimit, wrap |
+| submitPrivacyRequest | POST | /api/privacy/requests | backend/src/routes/privacy.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, inline, protect, recoveryLimiter, wrap |
+| exportPrivacyData | GET | /api/privacy/export | backend/src/routes/privacy.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, inline, protect, wrap |
+| updateSchoolSharing | PATCH | /api/privacy/schools/:param/sharing | backend/src/routes/privacy.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, inline, protect, wrap |
+| getPrivacySettings | GET | /api/privacy/admin/settings | backend/src/routes/privacy.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, inline, protect, adminOnly, wrap |
+| savePrivacySettings | PUT | /api/privacy/admin/settings | backend/src/routes/privacy.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, inline, protect, adminOnly, wrap |
+| getPrivacyQueue | GET | /api/privacy/admin/queue | backend/src/routes/privacy.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, inline, protect, adminOnly, wrap |
+| createGuardianAuthorisation | POST | /api/privacy/admin/guardians | backend/src/routes/privacy.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, inline, protect, adminOnly, wrap |
+| revokeGuardianAuthorisation | DELETE | /api/privacy/admin/guardians/:param | backend/src/routes/privacy.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, inline, protect, adminOnly, wrap |
+| reviewPrivacyRequest | PATCH | /api/privacy/admin/requests/:param | backend/src/routes/privacy.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, inline, protect, adminOnly, wrap |
+| getSchools | GET | /api/schools | backend/src/routes/schools.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, inline, wrap |
+| createSchool | POST | /api/schools | backend/src/routes/schools.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, inline, adminOnly, wrap |
+| updateSchool | PUT | /api/schools/:param | backend/src/routes/schools.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, inline, adminOnly, wrap |
+| updateSchoolMembership | PUT | /api/schools/:param/membership | backend/src/routes/schools.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, inline, adminOnly, wrap |
+| getSchoolRoster | GET | /api/schools/:param/roster | backend/src/routes/schools.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, inline, wrap |
 
 All required preflight stages passed.
 

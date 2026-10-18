@@ -183,6 +183,168 @@
     },
     {
       "file": "web/student/src/config/api.js",
+      "export": "getPublicPrivacy",
+      "method": "GET",
+      "path": "/api/privacy/public",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getMyPrivacy",
+      "method": "GET",
+      "path": "/api/privacy/me",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "completeOnboarding",
+      "method": "POST",
+      "path": "/api/privacy/onboarding",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "updatePrivacyChoices",
+      "method": "PATCH",
+      "path": "/api/privacy/preferences",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "submitPrivacyRequest",
+      "method": "POST",
+      "path": "/api/privacy/requests",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "exportPrivacyData",
+      "method": "GET",
+      "path": "/api/privacy/export",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getPrivacySettings",
+      "method": "GET",
+      "path": "/api/privacy/admin/settings",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "savePrivacySettings",
+      "method": "PUT",
+      "path": "/api/privacy/admin/settings",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getPrivacyQueue",
+      "method": "GET",
+      "path": "/api/privacy/admin/queue",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "createGuardianAuthorisation",
+      "method": "POST",
+      "path": "/api/privacy/admin/guardians",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "revokeGuardianAuthorisation",
+      "method": "DELETE",
+      "path": "/api/privacy/admin/guardians/:id",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "reviewPrivacyRequest",
+      "method": "PATCH",
+      "path": "/api/privacy/admin/requests/:id",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getSchools",
+      "method": "GET",
+      "path": "/api/schools",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "createSchool",
+      "method": "POST",
+      "path": "/api/schools",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "updateSchool",
+      "method": "PUT",
+      "path": "/api/schools/:schoolId",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "updateSchoolMembership",
+      "method": "PUT",
+      "path": "/api/schools/:schoolId/membership",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "updateSchoolSharing",
+      "method": "PATCH",
+      "path": "/api/privacy/schools/:schoolId/sharing",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getSchoolRoster",
+      "method": "GET",
+      "path": "/api/schools/:schoolId/roster",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
       "export": "askTutor",
       "method": "POST",
       "path": "/api/tutor/message",
@@ -219,6 +381,6 @@
     "Production scripts restricted by CSP and framework identification header removed",
     "Invalid learner records rejected by backend validation"
   ],
-  "backendRoutesCovered": 27,
+  "backendRoutesCovered": 45,
   "externalServices": "Not called: fixture data only; live voice/transcription connection requires separate provider/device acceptance."
 }
