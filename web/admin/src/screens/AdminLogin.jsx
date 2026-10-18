@@ -1,3 +1,4 @@
+import {PrivacyLinks} from '../../../../shared/PrivacyLinks.jsx';
 import { useState } from 'react';
 import { AccountRecovery, recoveryToken } from '../../../../shared/AccountRecovery.jsx';
 import { PasswordField } from '../../../../shared/PasswordField.jsx';
@@ -24,7 +25,7 @@ export function AdminLogin({
         <ChemWizBrand />
 
         <p className="eyebrow">CHEMWIZ ADMIN</p>
-        <h1>Admin Login</h1>
+        <h1>Admin Login</h1><PrivacyLinks/>
 
         <p className="muted">
           Sign in with an account that has admin privileges.

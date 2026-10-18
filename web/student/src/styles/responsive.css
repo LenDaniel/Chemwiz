@@ -692,3 +692,23 @@ button { -webkit-tap-highlight-color: transparent; }
 @media (forced-colors:active) {
   .cw-app-root button[aria-pressed="true"], .cw-app-root button[aria-current="page"] { border:2px solid Highlight; }
 }
+
+/* W3: connection feedback and a recoverable saved learner session. */
+.cw-connection-status, .cw-session-recovery {
+  padding:12px; margin:0 0 16px; border:1px solid var(--cw-accent);
+  border-radius:8px; background:var(--cw-panel); color:var(--cw-text);
+  font-size:13px; line-height:1.6; overflow-wrap:anywhere;
+}
+.cw-connection-status:empty { display:none; }
+.cw-search-summary { padding:0 16px; font-size:12px; line-height:1.6; color:var(--cw-muted); }
+.cw-search-summary:empty { display:none; }
+.cw-session-recovery p { margin:0 0 10px; }
+.cw-session-recovery button {
+  min-height:44px; padding:10px 14px; border:1px solid var(--cw-accent);
+  border-radius:6px; background:var(--cw-panel); color:var(--cw-text); cursor:pointer;
+}
+@media (prefers-reduced-motion:reduce) {
+  .cw-app-root *, .cw-auth-root * {
+    animation:none !important; transition:none !important; scroll-behavior:auto !important;
+  }
+}

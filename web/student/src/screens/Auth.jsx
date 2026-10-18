@@ -1,12 +1,16 @@
+import {PrivacyAgreementFields} from '../../../../shared/PrivacyPanel.jsx';
+import legal from '../../../../shared/legal-version.json';
+import {PrivacyLinks} from '../../../../shared/PrivacyLinks.jsx';
 import { PasswordField } from '../../../../shared/PasswordField.jsx';
 import { AccountRecovery, recoveryToken } from '../../../../shared/AccountRecovery.jsx';
 import { passwordIssues, PASSWORD_REQUIREMENTS } from '../../../../shared/password-policy.mjs';
 import * as recoveryApi from '../config/api.js';
 import { ChemWizBrand } from '../components/ChemWizBrand.jsx';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { ConnectionStatus } from '../components/ConnectionStatus.jsx';
 
-export function Auth({ t, onLogin, onRegister }) {
-  const [mode, setMode] = useState("login");
+export function Auth({ t, onLogin, onRegister, sessionError, onRetrySession }) {
+  const [mode, setMode] = useState(()=>new URLSearchParams(window.location.hash.slice(1)).has("guardian")?"register":"login");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,6 +19,8 @@ export function Auth({ t, onLogin, onRegister }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const [agreement,setAgreement]=useState(()=>{const invitation=new URLSearchParams(window.location.hash.slice(1)).get('guardian') || '';return {version:legal.version,ageBand:invitation?'teen':'',guardianInvitation:invitation,acceptTerms:false,acknowledgePrivacy:false,aiConsent:false,voiceConsent:false};});
+  useEffect(()=>{if(new URLSearchParams(window.location.hash.slice(1)).has('guardian'))window.history.replaceState(null,'',window.location.pathname+window.location.search);},[]);
   const isRegister = mode === "register";
 
   const submit = async (e) => {
@@ -27,7 +33,7 @@ export function Auth({ t, onLogin, onRegister }) {
         const issues=passwordIssues(password);
         if(issues.length) throw new Error(issues.join(' '));
         if(password !== confirmation) throw new Error('The passwords do not match.');
-        await onRegister({ name, email, password });
+        await onRegister({ name, email, password, onboarding:agreement });
       } else {
         await onLogin({ email, password });
       }
@@ -64,7 +70,7 @@ export function Auth({ t, onLogin, onRegister }) {
   };
 
   return (
-    <div className="cw-auth-root" style={vars}>
+    <main className="cw-auth-root" style={vars}>
       <div className="cw-auth-window">
         <section className="cw-auth-hero" aria-label="ChemWiz introduction">
           <div>
@@ -84,6 +90,7 @@ export function Auth({ t, onLogin, onRegister }) {
 
         <section className="cw-auth-form-side">
           <div className="cw-auth-card">
+            <ConnectionStatus />
             <ChemWizBrand className="cw-login-logo" />
             <div style={{ fontSize: 10, letterSpacing: "0.3em", color: t.textDim }}>CHEMWIZ ACCOUNT</div>
             <h1 style={{ margin: "8px 0 4px", fontSize: 26, color: t.text }}>
@@ -93,10 +100,15 @@ export function Auth({ t, onLogin, onRegister }) {
               Sign in to keep your progress, quiz results and settings together.
             </p>
 
-            <a className="cw-home-link" href="/">‹ ChemWiz home</a>
+            <a className="cw-home-link" href="/">‹ ChemWiz home</a><PrivacyLinks/>
+            {sessionError && <div className="cw-session-recovery" role="alert">
+              <p>{sessionError}</p>
+              <button type="button" onClick={onRetrySession}>Retry saved session</button>
+            </div>}
             {recovery ? <AccountRecovery api={recoveryApi} email={email} {...recovery} onBack={()=>{setRecovery(null);setError('');setPassword('');setConfirmation('');}} /> : <>
             <form onSubmit={submit} style={{ marginTop: 20 }}>
-              {isRegister && (
+              {isRegister&&<div className="cw-privacy" style={{margin:'0 0 16px',padding:16}}><PrivacyAgreementFields value={agreement} onChange={setAgreement}/></div>}
+              {isRegister && agreement.ageBand && (
                 <input
                   style={inputStyle}
                   value={name}
@@ -109,6 +121,7 @@ export function Auth({ t, onLogin, onRegister }) {
               )}
 
               <input
+                disabled={isRegister && !agreement.ageBand}
                 style={inputStyle}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -121,6 +134,7 @@ export function Auth({ t, onLogin, onRegister }) {
 
               <PasswordField
                 style={inputStyle}
+                disabled={isRegister && !agreement.ageBand}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
@@ -182,6 +196,6 @@ export function Auth({ t, onLogin, onRegister }) {
           </div>
         </section>
       </div>
-    </div>
+    </main>
   );
 }

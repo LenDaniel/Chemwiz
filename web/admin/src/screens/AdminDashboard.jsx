@@ -1,3 +1,4 @@
+import {PrivacyAdmin} from '../components/PrivacyAdmin.jsx';
 import { useState } from "react";
 
 import { AdminSidebar } from "../components/AdminSidebar.jsx";
@@ -8,6 +9,7 @@ import { AdminLogsPanel } from "../components/AdminLogsPanel.jsx";
 
 export function AdminDashboard({
   admin,
+  token,
   busy,
   error,
   stats,
@@ -61,6 +63,7 @@ export function AdminDashboard({
         {error && <div className="error-box wide" role="alert">{error}</div>}
 
         <StatsGrid stats={stats} />
+        <PrivacyAdmin token={token} users={users}/>
 
         <UsersPanel
           users={users}

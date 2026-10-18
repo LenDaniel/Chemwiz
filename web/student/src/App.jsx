@@ -1,3 +1,4 @@
+import {PrivacyPanel} from '../../../shared/PrivacyPanel.jsx';
 import { recoveryToken } from '../../../shared/AccountRecovery.jsx';
 import React, { useState, useEffect } from 'react';
 import { TOPIC_META, topicById } from './config/topics.js';
@@ -37,28 +38,37 @@ export default function App() {
   const [loaded, setLoaded] = useState(false);
   const [user, setUser] = useState(null);
   const [authToken, setAuthToken] = useState(null);
+  const [sessionError, setSessionError] = useState('');
+  const [sessionAttempt, setSessionAttempt] = useState(0);
+  const [reloadError, setReloadError] = useState('');
 
-  const learning = useLearningState(user, authToken);
+  const learning = useLearningState(user?.privacy?.ready ? user : null, authToken);
   const { settings, progress, streak, mistakes } = learning.state;
 
   // Restore the session first, then load this account's saved learner records.
   useEffect(() => {
     let cancelled = false;
+    setLoaded(false);
+    setSessionError('');
     (async () => {
-      if(recoveryToken()) {if(!cancelled)setLoaded(true);return;}
+      if(recoveryToken() || new URLSearchParams(window.location.hash.slice(1)).has('guardian')) {if(!cancelled)setLoaded(true);return;}
       const token = await getItem('cw.authToken');
       if (token) {
         try {
           const data = await getCurrentUser(token);
+          if (!data.user?.id) throw new Error('Incomplete account response.');
           if (!cancelled) { setAuthToken(token); setUser(data.user); }
-        } catch {
-          if (!cancelled) await setItem('cw.authToken', '');
+        } catch (error) {
+          if (!cancelled) {
+            if (error.status === 401 || error.status === 403) await setItem('cw.authToken', '');
+            else setSessionError('We could not check your saved session. Your sign-in is still saved. Check your connection and retry.');
+          }
         }
       }
       if (!cancelled) setLoaded(true);
     })();
     return () => { cancelled = true; };
-  }, []);
+  }, [sessionAttempt]);
 
   const t = THEMES[settings.theme] || THEMES.dark;
   const current = stack[stack.length - 1];
@@ -111,6 +121,8 @@ export default function App() {
     }
   };
 
+  const refreshUser=async()=>{if(authToken)setUser((await getCurrentUser(authToken)).user);};
+
   const handleLogin = async (payload) => {
     const data = await loginUser(payload);
     await handleAuthSuccess(data);
@@ -128,6 +140,15 @@ export default function App() {
     setUser(null);
     setTab('home');
     setStack([{ view: 'home' }]);
+  };
+
+  const reloadApplication = async () => {
+    setReloadError('');
+    if (user && learning.ready && !await learning.flush()) {
+      setReloadError('Reload paused because your changes are still waiting to save. Reconnect and retry.');
+      return false;
+    }
+    window.location.reload();
   };
 
 const hasPremiumAccess = () => {
@@ -230,7 +251,9 @@ const openPremiumFeature = (featureView, topicId, featureName, extra = {}) => {
     if (needsTopicContent && current.topicId && !activeContent) {
       return <div className="cw-page" style={{ padding: 24, color: t.text }} role="status" aria-live="polite">
         <p>{contentError || 'Loading topic…'}</p>
-        {contentError && <button type="button" onClick={retryContent}>Try again</button>}
+        {contentError && <><button type="button" onClick={retryContent}>Try again</button>
+          <button type="button" onClick={reloadApplication} style={{ marginLeft: 12 }}>Reload app</button>
+          <p>If this started after an app update, reload to get the current lessons.</p></>}
         <button type="button" onClick={pop} style={{ marginLeft: 12 }}>Back</button>
       </div>;
     }
@@ -323,7 +346,7 @@ if (action === 'tutor') {
 
     if (tab === 'progress') return <Progress t={t} progress={progress} streak={streak} mistakes={mistakes} />;
     if (tab === 'profile') return (
-      <Profile
+      <><details className="cw-privacy"><summary>Privacy, school and account choices</summary><PrivacyPanel token={authToken} user={user} onRefresh={refreshUser}/></details><Profile
         t={t}
         settings={settings}
         onSettingsChange={saveSettings}
@@ -332,7 +355,7 @@ if (action === 'tutor') {
         onLogout={handleLogout}
         learning={learning}
         authToken={authToken}
-      />
+      /></>
     );
 
     return null;
@@ -349,8 +372,11 @@ if (action === 'tutor') {
   const canGoBack = stack.length > 1;
 
   if (loaded && !user) {
-    return <Auth t={t} onLogin={handleLogin} onRegister={handleRegister} />;
+    return <Auth t={t} onLogin={handleLogin} onRegister={handleRegister}
+      sessionError={sessionError} onRetrySession={() => setSessionAttempt(value => value + 1)} />;
   }
+
+  if(loaded&&user&&!user.privacy?.ready)return <main className="cw-privacy-root"><div className="cw-privacy-page"><PrivacyPanel token={authToken} user={user} forced onRefresh={refreshUser} onLogout={handleLogout}/></div></main>;
 
   const contentMode = ['reader', 'quiz', 'structured', 'worked', 'tutor'].includes(current?.view)
     ? current.view
@@ -372,8 +398,11 @@ if (action === 'tutor') {
       wizContext={user ? wizContext : null}
       onOpenWiz={openWiz}
       onLogout={handleLogout}
+      onReload={reloadApplication}
+      reloadError={reloadError}
     >
       {user && learning.ready && <LearningSaveStatus learning={learning} />}
+      {reloadError && <p role="alert">{reloadError}</p>}
       {renderScreen()}
     </AppShell>
   );

@@ -330,6 +330,7 @@ export default function App() {
   return (
     <AdminDashboard
       admin={admin}
+      token={token}
       busy={busy}
       error={error}
       stats={stats}

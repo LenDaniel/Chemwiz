@@ -11,7 +11,7 @@ const KIND_LABEL = {
   tool: 'TOOL',
 };
 
-export function GlobalSearch({ t, open, onClose, onSelect }) {
+export function GlobalSearch({ t, open, onClose, onSelect, onReload, reloadError }) {
   const [query, setQuery] = useState('');
   const inputRef = useRef(null);
   const dialogRef = useRef(null);
@@ -33,6 +33,11 @@ export function GlobalSearch({ t, open, onClose, onSelect }) {
   useEffect(() => {
     if (!open) return undefined;
     const timer = window.setTimeout(() => inputRef.current?.focus(), 20);
+    return () => window.clearTimeout(timer);
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return undefined;
     const onKeyDown = (event) => {
       if (event.key === 'Escape') onClose();
       if (event.key === 'Enter' && event.target === inputRef.current && results[0]) {
@@ -43,7 +48,6 @@ export function GlobalSearch({ t, open, onClose, onSelect }) {
     };
     window.addEventListener('keydown', onKeyDown);
     return () => {
-      window.clearTimeout(timer);
       window.removeEventListener('keydown', onKeyDown);
     };
   }, [open, onClose, onSelect, results]);
@@ -70,15 +74,21 @@ export function GlobalSearch({ t, open, onClose, onSelect }) {
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search topics, sections, paragraphs, reagents…"
             aria-label="Search all ChemWiz content"
+            aria-describedby="cw-search-help"
           />
           <button className="cw-search-close" type="button" onClick={onClose} aria-label="Close search">ESC</button>
         </div>
 
-        <div className="cw-search-help">Search the full lesson library and QA tools. Press Enter to open the best match.</div>
+        <div id="cw-search-help" className="cw-search-help">Search the full lesson library and QA tools. Press Enter to open the best match.</div>
+        {reloadError && <p className="cw-search-help" role="alert">{reloadError}</p>}
+        <div className="cw-search-summary" role="status" aria-live="polite">
+          {engine && query.trim() && results.length > 0 ? `${results.length} matching results. Press Tab to browse them.` : ''}
+        </div>
 
         <div className="cw-search-results">
           {!engine && <div className="cw-search-empty" role="status">
-            {loadError ? <>Search could not load. <button type="button" onClick={() => setAttempt((value) => value + 1)}>Try again</button></> : 'Loading search…'}
+            {loadError ? <>Search could not load. <button type="button" onClick={() => setAttempt((value) => value + 1)}>Try again</button>
+              <button type="button" onClick={onReload}>Reload app</button></> : 'Loading search…'}
           </div>}
           {!query.trim() && (
             <div className="cw-search-empty">
@@ -87,7 +97,7 @@ export function GlobalSearch({ t, open, onClose, onSelect }) {
           )}
 
           {engine && query.trim() && results.length === 0 && (
-            <div className="cw-search-empty">No matching lesson section or tool entry was found.</div>
+            <div className="cw-search-empty" role="status">No matching lesson section or tool entry was found.</div>
           )}
 
           {results.map((result) => (

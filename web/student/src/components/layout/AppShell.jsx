@@ -2,6 +2,7 @@ import { ChemWizBrand } from '../ChemWizBrand.jsx';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { GlobalSearch } from '../search/GlobalSearch.jsx';
 import { WizFab } from '../WizFab.jsx';
+import { ConnectionStatus } from '../ConnectionStatus.jsx';
 
 const NAV_ITEMS = [
   ['home', '⌂', 'HOME', 'Learn'],
@@ -23,6 +24,8 @@ export function AppShell({
   wizContext,
   onOpenWiz,
   onLogout,
+  onReload,
+  reloadError,
   children,
 }) {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -142,7 +145,7 @@ export function AppShell({
           </header>
 
           <main ref={mainRef} id="cw-main-content" tabIndex={-1} className={`cw-screen cw-content-${contentMode}`}>
-            <div className="cw-screen-stage">{children}</div>
+            <div className="cw-screen-stage"><ConnectionStatus />{children}</div>
           </main>
 
           <nav className="cw-mobile-tabs" aria-label="Primary navigation">
@@ -167,6 +170,8 @@ export function AppShell({
         open={searchOpen}
         onClose={closeSearch}
         onSelect={onSearchSelect}
+        onReload={onReload}
+        reloadError={reloadError}
       />
 
       <WizFab t={t} context={wizContext} onOpen={onOpenWiz} />
