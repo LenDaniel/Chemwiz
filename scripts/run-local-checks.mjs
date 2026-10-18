@@ -24,9 +24,12 @@ try {
     if (checked.status !== 0) throw new Error(`${command} failed.`);
   }
   writeJson(path.join(root, '.build-checks/browser.json'), { status: 'NOT_RUN' });
-  const browser = spawnSync(process.execPath, [path.join(root, 'scripts/check-local-browser.mjs')], { cwd: root, stdio: 'inherit', timeout: 180000 });
+  const browser = spawnSync(process.execPath, [path.join(root, 'scripts/check-local-browser.mjs')], { cwd: root, stdio: 'inherit', timeout: 300000 });
   result.local.browser = readJson(path.join(root, '.build-checks/browser.json')) || { status: 'FAIL' };
   if (browser.status !== 0 || result.local.browser.status !== 'PASS') throw new Error('Local browser acceptance failed or was unavailable.');
+  const matrix = spawnSync(process.execPath, [path.join(root, 'scripts/check-w3-browsers.mjs'), '--browsers=firefox'], { cwd: root, stdio: 'inherit', timeout: 180000 });
+  result.local.browserMatrix = readJson(path.join(root, 'verification/w3-browser-matrix.json')) || { status: 'FAIL' };
+  if (matrix.status !== 0 || result.local.browserMatrix.status !== 'PASS') throw new Error('W3 Firefox browser acceptance failed or was unavailable.');
   if (sourceFingerprint(root).digest !== result.fingerprint) throw new Error('Source changed during local checks. Repeat the gate sequence.');
   result.local.status = 'PASS'; result.status = 'PASS';
   console.log('LOCAL ACCEPTANCE: PASS. Recorded release evidence for this source.');

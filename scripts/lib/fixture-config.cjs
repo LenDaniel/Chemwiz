@@ -16,6 +16,7 @@ function configureFixture(label = 'integration') {
     EMAILJS_SERVICE_ID:'fixture-service',EMAILJS_RESET_TEMPLATE_ID:'fixture-reset',EMAILJS_PUBLIC_KEY:'fixture-public',EMAILJS_PRIVATE_KEY:'fixture-private',EMAILJS_PASSWORD_CHANGED_TEMPLATE_ID:'',
     RENDER: 'true', RENDER_EXTERNAL_URL: 'https://chemwiz-build-gate.onrender.com', TRUST_PROXY: '0',
   });
+  require('./privacy-fixture.cjs').seedPrivacyFixture(process.env.LOCAL_DATA_FILE);
   const fixture = {directory,emails:[],emailFailure:false};
   const nativeFetch = globalThis.fetch;
   globalThis.fetch = async (input,options={}) => {

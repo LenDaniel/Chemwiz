@@ -1,0 +1,14 @@
+{
+  "description": "W3a regression ceilings derived from the v1.5.2 production build. Gzip sizes are comparable estimates, not measured network or device timings.",
+  "requiredEntries": ["index.html", "student/index.html", "admin/index.html", "legal/index.html"],
+  "minimumDeferredTopics": 24,
+  "searchModule": "student/src/search/searchEngine.js",
+  "limits": {
+    "entryJsGzipBytes": 120000,
+    "totalJsGzipBytes": 800000,
+    "totalCssGzipBytes": 20000,
+    "largestLazyJsGzipBytes": 220000,
+    "totalRawBytes": 5000000,
+    "largestFileRawBytes": 1300000
+  }
+}

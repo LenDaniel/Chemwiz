@@ -45,6 +45,7 @@ export function verifyPreflight(root, report = readJson(path.join(root, '.build-
   if (report?.fingerprint !== fingerprint || report?.version !== version) issues.push('The source changed after preflight. Run the integration check again.');
   if (report && (report.installation?.status !== 'PASS' || !report.source?.passed || report.source?.issues?.length || !auditPassed(report.dependencies) || !connectionsPassed(root, report.connections) || report.compile?.status !== 'PASS')) issues.push('A required preflight stage did not pass.');
   if (report?.compile?.fingerprint !== compiledFingerprint(root)) issues.push('The compiled web build changed or is missing. Repeat preflight.');
+  if (report?.performance?.status !== 'PASS') issues.push('Compiled payload budgets and deferred topic/search checks must pass.');
   return issues;
 }
 export function verifyRelease(root, evidence = readJson(path.join(root, 'verification/release-evidence.json')), { checkCompiled = true } = {}) {
@@ -58,8 +59,16 @@ export function verifyRelease(root, evidence = readJson(path.join(root, 'verific
   if (evidence && (steps.some((step) => step.status !== 'PASS') || localCommands.some((command) => !steps.some((step) => step.command === command && step.status === 'PASS')))) issues.push('A required local check failed or was skipped.');
   if (evidence && (evidence.preflight?.installation?.status !== 'PASS' || !evidence.preflight?.source?.passed || evidence.preflight?.compile?.status !== 'PASS' || evidence.preflight?.connections?.status !== 'PASS')) issues.push('Required source files, compilation and executable API connection coverage must pass.');
   if (evidence && !connectionsPassed(root, evidence.preflight?.connections)) issues.push('Every declared frontend API needs a passing connection result.');
+  if (evidence?.preflight?.performance?.status !== 'PASS') issues.push('W3 compiled payload budgets must pass.');
   const w2 = evidence?.local?.browser?.w2;
   const recovery = evidence?.local?.browser?.accountRecovery;
+  const privacySchools=evidence?.local?.browser?.privacySchools;
+  const w3 = evidence?.local?.browser?.w3;
+  if (evidence && (w3?.status !== 'PASS' || !Array.isArray(w3.checks) || w3.checks.length < 9)) issues.push('W3 saved-session, connectivity, failed-content and keyboard browser checks must pass.');
+  const matrix = evidence?.local?.browserMatrix;
+  const firefox = matrix?.browsers?.find(result => result.name === 'firefox');
+  if (evidence && (matrix?.status !== 'PASS' || matrix.fingerprint !== fingerprint || matrix.version !== version || firefox?.status !== 'PASS' || !Array.isArray(firefox.checks) || firefox.checks.length < 9)) issues.push('W3 Firefox acceptance must pass for this exact source; run npm run test:local.');
+  if(evidence && (privacySchools?.status!=='PASS'||!Array.isArray(privacySchools.checks)||privacySchools.checks.length<10))issues.push('Privacy onboarding, guardian, school access, choices, requests and legal-page browser checks must pass.');
   if(evidence && (recovery?.status !== 'PASS' || !Array.isArray(recovery.checks) || recovery.checks.length < 6)) issues.push('Account recovery, password upgrade, password visibility and footer browser checks must pass.');
   if (evidence && (w2?.status !== 'PASS' || w2.diagramTextClipping !== 0 || !(w2.diagrams > 0) || !Array.isArray(w2.viewports) || w2.viewports.length < 6)) issues.push('W2 viewport, diagram and admin-session browser checks must pass.');
   if (checkCompiled && evidence?.preflight?.compile?.fingerprint !== compiledFingerprint(root)) issues.push('Compiled assets changed or are missing. Repeat the checks before deployment.');

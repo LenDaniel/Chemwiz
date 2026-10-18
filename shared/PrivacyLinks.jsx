@@ -1,0 +1,1 @@
+export function PrivacyLinks(){return <nav className="cw-privacy-links" aria-label="Legal and privacy"><a href="/legal/privacy">Privacy</a><a href="/legal/terms">Terms</a><a href="/legal/child-safety">Child safety</a><a href="/legal/device-storage">Device storage</a><a href="/legal/ai">AI and voice</a></nav>;}

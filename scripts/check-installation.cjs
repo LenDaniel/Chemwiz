@@ -25,7 +25,14 @@ const required = ['package.json', 'package-lock.json', 'server.js', '.env.exampl
   'RECOVERY_README.md', 'docs/RENDER_RECOVERY_ASSESSMENT_2026-10-14.md',
   'ACCOUNT_RECOVERY_README.md','shared/password-policy.mjs','shared/PasswordField.jsx','shared/AccountRecovery.jsx','shared/account.css',
   'backend/src/utils/email.js','backend/src/middleware/auth-limits.js','tests/password-recovery.test.cjs',
-  'scripts/lib/account-browser-checks.mjs','docs/emailjs/password-reset.html','docs/emailjs/password-changed.html'];
+  'scripts/lib/account-browser-checks.mjs','docs/emailjs/password-reset.html','docs/emailjs/password-changed.html',
+  'shared/legal-version.json','shared/legal-documents.json','shared/PrivacyPanel.jsx','shared/PrivacyLinks.jsx','shared/privacy.css',
+  'web/legal/index.html','web/legal/main.jsx','backend/src/models/Governance.js','backend/src/services/governanceStore.js',
+  'backend/src/services/privacy.service.js','backend/src/services/schools.service.js','backend/src/services/privacyMaintenance.service.js',
+  'backend/src/middleware/privacy.middleware.js','backend/src/routes/privacy.routes.js','backend/src/routes/schools.routes.js',
+  'web/admin/src/components/PrivacyAdmin.jsx','scripts/privacy-maintenance.cjs','scripts/lib/privacy-fixture.cjs','tests/privacy-schools.test.cjs','scripts/lib/privacy-browser-checks.mjs',
+  'web/student/src/components/ConnectionStatus.jsx','scripts/check-performance.mjs','scripts/lib/performance-checks.mjs',
+  'scripts/performance-budgets.json','scripts/check-w3-browsers.mjs','scripts/lib/w3-browser-checks.mjs','tests/w3-regression.test.cjs'];
 const failures = required.filter((file) => !fs.existsSync(path.join(root, file)));
 function files(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((item) => item.isDirectory()

@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 const require=createRequire(import.meta.url);
+const {acceptedPrivacy}=require('./privacy-fixture.cjs');
 export async function runAccountChecks({browser,base,fixture}) {
   const context=await browser.newContext({viewport:{width:1366,height:768}});
   const page=await context.newPage();const checks=[],errors=[];
@@ -15,14 +16,14 @@ export async function runAccountChecks({browser,base,fixture}) {
     await page.getByRole('button',{name:'Show password',exact:true}).click();assert.equal(await page.getByPlaceholder('Password',{exact:true}).getAttribute('type'),'text');
     await page.getByRole('button',{name:'Hide password',exact:true}).click();assert.equal(await page.getByPlaceholder('Password',{exact:true}).getAttribute('type'),'password');
     checks.push('Learner password visibility toggles preserve input and expose accessible state');
-    await page.getByRole('button',{name:'No account yet? Create one',exact:true}).click();
+    await page.getByRole('button',{name:'No account yet? Create one',exact:true}).click();await page.getByLabel('Age group',{exact:true}).selectOption('adult');await page.getByLabel('I accept the current Terms of Use.',{exact:true}).check();await page.getByLabel('I have read the Privacy Notice.',{exact:true}).check();
     await page.getByPlaceholder('Full name').fill('Policy learner');await page.getByPlaceholder('Email',{exact:true}).fill('policy@browser.test');
     await page.getByPlaceholder('Password',{exact:true}).fill('Password2026!');await page.getByPlaceholder('Confirm password',{exact:true}).fill('Password2026!');
     await page.getByRole('button',{name:'CREATE ACCOUNT',exact:true}).click();await page.getByRole('alert').waitFor();assert.match(await page.getByRole('alert').textContent(),/predictable/);
     checks.push('Signup rejects a predictable password despite digits and punctuation');
     for(const role of ['student','admin']){
       const email=`legacy-${role}@browser.test`;
-      await User.create({name:'Preserved legacy '+role,email,password:await bcrypt.hash('weak123',10),role,subscriptionTier:role==='admin'?'admin':'premium'});
+      await User.create({privacy:acceptedPrivacy(),name:'Preserved legacy '+role,email,password:await bcrypt.hash('weak123',10),role,subscriptionTier:role==='admin'?'admin':'premium'});
       await signIn(role,email,'weak123');await page.getByRole('heading',{name:'Upgrade your password',exact:true}).waitFor();
       assert.equal(await page.evaluate(key=>localStorage.getItem(key),role==='admin'?'chemwiz.admin.token':'cw.authToken') || '', '');
       await updatePassword();await page.getByRole('heading',{name:'Password updated',exact:true}).waitFor();

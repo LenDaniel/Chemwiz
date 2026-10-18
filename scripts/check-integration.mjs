@@ -12,7 +12,7 @@ const version = readJson(path.join(root, 'package.json')).version;
 const snapshot = sourceFingerprint(root);
 const initial = snapshot.digest;
 const result = { status: 'FAIL', version, fingerprint: initial, fileHashes: snapshot.fileHashes, checkedAt: new Date().toISOString(),
-  installation: { status: 'NOT_RUN' }, source: null, dependencies: { status: 'NOT_RUN' }, compile: { status: 'NOT_RUN' }, connections: { status: 'NOT_RUN' } };
+  installation: { status: 'NOT_RUN' }, source: null, dependencies: { status: 'NOT_RUN' }, compile: { status: 'NOT_RUN' }, performance: { status: 'NOT_RUN' }, connections: { status: 'NOT_RUN' } };
 // Erase the previous green result before doing any work, including failed runs.
 writeJson(path.join(folder, 'integration.json'), result);
 writeJson(path.join(root, 'verification/release-evidence.json'), { status: 'FAIL', version, fingerprint: initial,
@@ -44,6 +44,9 @@ try {
   const compile = runNpm(root, ['run', 'build'], { stdio: 'inherit', env: { ...process.env, RENDER: '', NODE_ENV: 'production' } });
   result.compile = { status: compile.status === 0 ? 'PASS' : 'FAIL', fingerprint: compiledFingerprint(root) };
   if (compile.status !== 0) throw new Error('Frontend production compilation failed.');
+  const performance = spawnSync(process.execPath, [path.join(root, 'scripts/check-performance.mjs')], { cwd: root, stdio: 'inherit', timeout: 30000 });
+  result.performance = readJson(path.join(folder, 'performance.json')) || { status: 'FAIL' };
+  if (performance.status !== 0 || result.performance.status !== 'PASS') throw new Error('Compiled payload budgets or deferred content checks failed.');
   writeJson(path.join(folder, 'api-connections.json'), { status: 'NOT_RUN' });
   const probe = spawnSync(process.execPath, [path.join(root, 'scripts/probe-api-connections.mjs')], { cwd: root, stdio: 'inherit', timeout: 120000 });
   result.connections = readJson(path.join(folder, 'api-connections.json')) || { status: 'FAIL' };

@@ -60,6 +60,11 @@
       "method": "POST",
       "path": "/api/auth/upgrade-password",
       "kind": "account-recovery"
+    },
+    {
+      "method": "GET",
+      "path": "/api/privacy/public",
+      "kind": "privacy-public"
     }
   ],
   "frontendProbes": [
@@ -223,6 +228,132 @@
       "method": "POST",
       "path": "/api/auth/upgrade-password",
       "scenario": "admin-upgrade"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getPublicPrivacy",
+      "method": "GET",
+      "path": "/api/privacy/public",
+      "scenario": "privacy-getPublicPrivacy"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getMyPrivacy",
+      "method": "GET",
+      "path": "/api/privacy/me",
+      "scenario": "privacy-getMyPrivacy"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "completeOnboarding",
+      "method": "POST",
+      "path": "/api/privacy/onboarding",
+      "scenario": "privacy-completeOnboarding"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "updatePrivacyChoices",
+      "method": "PATCH",
+      "path": "/api/privacy/preferences",
+      "scenario": "privacy-updatePrivacyChoices"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "submitPrivacyRequest",
+      "method": "POST",
+      "path": "/api/privacy/requests",
+      "scenario": "privacy-submitPrivacyRequest"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "exportPrivacyData",
+      "method": "GET",
+      "path": "/api/privacy/export",
+      "scenario": "privacy-exportPrivacyData"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getPrivacySettings",
+      "method": "GET",
+      "path": "/api/privacy/admin/settings",
+      "scenario": "privacy-getPrivacySettings"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "savePrivacySettings",
+      "method": "PUT",
+      "path": "/api/privacy/admin/settings",
+      "scenario": "privacy-savePrivacySettings"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getPrivacyQueue",
+      "method": "GET",
+      "path": "/api/privacy/admin/queue",
+      "scenario": "privacy-getPrivacyQueue"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "createGuardianAuthorisation",
+      "method": "POST",
+      "path": "/api/privacy/admin/guardians",
+      "scenario": "privacy-createGuardianAuthorisation"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "revokeGuardianAuthorisation",
+      "method": "DELETE",
+      "path": "/api/privacy/admin/guardians/:id",
+      "scenario": "privacy-revokeGuardianAuthorisation"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "reviewPrivacyRequest",
+      "method": "PATCH",
+      "path": "/api/privacy/admin/requests/:id",
+      "scenario": "privacy-reviewPrivacyRequest"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getSchools",
+      "method": "GET",
+      "path": "/api/schools",
+      "scenario": "privacy-getSchools"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "createSchool",
+      "method": "POST",
+      "path": "/api/schools",
+      "scenario": "privacy-createSchool"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "updateSchool",
+      "method": "PUT",
+      "path": "/api/schools/:schoolId",
+      "scenario": "privacy-updateSchool"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "updateSchoolMembership",
+      "method": "PUT",
+      "path": "/api/schools/:schoolId/membership",
+      "scenario": "privacy-updateSchoolMembership"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "updateSchoolSharing",
+      "method": "PATCH",
+      "path": "/api/privacy/schools/:schoolId/sharing",
+      "scenario": "privacy-updateSchoolSharing"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getSchoolRoster",
+      "method": "GET",
+      "path": "/api/schools/:schoolId/roster",
+      "scenario": "privacy-getSchoolRoster"
     }
   ]
 }

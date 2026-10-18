@@ -10,6 +10,8 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
 const { configureFixture } = require('./lib/fixture-config.cjs');
 const fixture = configureFixture('api-check');
+const {adultOnboarding}=require('./lib/privacy-fixture.cjs');
+let privacySettings, privacyRequest, schoolRecord, guardianRecord;
 const contracts = JSON.parse(fs.readFileSync(path.join(root, 'scripts/integration-contracts.json'), 'utf8'));
 const nativeFetch = globalThis.fetch;
 let instance, loader, base, activeProbe, records = [], first, second, admin, recoveryLearner, studentMail, adminMail;
@@ -73,7 +75,7 @@ try {
   }
   const scenarios = {
     'student-forgot': async(fn) => {
-      recoveryLearner=(await direct('/api/auth/register','POST',{name:'Recovery learner',email:'recovery@build-gate.test',password:'Recovery-learner-original!2026'})).data;
+      recoveryLearner=(await direct('/api/auth/register','POST',{onboarding:adultOnboarding(),name:'Recovery learner',email:'recovery@build-gate.test',password:'Recovery-learner-original!2026'})).data;
       await fn({email:'recovery@build-gate.test',workspace:'student'});
       studentMail=fixture.emails.find(mail=>mail.to_email==='recovery@build-gate.test');assert.ok(studentMail?.reset_code);
     },
@@ -93,9 +95,9 @@ try {
     'student-upgrade': async(fn) => upgradeLegacy(fn,'student'),
     'admin-upgrade': async(fn) => upgradeLegacy(fn,'admin'),
     'student-register': async (fn) => {
-      first = await fn({ name: 'First fixture learner', email: 'first@build-gate.test', password: 'Fixture-learner-password!2026', role: 'admin', subscriptionTier: 'admin' });
+      first = await fn({ onboarding:adultOnboarding(), name: 'First fixture learner', email: 'first@build-gate.test', password: 'Fixture-learner-password!2026', role: 'admin', subscriptionTier: 'admin' });
       assert.equal(first.user.role, 'student'); assert.equal(first.user.subscriptionTier, 'free');
-      second = (await direct('/api/auth/register', 'POST', { name: 'Second fixture learner', email: 'second@build-gate.test', password: 'Fixture-learner-password!2026' })).data;
+      second = (await direct('/api/auth/register', 'POST', { onboarding:adultOnboarding(), name: 'Second fixture learner', email: 'second@build-gate.test', password: 'Fixture-learner-password!2026' })).data;
       assert.ok(first.token && second.token);
     },
     'student-login': async (fn) => { const value = await fn({ email: 'first@build-gate.test', password: 'Fixture-learner-password!2026' }); assert.equal(value.user.id, first.user.id); first.token = value.token; },
@@ -127,6 +129,26 @@ try {
     },
     'student-live': async (fn) => { await assert.rejects(fn(first.token, 'v=0\r\n', context), /not enabled/); },
   };
+  Object.assign(scenarios, {
+    'privacy-getPublicPrivacy':async fn=>{const d=await fn();assert.equal(d.published,true);},
+    'privacy-getMyPrivacy':async fn=>{const d=await fn(first.token);assert.equal(d.privacy.ready,true);},
+    'privacy-completeOnboarding':async fn=>{const d=await fn(first.token,adultOnboarding());assert.equal(d.ready,true);},
+    'privacy-updatePrivacyChoices':async fn=>{const d=await fn(first.token,{aiConsent:true,voiceConsent:true});assert.equal(d.aiConsent,true);},
+    'privacy-submitPrivacyRequest':async fn=>{privacyRequest=await fn(first.token,{type:'correction',detail:'Please review the synthetic learner display name.'});assert.ok(privacyRequest.id);},
+    'privacy-exportPrivacyData':async fn=>{const d=await fn(first.token);assert.equal(d.account.id,first.user.id);assert.ok(d.consentHistory.length);},
+    'privacy-getPrivacySettings':async fn=>{admin=(await direct('/api/auth/login','POST',{email:process.env.LOCAL_ADMIN_EMAIL,password:'Admin-recovery-new!2026'})).data;privacySettings=await fn(admin.token);assert.equal(privacySettings.approved,true);},
+    'privacy-savePrivacySettings':async fn=>{privacySettings=await fn(admin.token,privacySettings);assert.equal(privacySettings.approved,true);},
+    'privacy-getPrivacyQueue':async fn=>{const d=await fn(admin.token);assert.ok(d.requests.some(r=>r.id===privacyRequest.id));},
+    'privacy-createGuardianAuthorisation':async fn=>{guardianRecord=await fn(admin.token,{parentName:'Synthetic guardian',parentEmail:'guardian@build-gate.test',childEmail:'child@build-gate.test',verificationReference:'Synthetic signed consent and authority case',signedAt:new Date(Date.now()-86400000).toISOString(),adultReviewAt:new Date(Date.now()+365*86400000).toISOString(),writtenConsentVerified:true});assert.ok(guardianRecord.invitation);},
+    'privacy-revokeGuardianAuthorisation':async fn=>{const d=await fn(admin.token,guardianRecord.id);assert.equal(d.success,true);},
+    'privacy-reviewPrivacyRequest':async fn=>{const d=await fn(admin.token,privacyRequest.id,{action:'in-review',note:'Synthetic request review started.'});assert.equal(d.status,'in-review');},
+    'privacy-getSchools':async fn=>{const d=await fn(admin.token);assert.ok(Array.isArray(d));},
+    'privacy-createSchool':async fn=>{schoolRecord=await fn(admin.token,{name:'Synthetic school',contactEmail:'school@build-gate.test',contractReference:'TEST-CONTRACT',dpaReference:'TEST-DPA',seats:5,status:'active',expiresAt:new Date(Date.now()+365*86400000).toISOString()});assert.ok(schoolRecord.id);},
+    'privacy-updateSchool':async fn=>{schoolRecord=await fn(admin.token,schoolRecord.id,{...schoolRecord,seats:6});assert.equal(schoolRecord.seats,6);},
+    'privacy-updateSchoolMembership':async fn=>{const d=await fn(admin.token,schoolRecord.id,{userId:first.user.id,role:'student',status:'pending',classIds:['L6']});assert.equal(d.status,'pending');},
+    'privacy-updateSchoolSharing':async fn=>{const d=await fn(first.token,schoolRecord.id,true);assert.equal(d.status,'active');},
+    'privacy-getSchoolRoster':async fn=>{const d=await fn(admin.token,schoolRecord.id);assert.equal(d.students[0].userId,first.user.id);},
+  });
   // Establish the learner first, then use the real admin frontend to activate
   // Premium before invoking the protected Wiz request functions.
   const ordering = [...contracts.frontendProbes.filter((probe) => !['student-tutor', 'student-transcribe', 'student-live'].includes(probe.scenario)),
@@ -143,7 +165,7 @@ try {
     assert.ok(routeMatches(probe.path, request.path), `${probe.export}: wrong API URL`);
     const offlineVoice = ['student-transcribe', 'student-live'].includes(probe.scenario);
     assert.ok(offlineVoice ? request.status === 503 : request.status >= 200 && request.status < 300, `${probe.export}: unexpected response status ${request.status}`);
-    if (!['student-register', 'student-login', 'admin-login','student-forgot','student-reset','student-upgrade','admin-forgot','admin-reset','admin-upgrade'].includes(probe.scenario)) assert.equal(request.authorizationPresent, true, `${probe.export}: missing Bearer header`);
+    if (!['student-register', 'student-login', 'admin-login','student-forgot','student-reset','student-upgrade','admin-forgot','admin-reset','admin-upgrade','privacy-getPublicPrivacy'].includes(probe.scenario)) assert.equal(request.authorizationPresent, true, `${probe.export}: missing Bearer header`);
     if (probe.scenario === 'student-transcribe') { assert.equal(request.contentType, 'audio/wav'); assert.equal(request.json?.code, 'VOICE_OFFLINE'); }
     if (probe.scenario === 'student-live') { assert.equal(request.contentType, 'application/sdp'); assert.equal(request.contextPresent, true); assert.equal(request.json?.code, 'LIVE_VOICE_DISABLED'); }
     noSecrets(request.json);
@@ -157,7 +179,7 @@ try {
     if (!publicRule) {
       const { response } = await direct(routePath, route.method, ['POST', 'PUT', 'PATCH'].includes(route.method) ? {} : null);
       assert.equal(response.status, 401, `${route.method} ${route.path} did not reject anonymous access`);
-      if (route.path.startsWith('/api/admin')) {
+      if ((route.path.startsWith('/api/admin') || route.path.startsWith('/api/privacy/admin'))) {
         const denied = await direct(routePath, route.method, ['POST', 'PUT', 'PATCH'].includes(route.method) ? {} : null, first.token);
         assert.equal(denied.response.status, 403, `${route.method} ${route.path} did not reject the student role`);
       }

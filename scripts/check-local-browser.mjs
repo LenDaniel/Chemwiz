@@ -1,3 +1,4 @@
+import {runPrivacyChecks} from './lib/privacy-browser-checks.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -6,6 +7,7 @@ import { createRequire } from 'node:module';
 import { chromium } from 'playwright';
 import { runW2Checks } from './lib/w2-browser-checks.mjs';
 import { runAccountChecks } from './lib/account-browser-checks.mjs';
+import { runW3Checks } from './lib/w3-browser-checks.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
@@ -65,6 +67,10 @@ try {
   checks.push('Unified home has both workspace links');
   await page.goto(base + '/student/');
   await page.getByRole('button', { name: 'No account yet? Create one', exact: true }).click();
+  await page.getByLabel('Age group',{exact:true}).selectOption('adult');
+  await page.getByLabel('I accept the current Terms of Use.',{exact:true}).check();
+  await page.getByLabel('I have read the Privacy Notice.',{exact:true}).check();
+  await page.getByLabel('Allow optional Wiz AI processing of my questions.',{exact:true}).check();
   await page.getByPlaceholder('Full name').fill('Browser fixture learner');
   await page.getByPlaceholder('Email', { exact: true }).fill('browser@build-gate.test');
   await page.getByPlaceholder('Password', { exact: true }).fill('Browser-fixture-password!2026');
@@ -155,8 +161,12 @@ try {
   checks.push(...w2.checks);
   const accountRecovery=await runAccountChecks({browser,base,fixture});
   checks.push(...accountRecovery.checks);
+  const privacySchools=await runPrivacyChecks({browser,base,fixture});
+  checks.push(...privacySchools.checks);
+  const w3 = await runW3Checks({ root, browser, base });
+  checks.push(...w3.checks);
   assert.deepEqual(errors, []);
-  fs.writeFileSync(path.join(root, '.build-checks/browser.json'), JSON.stringify({ status: 'PASS', browser: browser.version(), checks, w2, accountRecovery }, null, 2));
+  fs.writeFileSync(path.join(root, '.build-checks/browser.json'), JSON.stringify({ status: 'PASS', browser: browser.version(), checks, w2, accountRecovery, privacySchools, w3 }, null, 2));
   console.log(`Local browser: PASS (${checks.length} checks; desktop/mobile; no JavaScript runtime errors).`);
 } catch (error) {
   fs.writeFileSync(path.join(root, '.build-checks/browser.json'), JSON.stringify({ status: 'FAIL', error: error.message, checks }, null, 2));
