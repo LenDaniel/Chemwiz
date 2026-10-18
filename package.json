@@ -1,6 +1,6 @@
 {
   "name": "chemwiz-unified",
-  "version": "1.4.0",
+  "version": "1.5.3",
   "private": true,
   "description": "One ChemWiz application: student workspace, admin workspace and Express API",
   "main": "server.js",
@@ -35,7 +35,11 @@
     "prebuild": "node scripts/build-guard.mjs",
     "precf:deploy": "npm run ready:deploy",
     "diagnose:admin": "node scripts/diagnose-admin.mjs",
-    "diagnose:release": "node scripts/diagnose-release.mjs"
+    "diagnose:release": "node scripts/diagnose-release.mjs",
+    "privacy:maintenance": "node scripts/privacy-maintenance.cjs",
+    "test:wiz-live": "node scripts/test-wiz-live.cjs",
+    "check:performance": "node scripts/check-performance.mjs",
+    "test:w3": "node scripts/check-w3-browsers.mjs"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",

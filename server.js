@@ -59,7 +59,7 @@ async function createApplication({ development = false } = {}) {
     });
     app.use(vite.middlewares);
   } else {
-    for (const file of ['index.html', 'student/index.html', 'admin/index.html']) {
+    for (const file of ['index.html', 'student/index.html', 'admin/index.html', 'legal/index.html']) {
       if (!fs.existsSync(path.join(root, 'dist', file))) {
         throw new Error('The web build is missing. Run npm run build, then npm start.');
       }
@@ -77,7 +77,7 @@ async function createApplication({ development = false } = {}) {
   app.get(['/student', '/admin'], (req, res) => res.redirect(308, `${req.path}/${req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : ''}`));
   app.use(async (req, res, next) => {
     if (!['GET', 'HEAD'].includes(req.method)) return next();
-    const route = req.path === '/' || req.path === '/index.html' ? 'index.html'
+    const route = /^\/legal(?:\/[^.]*)?\/?$/.test(req.path) ? 'legal/index.html' : req.path === '/' || req.path === '/index.html' ? 'index.html'
       : /^\/(student|admin)\/(?:[^.]*|index\.html)$/.test(req.path)
         ? `${req.path.split('/')[1]}/index.html` : null;
     if (!route) return next();

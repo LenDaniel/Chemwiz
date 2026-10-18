@@ -10,13 +10,13 @@ Use Node 24 and open a terminal in the unified folder containing package.json. I
 
 ```bash
 npm ci --include=dev
-npx playwright install chromium
+npx playwright install chromium firefox
 npm run check:integration
 npm run test:local
 npm run ready:deploy
 ```
 
-Chromium installation is normally needed only once. The browser check also tries installed Chrome or Edge. An unavailable browser is a failed required check. On Linux, Playwright's documented `npx playwright install --with-deps chromium` installs the browser and its operating-system dependencies. A custom executable may be selected with CHEMWIZ_TEST_BROWSER_PATH; this is a browser selection, not a skip option.
+Browser installation is normally needed only once. The primary browser check also tries installed Chrome or Edge; W3a additionally requires Firefox. An unavailable browser is a failed required check. On Linux, Playwright's documented `npx playwright install --with-deps chromium firefox` installs the browsers and their operating-system dependencies. A custom Chromium executable may be selected with CHEMWIZ_TEST_BROWSER_PATH; this is a browser selection, not a skip option.
 
 The integration check must pass before test:local accepts the source. New preflight/local attempts clear the old green release result immediately. Required checks cannot be skipped to obtain PASS. Changes to source, dependencies, configuration examples or build rules invalidate the recorded result. A changed or missing dist build also blocks local/VPS/Cloudflare deployment readiness.
 
@@ -32,7 +32,9 @@ The integration check must pass before test:local accepts the source. New prefli
 | Data behaviour | Register separate learners, reject role/plan injection, persist progress/settings, retain learner separation, reject stale saves and invalid learning records; persist admin subscription/status/role changes |
 | Defined security controls | Reject anonymous/invalid JWT and student admin access, check CORS/Render origin handling, prevent password/hash response leaks and private-file serving, check production CSP/header settings, flag embedded source credentials and frontend string execution |
 | Dependencies | Audit production and development dependencies; high/critical advisories or an unavailable audit block PASS |
+| Payload budgets | Check actual compiled files and Vite's manifest; enforce initial/lazy/total byte ceilings and keep all topic/search modules deferred |
 | Local acceptance | Existing installation/content/K4/Node regression checks, then a production browser exercising signup, chapter/quiz saves, logout/login, restoration in a second browser, all 24 topic chunks on desktop/mobile, search, local Wiz and admin/student separation |
+| W3a browser acceptance | Controlled session/network/chunk failures, safe reload, offline queued-save recovery, keyboard/search announcements, reduced motion and touch emulation; repeat the W3 scenarios in actual Firefox |
 | Gate regression | Deliberately broken routes/methods/imports/wrappers/guards, unknown requests, invalid configuration, credential fixtures and stale/failed/incomplete release evidence must be rejected |
 
 The current backend has 27 mounted method/path routes. Four inherited public routes are implementation placeholders; the probe requires their fixed placeholder response and no data fields. Adding real functionality there requires changing the contract, access controls and probes.
@@ -62,3 +64,10 @@ The Windows npm launcher invokes the JavaScript npm CLI through Node with shell 
 ## v1.4.0 account security
 
 The six learner/admin recovery functions extend actual frontend coverage to 23 functions and 27 backend routes. The gate additionally requires the account-recovery browser report. Password policy, atomic replay/expiry/attempt/session controls, captured EmailJS transport, mandatory legacy upgrades, visibility and footer are covered. SMTP/EmailJS credentials are never used by fixtures. Actual EmailJS delivery and production Atlas acceptance remain separate. The earlier medium password-minimum and missing dedicated login throttling findings are addressed by this build; per-process limiter storage still needs a shared store before multi-instance scaling.
+
+
+## S1 privacy/schools — v1.5.0
+
+The source/API catalogue now includes privacy publication, onboarding, choices, requests/exports, guardian administration and school membership/reporting functions. Every new frontend function has an executable scenario. Anonymous routes are refused and both platform admin route groups are checked against learner tokens. Backend tests cover child invitation integrity/expiry, guardian/adulthood changes, school/class separation, subscription/role revocation, seat contention, consent withdrawal, scoped exports and reviewed erasure with atomic local failure handling.
+
+The browser report adds privacySchools. Its legal pages, preserved legacy data, choices/exports/requests, staff workspace, admin publication and guardian enrolment/withdrawal checks are required by the release gate. Fixtures seed clearly synthetic operator details and explicit synthetic adult consent; no live settings/records or actual emails are used. Staging Atlas transactions, actual guardian verification, legal/provider/transfer approvals and live email/audio acceptance remain separate.

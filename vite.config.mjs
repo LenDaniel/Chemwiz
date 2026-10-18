@@ -12,11 +12,13 @@ export default defineConfig({
   // No backend secrets or old VITE_API_BASE_URL values enter either workspace.
   envDir: path.join(root, 'web'),
   build: {
+    manifest: true,
     outDir: path.join(root, 'dist'),
     emptyOutDir: true,
     rolldownOptions: {
       input: {
         home: path.join(root, 'web/index.html'),
+        legal: path.join(root, 'web/legal/index.html'),
         student: path.join(root, 'web/student/index.html'),
         admin: path.join(root, 'web/admin/index.html'),
       },
