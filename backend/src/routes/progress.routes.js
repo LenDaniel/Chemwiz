@@ -1,8 +1,10 @@
 const express = require('express');
 const { protect } = require('../middleware/auth.middleware');
+const { requireLearningConsent } = require('../middleware/privacy.middleware');
 const { validateState, getState, saveState } = require('../services/learningState.service');
 const router = express.Router();
 router.use(protect);
+router.use(requireLearningConsent);
 router.use((req, res, next) => { res.setHeader('Cache-Control', 'no-store'); next(); });
 router.get(['/', '/me'], async (req, res, next) => {
   try { res.json({ success: true, ...(await getState(req.user._id)) }); }

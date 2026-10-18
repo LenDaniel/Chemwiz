@@ -1,0 +1,14 @@
+const express=require('express');
+const {protect}=require('../middleware/auth.middleware');
+const {adminOnly}=require('../middleware/admin.middleware');
+const schools=require('../services/schools.service');
+const router=express.Router();
+const wrap=fn=>async(req,res,next)=>{try{res.json(await fn(req));}catch(error){next(error);}};
+router.use(protect);
+router.use((req,res,next)=>{res.setHeader('Cache-Control','no-store');next();});
+router.get('/',wrap(req=>schools.list(req.user)));
+router.post('/',adminOnly,wrap(req=>schools.save(req.user,req.body)));
+router.put('/:schoolId',adminOnly,wrap(req=>schools.save(req.user,req.body,req.params.schoolId)));
+router.put('/:schoolId/membership',adminOnly,wrap(req=>schools.membership(req.user,req.params.schoolId,req.body)));
+router.get('/:schoolId/roster',wrap(req=>schools.roster(req.user,req.params.schoolId)));
+module.exports=router;

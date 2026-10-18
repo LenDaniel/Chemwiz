@@ -1,3 +1,4 @@
+const {acceptedPrivacy,seedPrivacyFixture}=require('../../scripts/lib/privacy-fixture.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -14,7 +15,8 @@ test('voice notes require Premium, forward audio server-side and return editable
   process.env.OPENAI_API_KEY = 'voice-test-key';
   process.env.AI_LIVE_IN_LOCAL_MODE = 'true';
   process.env.AI_DAILY_VOICE_LIMIT = '1';
-  const { User } = require('../src/data/localModels');
+  seedPrivacyFixture(process.env.LOCAL_DATA_FILE);
+const { User } = require('../src/data/localModels');
   const app = express();
   app.use(express.json());
   app.use('/api/tutor', require('../src/routes/tutor.routes'));
@@ -28,8 +30,8 @@ test('voice notes require Premium, forward audio server-side and return editable
     return Response.json({ text: 'What is the structure of ethyne?' });
   };
   try {
-    const free = await User.create({ passwordPolicyVersion:1, authVersion:0, name: 'Free', email: 'voicefree@test.local', subscriptionTier: 'free' });
-    const premium = await User.create({ passwordPolicyVersion:1, authVersion:0, name: 'Premium', email: 'voicepremium@test.local', subscriptionTier: 'premium' });
+    const free = await User.create({ privacy:acceptedPrivacy(), passwordPolicyVersion:1, authVersion:0, name: 'Free', email: 'voicefree@test.local', subscriptionTier: 'free' });
+    const premium = await User.create({ privacy:acceptedPrivacy(), passwordPolicyVersion:1, authVersion:0, name: 'Premium', email: 'voicepremium@test.local', subscriptionTier: 'premium' });
     const endpoint = `http://127.0.0.1:${server.address().port}/api/tutor/transcribe`;
     const send = (user, type = 'audio/webm', audio = Buffer.alloc(300, 42)) => originalFetch(endpoint, {
       method: 'POST',

@@ -11,7 +11,7 @@ const DATA_FILE = process.env.LOCAL_DATA_FILE
 let cache = null;
 
 function emptyStore() {
-  return { users: [], adminLogs: [], learningStates: [] };
+  return { users: [], adminLogs: [], learningStates: [], governance: [] };
 }
 
 function ensureDir() {
@@ -31,7 +31,8 @@ function loadStore() {
   try {
     const parsed = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
     if (!parsed || !Array.isArray(parsed.users) || !Array.isArray(parsed.adminLogs) ||
-        (parsed.learningStates !== undefined && !Array.isArray(parsed.learningStates))) {
+        (parsed.learningStates !== undefined && !Array.isArray(parsed.learningStates)) ||
+        (parsed.governance !== undefined && !Array.isArray(parsed.governance))) {
       throw new Error('The local database structure is invalid.');
     }
     cache = {
@@ -39,6 +40,7 @@ function loadStore() {
       users: Array.isArray(parsed.users) ? parsed.users : [],
       adminLogs: Array.isArray(parsed.adminLogs) ? parsed.adminLogs : [],
       learningStates: Array.isArray(parsed.learningStates) ? parsed.learningStates : [],
+      governance: Array.isArray(parsed.governance) ? parsed.governance : [],
     };
   } catch (error) {
     cache = null;
@@ -78,6 +80,7 @@ function normalizeUser(raw = {}) {
     passwordPolicyVersion: Number(raw.passwordPolicyVersion) || 0,
     authVersion: Number(raw.authVersion) || 0,
     passwordReset: raw.passwordReset || null,
+    privacy: raw.privacy || null,
     role: raw.role || 'student',
     level: raw.level || 'A-Level Chemistry',
     subscriptionTier: raw.subscriptionTier || 'free',
@@ -430,6 +433,10 @@ function resetLocalStore() {
 }
 
 const LearningState = {
+  async remove(userId) {
+    const store=loadStore();
+    persist({...store,learningStates:store.learningStates.filter(item=>item.userId!==String(userId))});
+  },
   async get(userId) {
     const doc = loadStore().learningStates.find((item) => item.userId === String(userId));
     return doc ? JSON.parse(JSON.stringify(doc)) : null;
@@ -445,10 +452,40 @@ const LearningState = {
   },
 };
 
+const Governance = {
+  async get(key) {return structuredClone((loadStore().governance || []).find(item=>item.key===key) || null);},
+  async list(filter={}) {return structuredClone((loadStore().governance || []).filter(item=>matchesFilter(item,filter)));},
+  async put(key,revision,data,metadata={}) {
+    const store=loadStore(), records=store.governance || [], previous=records.find(item=>item.key===key);
+    if((previous?.revision || 0)!==revision)return null;
+    const document={key,kind:metadata.kind || previous?.kind || 'record',ownerId:metadata.ownerId || previous?.ownerId || '',schoolId:metadata.schoolId || previous?.schoolId || '',revision:revision+1,data:structuredClone(data),createdAt:previous?.createdAt || nowIso(),updatedAt:nowIso()};
+    persist({...store,governance:[...records.filter(item=>item.key!==key),document]});
+    return structuredClone(document);
+  },
+  async remove(key,revision) {
+    const store=loadStore(),records=store.governance || [];
+    if(!records.some(item=>item.key===key && item.revision===revision))return false;
+    persist({...store,governance:records.filter(item=>item.key!==key)});return true;
+  },
+};
+
+function eraseLocalAccount(userId,requestKey,now=Date.now()) {
+  const store=loadStore(),user=store.users.find(u=>String(u._id)===String(userId));
+  if(!user||user.role==='admin'||user.accountStatus!=='disabled'||!user.privacy?.deletionApprovedAt)throw new Error('Account is not eligible for erasure.');
+  const request=(store.governance || []).find(d=>d.key===requestKey&&d.ownerId===String(userId));
+  if(!request||request.data.status!=='approved'||!Number.isFinite(Date.parse(request.data.deleteAfter))||Date.parse(request.data.deleteAfter)>now)throw new Error('Deletion request changed or is not due.');
+  const headKey='guardian-head:'+crypto.createHash('sha256').update(String(user.email).trim().toLowerCase()).digest('hex');
+  const records=(store.governance || []).filter(d=>d.key!==headKey&&d.ownerId!==String(userId)&&!(d.kind==='guardian'&&d.data.childEmail===user.email)&&d.key!==requestKey).map(d=>d.kind==='school'?{...d,data:{...d.data,reservedUserIds:(d.data.reservedUserIds || []).filter(id=>id!==String(userId))}}:d);
+  records.push({key:'erasure:'+makeId(),kind:'erasure-receipt',ownerId:'',schoolId:'',revision:1,createdAt:nowIso(),updatedAt:nowIso(),data:{requestId:requestKey.slice(8),completedAt:nowIso()}});
+  persist({...store,users:store.users.filter(u=>String(u._id)!==String(userId)),learningStates:store.learningStates.filter(d=>d.userId!==String(userId)),adminLogs:store.adminLogs.map(d=>String(d.targetUser)===String(userId)?{...d,targetUser:null,details:{redactedAt:nowIso(),reason:'Approved account erasure'}}:d),governance:records});
+}
+
 module.exports = {
   User,
   AdminLog,
   LearningState,
+  Governance,
+  eraseLocalAccount,
   initializeLocalStore,
   resetLocalStore,
   DATA_FILE,

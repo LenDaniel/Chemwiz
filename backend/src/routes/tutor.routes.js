@@ -1,5 +1,6 @@
 const express = require('express');
 const { protect } = require('../middleware/auth.middleware');
+const { requireAIConsent } = require('../middleware/privacy.middleware');
 const { requirePremium } = require('../middleware/access.middleware');
 const { rateLimit } = require('express-rate-limit');
 const { askAI, moderate, transcribeAudio, TutorProviderError } = require('../services/ai.service');
@@ -43,7 +44,7 @@ const voiceDailyLimit = rateLimit({
 });
 
 const audioTypes = new Set(['audio/webm', 'audio/mp4', 'audio/mpeg', 'audio/wav', 'audio/ogg']);
-router.post('/transcribe', protect, requirePremium, (req, res, next) => {
+router.post('/transcribe', protect, requirePremium, requireAIConsent, (req, res, next) => {
   const type = String(req.headers['content-type'] || '').split(';')[0].toLowerCase();
   if (!audioTypes.has(type)) return res.status(415).json({ success: false, code: 'VOICE_FORMAT', message: 'This voice note format is unsupported. Try recording in the browser.' });
   return next();
@@ -63,7 +64,7 @@ router.post('/transcribe', protect, requirePremium, (req, res, next) => {
   }
 });
 
-router.post('/message', protect, requirePremium, tutorRateLimit, async (req, res) => {
+router.post('/message', protect, requirePremium, requireAIConsent, tutorRateLimit, async (req, res) => {
   const body = req.body || {};
   const context = body.context && typeof body.context === 'object' ? body.context : {};
   const topicId = String(body.topicId || '').trim().slice(0, 80);

@@ -1,3 +1,4 @@
+const {acceptedPrivacy,seedPrivacyFixture}=require('../../scripts/lib/privacy-fixture.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -14,7 +15,8 @@ test('live voice requires Premium and a selected context; backend creates scoped
   process.env.OPENAI_API_KEY = 'live-test-api-key';
   process.env.AI_LIVE_IN_LOCAL_MODE = 'true';
   process.env.AI_LIVE_VOICE_ENABLED = 'true';
-  const { User } = require('../src/data/localModels');
+  seedPrivacyFixture(process.env.LOCAL_DATA_FILE);
+const { User } = require('../src/data/localModels');
   const app = express();
   app.use(express.json());
   app.use('/api/tutor', require('../src/routes/tutor.routes'));
@@ -28,8 +30,8 @@ test('live voice requires Premium and a selected context; backend creates scoped
     return new Response('v=0\no=- 2 2 IN IP4 127.0.0.1\n', { status: 201, headers: { 'Content-Type': 'application/sdp' } });
   };
   try {
-    const free = await User.create({ passwordPolicyVersion:1, authVersion:0, name: 'Free', email: 'livefree@test.local', subscriptionTier: 'free' });
-    const premium = await User.create({ passwordPolicyVersion:1, authVersion:0, name: 'Premium', email: 'livepremium@test.local', subscriptionTier: 'premium' });
+    const free = await User.create({ privacy:acceptedPrivacy(), passwordPolicyVersion:1, authVersion:0, name: 'Free', email: 'livefree@test.local', subscriptionTier: 'free' });
+    const premium = await User.create({ privacy:acceptedPrivacy(), passwordPolicyVersion:1, authVersion:0, name: 'Premium', email: 'livepremium@test.local', subscriptionTier: 'premium' });
     const endpoint = `http://127.0.0.1:${server.address().port}/api/tutor/live/session`;
     const sdp = 'v=0\no=- 1 1 IN IP4 127.0.0.1\ns=ChemWiz\nt=0 0\na=group:BUNDLE 0\nm=audio 9 UDP/TLS/RTP/SAVPF 111\na=mid:0\n';
     const send = (user, context) => nativeFetch(endpoint, {

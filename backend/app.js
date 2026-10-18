@@ -23,6 +23,8 @@ const tutorRoutes = require('./src/routes/tutor.routes');
 const progressRoutes = require('./src/routes/progress.routes');
 const quizRoutes = require('./src/routes/quiz.routes');
 const adminRoutes = require('./src/routes/admin.routes');
+const privacyRoutes = require('./src/routes/privacy.routes');
+const schoolsRoutes = require('./src/routes/schools.routes');
 
 const app = express();
 const { version } = require('../package.json');
@@ -108,6 +110,8 @@ app.use('/api/tutor', tutorRoutes);
 app.use('/api/progress', progressRoutes);
 app.use('/api/quiz', quizRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/privacy', privacyRoutes);
+app.use('/api/schools', schoolsRoutes);
 
 app.use((req, res) => {
   res.status(404).json({

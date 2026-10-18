@@ -1,5 +1,6 @@
 const hasActiveSubscription = (user) => {
   if (!user) return false;
+  if (user.schoolEntitlement === true) return true;
 
   const tier = user.subscriptionTier || "free";
   const status = user.subscriptionStatus || "active";

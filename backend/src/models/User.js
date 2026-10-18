@@ -21,6 +21,7 @@ const userSchema = new mongoose.Schema(
     passwordPolicyVersion: { type:Number, default:0 },
     authVersion: { type:Number, default:0 },
     passwordReset: { type:mongoose.Schema.Types.Mixed, default:null, select:false },
+    privacy: { type:mongoose.Schema.Types.Mixed, default:null },
     role: {
       type: String,
       enum: ["student", "teacher", "admin"],

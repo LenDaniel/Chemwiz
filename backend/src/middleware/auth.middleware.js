@@ -44,6 +44,8 @@ const protect = async (req, res, next) => {
       });
     }
 
+    if(user.role!=='admin'&&user.privacy?.guardianId&&!await require('../services/privacy.service').currentGuardian(user))user.privacy={...user.privacy,coreConsent:false,aiConsent:false,voiceConsent:false,guardianWithdrawn:true};
+    if(user.role!=='admin')user.schoolEntitlement=await require('../services/schools.service').hasEntitlement(user);
     req.user = user;
     next();
   } catch (error) {

@@ -1,6 +1,7 @@
 const express = require('express');
 const { rateLimit } = require('express-rate-limit');
 const { protect } = require('../middleware/auth.middleware');
+const { requireAIConsent } = require('../middleware/privacy.middleware');
 const { requirePremium } = require('../middleware/access.middleware');
 const { createLiveCall, parseContext, LiveVoiceError } = require('../services/liveVoice.service');
 
@@ -17,7 +18,7 @@ const dailyLimit = rateLimit({
   message: { success: false, code: 'LIVE_VOICE_DAILY_LIMIT', message: 'Your live voice sessions are used up for today. Use voice notes or text chat.' },
 });
 
-router.post('/session', protect, requirePremium, (req, res, next) => {
+router.post('/session', protect, requirePremium, requireAIConsent, (req, res, next) => {
   if (process.env.AI_LIVE_VOICE_ENABLED !== 'true') return res.status(503).json({ success: false, code: 'LIVE_VOICE_DISABLED', message: 'Live voice is not enabled yet.' });
   if (String(process.env.DATA_MODE || '').toLowerCase() === 'local' && process.env.AI_LIVE_IN_LOCAL_MODE !== 'true') {
     return res.status(503).json({ success: false, code: 'VOICE_OFFLINE', message: 'Enable live local mode to use voice chat.' });

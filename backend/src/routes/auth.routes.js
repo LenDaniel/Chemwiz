@@ -3,6 +3,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const crypto = require('node:crypto');
+const privacy = require('../services/privacy.service');
 const { setTimeout: delay } = require('node:timers/promises');
 const { User, dataMode } = require('../data/modelProvider');
 const { protect } = require('../middleware/auth.middleware');
@@ -52,6 +53,7 @@ const formatUser = (user) => {
     subscriptionExpiresAt: expiry,
     trialStartedAt: user.trialStartedAt || null,
     accountStatus: user.accountStatus || "active",
+    privacy: privacy.summary(user),
     access: {
       isPremium: hasActiveSubscription(user),
       isExpired: Boolean(isExpired),
@@ -69,13 +71,20 @@ router.post("/register", registerLimiter, async (req,res) => {
     if (typeof name !== 'string' || !name.trim() || name.length > 100 || !emailValid(email) || typeof password !== 'string') return res.status(400).json({message:'A name, valid email and password are required.'});
     const issues = passwordIssues(password);
     if (issues.length) return res.status(400).json({code:'PASSWORD_POLICY',message:issues.join(' ')});
+    const prepared = await privacy.preparePrivacy(req.body.onboarding || {},email);
     const escaped = email.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
     if (await User.findOne({email:{$regex:`^${escaped}$`,$options:'i'}})) return res.status(409).json({message:'An account with this email already exists.'});
     if (dataMode === 'mongodb') await User.init();
-    const user = await User.create({name:name.trim(),email,password:await bcrypt.hash(password,12),passwordPolicyVersion:PASSWORD_POLICY_VERSION,authVersion:0});
+    let user = await User.create({name:name.trim(),email,password:await bcrypt.hash(password,12),passwordPolicyVersion:PASSWORD_POLICY_VERSION,authVersion:0,privacy:null});
+    // Activate only after the single-use guardian grant is reserved. A race
+    // cannot create a second authorised child account with the same grant.
+    await privacy.consumeGuardian(prepared,user._id);
+    await privacy.recordConsent(user._id,prepared.value,'registration');
+    user = await User.findOneAndUpdate({_id:user._id},{$set:{privacy:prepared.value}},{new:true});
     return res.status(201).json({message:'Account created successfully.',token:accessToken(user),user:formatUser(user)});
   } catch(error) {
     if (error.code === 11000) return res.status(409).json({message:'An account with this email already exists.'});
+    if (error.statusCode && error.code) return res.status(error.statusCode).json({code:error.code,message:error.message});
     console.error('Register error:',{name:error.name,code:error.code});
     return res.status(500).json({message:'Server error while creating account.'});
   }

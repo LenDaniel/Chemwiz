@@ -1,3 +1,4 @@
+const {acceptedPrivacy,seedPrivacyFixture}=require('../../scripts/lib/privacy-fixture.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -15,12 +16,13 @@ process.env.OPENAI_API_KEY = 'test-only-provider-key';
 process.env.AI_DAILY_MESSAGE_LIMIT = '1';
 process.env.AI_LIVE_IN_LOCAL_MODE = 'true';
 
+seedPrivacyFixture(process.env.LOCAL_DATA_FILE);
 const { User } = require('../src/data/localModels');
 const tutorRoutes = require('../src/routes/tutor.routes');
 
 test('Wiz enforces auth and access, sends scoped messages to OpenAI, and persists the daily cap', async () => {
-  const freeUser = await User.create({ passwordPolicyVersion:1, authVersion:0, name: 'Free learner', email: 'free@test.local', subscriptionTier: 'free' });
-  const premiumUser = await User.create({ passwordPolicyVersion:1, authVersion:0, name: 'Pilot learner', email: 'pilot@test.local', subscriptionTier: 'premium' });
+  const freeUser = await User.create({ privacy:acceptedPrivacy(), passwordPolicyVersion:1, authVersion:0, name: 'Free learner', email: 'free@test.local', subscriptionTier: 'free' });
+  const premiumUser = await User.create({ privacy:acceptedPrivacy(), passwordPolicyVersion:1, authVersion:0, name: 'Pilot learner', email: 'pilot@test.local', subscriptionTier: 'premium' });
   const token = (user) => jwt.sign({ id: user._id }, process.env.JWT_SECRET);
   const app = express();
   app.use(express.json());
