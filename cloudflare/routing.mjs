@@ -3,7 +3,7 @@ const HEADERS = {
   'Referrer-Policy': 'strict-origin-when-cross-origin',
   'X-Frame-Options': 'SAMEORIGIN',
   'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
-  'Content-Security-Policy': "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'",
+  'Content-Security-Policy': "default-src 'self'; script-src 'self'; worker-src 'self'; manifest-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'",
 };
 export function securedResponse(response, { html = false, api = false } = {}) {
   const headers = new Headers(response.headers);
@@ -26,13 +26,16 @@ export async function routeStatic(request, assets) {
   }
   if (!['GET', 'HEAD'].includes(request.method)) return json({ success: false, message: 'Route not found.' }, 404);
   const routed = assetPath(url.pathname);
+  const studentPwa = ['/student/sw.js','/student/manifest.webmanifest','/student/offline.html','/student/icons/chemwiz.svg','/student/icons/chemwiz-192.png','/student/icons/chemwiz-512.png'].includes(routed);
   // No backend file, data file or dotfile can be reached through a workspace fallback.
-  if (!['/index.html', '/student/index.html', '/admin/index.html', '/legal/index.html'].includes(routed) && !routed.startsWith('/assets/')) {
+  if (!studentPwa && !['/index.html', '/student/index.html', '/admin/index.html', '/legal/index.html'].includes(routed) && !routed.startsWith('/assets/')) {
     return json({ success: false, message: 'Route not found.' }, 404);
   }
   const destination = new URL(request.url);
   destination.pathname = routed;
   const response = await assets.fetch(new Request(destination, request));
   if (response.status === 404) return json({ success: false, message: 'Route not found.' }, 404);
-  return securedResponse(response, { html: routed.endsWith('.html') });
+  const secured = securedResponse(response, { html: routed.endsWith('.html') });
+  if (studentPwa) secured.headers.set('Cache-Control', 'no-cache');
+  return secured;
 }
