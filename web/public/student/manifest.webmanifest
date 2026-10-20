@@ -1,0 +1,18 @@
+{
+  "id": "/student/",
+  "name": "ChemWiz Chemistry",
+  "short_name": "ChemWiz",
+  "description": "Your ZIMSEC A-Level Chemistry learning workspace.",
+  "lang": "en",
+  "start_url": "/student/",
+  "scope": "/student/",
+  "display": "standalone",
+  "background_color": "#060b18",
+  "theme_color": "#060b18",
+  "prefer_related_applications": false,
+  "icons": [
+    {"src": "/student/icons/chemwiz-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "/student/icons/chemwiz-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"},
+    {"src": "/student/icons/chemwiz.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}
+  ]
+}
