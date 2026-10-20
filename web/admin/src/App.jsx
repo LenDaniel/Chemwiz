@@ -6,6 +6,7 @@ import { adminLoginMessage, isAdminAuthError } from './config/session.mjs';
 
 import {
   checkAdmin,
+  trashUserAccount,
   getAdminLogs,
   getAdminStats,
   getAdminUsers,
@@ -29,9 +30,16 @@ export default function App() {
   const [password, setPassword] = useState("");
 
   const [stats, setStats] = useState(null);
+  const [recordsVersion, setRecordsVersion] = useState(0);
   const [users, setUsers] = useState([]);
   const [logs, setLogs] = useState([]);
   const [pagination, setPagination] = useState(null);
+  const [usersOpen, setUsersOpen] = useState(false);
+  const [usersStatus, setUsersStatus] = useState('idle');
+  const [usersError, setUsersError] = useState('');
+  const usersExpanded = useRef(false);
+  const usersState = useRef('idle');
+  const usersRequest = useRef(0);
 
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
@@ -52,7 +60,10 @@ export default function App() {
   }
 
   async function loadUsers(activeToken, overrides = {}, epoch = sessionEpoch.current) {
-    const data = await getAdminUsers(activeToken, {
+    const request = ++usersRequest.current;
+    usersState.current = 'loading'; setUsersStatus('loading'); setUsersError('');
+    try {
+      const data = await getAdminUsers(activeToken, {
       search,
       role: roleFilter,
       subscriptionTier: tierFilter,
@@ -63,9 +74,26 @@ export default function App() {
       ...overrides,
     });
 
-    if (epoch === sessionEpoch.current) {
+    if (epoch === sessionEpoch.current && request === usersRequest.current) {
       setUsers(data.users || []);
       setPagination(data.pagination || null);
+      usersState.current = 'loaded'; setUsersStatus('loaded');
+    }
+    } catch (error) {
+      if (epoch === sessionEpoch.current && request === usersRequest.current) {
+        usersState.current = 'error'; setUsersStatus('error'); setUsersError(error.message || 'Could not load users.');
+      }
+      throw error;
+    }
+  }
+
+  function toggleUsers(open) {
+    usersExpanded.current = open; setUsersOpen(open);
+    if (open && ['idle', 'error'].includes(usersState.current)) {
+      const epoch = sessionEpoch.current;
+      loadUsers(token, {}, epoch).catch(error => {
+        if (epoch === sessionEpoch.current && isAdminAuthError(error)) setError(adminLoginMessage(error));
+      });
     }
   }
 
@@ -75,13 +103,13 @@ export default function App() {
   }
 
   async function loadDashboard(activeToken, initial = false, epoch = sessionEpoch.current) {
-    const results = await Promise.allSettled([
-      loadStats(activeToken, epoch), loadUsers(activeToken, initial ? { page: 1 } : {}, epoch), loadLogs(activeToken, epoch),
-    ]);
+    const panels = [['statistics', () => loadStats(activeToken, epoch)], ['audit logs', () => loadLogs(activeToken, epoch)]];
+    if (usersExpanded.current) panels.push(['users', () => loadUsers(activeToken, initial ? { page: 1 } : {}, epoch)]);
+    const results = await Promise.allSettled(panels.map(([, load]) => load()));
     if (epoch !== sessionEpoch.current) return;
     const denied = results.find(result => result.status === 'rejected' && isAdminAuthError(result.reason));
     if (denied) throw denied.reason;
-    const names = ['statistics', 'users', 'audit logs'];
+    const names = panels.map(([name]) => name);
     const missing = results.flatMap((result,index) => result.status === 'rejected' ? [names[index]] : []);
     setError(missing.length ? `You are signed in. Could not load ${missing.join(', ')}. Use Refresh to retry.` : '');
   }
@@ -95,6 +123,9 @@ export default function App() {
       const test = await checkAdmin(activeToken);
       if (epoch !== sessionEpoch.current) return;
       setAdmin(test.admin); setPage(1);
+      usersExpanded.current = false; setUsersOpen(false);
+      usersState.current = 'idle'; setUsersStatus('idle'); setUsersError('');
+      usersRequest.current++; setUsers([]); setPagination(null);
       await loadDashboard(activeToken, true, epoch);
     } catch (err) {
       if (epoch !== sessionEpoch.current) return;
@@ -147,6 +178,8 @@ export default function App() {
     setUsers([]);
     setLogs([]);
     setPagination(null);
+    usersExpanded.current = false; setUsersOpen(false);
+    usersState.current = 'idle'; setUsersStatus('idle'); setUsersError(''); usersRequest.current++;
 
     setSearch("");
     setRoleFilter("");
@@ -209,6 +242,9 @@ export default function App() {
 
     setBusy(true);
     setError("");
+    if (!usersExpanded.current) {
+      usersRequest.current++; usersState.current = 'idle'; setUsersStatus('idle');
+    }
 
     try {
       await loadDashboard(token);
@@ -219,68 +255,38 @@ export default function App() {
     }
   }
 
-  async function handleSubscriptionChange(userId, payload) {
+  async function mutateUser(action, message) {
     if (!token) return;
-
-    setBusy(true);
-    setError("");
-
+    const epoch = sessionEpoch.current;
+    setBusy(true); setError('');
     try {
-      await updateUserSubscription(token, userId, payload);
-
+      await action();
+      if (epoch !== sessionEpoch.current) return;
       await Promise.all([
-        loadStats(token),
-        loadUsers(token),
-        loadLogs(token),
+        loadStats(token, epoch), loadLogs(token, epoch),
+        ...(usersExpanded.current ? [loadUsers(token, {}, epoch)] : []),
       ]);
-    } catch (err) {
-      setError(err.message || "Could not update subscription.");
-    } finally {
-      setBusy(false);
-    }
+      if (!usersExpanded.current) { usersState.current = 'idle'; setUsersStatus('idle'); }
+    } catch (error) {
+      if (epoch === sessionEpoch.current) setError(error.message || message);
+    } finally { if (epoch === sessionEpoch.current) setBusy(false); }
   }
+  const handleSubscriptionChange = (userId, payload) => mutateUser(
+    () => updateUserSubscription(token, userId, payload), 'Could not update subscription.');
+  const handleAccountStatusChange = (userId, status) => mutateUser(
+    () => updateUserStatus(token, userId, { accountStatus: status }), 'Could not update account status.');
+  const handleRoleChange = (userId, role) => mutateUser(
+    () => updateUserRole(token, userId, { role }), 'Could not update user role.');
 
-  async function handleAccountStatusChange(userId, accountStatus) {
-    if (!token) return;
-
-    setBusy(true);
-    setError("");
-
+  async function handleTrashUser(userId, payload) {
+    const epoch = sessionEpoch.current; setBusy(true); setError('');
     try {
-      await updateUserStatus(token, userId, { accountStatus });
-
-      await Promise.all([
-        loadStats(token),
-        loadUsers(token),
-        loadLogs(token),
-      ]);
-    } catch (err) {
-      setError(err.message || "Could not update account status.");
-    } finally {
-      setBusy(false);
-    }
+      const result = await trashUserAccount(token, userId, payload);
+      if (epoch === sessionEpoch.current) { await loadDashboard(token, false, epoch); setRecordsVersion(value => value + 1); }
+      return result;
+    } finally { if (epoch === sessionEpoch.current) setBusy(false); }
   }
-
-  async function handleRoleChange(userId, role) {
-  if (!token) return;
-
-  setBusy(true);
-  setError("");
-
-  try {
-    await updateUserRole(token, userId, { role });
-
-    await Promise.all([
-      loadStats(token),
-      loadUsers(token),
-      loadLogs(token),
-    ]);
-  } catch (err) {
-    setError(err.message || "Could not update user role.");
-  } finally {
-    setBusy(false);
-  }
-}
+  function handleRecordsChanged() { setRecordsVersion(value => value + 1); handleRefresh(); }
 
   async function goToPage(nextPage) {
     if (!token || nextPage < 1) return;
@@ -331,10 +337,17 @@ export default function App() {
     <AdminDashboard
       admin={admin}
       token={token}
+      recordsVersion={recordsVersion}
+      onRecordsChanged={handleRecordsChanged}
+      handleTrashUser={handleTrashUser}
       busy={busy}
       error={error}
       stats={stats}
       users={users}
+      usersOpen={usersOpen}
+      usersStatus={usersStatus}
+      usersError={usersError}
+      onUsersToggle={toggleUsers}
       logs={logs}
       search={search}
       setSearch={setSearch}

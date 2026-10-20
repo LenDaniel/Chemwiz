@@ -1,6 +1,11 @@
-
+import { RecordConfirmDialog } from './RecordConfirmDialog.jsx';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 export function UsersPanel({
   users,
+  handleTrashUser,
+  status,
+  visible,
+  error,
   search,
   setSearch,
   roleFilter,
@@ -23,6 +28,26 @@ export function UsersPanel({
   onViewUser,
   currentAdminId,
 }) {
+  const [deleteAction, setDeleteAction] = useState(null);
+  const tableRef = useRef(null);
+  const lastScroll = useRef(0), visibleRef = useRef(visible);
+  visibleRef.current = visible;
+  const [scroll, setScroll] = useState({ left: 0, max: 0 });
+  useLayoutEffect(() => { if (visible && tableRef.current) tableRef.current.scrollLeft = lastScroll.current; }, [visible]);
+  useEffect(() => {
+    const region = tableRef.current;
+    if (!region) return undefined;
+    const measure = () => {
+      if (!visibleRef.current || !region.clientWidth) return;
+      lastScroll.current = region.scrollLeft;
+      setScroll({ left: region.scrollLeft, max: Math.max(0, region.scrollWidth - region.clientWidth) });
+    };
+    const observer = new ResizeObserver(measure);
+    observer.observe(region); observer.observe(region.querySelector('table'));
+    region.addEventListener('scroll', measure, { passive: true }); measure();
+    return () => { observer.disconnect(); region.removeEventListener('scroll', measure); };
+  }, []);
+  const moveTable = value => { if (tableRef.current) tableRef.current.scrollLeft = value; };
   const confirmRoleChange = (user, role) => {
     if (user.id === currentAdminId && role !== "admin") {
       window.alert("You cannot remove your own admin role.");
@@ -80,11 +105,11 @@ export function UsersPanel({
   };
 
   return (
-    <section className="panel">
+    <div className="users-panel-body">
       <div className="panel-header">
         <div>
           <p className="eyebrow">CLIENTS</p>
-          <h2>Users & Subscriptions</h2>
+          <h3>Accounts and subscription controls</h3>
         </div>
 
         <form className="search-row" onSubmit={handleSearch}>
@@ -134,7 +159,7 @@ export function UsersPanel({
           <option value="">All accounts</option>
           <option value="active">active</option>
           <option value="suspended">suspended</option>
-          <option value="disabled">disabled</option>
+          <option value="disabled">inactive (disabled)</option>
         </select>
 
         <button disabled={busy} type="button" onClick={handleSearch}>
@@ -151,7 +176,23 @@ export function UsersPanel({
         </button>
       </div>
 
-      <div className="table-wrap" role="region" tabIndex={0} aria-label="Users and subscriptions; scroll horizontally for all columns">
+      {status === 'loading' && <p className="users-load-status" role="status">Loading users…</p>}
+      {error && <div className="users-load-status" role="alert"><p>{error}</p><button type="button" disabled={busy || status === 'loading'} onClick={handleSearch}>Retry users</button></div>}
+      <div className="users-scroll-tools">
+        <label htmlFor="admin-users-scroll">Table navigation</label>
+        <input id="admin-users-scroll" type="range" min="0" max={scroll.max} step="1"
+          value={Math.min(scroll.left, scroll.max)} disabled={scroll.max === 0}
+          aria-label="Scroll users table horizontally" aria-controls="admin-users-table"
+          aria-valuetext={scroll.max ? `${Math.round(scroll.left / scroll.max * 100)} percent across the table` : 'All columns visible'}
+          onChange={event => moveTable(Number(event.target.value))}
+          onKeyDown={event => {
+            const positions = { ArrowLeft: scroll.left - 80, ArrowRight: scroll.left + 80,
+              Home: 0, End: scroll.max, PageUp: scroll.left - 400, PageDown: scroll.left + 400 };
+            if (event.key in positions) { event.preventDefault(); moveTable(Math.max(0, Math.min(scroll.max, positions[event.key]))); }
+          }}/>
+        <small>{scroll.max ? 'Drag the bar or use arrow keys. Home / End jump to the first / last columns.' : 'All columns are visible.'}</small>
+      </div>
+      <div ref={tableRef} id="admin-users-table" className="table-wrap" role="region" tabIndex={0} aria-label="Users and subscriptions; scroll horizontally for all columns" aria-busy={status === 'loading'}>
         <table>
           <thead>
             <tr>
@@ -258,7 +299,7 @@ export function UsersPanel({
                     >
                       <option value="active">active</option>
                       <option value="suspended">suspended</option>
-                      <option value="disabled">disabled</option>
+                      <option value="disabled">inactive (disabled)</option>
                     </select>
                   </td>
 
@@ -278,12 +319,14 @@ export function UsersPanel({
                     >
                       View
                     </button>
+                    <button type="button" className="record-danger" disabled={busy || user.role === 'admin' || !['suspended','disabled'].includes(user.accountStatus)}
+                      title="Suspend or set a non-admin account to inactive before deleting it" onClick={() => setDeleteAction({ title:'Delete account', description:'This account and its saved records move to the recycle bin for at least 90 days. Sessions and school memberships are revoked. Permanent deletion is a separate action after the retention period.', confirmation:user.email, reasonRequired:true, destructive:true, button:'Move to recycle bin', run:body=>handleTrashUser(user.id,body) })}>Delete account</button>
                   </td>
                 </tr>
               );
             })}
 
-            {users.length === 0 && (
+            {users.length === 0 && status !== 'loading' && !error && (
               <tr>
                 <td colSpan="8" className="empty-cell">
                   No users found.
@@ -294,6 +337,7 @@ export function UsersPanel({
         </table>
       </div>
 
+      {deleteAction && <RecordConfirmDialog action={deleteAction} onClose={() => setDeleteAction(null)} />}
       <div className="pagination">
         <button
           disabled={busy || page <= 1}
@@ -313,6 +357,6 @@ export function UsersPanel({
           Next
         </button>
       </div>
-    </section>
+    </div>
   );
 }

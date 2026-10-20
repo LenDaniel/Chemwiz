@@ -1,19 +1,27 @@
+import { LazyRecordPanel } from '../components/LazyRecordPanel.jsx';
 import {PrivacyAdmin} from '../components/PrivacyAdmin.jsx';
 import { useState } from "react";
 
 import { AdminSidebar } from "../components/AdminSidebar.jsx";
 import { StatsGrid } from "../components/StatsGrid.jsx";
-import { UsersPanel } from "../components/UsersPanel.jsx";
+import { LazyUsersPanel } from "../components/LazyUsersPanel.jsx";
 import { UserDetailsModal } from "../components/UserDetailsModal.jsx";
 import { AdminLogsPanel } from "../components/AdminLogsPanel.jsx";
 
 export function AdminDashboard({
   admin,
   token,
+  recordsVersion,
+  onRecordsChanged,
+  handleTrashUser,
   busy,
   error,
   stats,
   users,
+  usersOpen,
+  usersStatus,
+  usersError,
+  onUsersToggle,
   logs,
   search,
   setSearch,
@@ -37,6 +45,7 @@ export function AdminDashboard({
   goToPage,
 }) {
   const [selectedUser, setSelectedUser] = useState(null);
+  const [usersActivated, setUsersActivated] = useState(false);
 
   return (
     <div className="admin-shell">
@@ -63,10 +72,24 @@ export function AdminDashboard({
         {error && <div className="error-box wide" role="alert">{error}</div>}
 
         <StatsGrid stats={stats} />
-        <PrivacyAdmin token={token} users={users}/>
+        <PrivacyAdmin token={token}/>
 
-        <UsersPanel
+        <section className="panel users-section" aria-label="Users and subscriptions administration">
+          <h2 className="users-section-heading"><button type="button" className="users-section-toggle"
+            aria-expanded={usersOpen} aria-controls="admin-users-content" onClick={() => {
+              if (!usersOpen) setUsersActivated(true);
+              onUsersToggle(!usersOpen);
+            }}>
+            <span>Users &amp; Subscriptions</span><span aria-hidden="true">{usersOpen ? '▾' : '▸'}</span>
+          </button></h2>
+          {!usersActivated && <p className="users-section-hint">Open to load accounts, filters and subscription controls.</p>}
+          <div id="admin-users-content" hidden={!usersOpen}>
+        {usersActivated && <LazyUsersPanel
           users={users}
+          handleTrashUser={handleTrashUser}
+          status={usersStatus}
+          visible={usersOpen}
+          error={usersError}
           search={search}
           setSearch={setSearch}
           roleFilter={roleFilter}
@@ -79,7 +102,7 @@ export function AdminDashboard({
           setAccountStatusFilter={setAccountStatusFilter}
           handleSearch={handleSearch}
           handleClearFilters={handleClearFilters}
-          busy={busy}
+          busy={busy || usersStatus === 'loading'}
           handleRoleChange={handleRoleChange}
           handleSubscriptionChange={handleSubscriptionChange}
           handleAccountStatusChange={handleAccountStatusChange}
@@ -88,8 +111,12 @@ export function AdminDashboard({
           goToPage={goToPage}
           onViewUser={setSelectedUser}
           currentAdminId={admin?.id}
-        />
+        />}
+          </div>
+        </section>
 
+        <RecordSection title="Recycle bin" kind="bin" token={token} version={recordsVersion} onChanged={onRecordsChanged} />
+        <RecordSection title="Content & Sources" kind="content" token={token} version={recordsVersion} onChanged={onRecordsChanged} />
         <AdminLogsPanel logs={logs || []} />
       </main>
 
@@ -99,4 +126,11 @@ export function AdminDashboard({
       />
     </div>
   );
+}
+
+function RecordSection({ title, kind, token, version, onChanged }) {
+  const [open, setOpen] = useState(false), [activated, setActivated] = useState(false);
+  return <section className="panel record-section"><h2 className="users-section-heading"><button type="button" className="users-section-toggle" aria-expanded={open} aria-controls={'admin-records-' + kind} onClick={() => {setOpen(!open);setActivated(true);}}><span>{title}</span><span aria-hidden="true">{open?'▾':'▸'}</span></button></h2>
+    <div id={'admin-records-' + kind} hidden={!open}>{activated && <LazyRecordPanel kind={kind} token={token} visible={open} version={version} onChanged={onChanged} />}</div>
+  </section>;
 }

@@ -123,3 +123,13 @@ export function updateUserRole(token, userId, payload) {
 }
 
 export { API_BASE_URL };
+
+export function trashUserAccount(token, userId, payload) { return apiRequest(`/api/admin/users/${userId}/trash`, {method:'POST',token,body:payload}); }
+export function getRecycleBin(token, params = {}) { const qs = new URLSearchParams(params).toString(); return apiRequest(`/api/admin/recycle-bin?${qs}`, {method:'GET',token}); }
+export function restoreRecycleEntry(token, entryId, payload) { return apiRequest(`/api/admin/recycle-bin/${entryId}/restore`, {method:'POST',token,body:payload}); }
+export function purgeRecycleEntry(token, entryId, payload) { return apiRequest(`/api/admin/recycle-bin/${entryId}`, {method:'DELETE',token,body:payload}); }
+export function getContentInventory(token, params = {}) { const qs = new URLSearchParams(params).toString(); return apiRequest(`/api/admin/content-inventory?${qs}`, {method:'GET',token}); }
+export function getContentDrafts(token, params = {}) { const qs = new URLSearchParams(params).toString(); return apiRequest(`/api/admin/content?${qs}`, {method:'GET',token}); }
+export function createContentDraft(token, payload) { return apiRequest('/api/admin/content', {method:'POST',token,body:payload}); }
+export function updateContentDraft(token, id, payload) { return apiRequest(`/api/admin/content/${id}`, {method:'PUT',token,body:payload}); }
+export function trashContentDraft(token, id, payload) { return apiRequest(`/api/admin/content/${id}`, {method:'DELETE',token,body:payload}); }
