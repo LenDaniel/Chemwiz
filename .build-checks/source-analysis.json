@@ -1,7 +1,7 @@
 {
   "passed": true,
-  "files": 220,
-  "imports": 697,
+  "files": 236,
+  "imports": 791,
   "frontend": [
     {
       "file": "web/admin/src/config/api.js",
@@ -227,6 +227,201 @@
           "protect",
           "adminOnly",
           "inline"
+        ]
+      }
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "trashUserAccount",
+      "method": "POST",
+      "path": "/api/admin/users/:param/trash",
+      "backend": {
+        "file": "backend/src/routes/admin.routes.js",
+        "path": "/api/admin/users/:userId/trash",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordWriteLimit",
+          "recordRoute"
+        ]
+      }
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "getRecycleBin",
+      "method": "GET",
+      "path": "/api/admin/recycle-bin",
+      "backend": {
+        "file": "backend/src/routes/admin.routes.js",
+        "path": "/api/admin/recycle-bin",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordRoute"
+        ]
+      }
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "restoreRecycleEntry",
+      "method": "POST",
+      "path": "/api/admin/recycle-bin/:param/restore",
+      "backend": {
+        "file": "backend/src/routes/admin.routes.js",
+        "path": "/api/admin/recycle-bin/:entryId/restore",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordWriteLimit",
+          "recordRoute"
+        ]
+      }
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "purgeRecycleEntry",
+      "method": "DELETE",
+      "path": "/api/admin/recycle-bin/:param",
+      "backend": {
+        "file": "backend/src/routes/admin.routes.js",
+        "path": "/api/admin/recycle-bin/:entryId",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordWriteLimit",
+          "recordRoute"
+        ]
+      }
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "getContentInventory",
+      "method": "GET",
+      "path": "/api/admin/content-inventory",
+      "backend": {
+        "file": "backend/src/routes/admin.routes.js",
+        "path": "/api/admin/content-inventory",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordRoute"
+        ]
+      }
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "getContentDrafts",
+      "method": "GET",
+      "path": "/api/admin/content",
+      "backend": {
+        "file": "backend/src/routes/admin.routes.js",
+        "path": "/api/admin/content",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordRoute"
+        ]
+      }
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "createContentDraft",
+      "method": "POST",
+      "path": "/api/admin/content",
+      "backend": {
+        "file": "backend/src/routes/admin.routes.js",
+        "path": "/api/admin/content",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordWriteLimit",
+          "recordRoute"
+        ]
+      }
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "updateContentDraft",
+      "method": "PUT",
+      "path": "/api/admin/content/:param",
+      "backend": {
+        "file": "backend/src/routes/admin.routes.js",
+        "path": "/api/admin/content/:id",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordWriteLimit",
+          "recordRoute"
+        ]
+      }
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "trashContentDraft",
+      "method": "DELETE",
+      "path": "/api/admin/content/:param",
+      "backend": {
+        "file": "backend/src/routes/admin.routes.js",
+        "path": "/api/admin/content/:id",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordWriteLimit",
+          "recordRoute"
         ]
       }
     },
@@ -1194,6 +1389,156 @@
         "urlencoded",
         "ensureDataReady",
         "placeholder"
+      ]
+    },
+    {
+      "file": "backend/src/routes/admin.routes.js",
+      "method": "POST",
+      "path": "/api/admin/users/:userId/trash",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "adminOnly",
+        "recordWriteLimit",
+        "recordRoute"
+      ]
+    },
+    {
+      "file": "backend/src/routes/admin.routes.js",
+      "method": "GET",
+      "path": "/api/admin/recycle-bin",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "adminOnly",
+        "recordRoute"
+      ]
+    },
+    {
+      "file": "backend/src/routes/admin.routes.js",
+      "method": "POST",
+      "path": "/api/admin/recycle-bin/:entryId/restore",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "adminOnly",
+        "recordWriteLimit",
+        "recordRoute"
+      ]
+    },
+    {
+      "file": "backend/src/routes/admin.routes.js",
+      "method": "DELETE",
+      "path": "/api/admin/recycle-bin/:entryId",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "adminOnly",
+        "recordWriteLimit",
+        "recordRoute"
+      ]
+    },
+    {
+      "file": "backend/src/routes/admin.routes.js",
+      "method": "GET",
+      "path": "/api/admin/content-inventory",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "adminOnly",
+        "recordRoute"
+      ]
+    },
+    {
+      "file": "backend/src/routes/admin.routes.js",
+      "method": "GET",
+      "path": "/api/admin/content",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "adminOnly",
+        "recordRoute"
+      ]
+    },
+    {
+      "file": "backend/src/routes/admin.routes.js",
+      "method": "POST",
+      "path": "/api/admin/content",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "adminOnly",
+        "recordWriteLimit",
+        "recordRoute"
+      ]
+    },
+    {
+      "file": "backend/src/routes/admin.routes.js",
+      "method": "PUT",
+      "path": "/api/admin/content/:id",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "adminOnly",
+        "recordWriteLimit",
+        "recordRoute"
+      ]
+    },
+    {
+      "file": "backend/src/routes/admin.routes.js",
+      "method": "DELETE",
+      "path": "/api/admin/content/:id",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "adminOnly",
+        "recordWriteLimit",
+        "recordRoute"
       ]
     },
     {

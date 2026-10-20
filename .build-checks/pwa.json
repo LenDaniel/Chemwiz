@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "buildId": "1.7.0-05558702ab99ea1a",
+  "cacheFiles": [
+    "/student/offline.html",
+    "/student/manifest.webmanifest",
+    "/student/icons/chemwiz-192.png",
+    "/student/icons/chemwiz-512.png",
+    "/student/icons/chemwiz.svg"
+  ],
+  "checks": [
+    "Learner-only manifest and standalone start URL",
+    "Actual 192/512 PNG icons",
+    "Deterministic worker matches this release and recovery file hashes",
+    "Recovery cache is limited to five explicit public files"
+  ]
+}

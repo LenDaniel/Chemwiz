@@ -344,6 +344,87 @@
       "mode": "local fixture"
     },
     {
+      "file": "web/admin/src/config/api.js",
+      "export": "trashUserAccount",
+      "method": "POST",
+      "path": "/api/admin/users/:userId/trash",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "getRecycleBin",
+      "method": "GET",
+      "path": "/api/admin/recycle-bin",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "restoreRecycleEntry",
+      "method": "POST",
+      "path": "/api/admin/recycle-bin/:entryId/restore",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "purgeRecycleEntry",
+      "method": "DELETE",
+      "path": "/api/admin/recycle-bin/:entryId",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "getContentInventory",
+      "method": "GET",
+      "path": "/api/admin/content-inventory",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "getContentDrafts",
+      "method": "GET",
+      "path": "/api/admin/content",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "createContentDraft",
+      "method": "POST",
+      "path": "/api/admin/content",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "updateContentDraft",
+      "method": "PUT",
+      "path": "/api/admin/content/:id",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "trashContentDraft",
+      "method": "DELETE",
+      "path": "/api/admin/content/:id",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
       "file": "web/student/src/config/api.js",
       "export": "askTutor",
       "method": "POST",
@@ -381,6 +462,6 @@
     "Production scripts restricted by CSP and framework identification header removed",
     "Invalid learner records rejected by backend validation"
   ],
-  "backendRoutesCovered": 45,
+  "backendRoutesCovered": 54,
   "externalServices": "Not called: fixture data only; live voice/transcription connection requires separate provider/device acceptance."
 }

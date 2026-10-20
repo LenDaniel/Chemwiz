@@ -2,9 +2,9 @@
 
 Status: PASS
 
-Version: 1.5.3
+Version: 1.7.0
 
-Source fingerprint: a8398fce0accd1f44c9f6734f276f36f2d6285fb3d73e17ca621c569c5347237
+Source fingerprint: 91184343229fe47d6e837b040e9470eef94dbd3ea58b322932260bf93805c040
 
 | Frontend function | Method | API path | Backend file | Declared middleware |
 | --- | --- | --- | --- | --- |
@@ -19,6 +19,15 @@ Source fingerprint: a8398fce0accd1f44c9f6734f276f36f2d6285fb3d73e17ca621c569c534
 | updateUserStatus | PATCH | /api/admin/users/:param/status | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, inline |
 | getAdminLogs | GET | /api/admin/logs | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, inline |
 | updateUserRole | PATCH | /api/admin/users/:param/role | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, inline |
+| trashUserAccount | POST | /api/admin/users/:param/trash | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, recordWriteLimit, recordRoute |
+| getRecycleBin | GET | /api/admin/recycle-bin | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, recordRoute |
+| restoreRecycleEntry | POST | /api/admin/recycle-bin/:param/restore | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, recordWriteLimit, recordRoute |
+| purgeRecycleEntry | DELETE | /api/admin/recycle-bin/:param | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, recordWriteLimit, recordRoute |
+| getContentInventory | GET | /api/admin/content-inventory | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, recordRoute |
+| getContentDrafts | GET | /api/admin/content | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, recordRoute |
+| createContentDraft | POST | /api/admin/content | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, recordWriteLimit, recordRoute |
+| updateContentDraft | PUT | /api/admin/content/:param | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, recordWriteLimit, recordRoute |
+| trashContentDraft | DELETE | /api/admin/content/:param | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, recordWriteLimit, recordRoute |
 | registerUser | POST | /api/auth/register | backend/src/routes/auth.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, registerLimiter, inline |
 | loginUser | POST | /api/auth/login | backend/src/routes/auth.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, loginLimiter, inline |
 | requestPasswordReset | POST | /api/auth/forgot-password | backend/src/routes/auth.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, recoveryLimiter, inline |

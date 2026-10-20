@@ -3,17 +3,18 @@
   "metrics": {
     "entryJsGzipBytes": {
       "index.html": 0,
-      "student/index.html": 95876,
-      "admin/index.html": 62602,
+      "student/index.html": 98754,
+      "admin/index.html": 63954,
       "legal/index.html": 53240
     },
-    "totalJsGzipBytes": 722759,
-    "totalCssGzipBytes": 10701,
+    "totalJsGzipBytes": 733499,
+    "totalCssGzipBytes": 11214,
     "largestLazyJsGzipBytes": 200856,
-    "totalRawBytes": 4302442,
+    "totalRawBytes": 4356102,
     "largestFileRawBytes": 1244466,
     "deferredTopics": 24,
-    "searchDeferred": true
+    "searchDeferred": true,
+    "usersPanelDeferred": true
   },
   "checks": [
     {
@@ -24,13 +25,13 @@
     },
     {
       "name": "Initial JavaScript: student/index.html",
-      "value": 95876,
+      "value": 98754,
       "limit": 120000,
       "status": "PASS"
     },
     {
       "name": "Initial JavaScript: admin/index.html",
-      "value": 62602,
+      "value": 63954,
       "limit": 120000,
       "status": "PASS"
     },
@@ -42,13 +43,13 @@
     },
     {
       "name": "totalJsGzipBytes",
-      "value": 722759,
+      "value": 733499,
       "limit": 800000,
       "status": "PASS"
     },
     {
       "name": "totalCssGzipBytes",
-      "value": 10701,
+      "value": 11214,
       "limit": 20000,
       "status": "PASS"
     },
@@ -60,7 +61,7 @@
     },
     {
       "name": "totalRawBytes",
-      "value": 4302442,
+      "value": 4356102,
       "limit": 5000000,
       "status": "PASS"
     },
@@ -78,6 +79,10 @@
     },
     {
       "name": "Search stays deferred",
+      "status": "PASS"
+    },
+    {
+      "name": "Admin users controls stay deferred",
       "status": "PASS"
     }
   ],
