@@ -1,0 +1,4484 @@
+{
+  "schemaVersion": 1,
+  "notice": "A source inventory is not rights clearance. All existing entries start unreviewed.",
+  "counts": {
+    "topic-source": 24,
+    "chapter": 255,
+    "diagram": 218
+  },
+  "assets": [
+    {
+      "assetId": "chapter:atomic:ch1",
+      "type": "chapter",
+      "topicId": "atomic",
+      "title": "Subatomic Particles",
+      "sourceFile": "web/student/src/content/atomic.jsx",
+      "assetHash": "005839d22dbeabb7bebbfb66d850832ee01e1fbfd594b63c1eba01857614e082",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:atomic:ch2",
+      "type": "chapter",
+      "topicId": "atomic",
+      "title": "Behaviour in Electric Fields",
+      "sourceFile": "web/student/src/content/atomic.jsx",
+      "assetHash": "d45dde65744d003dba8178ab10845f8dfc44170502c90a5b169f2c679510548d",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:atomic:ch3",
+      "type": "chapter",
+      "topicId": "atomic",
+      "title": "Quantum Numbers (n, l, mₗ, mₛ)",
+      "sourceFile": "web/student/src/content/atomic.jsx",
+      "assetHash": "ba23649cee1e3628afa875dba0b02443d388a585afe24b6abb428b53caef6a29",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:atomic:ch4",
+      "type": "chapter",
+      "topicId": "atomic",
+      "title": "Shapes of s and p Orbitals",
+      "sourceFile": "web/student/src/content/atomic.jsx",
+      "assetHash": "dd1fa8a981243ace67d0c635d05c8848951165926038dbd288c5cddc1a8aa9e4",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:atomic:ch5",
+      "type": "chapter",
+      "topicId": "atomic",
+      "title": "Filling Orbitals — Aufbau, Pauli, Hund",
+      "sourceFile": "web/student/src/content/atomic.jsx",
+      "assetHash": "674a49d2e8dee648f11f5daf66be0ae22ac1bdba44abbdc8b7c2678ed81a9fb7",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:atomic:ch6",
+      "type": "chapter",
+      "topicId": "atomic",
+      "title": "Ionisation Energy — Foundations",
+      "sourceFile": "web/student/src/content/atomic.jsx",
+      "assetHash": "6cf7a0d97be67d91de127ff3f55473a3f954cbcc9d7032830708e9b442ecaca0",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:atomic:ch7",
+      "type": "chapter",
+      "topicId": "atomic",
+      "title": "IE Trends & Successive IE",
+      "sourceFile": "web/student/src/content/atomic.jsx",
+      "assetHash": "02f08ab322ad58ef75a79facf0ccbc1872062c6b8a53bda3eb0f4e2218a5730e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:bonding:b1",
+      "type": "chapter",
+      "topicId": "bonding",
+      "title": "Why Atoms Bond",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "803b96c9cb189f37bd8586729037dd39738465c158c4cf65c13f216a7e536c32",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:bonding:b10",
+      "type": "chapter",
+      "topicId": "bonding",
+      "title": "Bonding & Periodicity Link",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "9785a3810639f1f00376714e0a5f19ea3e51d00ea1b16fd49103c260d21f2a7b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:bonding:b11",
+      "type": "chapter",
+      "topicId": "bonding",
+      "title": "Exam Technique & Diagnostics",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "9917486fcdd5bcb52fe8676b26905b081170b53ae982d52e200062be21e45075",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:bonding:b2",
+      "type": "chapter",
+      "topicId": "bonding",
+      "title": "Ionic Bonding",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "bef08fc270ee47714bb932bb0851a30f00df6851ea35413479d81918a0734550",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:bonding:b3",
+      "type": "chapter",
+      "topicId": "bonding",
+      "title": "Covalent Bonding",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "ae7d6b822062d31b0ce4329bf090f6e57dbff73fad612baec62d11ae8fcdf460",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:bonding:b4",
+      "type": "chapter",
+      "topicId": "bonding",
+      "title": "Bond Reactivity — Length, Energy, Polarity",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "2aeb548ca616ca7ed5917efc66cf0bd2dd683ee9ad8cd2cd1116f8db6b4373b0",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:bonding:b5",
+      "type": "chapter",
+      "topicId": "bonding",
+      "title": "Dative (Coordinate) Bonding",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "bbfc2c9ada2dba220ed48362fe7cc248e7278cceffc47b1c1906f2a8abd61461",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:bonding:b6",
+      "type": "chapter",
+      "topicId": "bonding",
+      "title": "Shapes of Molecules — VSEPR",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "be9b9d151e7f48c87f4061eabe7280293cfddeb9e2b6aa5450f7c2453f42be6a",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:bonding:b7",
+      "type": "chapter",
+      "topicId": "bonding",
+      "title": "Metallic Bonding",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "9cbc4e99a78fc73c97a959887bef3d3933d85677ee5d3aac632a8cff3ab818f2",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:bonding:b8",
+      "type": "chapter",
+      "topicId": "bonding",
+      "title": "Intermolecular Forces",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "70d80cd6390d6ac2768961d67f8951b76158045a53df982f4b2835e9b86dcf19",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:bonding:b9",
+      "type": "chapter",
+      "topicId": "bonding",
+      "title": "Effect of Bonding on Properties",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "dd4b92f7195eba12882a9d92e9b08afb4df1588b0e7ac08c37a88b5d54cce360",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carbonyl:cb1",
+      "type": "chapter",
+      "topicId": "carbonyl",
+      "title": "The Carbonyl Group: C=O",
+      "sourceFile": "web/student/src/content/carbonyl.jsx",
+      "assetHash": "56908feaa6ccbca6b7109b5696c4665291ed32d4d44c78b9e7c4944ac34296ab",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carbonyl:cb10",
+      "type": "chapter",
+      "topicId": "carbonyl",
+      "title": "Distinguishing Aldehydes & Ketones",
+      "sourceFile": "web/student/src/content/carbonyl.jsx",
+      "assetHash": "ec7451ec2171f00253a64923edbb1520d45916df59f821884c291df0d96c8aef",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carbonyl:cb11",
+      "type": "chapter",
+      "topicId": "carbonyl",
+      "title": "Carbonyls in Synthesis",
+      "sourceFile": "web/student/src/content/carbonyl.jsx",
+      "assetHash": "023fc82ead3bc5ae6ca0ce42fdff21a6b9c6d513f4c48428d1f7ada44f9b5e0e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carbonyl:cb12",
+      "type": "chapter",
+      "topicId": "carbonyl",
+      "title": "Exam Technique & Common Pitfalls",
+      "sourceFile": "web/student/src/content/carbonyl.jsx",
+      "assetHash": "8ce90a28ae497421e2d6f1e97f32d14098dcd60786ceda05a4b6b65397f6fcd3",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carbonyl:cb2",
+      "type": "chapter",
+      "topicId": "carbonyl",
+      "title": "Naming Aldehydes & Ketones",
+      "sourceFile": "web/student/src/content/carbonyl.jsx",
+      "assetHash": "9eb545286364b20d9ba4907d21b2869c9918147ed6b7f11c29015342607074ca",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carbonyl:cb3",
+      "type": "chapter",
+      "topicId": "carbonyl",
+      "title": "Isomerism",
+      "sourceFile": "web/student/src/content/carbonyl.jsx",
+      "assetHash": "339027bde9417235cd62ff175e37087a0ccb8612b440d1763eb61dd644cea142",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carbonyl:cb4",
+      "type": "chapter",
+      "topicId": "carbonyl",
+      "title": "Preparation: Oxidation of Alcohols",
+      "sourceFile": "web/student/src/content/carbonyl.jsx",
+      "assetHash": "e09272d0cda0ee58b59f5d6edfbb1d618ae596e846d6aa728b577290abccd1fa",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carbonyl:cb5",
+      "type": "chapter",
+      "topicId": "carbonyl",
+      "title": "Nucleophilic Addition: HCN Mechanism",
+      "sourceFile": "web/student/src/content/carbonyl.jsx",
+      "assetHash": "21f0ebaf2373f99bf0bad0f675dd103f5eecc6268bdd12e74a6e96ea3f85677d",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carbonyl:cb6",
+      "type": "chapter",
+      "topicId": "carbonyl",
+      "title": "Reduction with NaBH₄",
+      "sourceFile": "web/student/src/content/carbonyl.jsx",
+      "assetHash": "b86d537ed8e7ab7101671b101d76ee716dbbb2763a191c5dcaab4c7851181184",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carbonyl:cb7",
+      "type": "chapter",
+      "topicId": "carbonyl",
+      "title": "2,4-DNPH (Brady's Reagent)",
+      "sourceFile": "web/student/src/content/carbonyl.jsx",
+      "assetHash": "59898ea6182b3bf7563fbfb0cf85fd7dbf4b11d4f15fc133d1773bd01c2aa32d",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carbonyl:cb8",
+      "type": "chapter",
+      "topicId": "carbonyl",
+      "title": "Tollens' & Fehling's Tests",
+      "sourceFile": "web/student/src/content/carbonyl.jsx",
+      "assetHash": "af98a64b88997c23e71423535f1deed5a528f3cd771c4649906eb7675a9c91d2",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carbonyl:cb9",
+      "type": "chapter",
+      "topicId": "carbonyl",
+      "title": "The Iodoform Test for Methyl Carbonyls",
+      "sourceFile": "web/student/src/content/carbonyl.jsx",
+      "assetHash": "a6ae20fd436ac409542bcc32ea4c950471dabe3db0daa6017478b5a232e9337c",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carboxylic:ca1",
+      "type": "chapter",
+      "topicId": "carboxylic",
+      "title": "The Carboxylic Acid Group",
+      "sourceFile": "web/student/src/content/carboxylic.jsx",
+      "assetHash": "ca4496d42f8e6faf570ed98bef9143db25ac82878769a912b2f6c19859fbe2ff",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carboxylic:ca10",
+      "type": "chapter",
+      "topicId": "carboxylic",
+      "title": "Distinguishing Tests & Functional Group ID",
+      "sourceFile": "web/student/src/content/carboxylic.jsx",
+      "assetHash": "14bd7363095567190d254074788a14581aef633aaea9f1bfbfb9bb9c75d3e4f2",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carboxylic:ca11",
+      "type": "chapter",
+      "topicId": "carboxylic",
+      "title": "Synthesis: Multi-Step Examples",
+      "sourceFile": "web/student/src/content/carboxylic.jsx",
+      "assetHash": "4942169995d774e0d617f2af6eca2e6307f671386af4d0a5831b765604a8f63a",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carboxylic:ca12",
+      "type": "chapter",
+      "topicId": "carboxylic",
+      "title": "Exam Technique & Common Pitfalls",
+      "sourceFile": "web/student/src/content/carboxylic.jsx",
+      "assetHash": "8fbcff6c4260c8b7aae5eddbca704b5a1ab59a86b803112e9a3e08fa64617116",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carboxylic:ca2",
+      "type": "chapter",
+      "topicId": "carboxylic",
+      "title": "Preparation of Carboxylic Acids",
+      "sourceFile": "web/student/src/content/carboxylic.jsx",
+      "assetHash": "01be984177385722f5cd48d612842900308e8e0abd21d4f29d25cfeec78e2d71",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carboxylic:ca3",
+      "type": "chapter",
+      "topicId": "carboxylic",
+      "title": "Reactions of Carboxylic Acids",
+      "sourceFile": "web/student/src/content/carboxylic.jsx",
+      "assetHash": "327cb0070cf44d5fe68862443a11acd01e8ebe2e505a9f55bb005898126c9538",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carboxylic:ca4",
+      "type": "chapter",
+      "topicId": "carboxylic",
+      "title": "Acidity & The Inductive Effect",
+      "sourceFile": "web/student/src/content/carboxylic.jsx",
+      "assetHash": "0264d7b2577945c06a60228b951f9488793334820089edde51e2d65adde6def1",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carboxylic:ca5",
+      "type": "chapter",
+      "topicId": "carboxylic",
+      "title": "Acyl Chlorides: Reactions",
+      "sourceFile": "web/student/src/content/carboxylic.jsx",
+      "assetHash": "13cb70e6b974d2c03dd47d7213c059a22482e3bae01fb8234d3e2533af0128a5",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carboxylic:ca6",
+      "type": "chapter",
+      "topicId": "carboxylic",
+      "title": "Comparing Hydrolysis: Acyl vs Alkyl vs Aryl Chlorides",
+      "sourceFile": "web/student/src/content/carboxylic.jsx",
+      "assetHash": "fb9b098db3cbce47c2a99a1c102f27b60669e0842341486ae37c65731e577daa",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carboxylic:ca7",
+      "type": "chapter",
+      "topicId": "carboxylic",
+      "title": "Esters: Properties, Formation & Hydrolysis",
+      "sourceFile": "web/student/src/content/carboxylic.jsx",
+      "assetHash": "b5151ab870575547ef2375226e0cb2cec85097712867d251085e1009338f1df1",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carboxylic:ca8",
+      "type": "chapter",
+      "topicId": "carboxylic",
+      "title": "Soap Manufacture & Saponification",
+      "sourceFile": "web/student/src/content/carboxylic.jsx",
+      "assetHash": "e92dcabc762fdd15603f74d16bf1eb8fed96d6db7c5b50fad2a462d685f9530a",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:carboxylic:ca9",
+      "type": "chapter",
+      "topicId": "carboxylic",
+      "title": "Amides & Their Hydrolysis",
+      "sourceFile": "web/student/src/content/carboxylic.jsx",
+      "assetHash": "774564ff85b23aca530e6ea320d9066297d551a76981ae95e696a724cae62c05",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:electrochem:ec1",
+      "type": "chapter",
+      "topicId": "electrochem",
+      "title": "Oxidation & Reduction Revisited",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "559bf0b1170fcd7cfa41f37cff43e50ee83b72eca5f0e0a2d3af112db91e29bc",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:electrochem:ec10",
+      "type": "chapter",
+      "topicId": "electrochem",
+      "title": "Predicting Electrolysis Products",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "b5e001f4fbe2b10a8ee6c6531f127e265fb467be95285d8c1e538fb049982747",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:electrochem:ec11",
+      "type": "chapter",
+      "topicId": "electrochem",
+      "title": "Rusting & Corrosion Prevention",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "62c33fdafacd92d643e8b5da5ed92b82fae64a23113c8cd538e0a0973b087639",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:electrochem:ec12",
+      "type": "chapter",
+      "topicId": "electrochem",
+      "title": "Exam Technique & Common Pitfalls",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "061a2a08be1e0e767adc191685b96b6af9f86d85c64ea29d2d0ec1e24214cf48",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:electrochem:ec2",
+      "type": "chapter",
+      "topicId": "electrochem",
+      "title": "Writing Half-Equations",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "f852930b13e619a9911fa72fd41bb471fc27e8bdb80fe08f13589c56fa40d814",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:electrochem:ec3",
+      "type": "chapter",
+      "topicId": "electrochem",
+      "title": "Standard Electrode Potentials",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "412a29ee258ae6fc6f9e0d9f6db74b2bae3f9007ad33940c88938434cd0fe0cb",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:electrochem:ec4",
+      "type": "chapter",
+      "topicId": "electrochem",
+      "title": "Electrolysis: Forcing Non-Spontaneous Reactions",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "fb04fce73d50500c9057c104fa957f5496d844fd66577bb418ea40208a0c9742",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:electrochem:ec5",
+      "type": "chapter",
+      "topicId": "electrochem",
+      "title": "Electrolysis of Acidified Water",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "cb321f9fd912a87cf8d70b82eb745f8904fc2fcfc290736c9cf29cf844c0b7e0",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:electrochem:ec6",
+      "type": "chapter",
+      "topicId": "electrochem",
+      "title": "Industrial Electrolysis: Al, Cu, Cl₂",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "46f71f142dcf7a53d1d3886ee3acc3df4ed2745249f8228f30fd1801af966f37",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:electrochem:ec7",
+      "type": "chapter",
+      "topicId": "electrochem",
+      "title": "Redox Titrations",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "5fc40e645221b53d48e450f8cf3b392b828913acc27eefed789e9f10e0be19f7",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:electrochem:ec8",
+      "type": "chapter",
+      "topicId": "electrochem",
+      "title": "Fuel Cells",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "667d7e5a03beafefcd3dcfb8b9abccb7523565b29ac913b54bf8cfd1c142b9ae",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:electrochem:ec9",
+      "type": "chapter",
+      "topicId": "electrochem",
+      "title": "Quantitative Electrolysis (Faraday)",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "5f9e0ae56401844972fd8b8aa49030934a7b21fdc1de7a0027e90f223c05b7be",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:energetics:e1",
+      "type": "chapter",
+      "topicId": "energetics",
+      "title": "Why Energy Matters in Chemistry",
+      "sourceFile": "web/student/src/content/energetics.jsx",
+      "assetHash": "f764cf4d46e4168ebcab1602070fbe7946bae6441430123db6e6741a31ed881e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:energetics:e10",
+      "type": "chapter",
+      "topicId": "energetics",
+      "title": "Exam Technique & Common Pitfalls",
+      "sourceFile": "web/student/src/content/energetics.jsx",
+      "assetHash": "d3bca18ed71caa6d475620a2c31982e6b5233c03db28825ee9ae8f55780eb5b3",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:energetics:e2",
+      "type": "chapter",
+      "topicId": "energetics",
+      "title": "Standard Enthalpy Changes",
+      "sourceFile": "web/student/src/content/energetics.jsx",
+      "assetHash": "69539d8bcf322a724a4d3d72f3f310d0e4b010a8146fcdb11343acb3ad99653e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:energetics:e3",
+      "type": "chapter",
+      "topicId": "energetics",
+      "title": "Calorimetry: Measuring ΔH",
+      "sourceFile": "web/student/src/content/energetics.jsx",
+      "assetHash": "df59637902f04fefe8be907df61888d0fa70b875c96878333e57c477cb0b6c9b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:energetics:e4",
+      "type": "chapter",
+      "topicId": "energetics",
+      "title": "Neutralisation, Hydration & Solution",
+      "sourceFile": "web/student/src/content/energetics.jsx",
+      "assetHash": "6b910929a5ed4ab57f054bf0be4865a8ef5352d02d16c32158c1dbb44aa98964",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:energetics:e5",
+      "type": "chapter",
+      "topicId": "energetics",
+      "title": "Bond Energy Calculations",
+      "sourceFile": "web/student/src/content/energetics.jsx",
+      "assetHash": "e19045438df7ecd4d9955bbde76c6a28759bf1168337ee0da9d092412a6ed733",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:energetics:e6",
+      "type": "chapter",
+      "topicId": "energetics",
+      "title": "Hess's Law & Energy Cycles",
+      "sourceFile": "web/student/src/content/energetics.jsx",
+      "assetHash": "3de081b1dafd8470c02a80ee8c2f7184307450ad3fcf42a2c613bef856a244cf",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:energetics:e7",
+      "type": "chapter",
+      "topicId": "energetics",
+      "title": "Born-Haber Cycles",
+      "sourceFile": "web/student/src/content/energetics.jsx",
+      "assetHash": "b5b5f9c42a5c526b08022198e6f5341df22a4702ee8496ae6bc91b40894a5a21",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:energetics:e8",
+      "type": "chapter",
+      "topicId": "energetics",
+      "title": "Charge Density & Lattice Energy Factors",
+      "sourceFile": "web/student/src/content/energetics.jsx",
+      "assetHash": "b36156eb1b86cc0969747861aca87718e31cd8de0fbfbe9e6c2060dd0f024559",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:energetics:e9",
+      "type": "chapter",
+      "topicId": "energetics",
+      "title": "Thermometric Titrations",
+      "sourceFile": "web/student/src/content/energetics.jsx",
+      "assetHash": "228be053f3a474ced533e4d4c14850ef5d0bde7b300d96bd2df3977d0c9788c7",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:environment:ev1",
+      "type": "chapter",
+      "topicId": "environment",
+      "title": "Pollution and Environmental Chemistry — Setting the Scene",
+      "sourceFile": "web/student/src/content/environment.jsx",
+      "assetHash": "aaba620c3cf410264ea4512eedea8ba004825272272009f0cb3b0d5d01d1a7a1",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:environment:ev10",
+      "type": "chapter",
+      "topicId": "environment",
+      "title": "Heavy Metals & Industrial Effluent",
+      "sourceFile": "web/student/src/content/environment.jsx",
+      "assetHash": "7dc101856ad90c1d33858742002c6ef544804cd15eec7760b7ab6736b3d0e6ab",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:environment:ev2",
+      "type": "chapter",
+      "topicId": "environment",
+      "title": "Sulphur Dioxide & Acid Rain",
+      "sourceFile": "web/student/src/content/environment.jsx",
+      "assetHash": "b115e4bd7ef7f45d7f9ad81de1cfee2cec2991ef91548630e47d3c7897835f19",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:environment:ev3",
+      "type": "chapter",
+      "topicId": "environment",
+      "title": "Controlling SO₂ Emissions",
+      "sourceFile": "web/student/src/content/environment.jsx",
+      "assetHash": "2dda0be9274fc69f3123d1e02288dcfe163daaa7e0133d291708ab26451d9aa3",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:environment:ev4",
+      "type": "chapter",
+      "topicId": "environment",
+      "title": "Nitrogen Oxides & Acid Rain",
+      "sourceFile": "web/student/src/content/environment.jsx",
+      "assetHash": "d6712159e9a2de6f5dc457d4236b0c5d2ca582b20c0e9df187170a8c0c497918",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:environment:ev5",
+      "type": "chapter",
+      "topicId": "environment",
+      "title": "Catalytic Converters & Lean-Burn Engines",
+      "sourceFile": "web/student/src/content/environment.jsx",
+      "assetHash": "7f17c12610bc71e5e636f2ba90ddc0eb9842eee0338a50b49aff395dd0159be8",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:environment:ev6",
+      "type": "chapter",
+      "topicId": "environment",
+      "title": "Power Generation & Climate",
+      "sourceFile": "web/student/src/content/environment.jsx",
+      "assetHash": "34134d9f5dbe4651658b25954af9bdef12d6047489203e27166f801f094f792e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:environment:ev7",
+      "type": "chapter",
+      "topicId": "environment",
+      "title": "Nuclear Power & Hazards",
+      "sourceFile": "web/student/src/content/environment.jsx",
+      "assetHash": "c48bd819f5c54ebecf4675376b1f06b4af6cfe56bc9b4eecf53890059ab3b95a",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:environment:ev8",
+      "type": "chapter",
+      "topicId": "environment",
+      "title": "Waste Management Hierarchy",
+      "sourceFile": "web/student/src/content/environment.jsx",
+      "assetHash": "11afaf32281e95e1e5a38691800618c0a697c87232f6c9956bf88bd11816e9cc",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:environment:ev9",
+      "type": "chapter",
+      "topicId": "environment",
+      "title": "Landfill, Incineration & Dumping",
+      "sourceFile": "web/student/src/content/environment.jsx",
+      "assetHash": "7914fce09f84d533258d8ff7e41f1fb4911f9884c2261baed01179201197b35e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:equilibria:eq1",
+      "type": "chapter",
+      "topicId": "equilibria",
+      "title": "Reversible Reactions & Dynamic Equilibrium",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "6436321e97c0838d9e8056f1d4a55f1032058707bb72b25577efe8fa2e736d55",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:equilibria:eq10",
+      "type": "chapter",
+      "topicId": "equilibria",
+      "title": "Buffer Solutions",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "af88cd0f2d0c65c5d9bc9e8f0527f74197e40abd1232493d394ad4bac14240d9",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:equilibria:eq11",
+      "type": "chapter",
+      "topicId": "equilibria",
+      "title": "Solubility Product Ksp",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "acd461e91feb54e296f39f68c525d34c72cd3deaea8313b08f03c99424d60812",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:equilibria:eq12",
+      "type": "chapter",
+      "topicId": "equilibria",
+      "title": "The Common Ion Effect",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "72aad48c59a4cacb0960ba34dac419709da03e1f5e7e2cbe2fd59ee3b85f2af0",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:equilibria:eq13",
+      "type": "chapter",
+      "topicId": "equilibria",
+      "title": "Putting It All Together — Calculations",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "8de7a2dd27de26ea87461f41a1dfe8f577465f86cc1dfa5846c2a1fbb04733a8",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:equilibria:eq14",
+      "type": "chapter",
+      "topicId": "equilibria",
+      "title": "Exam Technique & Common Pitfalls",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "b8ebd2db2dc1f64afc9c4dbec78a9d65db6cec08530418ad20639b85bef622e7",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:equilibria:eq2",
+      "type": "chapter",
+      "topicId": "equilibria",
+      "title": "The Equilibrium Constant Kc",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "4c6c5687aba743e4b21ada958e9d344683f8b6a3d34d0ef36de6137ec34b3f29",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:equilibria:eq3",
+      "type": "chapter",
+      "topicId": "equilibria",
+      "title": "The Equilibrium Constant Kp",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "0ac663b7c615e36b67fee110fb57a37b661f464fcf9f6fef4360a7387415f34f",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:equilibria:eq4",
+      "type": "chapter",
+      "topicId": "equilibria",
+      "title": "Le Chatelier's Principle",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "d1403e779d1feb14c24a7b7d4eaf0494031a6ffac75fb5b0d6c4adc6c25aa100",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:equilibria:eq5",
+      "type": "chapter",
+      "topicId": "equilibria",
+      "title": "Brønsted-Lowry Acids & Bases",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "3eb3638dbd8e8480c2ce5e8fd000f2696562249562edc92d198823e1fc8916e5",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:equilibria:eq6",
+      "type": "chapter",
+      "topicId": "equilibria",
+      "title": "pH, pOH and the Ionic Product of Water",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "f050d74d21de41daff145fabb9f1c9bd8f6a62ffe4507229c8f333fb8b4f9ec7",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:equilibria:eq7",
+      "type": "chapter",
+      "topicId": "equilibria",
+      "title": "Ka, pKa, Kb, pKb — Weak Acid & Base Calculations",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "c948e7b80bab5788364e5d1daa797cd2c6b8acd47d8eade7509ef1de54f77f05",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:equilibria:eq8",
+      "type": "chapter",
+      "topicId": "equilibria",
+      "title": "Titration Curves",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "20eaf8f5fc7077192548049d18489ebd8ad501f21dfbb9e61b13a1f7006ca9ef",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:equilibria:eq9",
+      "type": "chapter",
+      "topicId": "equilibria",
+      "title": "Choice of Indicators",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "25f698df2733f5b17c772a2a65f5a8d08cb29ceabb73b4bd2d337d7fa0b00dcf",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group2:g21",
+      "type": "chapter",
+      "topicId": "group2",
+      "title": "The Alkaline Earth Metals",
+      "sourceFile": "web/student/src/content/group2.jsx",
+      "assetHash": "ccf7458fe99d368fd44226d9bd4b1d73fae0aa1095fc1ef9c7cce9ad06bddc29",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group2:g210",
+      "type": "chapter",
+      "topicId": "group2",
+      "title": "Exam Technique & Common Pitfalls",
+      "sourceFile": "web/student/src/content/group2.jsx",
+      "assetHash": "b32e0a5ea96eaf222936635af05b9ad5a4bb47b732f0f1e8e9deeafaf984cb71",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group2:g22",
+      "type": "chapter",
+      "topicId": "group2",
+      "title": "Trends in Physical Properties",
+      "sourceFile": "web/student/src/content/group2.jsx",
+      "assetHash": "80831452d775eb7aa0692841ecdc5f48c3f2ee2eee38c6337b8429fb16003cb8",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group2:g23",
+      "type": "chapter",
+      "topicId": "group2",
+      "title": "Reactions with Oxygen",
+      "sourceFile": "web/student/src/content/group2.jsx",
+      "assetHash": "11795d924f0e15c8d3399405f395b7dfc9a3cd85a08a6392f8511119debb3309",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group2:g24",
+      "type": "chapter",
+      "topicId": "group2",
+      "title": "Reactions with Water",
+      "sourceFile": "web/student/src/content/group2.jsx",
+      "assetHash": "76997971d7b1dae46abf20900ca9693e575150e8220265acb3793ec5cb2f4015",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group2:g25",
+      "type": "chapter",
+      "topicId": "group2",
+      "title": "Oxides with Water",
+      "sourceFile": "web/student/src/content/group2.jsx",
+      "assetHash": "5145da16e82c2458029d2b28fb50f054487eee2d99dfb48c846ef58b771d0e3e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group2:g26",
+      "type": "chapter",
+      "topicId": "group2",
+      "title": "Thermal Decomposition of Carbonates & Nitrates",
+      "sourceFile": "web/student/src/content/group2.jsx",
+      "assetHash": "f9ae491fedc7ecac2f7e9c5cdb60574d822cb53e93c91f0ec27a1a81fa322e92",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group2:g27",
+      "type": "chapter",
+      "topicId": "group2",
+      "title": "Solubility of Group II Sulphates",
+      "sourceFile": "web/student/src/content/group2.jsx",
+      "assetHash": "a559a426f10651fbcb88f2695dccaca87c747d521575f065636c13d5d5d4eac4",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group2:g28",
+      "type": "chapter",
+      "topicId": "group2",
+      "title": "Properties & Uses of Group II Compounds",
+      "sourceFile": "web/student/src/content/group2.jsx",
+      "assetHash": "778049e9480d3fd6eea87869d4882574c87fe9bed5aae22a5e9b01788b8fd167",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group2:g29",
+      "type": "chapter",
+      "topicId": "group2",
+      "title": "Solubility Trends Compared",
+      "sourceFile": "web/student/src/content/group2.jsx",
+      "assetHash": "067e79aa4a482b70d8934a2576ef88572860f343f38f7a939e9fac2b5bc7b794",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group4:g41",
+      "type": "chapter",
+      "topicId": "group4",
+      "title": "Group IV: Carbon to Lead",
+      "sourceFile": "web/student/src/content/group4.jsx",
+      "assetHash": "4dfcc50bdefed451f3ab130833ff7a05755cf37f6876cd66a0cf6e356de1e23a",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group4:g410",
+      "type": "chapter",
+      "topicId": "group4",
+      "title": "Why SiCl₄ Hydrolyses But CCl₄ Does Not",
+      "sourceFile": "web/student/src/content/group4.jsx",
+      "assetHash": "e5b1500e83ff1fae7fcb387e520cc9aa263031f369f8cf29cbda5719dc5a4e67",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group4:g411",
+      "type": "chapter",
+      "topicId": "group4",
+      "title": "Exam Technique & Common Pitfalls",
+      "sourceFile": "web/student/src/content/group4.jsx",
+      "assetHash": "8e52245e8952877465b8fad4128dc54317e305254b5598cffd4b6a02eb4793a7",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group4:g42",
+      "type": "chapter",
+      "topicId": "group4",
+      "title": "Melting Points & Electrical Conductivity",
+      "sourceFile": "web/student/src/content/group4.jsx",
+      "assetHash": "c39dd6ec0b4074c0b67ad73e98d2f32b60b96d8d626b808e04c6ae1a5e77c22c",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group4:g43",
+      "type": "chapter",
+      "topicId": "group4",
+      "title": "Diamond, Graphite & Fullerenes",
+      "sourceFile": "web/student/src/content/group4.jsx",
+      "assetHash": "44869291fe424c0c01f343ef6498805599a1e2587ae8731c8b8ade71ea369975",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group4:g44",
+      "type": "chapter",
+      "topicId": "group4",
+      "title": "The Inert Pair Effect",
+      "sourceFile": "web/student/src/content/group4.jsx",
+      "assetHash": "57538683613ae5cb2800b7f8c065face1302f51eabb7b60ee1efb36a04e8f762",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group4:g45",
+      "type": "chapter",
+      "topicId": "group4",
+      "title": "Oxides of Group IV",
+      "sourceFile": "web/student/src/content/group4.jsx",
+      "assetHash": "500196318a9511a511822a4a8e36dd09caae96d60f23b5174afd37c9187dcaa4",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group4:g46",
+      "type": "chapter",
+      "topicId": "group4",
+      "title": "Tetrachlorides: Bonding, Shape & Hydrolysis",
+      "sourceFile": "web/student/src/content/group4.jsx",
+      "assetHash": "b805417bb81686e13c95c1180d49c1f2a76c516989feb5d59e81aa965a5949f4",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group4:g47",
+      "type": "chapter",
+      "topicId": "group4",
+      "title": "Redox: Sn²⁺ as Reducer, Pb⁴⁺ as Oxidiser",
+      "sourceFile": "web/student/src/content/group4.jsx",
+      "assetHash": "05909faa7608d97b05658fe270ac07a3dce4e47e88292880e2c91f936dfbe02f",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group4:g48",
+      "type": "chapter",
+      "topicId": "group4",
+      "title": "Properties & Uses of Group IV Elements & Compounds",
+      "sourceFile": "web/student/src/content/group4.jsx",
+      "assetHash": "427cbbabc260ea3f95cd8131f344ce8bca927973ca909f02652a4adcd93dcd8e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group4:g49",
+      "type": "chapter",
+      "topicId": "group4",
+      "title": "Comparing Chlorides: MCl₄ vs MCl₂",
+      "sourceFile": "web/student/src/content/group4.jsx",
+      "assetHash": "2d7999ab7ebbe29120ff8b80862d13f01bceab6e32a6222289b75040d5b87fc6",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group7:g71",
+      "type": "chapter",
+      "topicId": "group7",
+      "title": "The Halogens: Cl₂, Br₂ & I₂",
+      "sourceFile": "web/student/src/content/group7.jsx",
+      "assetHash": "2507a662923e2eade850e934d3f0fcefeb2572c344e1a3be328989efca6517c2",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group7:g710",
+      "type": "chapter",
+      "topicId": "group7",
+      "title": "Halide Ions as Reducing Agents",
+      "sourceFile": "web/student/src/content/group7.jsx",
+      "assetHash": "c1e224ee7f72db06cca71a26b8e2af62f0d62b9cc374386d52e3f176e519bf16",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group7:g711",
+      "type": "chapter",
+      "topicId": "group7",
+      "title": "Exam Technique & Common Pitfalls",
+      "sourceFile": "web/student/src/content/group7.jsx",
+      "assetHash": "bab040359ec724ac14c4b038d0a6a14d12f2668ba2ab14a45db56fbf11ee9989",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group7:g72",
+      "type": "chapter",
+      "topicId": "group7",
+      "title": "Colour, Volatility & Van der Waals Forces",
+      "sourceFile": "web/student/src/content/group7.jsx",
+      "assetHash": "c540d26d6896d5195c99a8e734f6245635ad84747afa7a3b47ff375c951ad764",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group7:g73",
+      "type": "chapter",
+      "topicId": "group7",
+      "title": "Reactivity & E° Values",
+      "sourceFile": "web/student/src/content/group7.jsx",
+      "assetHash": "15042db8826ee478dcd76c107db42e7a78de1fdc36762e4c2ecc600097bd48df",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group7:g74",
+      "type": "chapter",
+      "topicId": "group7",
+      "title": "Hydrogen Halides & Thermal Stability",
+      "sourceFile": "web/student/src/content/group7.jsx",
+      "assetHash": "d51a2e6842b1ae5f7037ff916f9aecbe5d550b13e63a485f939104edb9d862ad",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group7:g75",
+      "type": "chapter",
+      "topicId": "group7",
+      "title": "Testing for Halide Ions: Ag⁺ & NH₃",
+      "sourceFile": "web/student/src/content/group7.jsx",
+      "assetHash": "82050a0458b9ec54e15c7b36852b445a9f7609e8578c6080a99b300f35fc4c81",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group7:g76",
+      "type": "chapter",
+      "topicId": "group7",
+      "title": "Halide Ions + Concentrated H₂SO₄",
+      "sourceFile": "web/student/src/content/group7.jsx",
+      "assetHash": "87c1aea1b43041792f3c95548d416de39bcc3cbffbc7ff48ac83910efa531840",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group7:g77",
+      "type": "chapter",
+      "topicId": "group7",
+      "title": "Disproportionation of Cl₂ with NaOH",
+      "sourceFile": "web/student/src/content/group7.jsx",
+      "assetHash": "b0389c8d3c873c0ab8e11f2a31972fc2dca3b6b2adc4a43bcd0cf290d1082e17",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group7:g78",
+      "type": "chapter",
+      "topicId": "group7",
+      "title": "Industrial Importance & Environmental Significance",
+      "sourceFile": "web/student/src/content/group7.jsx",
+      "assetHash": "a2d5f66cb9db8ad47aa3813b513994a72f15a0684b0fad59594a3376b1d9560d",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:group7:g79",
+      "type": "chapter",
+      "topicId": "group7",
+      "title": "Halogen Oxidation States & Thiosulphate",
+      "sourceFile": "web/student/src/content/group7.jsx",
+      "assetHash": "f85ecd649332da853c72e7736eead2b3e9c2c63c109b1b271647d7577f77961b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:halogen:hd1",
+      "type": "chapter",
+      "topicId": "halogen",
+      "title": "Halogenoalkanes: Naming & Classification",
+      "sourceFile": "web/student/src/content/halogen_deriv.jsx",
+      "assetHash": "98a2f1edd7c228ddb26cf813f96b8c82c522a2cd4c9aeced70c49821b355ba4c",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:halogen:hd10",
+      "type": "chapter",
+      "topicId": "halogen",
+      "title": "Synthesis Pathways via Halogenoalkanes",
+      "sourceFile": "web/student/src/content/halogen_deriv.jsx",
+      "assetHash": "981e98961fc4f346bca5f05026b85f534667a1f33de163647720f11b8ed26ee4",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:halogen:hd11",
+      "type": "chapter",
+      "topicId": "halogen",
+      "title": "Exam Technique & Common Pitfalls",
+      "sourceFile": "web/student/src/content/halogen_deriv.jsx",
+      "assetHash": "248cefa2fdf6cdb69a100d3e5f9251265024c133d816b162034684b74f6591dc",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:halogen:hd2",
+      "type": "chapter",
+      "topicId": "halogen",
+      "title": "Isomerism in Halogenoalkanes",
+      "sourceFile": "web/student/src/content/halogen_deriv.jsx",
+      "assetHash": "43c03f3242458efd5d02e73caf4f259e8f9ea4353e7d61738b79de696bc97a78",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:halogen:hd3",
+      "type": "chapter",
+      "topicId": "halogen",
+      "title": "Nucleophilic Substitution: Hydrolysis",
+      "sourceFile": "web/student/src/content/halogen_deriv.jsx",
+      "assetHash": "c6f9c1a459672abb273b59504361e94603e844ae9dc4c4f3d886595a059ff10b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:halogen:hd4",
+      "type": "chapter",
+      "topicId": "halogen",
+      "title": "SN2 Mechanism (Bimolecular)",
+      "sourceFile": "web/student/src/content/halogen_deriv.jsx",
+      "assetHash": "b0decfd7e62d7b7a8fb7e81e413692145c596d6866e14a5c49706e610f4095bc",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:halogen:hd5",
+      "type": "chapter",
+      "topicId": "halogen",
+      "title": "SN1 Mechanism (Unimolecular)",
+      "sourceFile": "web/student/src/content/halogen_deriv.jsx",
+      "assetHash": "4cbfc56c06008615fc860340f17dbe90c16c381dc77730c6a0259002b2b3a9bb",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:halogen:hd6",
+      "type": "chapter",
+      "topicId": "halogen",
+      "title": "Nitriles & Amines from Halogenoalkanes",
+      "sourceFile": "web/student/src/content/halogen_deriv.jsx",
+      "assetHash": "b3a93d276c592dd5851af2f7d04e5334da9a574c0c4ae8943236d362ec052bde",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:halogen:hd7",
+      "type": "chapter",
+      "topicId": "halogen",
+      "title": "Elimination: Forming Alkenes",
+      "sourceFile": "web/student/src/content/halogen_deriv.jsx",
+      "assetHash": "e46b0c131c8813190efaf60b2e8005aa2e45c82e6764bb2d908cc70f315a4e9b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:halogen:hd8",
+      "type": "chapter",
+      "topicId": "halogen",
+      "title": "Halogenoalkanes vs Chlorobenzene",
+      "sourceFile": "web/student/src/content/halogen_deriv.jsx",
+      "assetHash": "63ad27a50a1b4b57c870331a234a12b9f7a8ac177756877caaef8544ff0427d8",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:halogen:hd9",
+      "type": "chapter",
+      "topicId": "halogen",
+      "title": "Fluoroalkanes & CFCs",
+      "sourceFile": "web/student/src/content/halogen_deriv.jsx",
+      "assetHash": "6b922decf057b104137fb7ddfc2582334d9b4017fb9f6499d08e5a0438adf65d",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydrocarbons:h1",
+      "type": "chapter",
+      "topicId": "hydrocarbons",
+      "title": "Nomenclature (C1–C10)",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "cf7ba89bf951acd6c7adac5b150afae59f7923728d75308dfe17a8acf8cfceff",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydrocarbons:h10",
+      "type": "chapter",
+      "topicId": "hydrocarbons",
+      "title": "Ring vs Side-Chain Halogenation",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "fac6cdd15b95c50f5fff3db2c29f73622f1dd5717340ff629d1e6dc08af95961",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydrocarbons:h11",
+      "type": "chapter",
+      "topicId": "hydrocarbons",
+      "title": "Side-Chain Oxidation",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "0ffb002b19c9ebc9f061447ebec457c1ae04faa6f7d169a5052949300897a163",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydrocarbons:h12",
+      "type": "chapter",
+      "topicId": "hydrocarbons",
+      "title": "Industrial Uses & Environmental Impact",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "2a8cd40c88d071304f6f195eda5ba6b02c033b58ce308074b7510d89f33d636f",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydrocarbons:h13",
+      "type": "chapter",
+      "topicId": "hydrocarbons",
+      "title": "Reaction Summary & Exam Technique",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "956ac40c83d1d476a984ab0638dba75f88f9a1b22bace9d478e713ccb12170d1",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydrocarbons:h2",
+      "type": "chapter",
+      "topicId": "hydrocarbons",
+      "title": "Isomerism",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "c8e05599592d7f58372be4116d2c41211b0c5ace6733fe2ce7fd2a6672d60d28",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydrocarbons:h3",
+      "type": "chapter",
+      "topicId": "hydrocarbons",
+      "title": "Crude Oil, Natural Gas & Cracking",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "9f72b43f995f99c0daa6751a8d5a8f3add5107bc4a406aba354a3a1147c421de",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydrocarbons:h4",
+      "type": "chapter",
+      "topicId": "hydrocarbons",
+      "title": "Physical Properties",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "9abd942ef8d63b08053a84cd3ffec285944408855099c8f0c8485ea0d803956d",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydrocarbons:h5",
+      "type": "chapter",
+      "topicId": "hydrocarbons",
+      "title": "Chemistry of Alkanes (Ethane)",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "21526d12f195bf0d51b900d9513e95521ee19eaa9fe8a754cce659820e10d02f",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydrocarbons:h6",
+      "type": "chapter",
+      "topicId": "hydrocarbons",
+      "title": "Chemistry of Alkenes (Ethene)",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "d9327eafb607da3be5d78d5c63668102ebd296f0747dc91154a3c4fcaf3a2b9c",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydrocarbons:h7",
+      "type": "chapter",
+      "topicId": "hydrocarbons",
+      "title": "Benzene — Structure & Stability",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "4f339bca6ddf70a4bc345c9442073a181dac2f67b267990dd5f40d31999457c4",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydrocarbons:h8",
+      "type": "chapter",
+      "topicId": "hydrocarbons",
+      "title": "Reactions of Benzene",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "d26955e6c09dad2a30827607581b9b7cb19ff0b570318ee7d31d00c63d907fde",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydrocarbons:h9",
+      "type": "chapter",
+      "topicId": "hydrocarbons",
+      "title": "Methylbenzene — Directing Effects",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "5865f5877aa4bac5bf93e2ade2fb24751c0b2652ac7c873de581bdfb6d1799b6",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydroxy:hy1",
+      "type": "chapter",
+      "topicId": "hydroxy",
+      "title": "Naming & Classifying Alcohols",
+      "sourceFile": "web/student/src/content/hydroxy.jsx",
+      "assetHash": "887c15b4853415cc6de84568e0ab468e27c9ab0d0cbdc118ca987b4f88b4647a",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydroxy:hy10",
+      "type": "chapter",
+      "topicId": "hydroxy",
+      "title": "Acidity: Water vs Phenol vs Ethanol",
+      "sourceFile": "web/student/src/content/hydroxy.jsx",
+      "assetHash": "fd92601eb25d0b4944b709c1d57fddf65313da30d7528767b298c6fa2d62dda7",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydroxy:hy11",
+      "type": "chapter",
+      "topicId": "hydroxy",
+      "title": "Synthesis Pathways with Alcohols",
+      "sourceFile": "web/student/src/content/hydroxy.jsx",
+      "assetHash": "abd3412b39d7678c37071956c22679d6ac62db62a6c452319176ad35e80a9281",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydroxy:hy12",
+      "type": "chapter",
+      "topicId": "hydroxy",
+      "title": "Exam Technique & Common Pitfalls",
+      "sourceFile": "web/student/src/content/hydroxy.jsx",
+      "assetHash": "9ae658d4c0b15b9492bbbae4f368795524c26a51990de67443954b792aac65fd",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydroxy:hy2",
+      "type": "chapter",
+      "topicId": "hydroxy",
+      "title": "Isomerism in Alcohols",
+      "sourceFile": "web/student/src/content/hydroxy.jsx",
+      "assetHash": "9e782f2bae108224829c189ea7fe448c87f2e9e146f2914d7f3478d39348620c",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydroxy:hy3",
+      "type": "chapter",
+      "topicId": "hydroxy",
+      "title": "Manufacture of Ethanol",
+      "sourceFile": "web/student/src/content/hydroxy.jsx",
+      "assetHash": "f7353c9fe9b45740add11157dd41a5d49dada70fd2747bc37adb1f5124a5a7e1",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydroxy:hy4",
+      "type": "chapter",
+      "topicId": "hydroxy",
+      "title": "Physical Properties: H-Bonding Effects",
+      "sourceFile": "web/student/src/content/hydroxy.jsx",
+      "assetHash": "a0959b356a58021a87c3b37ca8ba4e82c76eef035458c40c62f8860cd39b855c",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydroxy:hy5",
+      "type": "chapter",
+      "topicId": "hydroxy",
+      "title": "Combustion, Halogenation & Sodium",
+      "sourceFile": "web/student/src/content/hydroxy.jsx",
+      "assetHash": "ac7bc3737d6bdf895f93a720cdd3a409b394f905eeecfc3bcce7330e3c0c6d27",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydroxy:hy6",
+      "type": "chapter",
+      "topicId": "hydroxy",
+      "title": "Oxidation of Alcohols",
+      "sourceFile": "web/student/src/content/hydroxy.jsx",
+      "assetHash": "ec30b6803257b6f8ad2440a2a4a4f40720d65780f7047478c002166a026ae111",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydroxy:hy7",
+      "type": "chapter",
+      "topicId": "hydroxy",
+      "title": "Dehydration & Esterification",
+      "sourceFile": "web/student/src/content/hydroxy.jsx",
+      "assetHash": "ba1b1414ddcd633f8f9985414ea1c2d0c4d5fad02a7966d30166e5a9849246d9",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydroxy:hy8",
+      "type": "chapter",
+      "topicId": "hydroxy",
+      "title": "The Iodoform Test",
+      "sourceFile": "web/student/src/content/hydroxy.jsx",
+      "assetHash": "122bea9f26df0a1af311a4bacbcb8f3a5967bc03fbe909fcbf9e2a378928230e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:hydroxy:hy9",
+      "type": "chapter",
+      "topicId": "hydroxy",
+      "title": "Phenol: Reactions & Uses",
+      "sourceFile": "web/student/src/content/hydroxy.jsx",
+      "assetHash": "6d0746cfe59f4bfce3b717c21a3cffec549f8d57ea6811fb20ee8c099684e210",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:kinetics:rk1",
+      "type": "chapter",
+      "topicId": "kinetics",
+      "title": "Measuring Reaction Rates",
+      "sourceFile": "web/student/src/content/kinetics.jsx",
+      "assetHash": "38f49d0d0956afbdff8f8e0dab2dff7822e2136682a4c0e09b852a934e9f0f84",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:kinetics:rk10",
+      "type": "chapter",
+      "topicId": "kinetics",
+      "title": "Graphical Analysis in Kinetics",
+      "sourceFile": "web/student/src/content/kinetics.jsx",
+      "assetHash": "f9cbaa85cf01d3081cfb4074bde12403a64b4665be8917a44a842257a08c108e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:kinetics:rk11",
+      "type": "chapter",
+      "topicId": "kinetics",
+      "title": "Exam Technique & Common Pitfalls",
+      "sourceFile": "web/student/src/content/kinetics.jsx",
+      "assetHash": "4d94443d720baee03bfe888df34ea2bc6ebb23c575252041fb23fbe7b667da56",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:kinetics:rk2",
+      "type": "chapter",
+      "topicId": "kinetics",
+      "title": "Rate Equations & Order of Reaction",
+      "sourceFile": "web/student/src/content/kinetics.jsx",
+      "assetHash": "19903a93e24115f8f65cfa90894a0c8b7bc4823df520af435376f97063a4a14e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:kinetics:rk3",
+      "type": "chapter",
+      "topicId": "kinetics",
+      "title": "Finding Order: Initial Rate & Graphical Methods",
+      "sourceFile": "web/student/src/content/kinetics.jsx",
+      "assetHash": "9b3c6b37f5378684a10b7d83978d509bbb5765e808e0525865bbf01c97c4ebee",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:kinetics:rk4",
+      "type": "chapter",
+      "topicId": "kinetics",
+      "title": "Half-Life & First-Order Kinetics",
+      "sourceFile": "web/student/src/content/kinetics.jsx",
+      "assetHash": "5ed129bfc7c03798ae12ba14dbc5bbedf048c08468e721769c395ae849f90431",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:kinetics:rk5",
+      "type": "chapter",
+      "topicId": "kinetics",
+      "title": "Collision Theory & Factors Affecting Rate",
+      "sourceFile": "web/student/src/content/kinetics.jsx",
+      "assetHash": "3972e24ae6cc1c838834eaed16bbf5c18735044d42093d5aa6377cca4bc7cc4f",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:kinetics:rk6",
+      "type": "chapter",
+      "topicId": "kinetics",
+      "title": "Activation Energy & Catalysts",
+      "sourceFile": "web/student/src/content/kinetics.jsx",
+      "assetHash": "561611daa6a1688b6c43ccc101a60eb820da205b6a7346d0dca833d71dbf1d63",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:kinetics:rk7",
+      "type": "chapter",
+      "topicId": "kinetics",
+      "title": "Reaction Mechanisms",
+      "sourceFile": "web/student/src/content/kinetics.jsx",
+      "assetHash": "d9408a450f7d5bf6321e46633d94535b48ce2d14d9ce4a88799e86eeb454396a",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:kinetics:rk8",
+      "type": "chapter",
+      "topicId": "kinetics",
+      "title": "Homogeneous & Heterogeneous Catalysis",
+      "sourceFile": "web/student/src/content/kinetics.jsx",
+      "assetHash": "ab77f75dec81274fc1c45d6aa1e1e9b912bbf21689190f09acafffdf653e9753",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:kinetics:rk9",
+      "type": "chapter",
+      "topicId": "kinetics",
+      "title": "Calculating k & Using Rate Equations",
+      "sourceFile": "web/student/src/content/kinetics.jsx",
+      "assetHash": "13543953de8578321cec08e5dbe83948c37380f9efb6f55b3c8d0f84b6d8c878",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:nano:nn1",
+      "type": "chapter",
+      "topicId": "nano",
+      "title": "What is the Nanoscale?",
+      "sourceFile": "web/student/src/content/nano.jsx",
+      "assetHash": "529d457c238446dfde2e3a7d5519ae0d02c6205081e238bfb802320ef3a34e24",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:nano:nn2",
+      "type": "chapter",
+      "topicId": "nano",
+      "title": "Why Nano Properties Differ from Bulk",
+      "sourceFile": "web/student/src/content/nano.jsx",
+      "assetHash": "64cab38a0dd204d7f832f2b56e100d28ad25b627bef43f795f02f37c61ab7c36",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:nano:nn3",
+      "type": "chapter",
+      "topicId": "nano",
+      "title": "Types of Nanomaterials",
+      "sourceFile": "web/student/src/content/nano.jsx",
+      "assetHash": "a5e04abf879ce8a97fe174789dcf2df19607498cb88b362d3dd199252ef3e77d",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:nano:nn4",
+      "type": "chapter",
+      "topicId": "nano",
+      "title": "Applications in Medicine",
+      "sourceFile": "web/student/src/content/nano.jsx",
+      "assetHash": "34061c3a3aca585919c7dc1c4e1d7a0ee34b855d9a7332763fcf08776589d721",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:nano:nn5",
+      "type": "chapter",
+      "topicId": "nano",
+      "title": "Applications in Water and Environment",
+      "sourceFile": "web/student/src/content/nano.jsx",
+      "assetHash": "ad597ba95afb3dd8ecc81b1689eede4d6187e9249021db7a295ab79ec9d6412b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:nano:nn6",
+      "type": "chapter",
+      "topicId": "nano",
+      "title": "Risks and Regulation",
+      "sourceFile": "web/student/src/content/nano.jsx",
+      "assetHash": "f3ff43be9f5d2beb5edfb824575138ca3865174bc691b53da2d6a3d0f9f8760c",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:norganic:nc1",
+      "type": "chapter",
+      "topicId": "norganic",
+      "title": "Amines: Structure & Classification",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "1a1f408e5805352b78194ee2e72939fb88f5bd01609721ec994bc7fcde44c580",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:norganic:nc10",
+      "type": "chapter",
+      "topicId": "norganic",
+      "title": "Peptides & Proteins",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "871a3c50a395e2a6b3bbd32e5380ac10029c17bcb9aaeac4053191c23c033d41",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:norganic:nc11",
+      "type": "chapter",
+      "topicId": "norganic",
+      "title": "Hydrolysis & Analysis of Proteins",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "121bc7cfc18f8fb7e74043973deb1b233c9a4a99868f16070b3377a958c4b200",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:norganic:nc12",
+      "type": "chapter",
+      "topicId": "norganic",
+      "title": "Identification & Synthesis Strategy",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "1b7c4d5a2dcc703c97e6ce2bcd0167ca8af9adccd13fb6cd197698d5a6052848",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:norganic:nc2",
+      "type": "chapter",
+      "topicId": "norganic",
+      "title": "Preparation of Amines",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "a22ccb024441eb265a8ada80ce775d5b3d77da9cb5bd7fff45add89f5796dca9",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:norganic:nc3",
+      "type": "chapter",
+      "topicId": "norganic",
+      "title": "Basicity of Amines",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "798303de5fb7b9ef9676976f829130ec2f152db03dc9046abce46f05eb13ef13",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:norganic:nc4",
+      "type": "chapter",
+      "topicId": "norganic",
+      "title": "Reactions of Phenylamine",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "80f571033968bcff481ae45439c5029725af7b98de931ad10cabdff25631efc8",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:norganic:nc5",
+      "type": "chapter",
+      "topicId": "norganic",
+      "title": "Diazonium Coupling & Dyes",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "ef84d491b5dec9b056034c494ab7491e0c43e47af3e6d10d1f5015d4d556fac2",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:norganic:nc6",
+      "type": "chapter",
+      "topicId": "norganic",
+      "title": "Amides — Structure & Formation",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "4fde37d4f306226f362c2658ca0581bc5e00756df11eda7ed41fceb8583e4c7f",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:norganic:nc7",
+      "type": "chapter",
+      "topicId": "norganic",
+      "title": "Hydrolysis of Amides",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "bc788465e7d4b5cecc4377fe10252af981e0023c3b7ef5596cc8aa340f6ae87d",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:norganic:nc8",
+      "type": "chapter",
+      "topicId": "norganic",
+      "title": "Amino Acids",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "b47d0839c9fd4540d37d26fe5732696667b4cf0cad742d4e7fece062e6fd6071",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:norganic:nc9",
+      "type": "chapter",
+      "topicId": "norganic",
+      "title": "Zwitterions & Acid-Base Behaviour",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "1efb1d86c829b839122d391aa675e91ddd2e9ad2d463863bb12052107deae763",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:nsulphur:ns1",
+      "type": "chapter",
+      "topicId": "nsulphur",
+      "title": "Why Is Nitrogen So Unreactive?",
+      "sourceFile": "web/student/src/content/nsulphur.jsx",
+      "assetHash": "29c70365b4cad304b3d775d5768c9181a82e75eff0f784992864323e477e4dc6",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:nsulphur:ns10",
+      "type": "chapter",
+      "topicId": "nsulphur",
+      "title": "Exam Technique & Common Pitfalls",
+      "sourceFile": "web/student/src/content/nsulphur.jsx",
+      "assetHash": "dcf28809664d6af72309b45c5d74c12db106343d63d0676dedfef0a47102bb0b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:nsulphur:ns2",
+      "type": "chapter",
+      "topicId": "nsulphur",
+      "title": "Ammonia & the Ammonium Ion",
+      "sourceFile": "web/student/src/content/nsulphur.jsx",
+      "assetHash": "597fcd6939393b85145a3f61905888c8d9fc3878e943b3986999e42bd2f09cfe",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:nsulphur:ns3",
+      "type": "chapter",
+      "topicId": "nsulphur",
+      "title": "The Haber Process",
+      "sourceFile": "web/student/src/content/nsulphur.jsx",
+      "assetHash": "98f8efaed2155a2f800c8e0dad69967a1c49fbe12525f45955df4c5f94a6c5f2",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:nsulphur:ns4",
+      "type": "chapter",
+      "topicId": "nsulphur",
+      "title": "The Contact Process",
+      "sourceFile": "web/student/src/content/nsulphur.jsx",
+      "assetHash": "10efb3090b55838566d310dcdae051302ef659cc54c241eda10aeb9fe1aa5798",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:nsulphur:ns5",
+      "type": "chapter",
+      "topicId": "nsulphur",
+      "title": "Industrial Importance of NH₃ & H₂SO₄",
+      "sourceFile": "web/student/src/content/nsulphur.jsx",
+      "assetHash": "3d5e478d4203ad5b716a367b420f3cde09e901ebc54fa2e667c4e1ac01b8a2c5",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:nsulphur:ns6",
+      "type": "chapter",
+      "topicId": "nsulphur",
+      "title": "Environmental Impacts of N & S Compounds",
+      "sourceFile": "web/student/src/content/nsulphur.jsx",
+      "assetHash": "de6b676b8a8211d60bea28f9463380451b38e1af8b3d871dc09768d02a9b6c80",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:nsulphur:ns7",
+      "type": "chapter",
+      "topicId": "nsulphur",
+      "title": "Catalytic Removal of NOₓ",
+      "sourceFile": "web/student/src/content/nsulphur.jsx",
+      "assetHash": "d926ff530c3ed451e7c221f7231cf67cc982d84351735db9dc90d1a3a80ce6ce",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:nsulphur:ns8",
+      "type": "chapter",
+      "topicId": "nsulphur",
+      "title": "SO₂ in Food Preservation & Emission Control",
+      "sourceFile": "web/student/src/content/nsulphur.jsx",
+      "assetHash": "1831fba149aeedf9407f11ea5b3875e7ec916900c1972ae2a7d298618d6b4413",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:nsulphur:ns9",
+      "type": "chapter",
+      "topicId": "nsulphur",
+      "title": "Preparing Ammonium Sulphate",
+      "sourceFile": "web/student/src/content/nsulphur.jsx",
+      "assetHash": "06d3f58ee29909e87c048fa2233778f10e440ee1470e39d4f918bbd17ef951c1",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:periodicity:pd1",
+      "type": "chapter",
+      "topicId": "periodicity",
+      "title": "What Is Periodicity?",
+      "sourceFile": "web/student/src/content/periodicity.jsx",
+      "assetHash": "1a756abd20bea18494c79f6d9d32bab09919f7606b40ddfb692bd9f7e10b4b9f",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:periodicity:pd10",
+      "type": "chapter",
+      "topicId": "periodicity",
+      "title": "Exam Technique & Common Pitfalls",
+      "sourceFile": "web/student/src/content/periodicity.jsx",
+      "assetHash": "11f521ac88034537bbed924505a719e95f4da74b57e90217da0d54dc2d5ce413",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:periodicity:pd2",
+      "type": "chapter",
+      "topicId": "periodicity",
+      "title": "Atomic & Ionic Radius Trends",
+      "sourceFile": "web/student/src/content/periodicity.jsx",
+      "assetHash": "a55c595357028943006153a7520743a243bc4f0e772a25aa68fc66c2d3ae8d75",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:periodicity:pd3",
+      "type": "chapter",
+      "topicId": "periodicity",
+      "title": "First Ionisation Energy Trend",
+      "sourceFile": "web/student/src/content/periodicity.jsx",
+      "assetHash": "c8320f6e18170461371b3071325e5abba4d03c45f679569f6b98892d742e3d27",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:periodicity:pd4",
+      "type": "chapter",
+      "topicId": "periodicity",
+      "title": "Melting Points & Electrical Conductivity",
+      "sourceFile": "web/student/src/content/periodicity.jsx",
+      "assetHash": "ef7d4165e64dbe2c8475f90c247a9fa152f5cd288ea1370bdff47e5aed20b9d1",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:periodicity:pd5",
+      "type": "chapter",
+      "topicId": "periodicity",
+      "title": "Reactions of Period 3 Elements with Oxygen",
+      "sourceFile": "web/student/src/content/periodicity.jsx",
+      "assetHash": "c7b933b3c68a1a0b6bb9349b64adec5d702c12bd8c5ab8f75f80905633ab4de7",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:periodicity:pd6",
+      "type": "chapter",
+      "topicId": "periodicity",
+      "title": "Reactions with Chlorine & Water",
+      "sourceFile": "web/student/src/content/periodicity.jsx",
+      "assetHash": "08b8223a473e40c410693e23a1deae02e6ffb694d0fcfa5108bbffdf32d01d22",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:periodicity:pd7",
+      "type": "chapter",
+      "topicId": "periodicity",
+      "title": "Acid-Base Behaviour of Period 3 Oxides",
+      "sourceFile": "web/student/src/content/periodicity.jsx",
+      "assetHash": "efa451251c6bbc6d1fbb3925d4bc4ebad87e95141e611f9e0d102eadf45950bd",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:periodicity:pd8",
+      "type": "chapter",
+      "topicId": "periodicity",
+      "title": "Chlorides with Water — Dissolve or Hydrolyse?",
+      "sourceFile": "web/student/src/content/periodicity.jsx",
+      "assetHash": "7f11c6d52d2b0169e5f9668f1d96d2545b9d4db1c2bcd9c235f008f2bf9c3958",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:periodicity:pd9",
+      "type": "chapter",
+      "topicId": "periodicity",
+      "title": "Deducing Bonding from Physical & Chemical Properties",
+      "sourceFile": "web/student/src/content/periodicity.jsx",
+      "assetHash": "3fe096d905e666dad4d8c875551ee33dd8e189d3a751ce98108b6418978263f8",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:phase:pe1",
+      "type": "chapter",
+      "topicId": "phase",
+      "title": "Phases & Phase Equilibria — Why This Topic Exists",
+      "sourceFile": "web/student/src/content/phase.jsx",
+      "assetHash": "de9f3b2f7e7f5ab9c5bd581baf140cca93873dccee986327cb8a01c2766563a1",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:phase:pe10",
+      "type": "chapter",
+      "topicId": "phase",
+      "title": "Genetic Fingerprinting",
+      "sourceFile": "web/student/src/content/phase.jsx",
+      "assetHash": "c4387dd617e7473fcb247946acf892e6f77d05db57ea51319dd1b9e0b992d18b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:phase:pe2",
+      "type": "chapter",
+      "topicId": "phase",
+      "title": "Steam Distillation",
+      "sourceFile": "web/student/src/content/phase.jsx",
+      "assetHash": "28b72fbf4224d5718b3316374a69573a5a236a092d65baa77554d805ce9afb9b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:phase:pe3",
+      "type": "chapter",
+      "topicId": "phase",
+      "title": "Partition Coefficient",
+      "sourceFile": "web/student/src/content/phase.jsx",
+      "assetHash": "0ac835ca7611536697f9e9bbf453b8126aee6cbb4d42109b352caac0c4dcd96f",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:phase:pe4",
+      "type": "chapter",
+      "topicId": "phase",
+      "title": "Solvent Extraction",
+      "sourceFile": "web/student/src/content/phase.jsx",
+      "assetHash": "eb09b61358768e29636140b52490cd9e42ff79f59422d0d0c0f1cd6616e0023a",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:phase:pe5",
+      "type": "chapter",
+      "topicId": "phase",
+      "title": "Chromatography — Unified Principle",
+      "sourceFile": "web/student/src/content/phase.jsx",
+      "assetHash": "fd8d45020ba46c03d6c940d5602cf332e2448f8ff1e5ddaa911ecbcb41e2d479",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:phase:pe6",
+      "type": "chapter",
+      "topicId": "phase",
+      "title": "Paper & Thin-Layer Chromatography",
+      "sourceFile": "web/student/src/content/phase.jsx",
+      "assetHash": "1f50e982953121c3c7f4289d07cf6aad6031d0590cf621a890bd67385102ba8d",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:phase:pe7",
+      "type": "chapter",
+      "topicId": "phase",
+      "title": "Column, Ion-Exchange & HPLC",
+      "sourceFile": "web/student/src/content/phase.jsx",
+      "assetHash": "c6e466fc0ab16f53ce8841aea73475bd349d9f574a6e7cccc043a48a29b4e411",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:phase:pe8",
+      "type": "chapter",
+      "topicId": "phase",
+      "title": "Gas-Liquid Chromatography (GLC)",
+      "sourceFile": "web/student/src/content/phase.jsx",
+      "assetHash": "2e7fd3c2153b8e9827cc37f79714c27227d633704a3864da5d29fc8ed7d9277d",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:phase:pe9",
+      "type": "chapter",
+      "topicId": "phase",
+      "title": "Electrophoresis",
+      "sourceFile": "web/student/src/content/phase.jsx",
+      "assetHash": "c61f3469c661629f8c9981fa47b413fc7b6f55254eb13d4c4256b6852e3fbd58",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:polymer:pl1",
+      "type": "chapter",
+      "topicId": "polymer",
+      "title": "What is a Polymer?",
+      "sourceFile": "web/student/src/content/polymers.jsx",
+      "assetHash": "ad28c3107e9725afd3f9e55e26f6e2574208f240fdfd932631c6aa882833abc9",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:polymer:pl2",
+      "type": "chapter",
+      "topicId": "polymer",
+      "title": "Addition Polymerisation",
+      "sourceFile": "web/student/src/content/polymers.jsx",
+      "assetHash": "254cb94f4a0c52569b401de4886b17f74f7de8f8bed871a59eb4e43aa9870820",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:polymer:pl3",
+      "type": "chapter",
+      "topicId": "polymer",
+      "title": "Common Addition Polymers",
+      "sourceFile": "web/student/src/content/polymers.jsx",
+      "assetHash": "d4d1e31d742f5873dcc9a1ad9eba773dc67d54257d523383ecc33fdc7765b20e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:polymer:pl4",
+      "type": "chapter",
+      "topicId": "polymer",
+      "title": "Condensation Polymerisation",
+      "sourceFile": "web/student/src/content/polymers.jsx",
+      "assetHash": "bc985d925905c1afdfb16a62b6c1f387b4b451d67d619b3f7e4244863ee7b65f",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:polymer:pl5",
+      "type": "chapter",
+      "topicId": "polymer",
+      "title": "Polyesters",
+      "sourceFile": "web/student/src/content/polymers.jsx",
+      "assetHash": "b4ea9100746b23f5ae9c911dc34a61e2348d632667af7cc2bbf9ce1401ced82b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:polymer:pl6",
+      "type": "chapter",
+      "topicId": "polymer",
+      "title": "Polyamides",
+      "sourceFile": "web/student/src/content/polymers.jsx",
+      "assetHash": "f18dcda9ed891c8283461aa9eb8f0fe43cb4882e422c9fd43da62472040d2d39",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:polymer:pl7",
+      "type": "chapter",
+      "topicId": "polymer",
+      "title": "Identifying Monomers & Repeat Units",
+      "sourceFile": "web/student/src/content/polymers.jsx",
+      "assetHash": "ae9bbec0884289aa4f05c3853b31e70a557bcc08a4b3d0c002653357d448b6f1",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:polymer:pl8",
+      "type": "chapter",
+      "topicId": "polymer",
+      "title": "Uses and Environmental Issues",
+      "sourceFile": "web/student/src/content/polymers.jsx",
+      "assetHash": "04b1acf7d8aad029eabae3e2e35bedb342212e6cc9765fa3f4282608c6f30622",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:states:st1",
+      "type": "chapter",
+      "topicId": "states",
+      "title": "The Three States — Particle View",
+      "sourceFile": "web/student/src/content/states.jsx",
+      "assetHash": "5a3817541c17a3b0db05be23e4fc3ff3362debdbf9c805e52d3cc0627d539af3",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:states:st2",
+      "type": "chapter",
+      "topicId": "states",
+      "title": "Kinetic Theory of Gases",
+      "sourceFile": "web/student/src/content/states.jsx",
+      "assetHash": "5a706a9aebd8a5bc06954f347314fb803972d881eccf73a649d182dc824d54d2",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:states:st3",
+      "type": "chapter",
+      "topicId": "states",
+      "title": "The Ideal Gas Equation",
+      "sourceFile": "web/student/src/content/states.jsx",
+      "assetHash": "06320c1eaeebabb8163d00e0d95bdab319d4177f0b6821c0611e3d38f6cf07c0",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:states:st4",
+      "type": "chapter",
+      "topicId": "states",
+      "title": "Real Gases — Where Ideal Fails",
+      "sourceFile": "web/student/src/content/states.jsx",
+      "assetHash": "d3ee020c06e2fd06a4f196c26c793b960d1617df07b9e8ad24f00d55a1dffe6a",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:states:st5",
+      "type": "chapter",
+      "topicId": "states",
+      "title": "The Liquid State",
+      "sourceFile": "web/student/src/content/states.jsx",
+      "assetHash": "1af9b4d44f95fa99a427cf87b670ab9617d4d7315b987b78817acd1b1d020cbe",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:states:st6",
+      "type": "chapter",
+      "topicId": "states",
+      "title": "Solid State — Ionic & Molecular Lattices",
+      "sourceFile": "web/student/src/content/states.jsx",
+      "assetHash": "2f5a8b395d8934b5dc01b00a6733bd0392565e59955e8f5a9018fe0446f016d8",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:states:st7",
+      "type": "chapter",
+      "topicId": "states",
+      "title": "Giant Covalent & Metallic Lattices",
+      "sourceFile": "web/student/src/content/states.jsx",
+      "assetHash": "2cfee886412e21437ec7f3fb475553ed6fa9391be47a585111f2148aa29968f0",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:states:st8",
+      "type": "chapter",
+      "topicId": "states",
+      "title": "Interconversion of States — Phase Diagrams",
+      "sourceFile": "web/student/src/content/states.jsx",
+      "assetHash": "eb4fe7125388dff78502c16043ce5ec8001ed82ae43f964bab5cf50fc359f20f",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:states:st9",
+      "type": "chapter",
+      "topicId": "states",
+      "title": "Strategy & Property-Structure Mapping",
+      "sourceFile": "web/student/src/content/states.jsx",
+      "assetHash": "be7cf1ae39e39bed448ff483b3ab4825f2af1b4c27400b0c59c4c03ef6b04077",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:stoich:s1",
+      "type": "chapter",
+      "topicId": "stoich",
+      "title": "Relative Atomic, Isotopic, Molecular Mass",
+      "sourceFile": "web/student/src/content/stoich.jsx",
+      "assetHash": "3d040bbc536729a80ba4fb0f95658c2c9e10d9ad9104901e7124b1da851ed280",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:stoich:s2",
+      "type": "chapter",
+      "topicId": "stoich",
+      "title": "Mass Spectra & Isotopic Abundances",
+      "sourceFile": "web/student/src/content/stoich.jsx",
+      "assetHash": "2f5b48f56519abbf7d5e8140f458ff44f84cd90354dc6c7633a61ec2c610c2a6",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:stoich:s3",
+      "type": "chapter",
+      "topicId": "stoich",
+      "title": "The Mole and Avogadro Constant",
+      "sourceFile": "web/student/src/content/stoich.jsx",
+      "assetHash": "3151447db1ea491b187ee8fb52c6418d2994c7441766b1f6ea2381801bf736f3",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:stoich:s4",
+      "type": "chapter",
+      "topicId": "stoich",
+      "title": "Empirical and Molecular Formulae",
+      "sourceFile": "web/student/src/content/stoich.jsx",
+      "assetHash": "eb16cd0621f52813bd781c841826424e121138bef510f35c2506e432197d9d67",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:stoich:s5",
+      "type": "chapter",
+      "topicId": "stoich",
+      "title": "Balanced Equations & Reaction Ratios",
+      "sourceFile": "web/student/src/content/stoich.jsx",
+      "assetHash": "6de44761243bf884d94912a399cabb4f8bb47eb0a3f090f4bdad608d761a505e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:stoich:s6",
+      "type": "chapter",
+      "topicId": "stoich",
+      "title": "Calculations — Masses & Gas Volumes",
+      "sourceFile": "web/student/src/content/stoich.jsx",
+      "assetHash": "fc28488f60759ff16db37d6b8b44a36b516c5679e14ee3ef225eef7464b97b0b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:stoich:s7",
+      "type": "chapter",
+      "topicId": "stoich",
+      "title": "Concentrations & Titrations",
+      "sourceFile": "web/student/src/content/stoich.jsx",
+      "assetHash": "bd81ba606326212a6dc92b246cdfec2ce90986feb86483995937a19c4e58946b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:stoich:s8",
+      "type": "chapter",
+      "topicId": "stoich",
+      "title": "Percentage Yield & Percentage Purity",
+      "sourceFile": "web/student/src/content/stoich.jsx",
+      "assetHash": "8efe528b0d4bd6528a15438f2c9eabb00a520d48952211a85004df9718c3f64e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:stoich:s9",
+      "type": "chapter",
+      "topicId": "stoich",
+      "title": "Calculation Strategy & Exam Tips",
+      "sourceFile": "web/student/src/content/stoich.jsx",
+      "assetHash": "06f5246a5bb04475b26b93af84d4f3b903ec62558dc2269573bc073e95aa9024",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:transition:t1",
+      "type": "chapter",
+      "topicId": "transition",
+      "title": "What Defines a Transition Element",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "30ad0f060e440c204f6f7e73e98b025dee14ae023a5e5f2568032109cec951a7",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:transition:t10",
+      "type": "chapter",
+      "topicId": "transition",
+      "title": "Vanadium — Colourful Redox",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "1e29151b6b46eb168d08fba2fdd416a1e578f0019044a55c6a8cdab257efa726",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:transition:t11",
+      "type": "chapter",
+      "topicId": "transition",
+      "title": "Chromium — +3 and +6",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "cf21e76d0f15845eea446ffdbe1525ef97141b164723e1314151d218cdb2b38c",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:transition:t12",
+      "type": "chapter",
+      "topicId": "transition",
+      "title": "Manganese — The Redox Workhorse",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "aca126a4946f503780d889626feadf85c7a56b0d59bc3356a5124e1efd58ec1e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:transition:t13",
+      "type": "chapter",
+      "topicId": "transition",
+      "title": "Iron — Extraction, Biology, Rusting",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "f7cba5f3c25b65f0923942998858b83da058f5a28e1623e56f0881cee65385d6",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:transition:t14",
+      "type": "chapter",
+      "topicId": "transition",
+      "title": "Co · Ni · Cu · Platinum Group Metals",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "9da063409077e8d06a8a9bac053c04e23bebff471cb2e1388d7d28ab23b8abe2",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:transition:t2",
+      "type": "chapter",
+      "topicId": "transition",
+      "title": "Electronic Configurations",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "08e53ba33ace0148558c03106e4a32ff685a7839a8cf194648184cbc03b20c3f",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:transition:t3",
+      "type": "chapter",
+      "topicId": "transition",
+      "title": "Physical Properties vs Calcium",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "790ea2919dd72443a9764fea732d8daa9dec5bbd0409f2a42caa4fc3ebf04b7d",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:transition:t4",
+      "type": "chapter",
+      "topicId": "transition",
+      "title": "Variable Oxidation States",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "e7f0d43533755e9652381c6b78d043272e26dbea6063475c3788f2a49d7f01c1",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:transition:t5",
+      "type": "chapter",
+      "topicId": "transition",
+      "title": "Complex Ions — Bonding & Shape",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "51f24271ad0dcf76c342bf5551bd48c39701ac87abdc1663a6283974965fb35b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:transition:t6",
+      "type": "chapter",
+      "topicId": "transition",
+      "title": "Isomerism in Complexes",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "7bfae8225006e41355e2c4d90dff8e29b977a6244447eb54f52fda9054959941",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:transition:t7",
+      "type": "chapter",
+      "topicId": "transition",
+      "title": "Ligand Exchange & Stability Constants",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "5265eeffe58dab49d120f469959bf1febdb5aed354e7a5a40f8ad5ae97bdebd7",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:transition:t8",
+      "type": "chapter",
+      "topicId": "transition",
+      "title": "Colour of Transition Complexes",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "717940d8f0b933badde16481e26a58946509da443ad1e7074790f947dd6c6b7a",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "chapter:transition:t9",
+      "type": "chapter",
+      "topicId": "transition",
+      "title": "Catalysis & Magnetism",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "bd4331a9bcc5b781cbeabc10ae2302768d7e878f74082a99c86b367d6b066787",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:atomic:ch1:1",
+      "type": "diagram",
+      "topicId": "atomic",
+      "title": "The three subatomic particles",
+      "sourceFile": "web/student/src/content/atomic.jsx",
+      "assetHash": "6a7aeadb70950ba275ac9af51683bc0e126cb2d9bfd1b4f45c63a98e3c152f8b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:atomic:ch1:4",
+      "type": "diagram",
+      "topicId": "atomic",
+      "title": "The nuclear model",
+      "sourceFile": "web/student/src/content/atomic.jsx",
+      "assetHash": "957aa595ea2aa1b510e0f477f7a7d1b48f5c4db6417802e05a232c9d501f4158",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:atomic:ch2:1",
+      "type": "diagram",
+      "topicId": "atomic",
+      "title": "Relative deflection in a uniform electric field",
+      "sourceFile": "web/student/src/content/atomic.jsx",
+      "assetHash": "b84ec3e9cfffd0a837a5b92a594ad800aba49b1fa1a55786d53e638feb75bb29",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:atomic:ch3:1",
+      "type": "diagram",
+      "topicId": "atomic",
+      "title": "The four quantum numbers",
+      "sourceFile": "web/student/src/content/atomic.jsx",
+      "assetHash": "03dc99d105d0e3e98b53e95f899f7cb389338e9ee608a5fe8e558a268c6aac98",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:atomic:ch4:1",
+      "type": "diagram",
+      "topicId": "atomic",
+      "title": "s and p orbital shapes",
+      "sourceFile": "web/student/src/content/atomic.jsx",
+      "assetHash": "940bde863c16f985dd7b967352ca6625c6e29c701b9dc71308a93681ba3b7033",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:atomic:ch5:1",
+      "type": "diagram",
+      "topicId": "atomic",
+      "title": "Subshell filling order with the three rules",
+      "sourceFile": "web/student/src/content/atomic.jsx",
+      "assetHash": "473c2fc2d32c3b4ced73947c05786fc81985a72487339e518d3df9cb037721c5",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:atomic:ch6:6",
+      "type": "diagram",
+      "topicId": "atomic",
+      "title": "Why 3s < 3p < 3d in energy",
+      "sourceFile": "web/student/src/content/atomic.jsx",
+      "assetHash": "626c09f15291e00622f27581398fc1e89b2e72d16083025cd7639a9cd99a35f5",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:atomic:ch7:12",
+      "type": "diagram",
+      "topicId": "atomic",
+      "title": "Successive IE of Na (log) — jumps reveal shell structure",
+      "sourceFile": "web/student/src/content/atomic.jsx",
+      "assetHash": "23fa2420a3e5dff2c9970b6342587741ca315c1395feb6dc2b12d66d4f50afac",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:atomic:ch7:2",
+      "type": "diagram",
+      "topicId": "atomic",
+      "title": "First IE across Period 3",
+      "sourceFile": "web/student/src/content/atomic.jsx",
+      "assetHash": "474b18b8c3f0aabfc358f15920a0141040880799214ddc8134769d790ee9209a",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:bonding:b2:1",
+      "type": "diagram",
+      "topicId": "bonding",
+      "title": "Sodium chloride — Na loses 1 e⁻, Cl gains 1 e⁻",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "69e52002ec2fd1206f44e6fce377e11cb0435e6839a346924fd6c148ee4ceac6",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:bonding:b3:4",
+      "type": "diagram",
+      "topicId": "bonding",
+      "title": "Two ways orbitals overlap",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "49e9c38209d860add122e63d899faf004f579ae3f563170a7319765d46861d18",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:bonding:b3:8",
+      "type": "diagram",
+      "topicId": "bonding",
+      "title": "Benzene — a special case",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "47842d002c00e4d570cbb336f3089caebbf9aa504bfd8d7574e628918589423d",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:bonding:b4:7",
+      "type": "diagram",
+      "topicId": "bonding",
+      "title": "Polar covalent bond",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "0e43fdf294b37c00326ae97a8286daf4136b13ebbc958d874e53af1b906fa8c6",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:bonding:b5:2",
+      "type": "diagram",
+      "topicId": "bonding",
+      "title": "NH₃ + H⁺ → NH₄⁺",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "9826093c37095e5e76b6c90550d3a21e0f8201ec88e0b1d5f6ed17296f4f8649",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:bonding:b6:1",
+      "type": "diagram",
+      "topicId": "bonding",
+      "title": "The five most-tested shapes",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "ad51f3b44f491f0d5734d2202f8f8e67c13a1de853027fe3fb4c8496fa6ddb69",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:bonding:b7:1",
+      "type": "diagram",
+      "topicId": "bonding",
+      "title": "Lattice of cations in a sea of mobile electrons",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "dccba46bb0f9372e19228ec891eb18601472736816a160703018a28cbbf63edc",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:bonding:b8:10",
+      "type": "diagram",
+      "topicId": "bonding",
+      "title": "H-bonding in water",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "ada2cb1714ccf3f80aa25e6687e0b3a789f18be95a34d87fba5f98bc1cb00f36",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:bonding:b8:13",
+      "type": "diagram",
+      "topicId": "bonding",
+      "title": "Ice less dense than water — vital for aquatic life",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "273e997678f977815a9ba34d749e0873fcaf50269d09ae556376f1296b3b267e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:bonding:b9:1",
+      "type": "diagram",
+      "topicId": "bonding",
+      "title": "Four lattice structures, four behaviour profiles",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "d2ceaa2f5a0d030c78ac8713471ea8b2cec60882f0008a687ab5c4df14a18f80",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:carbonyl:cb1:1",
+      "type": "diagram",
+      "topicId": "carbonyl",
+      "title": "Aldehydes and ketones differ in what is attached to the C=O",
+      "sourceFile": "web/student/src/content/carbonyl.jsx",
+      "assetHash": "5868cb3c18ee06b6981e845063f884edaed69175f927968b983008bcfe12b486",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:carbonyl:cb10:1",
+      "type": "diagram",
+      "topicId": "carbonyl",
+      "title": "Summary of carbonyl tests",
+      "sourceFile": "web/student/src/content/carbonyl.jsx",
+      "assetHash": "509c61c203cb80dc5a2ef62571beabdbc77c9b3fa9e181a8e78b4314a6578ddb",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:carbonyl:cb11:1",
+      "type": "diagram",
+      "topicId": "carbonyl",
+      "title": "Synthetic options from carbonyls",
+      "sourceFile": "web/student/src/content/carbonyl.jsx",
+      "assetHash": "ad5ee69dd30a086f0cd6a5064910c95f5ea427d384bcaff67e7871dcaa3f7cf0",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:carbonyl:cb4:1",
+      "type": "diagram",
+      "topicId": "carbonyl",
+      "title": "Aldehydes from 1° alcohols; ketones from 2° alcohols",
+      "sourceFile": "web/student/src/content/carbonyl.jsx",
+      "assetHash": "8a50e8625b5e6b19ca25a1ccb017156548ba89e751a35c0220ce0a7565921411",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:carbonyl:cb5:1",
+      "type": "diagram",
+      "topicId": "carbonyl",
+      "title": "Two-step nucleophilic addition mechanism",
+      "sourceFile": "web/student/src/content/carbonyl.jsx",
+      "assetHash": "26025ef796efb99f23cd34d6d95c6ebcc40742429847e22706e6ba84376e0cad",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:carbonyl:cb6:1",
+      "type": "diagram",
+      "topicId": "carbonyl",
+      "title": "Reduction gives the parent alcohol back",
+      "sourceFile": "web/student/src/content/carbonyl.jsx",
+      "assetHash": "ccef9e549ef8d5ae1915bfe756169a5a953016751f93daa839e6a560e2737907",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:carbonyl:cb7:1",
+      "type": "diagram",
+      "topicId": "carbonyl",
+      "title": "Brady's test confirms carbonyl group presence",
+      "sourceFile": "web/student/src/content/carbonyl.jsx",
+      "assetHash": "acc4862388a71cec564b41966779186949fe9f6074c703b88b2311d1c4985b1d",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:carbonyl:cb8:1",
+      "type": "diagram",
+      "topicId": "carbonyl",
+      "title": "The two tests for aldehyde vs ketone",
+      "sourceFile": "web/student/src/content/carbonyl.jsx",
+      "assetHash": "59b16b248f7de5786c0464fbbc268ad471c592c3ce49de3affb060a89cd03ed0",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:carboxylic:ca1:1",
+      "type": "diagram",
+      "topicId": "carboxylic",
+      "title": "The carboxyl group has both C=O and O-H",
+      "sourceFile": "web/student/src/content/carboxylic.jsx",
+      "assetHash": "a835eaefd88d4eff21c5564c97b7736325b34e8303b3e1c2141fd8a5b949e7c7",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:carboxylic:ca2:1",
+      "type": "diagram",
+      "topicId": "carboxylic",
+      "title": "Three routes to carboxylic acids",
+      "sourceFile": "web/student/src/content/carboxylic.jsx",
+      "assetHash": "85df91e8133514abc774df75abf679b22791a0a29f3621e50db336a527db14a6",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:carboxylic:ca3:1",
+      "type": "diagram",
+      "topicId": "carboxylic",
+      "title": "Common reactions of carboxylic acids",
+      "sourceFile": "web/student/src/content/carboxylic.jsx",
+      "assetHash": "137bd24d22ac8bb5344b65eec25beb589bc2e96c0cc2a1376e6df8758d6205d2",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:carboxylic:ca4:1",
+      "type": "diagram",
+      "topicId": "carboxylic",
+      "title": "Carboxylic acids are stronger than phenols or alcohols",
+      "sourceFile": "web/student/src/content/carboxylic.jsx",
+      "assetHash": "a097decdd2d853961c637591d36511e39ea88c390391ab1c754c2d8fca1e073b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:carboxylic:ca4:5",
+      "type": "diagram",
+      "topicId": "carboxylic",
+      "title": "Chloro substitution increases acidity",
+      "sourceFile": "web/student/src/content/carboxylic.jsx",
+      "assetHash": "b950a5225486d75a1514ec7329e337a2e5da40ea62578545eb3f8a59ffa71a34",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:carboxylic:ca5:1",
+      "type": "diagram",
+      "topicId": "carboxylic",
+      "title": "Acyl chlorides react with many nucleophiles",
+      "sourceFile": "web/student/src/content/carboxylic.jsx",
+      "assetHash": "5baca684ac41746f7e313875b8f3df205cdcc9f45b4ccbd41c80623e35cdc1b9",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:carboxylic:ca7:1",
+      "type": "diagram",
+      "topicId": "carboxylic",
+      "title": "Two routes to esters",
+      "sourceFile": "web/student/src/content/carboxylic.jsx",
+      "assetHash": "b391cc7c0fa232d57537850eb4f7f6880ecf81c9f25da8e995738f8bf59b4e5f",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:carboxylic:ca7:7",
+      "type": "diagram",
+      "topicId": "carboxylic",
+      "title": "Acid vs base hydrolysis of esters",
+      "sourceFile": "web/student/src/content/carboxylic.jsx",
+      "assetHash": "dc129ab0a865f55cfef0f6777389695ee815a692f02be3662a14951c9e3c277e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:electrochem:ec1:3",
+      "type": "diagram",
+      "topicId": "electrochem",
+      "title": "Oxidation state assignment rules",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "f2c18ced0149560f306f6552cdbee21ce0e2717bab6381a00896c7342cab1f3e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:electrochem:ec3:1",
+      "type": "diagram",
+      "topicId": "electrochem",
+      "title": "The Standard Hydrogen Electrode — reference point (0.00 V)",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "111e2ca12a4fe3c2f98e1747977848a3af43a72c43063c5ca395d45bbdf623f9",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:electrochem:ec3:7",
+      "type": "diagram",
+      "topicId": "electrochem",
+      "title": "Zn-Cu cell: E°cell = +1.10 V — feasible and spontaneous",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "deac319433f2b7032b72515ae19102585b5c68563d5e55645a76dea6a50f5aeb",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:electrochem:ec5:1",
+      "type": "diagram",
+      "topicId": "electrochem",
+      "title": "Electrolysis of acidified water",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "9869724753851ad0d8f7c7280d3ed79e01932ef9ac61b07f5eb8977c74c8411b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:electrochem:ec6:2",
+      "type": "diagram",
+      "topicId": "electrochem",
+      "title": "The Hall-Héroult process",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "372caa22180e572739b6214061e1e3b0db03c9457bfe3af2b5b06d7df1cf9e99",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:electrochem:ec6:5",
+      "type": "diagram",
+      "topicId": "electrochem",
+      "title": "Electrolytic refining of copper",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "634e013d4c0adccfdb134e0ca7f8751599fbb19907c410e787ee0ca9f421387c",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:electrochem:ec6:8",
+      "type": "diagram",
+      "topicId": "electrochem",
+      "title": "Membrane cell for brine electrolysis",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "5a0e055ef11dcf892343cb3a71d1ef472c7abfa84e3a39de06d4ab4b511adf85",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:electrochem:ec7:1",
+      "type": "diagram",
+      "topicId": "electrochem",
+      "title": "KMnO₄ titrated into Fe²⁺ in acid",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "512270016de1681b8c4defb1199a3b29bdaa7ad90e0df2316d4e2672ea0a5795",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:electrochem:ec8:1",
+      "type": "diagram",
+      "topicId": "electrochem",
+      "title": "Hydrogen-oxygen fuel cell",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "0b6cf2cdbbd86a39356afc29ea7e82d9c47ce20e5e7178f0f836e3f8a7a4acbd",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:electrochem:ec9:1",
+      "type": "diagram",
+      "topicId": "electrochem",
+      "title": "The key relationships in quantitative electrolysis",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "cd17d2f1bcf74cd4768ed30ee0ad435071517c4e750d645ddd7cd635532ab3d5",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:energetics:e1:3",
+      "type": "diagram",
+      "topicId": "energetics",
+      "title": "Exothermic vs endothermic energy profiles",
+      "sourceFile": "web/student/src/content/energetics.jsx",
+      "assetHash": "3cae187e472f0f1b0504e747dfd976f8712b4fe568a1aca4fdb2b071be257161",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:energetics:e2:1",
+      "type": "diagram",
+      "topicId": "energetics",
+      "title": "Summary of all standard enthalpy changes",
+      "sourceFile": "web/student/src/content/energetics.jsx",
+      "assetHash": "5d418fff2fb20436160e727aa479b2fee28f4e9e3d020e9b77153ee65bc03ab2",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:energetics:e2:5",
+      "type": "diagram",
+      "topicId": "energetics",
+      "title": "Enthalpy level diagram for formation",
+      "sourceFile": "web/student/src/content/energetics.jsx",
+      "assetHash": "23aaefb5c83d39e3123c52c2d6325b7e03984008e26a0e33c4f4c019a5037fe1",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:energetics:e3:1",
+      "type": "diagram",
+      "topicId": "energetics",
+      "title": "Simple calorimetry apparatus",
+      "sourceFile": "web/student/src/content/energetics.jsx",
+      "assetHash": "61420754b7507a9fdbc06fa63c693d224a3c2ae794fa92a086b8a13564f93144",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:energetics:e4:9",
+      "type": "diagram",
+      "topicId": "energetics",
+      "title": "Hess cycle connecting solution, lattice and hydration enthalpies",
+      "sourceFile": "web/student/src/content/energetics.jsx",
+      "assetHash": "f2b2e1c45353467f137d5ce4b9b5f057eff9cbb854d68764360ba86fc918cfcf",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:energetics:e5:1",
+      "type": "diagram",
+      "topicId": "energetics",
+      "title": "Bond energy calculation for combustion of methane",
+      "sourceFile": "web/student/src/content/energetics.jsx",
+      "assetHash": "ed43d64ac3a978e33f13ead092b71e9ca48438d8e40f32100ee04f2f6392d6c1",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:energetics:e6:1",
+      "type": "diagram",
+      "topicId": "energetics",
+      "title": "General Hess cycle",
+      "sourceFile": "web/student/src/content/energetics.jsx",
+      "assetHash": "2d751190fc3f70498c2554b920d04f9aa55c5fe15d321b1f98b22b69e2bdcaa6",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:energetics:e7:1",
+      "type": "diagram",
+      "topicId": "energetics",
+      "title": "Born-Haber cycle for NaCl",
+      "sourceFile": "web/student/src/content/energetics.jsx",
+      "assetHash": "5b98d142ff19b19dc5c87b042fc57f8bac0252513cf823a7f388aec9f6d874e4",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:energetics:e8:1",
+      "type": "diagram",
+      "topicId": "energetics",
+      "title": "Charge density: small + highly charged = stronger attraction",
+      "sourceFile": "web/student/src/content/energetics.jsx",
+      "assetHash": "d08fa56d2fefc8ff730c1749dae5adf77884599c2d8265eca35283c45d71931e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:energetics:e9:1",
+      "type": "diagram",
+      "topicId": "energetics",
+      "title": "Thermometric titration curve",
+      "sourceFile": "web/student/src/content/energetics.jsx",
+      "assetHash": "722930734e33456cfaebb1cf88f5c3b729a04a9dc5838e8c4d59eaee872bb05c",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:environment:ev1:1",
+      "type": "diagram",
+      "topicId": "environment",
+      "title": "Major pollutant categories in the syllabus",
+      "sourceFile": "web/student/src/content/environment.jsx",
+      "assetHash": "bcc5ecc4051690bdfe7e6aaa1667ce19ff983843b6f0b5d79a399b2f1e632f9b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:environment:ev10:1",
+      "type": "diagram",
+      "topicId": "environment",
+      "title": "Five major heavy-metal pollutants",
+      "sourceFile": "web/student/src/content/environment.jsx",
+      "assetHash": "bcd81c3bb66e3e53c0a089d6ff16378902bb9fb148ab102a4e112c5b85125b18",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:environment:ev2:1",
+      "type": "diagram",
+      "topicId": "environment",
+      "title": "SO₂ → H₂SO₄ in two oxidation steps",
+      "sourceFile": "web/student/src/content/environment.jsx",
+      "assetHash": "12dfc07cf9eee893c7f6cd73a5dc4fbc9daff3b7abe477c91e0c33d97e59e431",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:environment:ev3:1",
+      "type": "diagram",
+      "topicId": "environment",
+      "title": "Three industrial methods for SO₂ capture",
+      "sourceFile": "web/student/src/content/environment.jsx",
+      "assetHash": "34f7ce6c394a7e50054aaad5b3d512c2555dee91797b23f908f1a5d911cb6a5b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:environment:ev5:1",
+      "type": "diagram",
+      "topicId": "environment",
+      "title": "Three-way catalytic converter — handles CO, hydrocarbons, and NOx",
+      "sourceFile": "web/student/src/content/environment.jsx",
+      "assetHash": "7e003b23a9a1e59138dd5fe553371561f383dece425b1dab8c895b9e849f8376",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:environment:ev6:1",
+      "type": "diagram",
+      "topicId": "environment",
+      "title": "Comparison of major power sources",
+      "sourceFile": "web/student/src/content/environment.jsx",
+      "assetHash": "749b732a0693cdebaeca8e5a061304cb4ab6f26a2346f340b15efe465923c095",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:environment:ev7:1",
+      "type": "diagram",
+      "topicId": "environment",
+      "title": "Three categories of nuclear hazard",
+      "sourceFile": "web/student/src/content/environment.jsx",
+      "assetHash": "d8e82e076f9eb52ea210d5d1cd4c4db62e2cdf74909eb4b4f8168a77e2f38b3c",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:environment:ev8:1",
+      "type": "diagram",
+      "topicId": "environment",
+      "title": "Five-tier waste hierarchy — top is best",
+      "sourceFile": "web/student/src/content/environment.jsx",
+      "assetHash": "114e0433d3f1f2c6a935844086b3f3a5c0b99e10682484e3bd79a9ba66b617d2",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:environment:ev9:1",
+      "type": "diagram",
+      "topicId": "environment",
+      "title": "Pros and cons of landfill vs incineration",
+      "sourceFile": "web/student/src/content/environment.jsx",
+      "assetHash": "07f458ab7728092399b8c93697d05ef107e678972a9a753e814c55c68ed7cf24",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:equilibria:eq1:1",
+      "type": "diagram",
+      "topicId": "equilibria",
+      "title": "Rate vs time: equilibrium is reached when forward rate = reverse rate",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "882ac51ee3cf464efea1bfbbe58896c9e13e5780bb2760ce29399e0fac7608ce",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:equilibria:eq10:1",
+      "type": "diagram",
+      "topicId": "equilibria",
+      "title": "How an acidic buffer resists pH change",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "2c2f4e1963dcc668665fe4b4ed87470ab4b1bc3ee5ce81efa5ed3f4c0910fab7",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:equilibria:eq11:1",
+      "type": "diagram",
+      "topicId": "equilibria",
+      "title": "Ksp and the precipitation rule",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "7aa2fd7a1a39235ac11f1e75d78e8cd2fa7e4a18d2fcba2e615512bd7e613547",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:equilibria:eq12:1",
+      "type": "diagram",
+      "topicId": "equilibria",
+      "title": "Common ion effect on AgCl solubility",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "fe6c4cb8038ded5f55847e6a2d4323362c22f15c3008be84e1f8eee42c128611",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:equilibria:eq2:1",
+      "type": "diagram",
+      "topicId": "equilibria",
+      "title": "The Kc expression",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "4c78ce5dfddd0772b3938f7cafd7c5590d4a6bf77702aceb8f67398d593855ef",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:equilibria:eq3:1",
+      "type": "diagram",
+      "topicId": "equilibria",
+      "title": "The Kp expression",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "50fc1689c5e821ade9613122a882d4a109b28c5640ec5b1c3075a5ac7b934efd",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:equilibria:eq4:1",
+      "type": "diagram",
+      "topicId": "equilibria",
+      "title": "Summary of Le Chatelier's responses",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "009efa22957f52578d7005bab7ac4298c8c24eacdc0703d72018b92930c644a7",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:equilibria:eq6:1",
+      "type": "diagram",
+      "topicId": "equilibria",
+      "title": "The pH scale and key formulas",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "13a4bf18337008e4916c2c3c5fc20df1b6d16293f474f9a0a49acadb5d4650fb",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:equilibria:eq8:1",
+      "type": "diagram",
+      "topicId": "equilibria",
+      "title": "The four types of acid-base titration curve",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "fc488660c42fa722edb5ed09ead42fe22d19ab774b502b5d6a29f368cd935d6a",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:equilibria:eq9:1",
+      "type": "diagram",
+      "topicId": "equilibria",
+      "title": "Indicator pH ranges",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "075c4ef6be582943fd3f62d8e9531e1f2c22681caad4f54d22cf03e91fa3d9f6",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:group2:g22:1",
+      "type": "diagram",
+      "topicId": "group2",
+      "title": "Key physical properties of Group II elements",
+      "sourceFile": "web/student/src/content/group2.jsx",
+      "assetHash": "f9fb9a639d7eae95396ffff41d6510ef592fa40b82c1e9b3cca53ae52b24a4fd",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:group2:g24:1",
+      "type": "diagram",
+      "topicId": "group2",
+      "title": "Reactivity with water increases down Group II",
+      "sourceFile": "web/student/src/content/group2.jsx",
+      "assetHash": "45e9d1650e2b088c24390712d86d33a40bf799e787bf8272ce85dcf272ad1ffc",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:group2:g25:6",
+      "type": "diagram",
+      "topicId": "group2",
+      "title": "Hydroxide solubility increases down Group II",
+      "sourceFile": "web/student/src/content/group2.jsx",
+      "assetHash": "17000c2756cf06f00c7f3b8d252334e8be0d6657b0b9d724166c6f27b4fb74fa",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:group2:g26:2",
+      "type": "diagram",
+      "topicId": "group2",
+      "title": "Decomposition temperatures increase down the group",
+      "sourceFile": "web/student/src/content/group2.jsx",
+      "assetHash": "1800480b1def006cd78388d383481720bede3d5d02a3c6ac8146b96c4ddce493",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:group2:g26:7",
+      "type": "diagram",
+      "topicId": "group2",
+      "title": "Polarising power explains the decomposition trend",
+      "sourceFile": "web/student/src/content/group2.jsx",
+      "assetHash": "87cdc696faefe6faaa882a7d6cfcc41792eb0ddd6f6d200cf6c88fddc9da6895",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:group2:g27:1",
+      "type": "diagram",
+      "topicId": "group2",
+      "title": "Sulphate solubility decreases down Group II",
+      "sourceFile": "web/student/src/content/group2.jsx",
+      "assetHash": "1388907aa9581e21ec90bac1b6519361939668a80e6047d547089bb7a808908a",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:group2:g28:1",
+      "type": "diagram",
+      "topicId": "group2",
+      "title": "Key uses of Group II compounds",
+      "sourceFile": "web/student/src/content/group2.jsx",
+      "assetHash": "5f1eff67199d4e144aaa1daf7a82fddb7cdce9c6d244184a9b19e44cad34d345",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:group4:g42:1",
+      "type": "diagram",
+      "topicId": "group4",
+      "title": "Physical properties across Group IV",
+      "sourceFile": "web/student/src/content/group4.jsx",
+      "assetHash": "fbed709d7ad91863cd55bfa8943fe3f5507ad4256666ea7e44aff1a540da9db8",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:group4:g43:1",
+      "type": "diagram",
+      "topicId": "group4",
+      "title": "Comparing diamond and graphite structures",
+      "sourceFile": "web/student/src/content/group4.jsx",
+      "assetHash": "9377c3af827797ea39808be6f492eab73b326d6357f1485bb91a5fff6056e956",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:group4:g44:1",
+      "type": "diagram",
+      "topicId": "group4",
+      "title": "Stability of +4 vs +2 changes down Group IV",
+      "sourceFile": "web/student/src/content/group4.jsx",
+      "assetHash": "67274a9a5d88307eaf383699fb8cecd3fba477a2c6b8772d1bb808cc68a3e5d8",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:group4:g45:1",
+      "type": "diagram",
+      "topicId": "group4",
+      "title": "Summary of Group IV oxides",
+      "sourceFile": "web/student/src/content/group4.jsx",
+      "assetHash": "f89331d21035b9ac146cabf3e66ce603fb7e5f9cb2bf894d6f755a415cbfeabe",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:group4:g46:1",
+      "type": "diagram",
+      "topicId": "group4",
+      "title": "Group IV tetrachlorides — properties and hydrolysis",
+      "sourceFile": "web/student/src/content/group4.jsx",
+      "assetHash": "434a7fcc7cba894dcc64228690f85cf99eec8351395aa358c7776344a0638dc4",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:group4:g47:1",
+      "type": "diagram",
+      "topicId": "group4",
+      "title": "PbO₂ oxidises HCl to Cl₂; SnO reduces to form Sn⁴⁺",
+      "sourceFile": "web/student/src/content/group4.jsx",
+      "assetHash": "8a53e7ac45150d1994c51967e697267f35d3eb5022681b42e3af51fb63f8aa7c",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:group7:g72:1",
+      "type": "diagram",
+      "topicId": "group7",
+      "title": "Physical properties of halogens",
+      "sourceFile": "web/student/src/content/group7.jsx",
+      "assetHash": "1b69e87793ff93b6cf2666b0504f488815231f40fc75265c0ab6b91fd87bd5e9",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:group7:g73:1",
+      "type": "diagram",
+      "topicId": "group7",
+      "title": "E° values decrease down Group VII",
+      "sourceFile": "web/student/src/content/group7.jsx",
+      "assetHash": "47cb5e98974561207970b5c5bf4547b80945bca79f34cbc4020d22ad6ae07078",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:group7:g73:5",
+      "type": "diagram",
+      "topicId": "group7",
+      "title": "A more reactive halogen displaces a less reactive halide from solution",
+      "sourceFile": "web/student/src/content/group7.jsx",
+      "assetHash": "89ca8dcb75fd8fad84c80fd7e96505812e08dde8379d43d1742eb7f82e0bd76f",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:group7:g74:3",
+      "type": "diagram",
+      "topicId": "group7",
+      "title": "Thermal stability of hydrogen halides decreases down the group",
+      "sourceFile": "web/student/src/content/group7.jsx",
+      "assetHash": "6f8aa24d5ef94987ce13c94b1e63a9c50ca028d4b5d6109456bdeb8aa09bff77",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:group7:g75:1",
+      "type": "diagram",
+      "topicId": "group7",
+      "title": "The Ag⁺/NH₃ test distinguishes Cl⁻, Br⁻ and I⁻",
+      "sourceFile": "web/student/src/content/group7.jsx",
+      "assetHash": "77c8c6900f37f1687c59c794e06e530a20618fa71ac5d65cbbeb270ce8fc6add",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:group7:g76:1",
+      "type": "diagram",
+      "topicId": "group7",
+      "title": "Products depend on reducing power of the halide",
+      "sourceFile": "web/student/src/content/group7.jsx",
+      "assetHash": "eaafadb90a150a28b2281bf47d629e282974dc046af2cab14f5aea355cc1a780",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:group7:g77:1",
+      "type": "diagram",
+      "topicId": "group7",
+      "title": "Cold vs hot NaOH gives different products",
+      "sourceFile": "web/student/src/content/group7.jsx",
+      "assetHash": "256d38d9da05ea88f6e773319d4c270f16b0032ad86cbe5424495c1843644c3e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:halogen:hd1:4",
+      "type": "diagram",
+      "topicId": "halogen",
+      "title": "Three classes of halogenoalkanes",
+      "sourceFile": "web/student/src/content/halogen_deriv.jsx",
+      "assetHash": "466249560c50ae68223aafa746b54049fe9e158b7eceadeebbef42f4d04784bd",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:halogen:hd3:7",
+      "type": "diagram",
+      "topicId": "halogen",
+      "title": "C–Hal bond energies determine reactivity",
+      "sourceFile": "web/student/src/content/halogen_deriv.jsx",
+      "assetHash": "8ed9a6f1f14d1e4c572db6f056a76dac3bd747de21a7ac6b3d167215d8967cfe",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:halogen:hd4:1",
+      "type": "diagram",
+      "topicId": "halogen",
+      "title": "SN2 — concerted single step via transition state",
+      "sourceFile": "web/student/src/content/halogen_deriv.jsx",
+      "assetHash": "4d5bb7dc91682f95f1ca4a6a1c1cdc8cd379a985380be2d5c64fb282c7a1e76c",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:halogen:hd5:1",
+      "type": "diagram",
+      "topicId": "halogen",
+      "title": "SN1 — two steps via carbocation intermediate",
+      "sourceFile": "web/student/src/content/halogen_deriv.jsx",
+      "assetHash": "a496de4b689bd2f0e90b19b1f05baa68526e88d22ee0b0886968ae6586117c13",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:halogen:hd6:1",
+      "type": "diagram",
+      "topicId": "halogen",
+      "title": "Key reactions of bromoethane",
+      "sourceFile": "web/student/src/content/halogen_deriv.jsx",
+      "assetHash": "a1abd5095026038c486063fa8309d10156e57f1034b9b6d0e6cf8aa632acf561",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:halogen:hd7:1",
+      "type": "diagram",
+      "topicId": "halogen",
+      "title": "Elimination of HBr from 2-bromopropane",
+      "sourceFile": "web/student/src/content/halogen_deriv.jsx",
+      "assetHash": "c4c30c19ce35f100a3f753504a571480e598660127f06dc2e66fa586203bf50f",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:halogen:hd8:1",
+      "type": "diagram",
+      "topicId": "halogen",
+      "title": "Why chlorobenzene resists hydrolysis",
+      "sourceFile": "web/student/src/content/halogen_deriv.jsx",
+      "assetHash": "3bc44e7fe325687b1e4366b9f7149ffa0658263a11237324d2166f4bc39b6537",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:halogen:hd9:5",
+      "type": "diagram",
+      "topicId": "halogen",
+      "title": "CFCs catalytically destroy ozone",
+      "sourceFile": "web/student/src/content/halogen_deriv.jsx",
+      "assetHash": "b3035f1ba3efaf67b4149482846d4bd95b7ca99f082ed3bc19c0d730b58416e4",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydrocarbons:h1:3",
+      "type": "diagram",
+      "topicId": "hydrocarbons",
+      "title": "The alkane homologous series",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "982387f4387a2563cfad35cecbb3624961f1804c3478bfe7c0f639cc7c7af328",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydrocarbons:h10:1",
+      "type": "diagram",
+      "topicId": "hydrocarbons",
+      "title": "Same reactants, different conditions, different products",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "303753874fda82046d9960a4806e68fc6cda417db295af1a42c42e8ab2186f81",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydrocarbons:h2:5",
+      "type": "diagram",
+      "topicId": "hydrocarbons",
+      "title": "cis vs trans but-2-ene",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "1833ff530b369ddce7cbaf8be922ef5369ec992f1655eb2dcc6c8cb4f04d1613",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydrocarbons:h3:1",
+      "type": "diagram",
+      "topicId": "hydrocarbons",
+      "title": "Fractional distillation of crude oil",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "4d5379a7a6f8751dae4c54c790df4ee545163df4ef095a0be0f91b87fa7dfd23",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydrocarbons:h3:6",
+      "type": "diagram",
+      "topicId": "hydrocarbons",
+      "title": "Catalytic cracking of decane",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "6baa95155349d5370676a14a8558b61b7273fe02bcf8890f38b3d0079078c788",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydrocarbons:h5:5",
+      "type": "diagram",
+      "topicId": "hydrocarbons",
+      "title": "Free-radical chlorination of ethane",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "ad93b368a59df8f626f9779b93f8d4815421de127b8478869b6bb0b36b70ab7d",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydrocarbons:h6:10",
+      "type": "diagram",
+      "topicId": "hydrocarbons",
+      "title": "Br₂ addition via bromonium ion",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "88e7068145dfb018de61bb84305903c7482cff1150267c9faf5845b86b141df7",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydrocarbons:h6:13",
+      "type": "diagram",
+      "topicId": "hydrocarbons",
+      "title": "HBr + propene",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "2e478b8ddc04f64f057bb5ac339a5526d1b812e215eb4933fcae610b4a752715",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydrocarbons:h6:15",
+      "type": "diagram",
+      "topicId": "hydrocarbons",
+      "title": "Cold vs hot KMnO₄",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "49a99210ab03592b6dd91f0b73286bf3fb9c102db3573e8c1c7f8c1bea947af6",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydrocarbons:h6:3",
+      "type": "diagram",
+      "topicId": "hydrocarbons",
+      "title": "Alkanes vs alkenes with Br₂(aq)",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "062bcd14a516d4d698d8015b9f342ff39682ecfd53e5c0f340ce6c31eecf854e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydrocarbons:h6:7",
+      "type": "diagram",
+      "topicId": "hydrocarbons",
+      "title": "HBr across ethene",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "48872acc6eed713d9ccede19d7c3e09e1d1d2de9b5502890bae88968a0004d61",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydrocarbons:h7:1",
+      "type": "diagram",
+      "topicId": "hydrocarbons",
+      "title": "Two ways of drawing benzene",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "8a21796adfd828b9a87f376d483ef61c386201c87d98fb4360e9e61f10718ca4",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydrocarbons:h8:2",
+      "type": "diagram",
+      "topicId": "hydrocarbons",
+      "title": "Br₂ + benzene with FeBr₃",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "11bf146cdf2af0079b3be5900ed49148a417e9ff21adf337cee240c8dc6642d6",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydrocarbons:h8:4",
+      "type": "diagram",
+      "topicId": "hydrocarbons",
+      "title": "Benzene + HNO₃ / H₂SO₄",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "fe3a2dbd0b2e1198aacd94f9c74b215902cdc1c0af064cc22b85a03c2db8cbaf",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydrocarbons:h9:1",
+      "type": "diagram",
+      "topicId": "hydrocarbons",
+      "title": "The -CH₃ group is a 2,4-director (ortho/para director)",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "319beb1fe7a6d7b916b3d719771b31f6cbf661d0b75617fef5888c0a917769bf",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydroxy:hy1:4",
+      "type": "diagram",
+      "topicId": "hydroxy",
+      "title": "Primary, secondary and tertiary alcohols",
+      "sourceFile": "web/student/src/content/hydroxy.jsx",
+      "assetHash": "2ca911054dc413b5504a5a8e08d57f858094fc1dc1def15c780318966b117cdf",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydroxy:hy10:1",
+      "type": "diagram",
+      "topicId": "hydroxy",
+      "title": "Acidity ranking by pKa",
+      "sourceFile": "web/student/src/content/hydroxy.jsx",
+      "assetHash": "964be0100867ef8c2782ef2615aad1ab0d290f544a39ff3b9a8e6d7f328aac35",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydroxy:hy10:5",
+      "type": "diagram",
+      "topicId": "hydroxy",
+      "title": "Phenoxide ion stabilised by delocalisation",
+      "sourceFile": "web/student/src/content/hydroxy.jsx",
+      "assetHash": "59f78588e70a8677528aeb5ba21da060508911b922cde0cc14257857b0e81e35",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydroxy:hy4:1",
+      "type": "diagram",
+      "topicId": "hydroxy",
+      "title": "H-bonding raises b.p. and gives water solubility",
+      "sourceFile": "web/student/src/content/hydroxy.jsx",
+      "assetHash": "9d1fcbd46487e0b64ba108fb4b3563f29bdf79a1f529e9c714e66ce1e7fab16d",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydroxy:hy6:1",
+      "type": "diagram",
+      "topicId": "hydroxy",
+      "title": "Oxidation pathways for primary, secondary and tertiary alcohols",
+      "sourceFile": "web/student/src/content/hydroxy.jsx",
+      "assetHash": "7ceab7be735ea66a455d6d5b762cdb754fb5d11bc05b8ae4d21605c08931aeae",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydroxy:hy7:2",
+      "type": "diagram",
+      "topicId": "hydroxy",
+      "title": "Dehydration of alcohols to alkenes",
+      "sourceFile": "web/student/src/content/hydroxy.jsx",
+      "assetHash": "cfdde2ec4f7f2c45b72b4dd1fe9187ca8b537a43034ce4d64a1c90abdfcdafb3",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydroxy:hy7:5",
+      "type": "diagram",
+      "topicId": "hydroxy",
+      "title": "Alcohol + carboxylic acid → ester (reversible)",
+      "sourceFile": "web/student/src/content/hydroxy.jsx",
+      "assetHash": "e209dbd4519677e12a2fc81a34fc3b7d68cb9e0303a1e08f0fae20df45b7914f",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:hydroxy:hy9:1",
+      "type": "diagram",
+      "topicId": "hydroxy",
+      "title": "Key reactions of phenol",
+      "sourceFile": "web/student/src/content/hydroxy.jsx",
+      "assetHash": "152c968d538ef783930828dfa3b8fdf3ba3bd0535f993c0d3a935329b6695f34",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:kinetics:rk2:1",
+      "type": "diagram",
+      "topicId": "kinetics",
+      "title": "The general rate equation",
+      "sourceFile": "web/student/src/content/kinetics.jsx",
+      "assetHash": "a0ee9f3529491501ce7c9fb0fb6f52b4a075baf92e058dbabe5967e45099cb2e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:kinetics:rk3:1",
+      "type": "diagram",
+      "topicId": "kinetics",
+      "title": "Initial rate method — systematic comparison",
+      "sourceFile": "web/student/src/content/kinetics.jsx",
+      "assetHash": "b9358476d10c698c9b977c5109cb389787ab49e2b2a921d39a8fc777e4991098",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:kinetics:rk3:5",
+      "type": "diagram",
+      "topicId": "kinetics",
+      "title": "Shapes of [A]-time curves for different orders",
+      "sourceFile": "web/student/src/content/kinetics.jsx",
+      "assetHash": "a1e333b3457337d186881a525ba4ad102254425887d7d4ff12b20591ef20f580",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:kinetics:rk4:1",
+      "type": "diagram",
+      "topicId": "kinetics",
+      "title": "First-order decay: each successive t½ is the same",
+      "sourceFile": "web/student/src/content/kinetics.jsx",
+      "assetHash": "9a598e67725b9285445d6844b5e1d95568af45e7a9e84ebf02af5ea5ba230d75",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:kinetics:rk5:4",
+      "type": "diagram",
+      "topicId": "kinetics",
+      "title": "Effect of temperature on the distribution of molecular energies",
+      "sourceFile": "web/student/src/content/kinetics.jsx",
+      "assetHash": "0c7649bc2d95d083f5374338c74da4fedc3f2f108f51338515a317c9765b325c",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:kinetics:rk6:1",
+      "type": "diagram",
+      "topicId": "kinetics",
+      "title": "Energy profile: catalyst provides a lower Ea route",
+      "sourceFile": "web/student/src/content/kinetics.jsx",
+      "assetHash": "ea4cfbb4486333aa453a17d60ec7595205e8e9c1bb6bb3bf6ddef286ad023a21",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:kinetics:rk7:1",
+      "type": "diagram",
+      "topicId": "kinetics",
+      "title": "Two-step mechanism for NO₂ + CO",
+      "sourceFile": "web/student/src/content/kinetics.jsx",
+      "assetHash": "826dee2473389940cb70b57629061958c21b9f56aa37f281ad966235df8c4aab",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:kinetics:rk8:1",
+      "type": "diagram",
+      "topicId": "kinetics",
+      "title": "Comparing homogeneous and heterogeneous catalysis",
+      "sourceFile": "web/student/src/content/kinetics.jsx",
+      "assetHash": "7fb6a217d853373b638714ca727774b875cd4bd6d6f2fe2874081c0541ced5d9",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:nano:nn1:1",
+      "type": "diagram",
+      "topicId": "nano",
+      "title": "1–100 nm: between atoms and bacteria",
+      "sourceFile": "web/student/src/content/nano.jsx",
+      "assetHash": "41088834a19d3a82e228108297176c265834c9240877d53e4158760aa08001e6",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:nano:nn2:1",
+      "type": "diagram",
+      "topicId": "nano",
+      "title": "SA/V scales as 1/size — orders of magnitude bigger at nm",
+      "sourceFile": "web/student/src/content/nano.jsx",
+      "assetHash": "9c82af05c6aedc6ef7857513c5f1b42cf0493aca380f120e9cdcd41eb331a140",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:nano:nn3:1",
+      "type": "diagram",
+      "topicId": "nano",
+      "title": "Four classes by dimensionality",
+      "sourceFile": "web/student/src/content/nano.jsx",
+      "assetHash": "47427a8541653c164173420fbdf52453aea1e376bcf1ee605c6fed5d6b32ce67",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:nano:nn4:1",
+      "type": "diagram",
+      "topicId": "nano",
+      "title": "Three pillars of nanomedicine",
+      "sourceFile": "web/student/src/content/nano.jsx",
+      "assetHash": "742fcd7b203c53bafe6e7b11da0b802c9a2aa8c0dfeb35324eeca6b828ee83c7",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:nano:nn5:1",
+      "type": "diagram",
+      "topicId": "nano",
+      "title": "Three areas: water, soil, air",
+      "sourceFile": "web/student/src/content/nano.jsx",
+      "assetHash": "fbde4a4ba3d3fcd2a9b459de5cce45931b933e522b7d2f5dc2771efbad7cd2eb",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:nano:nn6:1",
+      "type": "diagram",
+      "topicId": "nano",
+      "title": "Three categories of nanomaterial concern",
+      "sourceFile": "web/student/src/content/nano.jsx",
+      "assetHash": "7ff61ce8d4d43ae0e35b13010822d9e4d3e8a5fd8843e97b92df3039d6811293",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:norganic:nc1:1",
+      "type": "diagram",
+      "topicId": "norganic",
+      "title": "1°/2°/3° refers to N — count the C atoms attached to nitrogen",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "8b7b5d310532d5b038129c173048379bff31319051d1051559d4fa9cf4515e83",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:norganic:nc10:1",
+      "type": "diagram",
+      "topicId": "norganic",
+      "title": "Two amino acids → dipeptide + H₂O",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "e6da520c79e386b7e813b8ed5fe23ab9786e2516019b6e3fcba463685ea30d59",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:norganic:nc11:1",
+      "type": "diagram",
+      "topicId": "norganic",
+      "title": "Three ways to hydrolyse a protein, then visualise spots",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "b003437e8422dc4832605a6ae30ca0b078f29b1ea6e4bcadefe65940226ebc19",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:norganic:nc12:1",
+      "type": "diagram",
+      "topicId": "norganic",
+      "title": "Test sequence and decision tree for unknowns",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "5565e0668aac760a9eb1933c8f7fa2d6ebbdfda9984f4dd5b844ed7ad7ff10d3",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:norganic:nc2:1",
+      "type": "diagram",
+      "topicId": "norganic",
+      "title": "Three routes — A and B are the syllabus-essential ones",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "6ddbc7d295e12c3896d36351b8d287a1c08a4ba28daf7c23f99b91151f43dd7d",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:norganic:nc3:1",
+      "type": "diagram",
+      "topicId": "norganic",
+      "title": "pKb data: smaller pKb = stronger base",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "2c39189aa3d506709d9d7eb282d2f25c7edd000f6736f5dc84ee8d13b915241a",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:norganic:nc3:5",
+      "type": "diagram",
+      "topicId": "norganic",
+      "title": "Alkyl groups push electrons onto N; the aryl ring pulls them away",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "f5dfbccee0902a00cb8c6f231ddec441bc23b44dce7fd8b51b163abcb7a12735",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:norganic:nc4:1",
+      "type": "diagram",
+      "topicId": "norganic",
+      "title": "Two named reactions: bromine (ring) and HNO₂ (N–H)",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "a8cd9de646caca8d370cbb6aa34b227eb877c1746f5074a64f86f9579e93c35e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:norganic:nc5:1",
+      "type": "diagram",
+      "topicId": "norganic",
+      "title": "Diazotise cold, then couple — two steps to a dye",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "5c0f929e8baee4e501953e6999659998c9ff3a8165b612a6ff5c91070805b7dc",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:norganic:nc6:1",
+      "type": "diagram",
+      "topicId": "norganic",
+      "title": "Amide structure, formation, and key properties",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "f36e0193356218949bf3e7a6c0062c55024704be6fda475124d6cdb13bdd986b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:norganic:nc7:1",
+      "type": "diagram",
+      "topicId": "norganic",
+      "title": "Acid (left) and base (right) hydrolysis — different products",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "4a9fc34165e0a5e410f88f4770332563d76f1bb775b96640a0bfaade1a7c9b7b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:norganic:nc8:1",
+      "type": "diagram",
+      "topicId": "norganic",
+      "title": "The α-amino acid skeleton with R = side chain",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "7b08f599aa94e9b5972aed09e1638a235353f879ee786150560ccd67c6505a92",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:norganic:nc9:1",
+      "type": "diagram",
+      "topicId": "norganic",
+      "title": "Three forms of an amino acid as pH changes",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "c6c427b390c6692c1d6b1588e67098b51aa599ddd2a815479742ff9e13083e36",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:norganic:nc9:9",
+      "type": "diagram",
+      "topicId": "norganic",
+      "title": "Two pKa values give two buffer plateaus",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "5c9450295f3da4decce20f9f48c9989e2a3574a796b27ac11eba821ff89ed658",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:nsulphur:ns1:1",
+      "type": "diagram",
+      "topicId": "nsulphur",
+      "title": "The N≡N triple bond is exceptionally strong",
+      "sourceFile": "web/student/src/content/nsulphur.jsx",
+      "assetHash": "2554c3e19f13b24f6376374c079ac422105ed2fab15a004d28415c1b4856a87e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:nsulphur:ns2:1",
+      "type": "diagram",
+      "topicId": "nsulphur",
+      "title": "Formation and structure of NH₄⁺",
+      "sourceFile": "web/student/src/content/nsulphur.jsx",
+      "assetHash": "52bbb7dc5a1170b3f7943d22848a614054627d777c42952c99646fba929e2b5a",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:nsulphur:ns3:1",
+      "type": "diagram",
+      "topicId": "nsulphur",
+      "title": "Haber process: conditions and rationale",
+      "sourceFile": "web/student/src/content/nsulphur.jsx",
+      "assetHash": "f5ffeda5b702a6bdc613cba0359510065428616326149ecf04fb8e63f097705b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:nsulphur:ns4:1",
+      "type": "diagram",
+      "topicId": "nsulphur",
+      "title": "Three stages of the Contact Process",
+      "sourceFile": "web/student/src/content/nsulphur.jsx",
+      "assetHash": "eb0c25e72dbacc9c7a2b1b25edeb2476f9bde780d4cdbd1d8541bc683eb19239",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:nsulphur:ns6:1",
+      "type": "diagram",
+      "topicId": "nsulphur",
+      "title": "Environmental impacts and solutions",
+      "sourceFile": "web/student/src/content/nsulphur.jsx",
+      "assetHash": "de12222e5495d7c90cd582504771544fe8e926f2119eff18efc2cc6bec7241f6",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:nsulphur:ns7:1",
+      "type": "diagram",
+      "topicId": "nsulphur",
+      "title": "Catalytic converter: heterogeneous catalysis",
+      "sourceFile": "web/student/src/content/nsulphur.jsx",
+      "assetHash": "3f21c9bf53fe727664a484102ebfa321c061c011f7ecc57d6c17e24b4a4a3a49",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:periodicity:pd2:1",
+      "type": "diagram",
+      "topicId": "periodicity",
+      "title": "Atomic radius decreases across Period 3",
+      "sourceFile": "web/student/src/content/periodicity.jsx",
+      "assetHash": "fc812b3b2267b60064354c1af4c6b82bc2c42cf14cc08f0afe2a461b11c05dc3",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:periodicity:pd3:1",
+      "type": "diagram",
+      "topicId": "periodicity",
+      "title": "IE₁ trend across Period 3 with dips at Al and S",
+      "sourceFile": "web/student/src/content/periodicity.jsx",
+      "assetHash": "cb9c77ec3cb6c15270f620e29b17e4dab94b5ca630323902d4f5a60c562fb7b3",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:periodicity:pd4:1",
+      "type": "diagram",
+      "topicId": "periodicity",
+      "title": "Melting points reflect bonding type",
+      "sourceFile": "web/student/src/content/periodicity.jsx",
+      "assetHash": "330354a38e121ac83f9ef2db1a0ff3e22c6bd217463e2e8e70ea817af63d1f11",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:periodicity:pd4:4",
+      "type": "diagram",
+      "topicId": "periodicity",
+      "title": "Only the metals (and Si partially) conduct electricity",
+      "sourceFile": "web/student/src/content/periodicity.jsx",
+      "assetHash": "a3c347cbaad20063f32a975d6f58e7bba29d3ef0e678438a9183c249f2185e18",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:periodicity:pd5:1",
+      "type": "diagram",
+      "topicId": "periodicity",
+      "title": "Products and oxidation states when Period 3 elements burn in O₂",
+      "sourceFile": "web/student/src/content/periodicity.jsx",
+      "assetHash": "2cfaf6360f20cdb5b057e559ed12cd0a78827c635a2a6b11147ec593731d9185",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:periodicity:pd7:1",
+      "type": "diagram",
+      "topicId": "periodicity",
+      "title": "Acid-base character transitions across Period 3",
+      "sourceFile": "web/student/src/content/periodicity.jsx",
+      "assetHash": "34178198180248d4d8a9abb5aa377f6b8dd73c21d522adec90597c2d851a4aec",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:periodicity:pd8:1",
+      "type": "diagram",
+      "topicId": "periodicity",
+      "title": "Period 3 chlorides: bonding, behaviour with water, pH",
+      "sourceFile": "web/student/src/content/periodicity.jsx",
+      "assetHash": "23a955fc4ebb3f917749673c020cab7c81a76b77624fd7bd7044febc06d2e204",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:phase:pe1:1",
+      "type": "diagram",
+      "topicId": "phase",
+      "title": "A phase is a uniform region with definite composition and properties",
+      "sourceFile": "web/student/src/content/phase.jsx",
+      "assetHash": "2faad622517c2bdbf4379bd261d46b7cc344626d59442f70c0d51967804cfcde",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:phase:pe10:1",
+      "type": "diagram",
+      "topicId": "phase",
+      "title": "Five-step workflow from sample to band pattern",
+      "sourceFile": "web/student/src/content/phase.jsx",
+      "assetHash": "e5e13de3aafd59891050bf585c961532f15aeb02def74711e7e3d9624eb9657a",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:phase:pe2:1",
+      "type": "diagram",
+      "topicId": "phase",
+      "title": "Two immiscible liquids share boiling — neither boils alone",
+      "sourceFile": "web/student/src/content/phase.jsx",
+      "assetHash": "cd3bd5eb282b1e5b07dd3234c2291d9e4d2a3a533bc54e374314b73599851036",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:phase:pe3:1",
+      "type": "diagram",
+      "topicId": "phase",
+      "title": "Partition coefficient = ratio of concentrations at equilibrium",
+      "sourceFile": "web/student/src/content/phase.jsx",
+      "assetHash": "b692f1211a4d7c7cb7153f29963539588a1b7c8ae2e326f0b870ef49bc028304",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:phase:pe4:1",
+      "type": "diagram",
+      "topicId": "phase",
+      "title": "Procedure: shake, separate, repeat with fresh solvent",
+      "sourceFile": "web/student/src/content/phase.jsx",
+      "assetHash": "ef8abfc1ab41fe70758c9e17acc4a9311d2c9dc091c48646431f40ce6f7d7ff9",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:phase:pe5:1",
+      "type": "diagram",
+      "topicId": "phase",
+      "title": "All chromatographies share the same logic",
+      "sourceFile": "web/student/src/content/phase.jsx",
+      "assetHash": "3631c7922871af0cc57e8166b48f94ea2c41ff49dfa4eee588286752c46e3bbc",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:phase:pe6:1",
+      "type": "diagram",
+      "topicId": "phase",
+      "title": "Spot, run, measure — Rf is the result",
+      "sourceFile": "web/student/src/content/phase.jsx",
+      "assetHash": "c341744c7e99bdff9f89ea01130724e08a125d682ec39bc6de2b1e316e03a44c",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:phase:pe7:1",
+      "type": "diagram",
+      "topicId": "phase",
+      "title": "Three column-based variants for different jobs",
+      "sourceFile": "web/student/src/content/phase.jsx",
+      "assetHash": "226f6e93ce4d71edaadfc56c54debe89f79f06a1a05dad6daea7798a3b7404db",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:phase:pe8:1",
+      "type": "diagram",
+      "topicId": "phase",
+      "title": "Gas mobile + liquid stationary = partition for volatile compounds",
+      "sourceFile": "web/student/src/content/phase.jsx",
+      "assetHash": "004d36edf605b4d67e2a894cb10e0c5c896ac177365929d3470f118e4391c6ac",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:phase:pe9:1",
+      "type": "diagram",
+      "topicId": "phase",
+      "title": "Charged species migrate towards the opposite electrode",
+      "sourceFile": "web/student/src/content/phase.jsx",
+      "assetHash": "11b13f68fcfac86a7cef24d145f2acb87742393c7a668af5e7b45f81a37acd84",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:polymer:pl1:1",
+      "type": "diagram",
+      "topicId": "polymer",
+      "title": "Three terms to internalise: polymer, monomer, repeat unit",
+      "sourceFile": "web/student/src/content/polymers.jsx",
+      "assetHash": "6336144654827f6390b3808d25f7a57e490215b10d6125722ce5e1012ea8d353",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:polymer:pl2:1",
+      "type": "diagram",
+      "topicId": "polymer",
+      "title": "Three stages: initiation, propagation, termination",
+      "sourceFile": "web/student/src/content/polymers.jsx",
+      "assetHash": "69f231eb714a34cd645f9bf46b80e8fdddcd0379d37d0b12f2f5d6531aa0546a",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:polymer:pl3:1",
+      "type": "diagram",
+      "topicId": "polymer",
+      "title": "Five major addition polymers and their uses",
+      "sourceFile": "web/student/src/content/polymers.jsx",
+      "assetHash": "ef63b87b39d5da7e682e6e0f78d79ca927fa8d7658893c666b2a69a867f05807",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:polymer:pl4:1",
+      "type": "diagram",
+      "topicId": "polymer",
+      "title": "Polyesters and polyamides — same logic, different linkage",
+      "sourceFile": "web/student/src/content/polymers.jsx",
+      "assetHash": "f95b488252f3ded985d7db98485c07f28e97f9091331a59b7247e132d1373c4b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:polymer:pl5:1",
+      "type": "diagram",
+      "topicId": "polymer",
+      "title": "Terylene/PET — the textbook polyester",
+      "sourceFile": "web/student/src/content/polymers.jsx",
+      "assetHash": "db6bdeb1e5527bd28a09d6e8532303f04032ae312a4bb3adf2887c31f8d326f9",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:polymer:pl6:1",
+      "type": "diagram",
+      "topicId": "polymer",
+      "title": "Three industrially important polyamides",
+      "sourceFile": "web/student/src/content/polymers.jsx",
+      "assetHash": "2518dd784ba0ccd50cfc06201d641daaf4bb9e50f6a65ff5223bee67d862d381",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:polymer:pl7:1",
+      "type": "diagram",
+      "topicId": "polymer",
+      "title": "Reverse the polymerisation: cut linkages, restore lost atoms",
+      "sourceFile": "web/student/src/content/polymers.jsx",
+      "assetHash": "611402dcb327ac425c00deebfac6b31272600165389bf297fa3b7a7be06dd0d4",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:polymer:pl8:1",
+      "type": "diagram",
+      "topicId": "polymer",
+      "title": "Three main environmental problems and the alternatives",
+      "sourceFile": "web/student/src/content/polymers.jsx",
+      "assetHash": "aef3819b3dc53979f3f638fd486c10708411484107188928539f33e0e11aacbc",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:states:st1:1",
+      "type": "diagram",
+      "topicId": "states",
+      "title": "Particle arrangement in each state",
+      "sourceFile": "web/student/src/content/states.jsx",
+      "assetHash": "824e86f25a758b05eba185c526672bcf6b3ef51db5e3e4fe436c0ae3c9e7241d",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:states:st2:5",
+      "type": "diagram",
+      "topicId": "states",
+      "title": "Speed distribution at two temperatures",
+      "sourceFile": "web/student/src/content/states.jsx",
+      "assetHash": "fe756e4a39dafdda702a3c26be4eb016e9b3640fdcf8134c1d7df991e19b03f5",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:states:st3:12",
+      "type": "diagram",
+      "topicId": "states",
+      "title": "Molar volumes at standard conditions",
+      "sourceFile": "web/student/src/content/states.jsx",
+      "assetHash": "905c14adc0d652cef185f87384d34fd45f3cc76b13b27124c5ecaf998dcfd8a3",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:states:st4:1",
+      "type": "diagram",
+      "topicId": "states",
+      "title": "PV/nRT departs from 1 at high P or low T",
+      "sourceFile": "web/student/src/content/states.jsx",
+      "assetHash": "144ccfbc3686dc4c57e51a145d6291a2311313fc24149147eeccc3966cc8d687",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:states:st6:2",
+      "type": "diagram",
+      "topicId": "states",
+      "title": "Sodium chloride — alternating cations and anions",
+      "sourceFile": "web/student/src/content/states.jsx",
+      "assetHash": "4bb94c4bc513d9278f43253a90629e6efae36cb308db1a337826f17000bc034b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:states:st6:5",
+      "type": "diagram",
+      "topicId": "states",
+      "title": "Iodine — discrete I₂ molecules in a soft lattice",
+      "sourceFile": "web/student/src/content/states.jsx",
+      "assetHash": "b358cae756b6283cae61e99ba559fade2dd895cf87e58e9f4067c3e9ef666a42",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:states:st6:8",
+      "type": "diagram",
+      "topicId": "states",
+      "title": "Ice — water molecules held in an open hexagonal lattice by H-bonds",
+      "sourceFile": "web/student/src/content/states.jsx",
+      "assetHash": "78e8fe2cb6ac581b02e68b5657fa25f8c0f84c33e05d7ebf272e50cf5d7dd092",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:states:st7:1",
+      "type": "diagram",
+      "topicId": "states",
+      "title": "Diamond — every C bonded to 4 others tetrahedrally",
+      "sourceFile": "web/student/src/content/states.jsx",
+      "assetHash": "a279a4e1d732e84c196b8c1746250e6ea8a9ccdba18c675021ee85fb3afc43f0",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:states:st7:4",
+      "type": "diagram",
+      "topicId": "states",
+      "title": "Graphite — hexagonal layers with delocalised π electrons",
+      "sourceFile": "web/student/src/content/states.jsx",
+      "assetHash": "b3f6260927afeb92f11a6d0b5d28390e0925568d76609a16b305ec806c53c0f7",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:states:st7:7",
+      "type": "diagram",
+      "topicId": "states",
+      "title": "Quartz — Si tetrahedrally bonded to 4 O",
+      "sourceFile": "web/student/src/content/states.jsx",
+      "assetHash": "3a11921375cf08a11e6b3176bccfa686cba5eb2471dce31417d11387b28b48d9",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:states:st8:1",
+      "type": "diagram",
+      "topicId": "states",
+      "title": "Schematic phase diagram (water-like)",
+      "sourceFile": "web/student/src/content/states.jsx",
+      "assetHash": "ceecc6b56d81d38fb87ee147cc5b52fdb3bb627197c9e0506ec686bbec4874e9",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:stoich:s2:1",
+      "type": "diagram",
+      "topicId": "stoich",
+      "title": "Mass spectrum of chlorine (atoms and Cl₂ molecules)",
+      "sourceFile": "web/student/src/content/stoich.jsx",
+      "assetHash": "1a32acf65df3fd23742dbf212b2e25e5fc19f04ddd59805853bc9adf6bb7f4da",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:stoich:s3:1",
+      "type": "diagram",
+      "topicId": "stoich",
+      "title": "Definition of the mole",
+      "sourceFile": "web/student/src/content/stoich.jsx",
+      "assetHash": "b3af8a34f43aea9e9646ff2bd47365861a2e6c88c26a34ca6c591033d291d378",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:stoich:s3:6",
+      "type": "diagram",
+      "topicId": "stoich",
+      "title": "n = m / M",
+      "sourceFile": "web/student/src/content/stoich.jsx",
+      "assetHash": "71a35588a99c09846e4c58ec53a7624e5b2b0b6f0893042e9a238f865e507649",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:stoich:s4:1",
+      "type": "diagram",
+      "topicId": "stoich",
+      "title": "The four-step procedure",
+      "sourceFile": "web/student/src/content/stoich.jsx",
+      "assetHash": "56a2633280fc14370c19c1296171fbae5fde340ac7dd60a6f74e31aecfbd543f",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:stoich:s5:1",
+      "type": "diagram",
+      "topicId": "stoich",
+      "title": "Mass and atoms balance both sides",
+      "sourceFile": "web/student/src/content/stoich.jsx",
+      "assetHash": "1d6f43ddd39194646a3096f15d69a175759be92c6ca28c751a1df01d39db7f50",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:stoich:s6:1",
+      "type": "diagram",
+      "topicId": "stoich",
+      "title": "Molar gas volume at standard conditions",
+      "sourceFile": "web/student/src/content/stoich.jsx",
+      "assetHash": "905c14adc0d652cef185f87384d34fd45f3cc76b13b27124c5ecaf998dcfd8a3",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:stoich:s7:1",
+      "type": "diagram",
+      "topicId": "stoich",
+      "title": "Titration setup",
+      "sourceFile": "web/student/src/content/stoich.jsx",
+      "assetHash": "a36177f27ce9872ae456a02a5594ef56070627a72e4395d92bdef1eab244dd0f",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:stoich:s8:1",
+      "type": "diagram",
+      "topicId": "stoich",
+      "title": "The two key formulas",
+      "sourceFile": "web/student/src/content/stoich.jsx",
+      "assetHash": "ece902cd7a8cc0346dcdd3c5871f39d4a35d971dc2ced074d1adb55b2d1a0912",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:transition:t10:1",
+      "type": "diagram",
+      "topicId": "transition",
+      "title": "V oxidation states — one of the most-tested patterns",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "35cfff9ee820012a80435c4d945dab2dded65f13eb8a79a65f5953aad470b2ee",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:transition:t11:2",
+      "type": "diagram",
+      "topicId": "transition",
+      "title": "Interconversion controlled by pH",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "983d8855c2251dc202f0fe03bf27dc0b03554b6213b9cd71e817663d74d4ec9b",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:transition:t12:1",
+      "type": "diagram",
+      "topicId": "transition",
+      "title": "Key Mn oxidation states",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "687fa0f7db2afe0a76867f819970752c4f8e325d548eab95e55ec53b426f4942",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:transition:t13:10",
+      "type": "diagram",
+      "topicId": "transition",
+      "title": "Electrochemical rusting needs O₂ AND water",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "4786c8ed398540588d9c29ae70adba407816d09afd8b7e1b77b31aadcb919b51",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:transition:t13:7",
+      "type": "diagram",
+      "topicId": "transition",
+      "title": "Iron in haemoglobin",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "294272619aa204ac7ab2fec9bc981d8f15d5a9f5d43a8b0089694b7ed259b579",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:transition:t14:1",
+      "type": "diagram",
+      "topicId": "transition",
+      "title": "Pink → blue cobalt on ligand/temperature change",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "71b5a4c35f9f40c60274051a6a80a134ad033a65c025083e4dd1b302fa28ddb4",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:transition:t14:6",
+      "type": "diagram",
+      "topicId": "transition",
+      "title": "Cu⁺ disproportionation",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "c89292c673a5ee275048ca4475882f75c691c285b9f4ffd7fdb8243ee41c9351",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:transition:t2:1",
+      "type": "diagram",
+      "topicId": "transition",
+      "title": "Configurations across the first row",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "a456aac4592777b5d4af6c7e600408f4c1358ba40314cb88704741faf423485f",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:transition:t3:1",
+      "type": "diagram",
+      "topicId": "transition",
+      "title": "Physical-property contrast with Ca",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "62533ef7bf3569481d409388d16599ba4a5b6068e6a669b0e1920cba083b6d31",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:transition:t5:5",
+      "type": "diagram",
+      "topicId": "transition",
+      "title": "Octahedral — 6 ligands (most common)",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "e90a24e18968d670554c6b81188ed67486c890f4d2144a92480f274413cec739",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:transition:t5:6",
+      "type": "diagram",
+      "topicId": "transition",
+      "title": "Tetrahedral — 4 ligands (especially with large ligands)",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "baf6fbfa46192d29e972dbcaff61f6adbd28e6590574a7f7624ff203c903910e",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:transition:t5:7",
+      "type": "diagram",
+      "topicId": "transition",
+      "title": "Square planar — 4 ligands (common for d⁸ ions like Ni²⁺, Pt²⁺)",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "32618ac550ce8bc742746bd80af31ae2c3cbea49fe5152f48815339830a80af9",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:transition:t6:3",
+      "type": "diagram",
+      "topicId": "transition",
+      "title": "cis vs trans [Pt(NH₃)₂Cl₂] — one form is an anti-cancer drug, the other is not",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "d4772a2da650b7b467cbc5b6e3774e81122bb38a0d0099f3250217a2da4feeb3",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:transition:t8:1",
+      "type": "diagram",
+      "topicId": "transition",
+      "title": "d-orbital splitting in an octahedral field",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "6cdfb242fab2e6e2deea59cbd687cab52e3e9ec55075414d11033fa8bac903ad",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "diagram:transition:t8:2",
+      "type": "diagram",
+      "topicId": "transition",
+      "title": "Absorbed colour → complementary colour seen",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "ca983786b2715a60408525fc18fa8db444a4754f267b9d63fac2cc0d9ede35f2",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:atomic",
+      "type": "topic-source",
+      "topicId": "atomic",
+      "title": "atomic source module",
+      "sourceFile": "web/student/src/content/atomic.jsx",
+      "assetHash": "48c27e9c4028c961ec2ba4c0124a12155c81ec6fe7d8e8d0b841791a4929a6b1",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:bonding",
+      "type": "topic-source",
+      "topicId": "bonding",
+      "title": "bonding source module",
+      "sourceFile": "web/student/src/content/bonding.jsx",
+      "assetHash": "f031ea07385ea0366373729a0513f730eae87a8e9a14474331c394e29017e279",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:carbonyl",
+      "type": "topic-source",
+      "topicId": "carbonyl",
+      "title": "carbonyl source module",
+      "sourceFile": "web/student/src/content/carbonyl.jsx",
+      "assetHash": "15240c0ca24fea88aac5ac30131db926fc24dd591ce09326e5113142787fd663",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:carboxylic",
+      "type": "topic-source",
+      "topicId": "carboxylic",
+      "title": "carboxylic source module",
+      "sourceFile": "web/student/src/content/carboxylic.jsx",
+      "assetHash": "daf1f198ffec90c4375642fd808e6e8124c21179277b31c440f2ae558ffd06eb",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:electrochem",
+      "type": "topic-source",
+      "topicId": "electrochem",
+      "title": "electrochem source module",
+      "sourceFile": "web/student/src/content/electrochem.jsx",
+      "assetHash": "7a38dada395776855d3827bd82ea44bcd634ca36cdf4a2280abb588b9dc82d55",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:energetics",
+      "type": "topic-source",
+      "topicId": "energetics",
+      "title": "energetics source module",
+      "sourceFile": "web/student/src/content/energetics.jsx",
+      "assetHash": "8575134ed5e60ea132d3d25fa733e1ef765558d3e5f8a862f1b26c329258fb32",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:environment",
+      "type": "topic-source",
+      "topicId": "environment",
+      "title": "environment source module",
+      "sourceFile": "web/student/src/content/environment.jsx",
+      "assetHash": "fb0b482e3ed3b4bd210db031ae8b61588a37ca4472d39e18bf0bd05765e02165",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:equilibria",
+      "type": "topic-source",
+      "topicId": "equilibria",
+      "title": "equilibria source module",
+      "sourceFile": "web/student/src/content/equilibria.jsx",
+      "assetHash": "b334469926f283d3c298f06bbb6a8b58da1d8318b0440e5c540001d246edf708",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:group2",
+      "type": "topic-source",
+      "topicId": "group2",
+      "title": "group2 source module",
+      "sourceFile": "web/student/src/content/group2.jsx",
+      "assetHash": "eafac19c551d40a26843b299cda68513a1214272dcd1b7b4181e50a6712b6792",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:group4",
+      "type": "topic-source",
+      "topicId": "group4",
+      "title": "group4 source module",
+      "sourceFile": "web/student/src/content/group4.jsx",
+      "assetHash": "f99532d55512d0a1725272466d25c4f9defc49d108b48a7e71a93a70be5b650c",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:group7",
+      "type": "topic-source",
+      "topicId": "group7",
+      "title": "group7 source module",
+      "sourceFile": "web/student/src/content/group7.jsx",
+      "assetHash": "8d97707db761f106be1337f29a6e3f759d025a6a0897fe8f7ab4345f3ffedc48",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:halogen",
+      "type": "topic-source",
+      "topicId": "halogen",
+      "title": "halogen source module",
+      "sourceFile": "web/student/src/content/halogen_deriv.jsx",
+      "assetHash": "9c9796cbd187388c00881a931857567e2ff5055ffbb6938cf3e938604245da59",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:hydrocarbons",
+      "type": "topic-source",
+      "topicId": "hydrocarbons",
+      "title": "hydrocarbons source module",
+      "sourceFile": "web/student/src/content/hydrocarbons.jsx",
+      "assetHash": "0dada8d3b7c2978e65882d0a491228419fec2ebd3b9a69024cf19133f423f88f",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:hydroxy",
+      "type": "topic-source",
+      "topicId": "hydroxy",
+      "title": "hydroxy source module",
+      "sourceFile": "web/student/src/content/hydroxy.jsx",
+      "assetHash": "56e274ad0656f2da3da12d638d5969444fc5e63006b8fcfb9ea27a09f1555f81",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:kinetics",
+      "type": "topic-source",
+      "topicId": "kinetics",
+      "title": "kinetics source module",
+      "sourceFile": "web/student/src/content/kinetics.jsx",
+      "assetHash": "b5c0c9b69e6f03268a7c47350a9834f4631992c76a2c5a4725c31f29ca02682a",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:nano",
+      "type": "topic-source",
+      "topicId": "nano",
+      "title": "nano source module",
+      "sourceFile": "web/student/src/content/nano.jsx",
+      "assetHash": "13e63e42d6f52a7345f6bee4fe2ed846314f1bcc885a82c8c51f6cfa2cd6200c",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:norganic",
+      "type": "topic-source",
+      "topicId": "norganic",
+      "title": "norganic source module",
+      "sourceFile": "web/student/src/content/norganic.jsx",
+      "assetHash": "53f0b40b4b18361af8a62db739420337261b3d12468a216a5f9b12fa88110078",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:nsulphur",
+      "type": "topic-source",
+      "topicId": "nsulphur",
+      "title": "nsulphur source module",
+      "sourceFile": "web/student/src/content/nsulphur.jsx",
+      "assetHash": "2b841c29ac77e29fa2dec4917761d67c7487f00bc23e4c1e541e2c16f4095398",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:periodicity",
+      "type": "topic-source",
+      "topicId": "periodicity",
+      "title": "periodicity source module",
+      "sourceFile": "web/student/src/content/periodicity.jsx",
+      "assetHash": "d0d13b72c06849337d7fad5844d48105d61c8ad80760b7015e92d4e322546c57",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:phase",
+      "type": "topic-source",
+      "topicId": "phase",
+      "title": "phase source module",
+      "sourceFile": "web/student/src/content/phase.jsx",
+      "assetHash": "2e625ae1830074f47e58a427133abbacc5ee92a21ae1a2ce8f4b180ef9fcc2eb",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:polymer",
+      "type": "topic-source",
+      "topicId": "polymer",
+      "title": "polymer source module",
+      "sourceFile": "web/student/src/content/polymers.jsx",
+      "assetHash": "c31e3b786174b87d2611bb159a053cf22d3b17d74d67386961ee33ff08dec6b3",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:states",
+      "type": "topic-source",
+      "topicId": "states",
+      "title": "states source module",
+      "sourceFile": "web/student/src/content/states.jsx",
+      "assetHash": "4e4397141db60a0957e291563e795ed6ea2a9d5a8ceb4ee1e7f3d539a64bc2db",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:stoich",
+      "type": "topic-source",
+      "topicId": "stoich",
+      "title": "stoich source module",
+      "sourceFile": "web/student/src/content/stoich.jsx",
+      "assetHash": "cb1809c932e319b11d7154d9e932cfb2547164a9612fd153870a10386c9e7663",
+      "rightsStatus": "unreviewed"
+    },
+    {
+      "assetId": "topic:transition",
+      "type": "topic-source",
+      "topicId": "transition",
+      "title": "transition source module",
+      "sourceFile": "web/student/src/content/transition.jsx",
+      "assetHash": "899630f046eeeb5959541e723d387fc40fee5565660486477f57dcdf4008e0aa",
+      "rightsStatus": "unreviewed"
+    }
+  ]
+}

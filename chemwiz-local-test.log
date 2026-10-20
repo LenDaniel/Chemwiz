@@ -1,0 +1,597 @@
+1.7.0
+npm notice run chemwiz-unified@1.7.0 test:local
+npm notice run node scripts/run-local-checks.mjs
+npm notice run chemwiz-unified@1.7.0 check
+npm notice run node scripts/check-installation.cjs
+Source check: PASS (124 required files; 130 local backend imports). This checks source completeness, not live database or provider access.
+npm notice run chemwiz-unified@1.7.0 verify:content
+npm notice run node web/student/scripts/verify-content.mjs
+Content check: PASS (24 topics; 255 chapters; 218 spec diagrams rendered; 745 quiz answers; 134 mark totals; 181 worked examples).
+PASS: the other 23 topics are byte-equivalent as loaded records; corrected polymer examples have definite answers.
+npm notice run chemwiz-unified@1.7.0 verify:k4
+npm notice run node web/student/scripts/verify-k4.mjs
+PASS: lazy/cache loading, all-tab Wiz contexts, all 24 topics match the accepted K-Cleanup snapshot, complete search manifest, offline voice selection and full-text reading.
+npm notice run chemwiz-unified@1.7.0 test
+npm notice run node --test backend/tests/tutor.test.js backend/tests/voice.test.js backend/tests/liveVoice.test.js tests/*.test.cjs tests/build-gate.test.mjs tests/w2-admin.test.mjs tests/release-recovery.test.mjs tests/password-recovery.test.cjs
+✔ live voice requires Premium and a selected context; backend creates scoped SDP call without disclosing its API key (1211.8257ms)
+Wiz provider diagnostic: {
+  endpoint: '/responses',
+  model: 'gpt-5-mini',
+  httpStatus: 503,
+  providerCode: 'other',
+  parameter: null
+}
+✔ Wiz enforces auth and access, sends scoped messages to OpenAI, and persists the daily cap (229.6672ms)
+✔ voice notes require Premium, forward audio server-side and return editable text (1206.1317ms)
+Local JSON data mode enabled: C:\Users\dell\AppData\Local\Temp\chemwiz-admin-recycle-OpWG9z\database.json
+Local users available: 1
+✔ all new record routes refuse anonymous and learner authority (949.9552ms)
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 409 }
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 409 }
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 409 }
+✔ active, self and other administrator accounts cannot be trashed (64.8478ms)
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 400 }
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 400 }
+✔ account deletion requires an exact email confirmation and a reason (26.8677ms)
+✔ trash preserves records, revokes sessions and hides accounts from users/stats/lookup (77.4347ms)
+✔ inactive disabled accounts are eligible and stale document saves cannot resurrect them (41.8341ms)
+✔ school memberships revoke and seats release without silently restoring school access (40.6751ms)
+✔ restoring preserves learning records and old tokens stay revoked (62.3947ms)
+ChemWiz API error: { name: 'Error', code: 'RECYCLE_RETENTION_ACTIVE', status: 409 }
+ChemWiz API error: { name: 'Error', code: 'RECYCLE_RETENTION_ACTIVE', status: 409 }
+✔ client dates and a tampered early eligibility timestamp cannot bypass the minimum 90 days (36.7276ms)
+✔ the precise 90-day boundary is enforced by the domain clock (4.8343ms)
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 404 }
+✔ permanent account purge erases linked local records and redacts audit references (53.4235ms)
+ChemWiz API error: { name: 'Error', code: 'ACCOUNT_RETENTION_HOLD', status: 409 }
+✔ guardian dependencies hold a purge while unrelated accounts remain recoverable (35.2224ms)
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 409 }
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 409 }
+✔ approved privacy erasure keeps its existing procedure and cannot be restored from this bin (50.4237ms)
+✔ a failed atomic file replacement commits neither deletion nor audit changes (9.5984ms)
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 409 }
+✔ concurrent trash attempts create one recoverable account entry (28.7103ms)
+✔ inventory covers 24 topic modules, 255 chapters and 218 diagrams without declaring rights cleared (7.8735ms)
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 400 }
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 400 }
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 400 }
+✔ draft validation rejects dangerous source URLs and incomplete rights claims (19.4208ms)
+ChemWiz API error: { name: 'Error', code: 'CONTENT_CONFLICT', status: 409 }
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 409 }
+✔ draft edits require the latest revision and cannot change a trashed draft (52.2098ms)
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 400 }
+✔ redistribution checks require matching review hashes and exact offline/platform scope (17.5392ms)
+ChemWiz API error: { name: 'Error', code: 'RECYCLE_RETENTION_ACTIVE', status: 409 }
+✔ material restore returns a draft for fresh review, and a later purge removes the complete saved material (75.686ms)
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 404 }
+✔ an old editor cannot recreate a purged material through the update endpoint (7.0492ms)
+✔ unrelated saved fields survive recycle and restore unchanged (30.7679ms)
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 400 }
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 400 }
+✔ permission expiry gates redistribution and overly long drafts are rejected without truncation (26.1638ms)
+✔ current request inventory maps every contract through middleware without source errors (2320.7893ms)
+✔ missing backend route blocks the frontend API connection (2073.0435ms)
+✔ a frontend HTTP method mismatch blocks the build (1803.0806ms)
+✔ missing administrator middleware blocks the build (1392.9271ms)
+✔ authentication declared after a route does not protect that route (1381.021ms)
+✔ admin guards in the wrong order block the build (1076.0033ms)
+✔ a broken fetch wrapper blocks the middle layer (1026.9617ms)
+✔ a new frontend API without an executable contract blocks the build (1678.8932ms)
+✔ unresolvable request paths cannot silently disappear from the inventory (1307.9393ms)
+✔ an unknown API transport requires a checked adapter (1248.8773ms)
+✔ external frontend API origin blocks unified routing (1169.7557ms)
+✔ missing imports in the backend data layer are checked (1236.6534ms)
+✔ a named frontend import must exist in its target module (1394.4662ms)
+✔ invalid syntax and executable JSON configuration block integrity checks (2619.7515ms)
+✔ embedded credentials and string evaluation block the frontend (2539.3044ms)
+✔ hardcoded signing secrets and missing Premium middleware block security checks (2051.8836ms)
+✔ unsupported chained route declarations cannot silently bypass the inventory (942.6729ms)
+✔ complete evidence is accepted but changed source is rejected (300.9833ms)
+✔ failed, unavailable or skipped preflight/local checks block deployment (6595.0029ms)
+✔ local testing rejects stale preflight and altered compiled assets (445.9568ms)
+✔ fingerprints exclude private records but include backend data code and normalize line endings (20.1145ms)
+✔ Render HTTPS login reaches the API behind an HTTP proxy without enabling trust proxy (139.0156ms)
+✔ configured workspace URLs resolve to their exact origin for custom-domain login (31.1211ms)
+✔ login preflight allows the configured HTTPS origin and required auth headers (7.6459ms)
+✔ unlisted origins and forged forwarded headers remain blocked (30.8603ms)
+✔ invalid configuration cannot turn the CORS allowlist into a wildcard (14.9003ms)
+✔ learner edits are cached immediately and a successful save clears the pending flag (9.0283ms)
+✔ offline edits survive a reload and retry sends the account cache (7.6828ms)
+✔ edits during an in-flight save remain pending and use the next revision (11.637ms)
+✔ a changed remote revision requires an explicit conflict choice and preserves the device copy (1.6798ms)
+✔ choosing the server copy clears an old pending cache without writing (1.3243ms)
+Local JSON data mode enabled: C:\Users\dell\AppData\Local\Temp\chemwiz-password-recovery-jPclHw\database.json
+Local users available: 1
+✔ password policy rejects short, numberless, punctuation-free, common, repeated and oversized passwords (152.0515ms)
+✔ public signup enforces policy, validates types and ignores injected security fields (1069.7266ms)
+✔ known and unknown emails get the same generic reply; only hashes and one-hour expiry persist (7532.1026ms)
+✔ a rapid resend keeps the current challenge without sending another email (7233.9969ms)
+✔ link reset is single use under concurrent submissions and revokes existing sessions (5337.9342ms)
+✔ email and code reset accepts email casing and rejects replay (4436.3287ms)
+✔ five wrong codes persistently exhaust the challenge without locking ordinary login (4399.1253ms)
+✔ expired reset credentials cannot change a password (4362.4978ms)
+✔ resending after the cooldown invalidates the previous link (7285.8376ms)
+✔ expired upgrade capabilities are rejected and MongoDB recovery fields have safe defaults (226.5779ms)
+✔ policy and confirmation failures leave a valid challenge usable (4275.7952ms)
+✔ weak legacy admin passwords require a limited upgrade before workspace access (1039.5441ms)
+✔ unknown legacy sessions require reauthentication; access tokens cannot upgrade passwords (335.9343ms)
+✔ email casing is accepted and signup cannot duplicate an account (1205.0075ms)
+✔ inactive accounts cannot request or use recovery; normal account status is preserved (6840.3144ms)
+Password recovery email failed: { code: 'EMAIL_DELIVERY_FAILED' }
+✔ delivery failure returns the generic response and clears its unusable challenge (4285.1673ms)
+✔ missing email configuration is a global error and leaves accounts unchanged (810.2908ms)
+✔ reset email uses trusted HTTPS configuration and ignores hostile return destinations (3804.8837ms)
+✔ EmailJS transport sends the private key server-side and never includes passwords (4.2668ms)
+✔ dedicated login throttling rejects repeated guessing with a retry response (8124.2813ms)
+✔ a failed local password write leaves both persisted data and the active cache unchanged (1214.7786ms)
+Local JSON data mode enabled: C:\Users\dell\AppData\Local\Temp\chemwiz-privacy-schools-OiG7s2\database.json
+Local users available: 1
+✔ public privacy contains approved operator data but no private review or account values (287.8865ms)
+✔ publication fails closed and does not prevent administrator access (78.4732ms)
+✔ registration requires current age and legal choices and ignores injected roles/consents (819.4775ms)
+✔ legacy learning records survive the new onboarding gate (51.0017ms)
+✔ declared teen registration cannot forge a guardian approval or store an active child account (9.1954ms)
+✔ guardian issue/revoke and publication endpoints reject a learner token (47.0525ms)
+ChemWiz API error: { name: 'Error', code: 'PRIVACY_INVALID', status: 400 }
+ChemWiz API error: { name: 'Error', code: 'PRIVACY_INVALID', status: 400 }
+✔ guardian authorisation checks written consent and age, and invitation is bound to one child email (43.2295ms)
+ChemWiz API error: { name: 'Error', code: 'GUARDIAN_REQUIRED', status: 403 }
+✔ verified child activation consumes the grant, blocks age forgery and requires child AI review (669.3509ms)
+✔ expired invitations and repeated use cannot authorise activation (706.5398ms)
+✔ guardian withdrawal stops existing child sessions from learning and using AI (621.4678ms)
+✔ optional AI and voice withdrawals are enforced on the backend (65.1802ms)
+ChemWiz API error: { name: 'Error', code: 'SCHOOL_ACCESS_DENIED', status: 403 }
+✔ teacher reports are limited to the authorised school and assigned classes (192.915ms)
+✔ pending sharing exposes no learner progress and valid school membership grants plan access (112.491ms)
+ChemWiz API error: { name: 'Error', code: 'SCHOOL_ACCESS_DENIED', status: 403 }
+ChemWiz API error: { name: 'Error', code: 'SCHOOL_INACTIVE', status: 403 }
+✔ staff revocation and subscription expiry remove report access without deleting personal progress (87.1209ms)
+ChemWiz API error: { name: 'Error', code: 'GUARDIAN_SCHOOL_REQUIRED', status: 403 }
+✔ guardian school permission is bound to the named school (692.4317ms)
+ChemWiz API error: { name: 'Error', code: 'SCHOOL_SEATS_FULL', status: 409 }
+✔ concurrent school assignments cannot exceed the reserved seat count (39.0258ms)
+✔ account export is scoped, includes consent history and excludes authentication/guardian secrets (31.9525ms)
+✔ core withdrawal immediately stops learning and all school sharing (65.1678ms)
+ChemWiz API error: { name: 'Error', code: 'PRIVACY_INVALID', status: 400 }
+ChemWiz API error: { name: 'Error', code: 'PRIVACY_INVALID', status: 400 }
+✔ deletion approval verifies exact account and staff accounts cannot be erased through learner workflow (37.6524ms)
+✔ approved deletion revokes sessions, waits 24 hours, supports a dry run and erases eligible local records atomically (43.1203ms)
+✔ expired unredeemed guardian invitation personal data is redacted after 30 days by maintenance (34.3151ms)
+✔ an expired historical guardian cannot withdraw an adult learner’s fresh consent (555.1652ms)
+✔ a deletion with another child’s guardian dependency is held for a retention review (515.53ms)
+✔ changing the child’s named school approval removes the old school-derived entitlement (602.3623ms)
+ChemWiz API error: { name: 'Error', code: 'GUARDIAN_REQUIRED', status: 403 }
+✔ superseded invitations cannot restore child access after the current guardian approval is withdrawn (517.9787ms)
+✔ production checks require MongoDB, HTTPS and canonical private settings (3.643ms)
+✔ the recovery worker rejects API, lesson, admin and query-string cache targets (3.6952ms)
+✔ installation fetches and caches only public recovery files without credentials (83.5352ms)
+✔ a failed installation removes its partial cache and retains the working release (4.166ms)
+✔ API, POST, external, query and admin requests never receive a service-worker cache response (4.899ms)
+✔ offline or server failure uses a public recovery page while authentication errors remain server responses (11.646ms)
+✔ activation retains one rollback cache and never deletes another application’s caches (4.7449ms)
+✔ update activation requires one matching learner tab and refuses outside-scope messages (3.1189ms)
+✔ web manifest changes participate in the release fingerprint and normalize Windows line endings (297.4796ms)
+✔ Cloudflare serves only the explicit PWA files and keeps private paths blocked (9.4391ms)
+✔ release diagnostics identify missing, extra and changed source files (14.5814ms)
+✔ file comparisons normalize Windows line endings and omit private records (13.4617ms)
+✔ older or missing reports produce actionable read-only diagnostics (9.998ms)
+✔ misplaced patch helpers are identified instead of ignored by the fingerprint (15.2726ms)
+Local JSON data mode enabled: C:\Users\dell\AppData\Local\Temp\chemwiz-integrated-zM4r0k\local.json
+Local users available: 2
+✔ one production server serves home, both workspaces and API readiness (1508.095ms)
+Error: Error: This origin is not permitted to access ChemWiz.
+    at origin (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\backend\src\config\cors.js:14:19)
+    at C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\cors\lib\index.js:219:13
+    at C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\backend\src\config\cors.js:4:48
+    at corsMiddleware (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\index.js:342:13)
+    at C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\index.js:297:9
+    at processParams (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\index.js:582:12)
+    at next (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\index.js:186:3) {
+  statusCode: 403,
+  code: 'CORS_ORIGIN_BLOCKED'
+}
+✔ missing API routes and assets never become a workspace HTML page; private files are not served (29.2688ms)
+✔ only admin accounts reach administration; public registration cannot set a role (34.9764ms)
+✔ learner settings, progress, streak and mistakes save to the authenticated account and survive a new process (838.4927ms)
+✔ stale saves conflict instead of replacing newer work; account changes preserve learning records (40.9922ms)
+Error: Error: Invalid progress percentage.
+    at invalid (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\backend\src\services\learningState.service.js:7:17)
+    at integer (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\backend\src\services\learningState.service.js:16:61)
+    at validateState (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\backend\src\services\learningState.service.js:42:116)
+    at C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\backend\src\routes\progress.routes.js:21:19
+    at Layer.handleRequest (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\index.js:295:15 {
+  statusCode: 400
+}
+Error: Error: Invalid topic identifier.
+    at invalid (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\backend\src\services\learningState.service.js:7:17)
+    at validateState (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\backend\src\services\learningState.service.js:38:90)
+    at C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\backend\src\routes\progress.routes.js:14:42
+    at Layer.handleRequest (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\index.js:295:15
+    at processParams (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\index.js:582:12) {
+  statusCode: 400
+}
+✔ learning data and imported backups are validated before saving (24.2482ms)
+✔ a corrupt local database is preserved and startup fails with a useful message (169.2629ms)
+✔ migration copies account IDs, hashes, subscriptions and logs without overwriting existing data (7.0666ms)
+✔ configuration import preserves backend settings, normalizes aliases and retains the new web address (10.638ms)
+✔ admin diagnostics support host environment without an env file and identify duplicate emails (8.61ms)
+✔ diagram wrapping retains chemical tokens, Unicode and every explanatory word (1.5844ms)
+✔ diagram viewport grows to cover negative and outlying text without moving structures (0.3086ms)
+✔ diagram text alternatives include labels/table cells but exclude drawing instructions (0.5916ms)
+✔ only authentication/role failures expire an admin session; CORS/network/panel errors retain it (0.3114ms)
+✔ read-only administrator checks distinguish missing account, wrong role, suspension and legacy casing (0.5887ms)
+✔ local account inspection leaves database/private settings bytes unchanged and returns no password material (6.8877ms)
+✔ public admin diagnostics submit no credentials and identify a different deployed version (7.4469ms)
+✔ origin rejection and wrong services are diagnosed before attempting login (1.6038ms)
+✔ Windows npm launcher uses Node plus the literal CLI path rather than cmd shell quoting (1.5355ms)
+✔ npm child arguments with spaces and shell characters remain literal (176.8598ms)
+✔ a stalled account request aborts and reports a retryable timeout without replaying the request (546.5184ms)
+✔ Wiz keeps its longer moderation/generation timeout and sends once (8.1176ms)
+✔ a response that stalls after its headers still reaches the abort deadline (27.293ms)
+✔ voice transcription and call setup retain separate generous timeouts (2.8947ms)
+✔ an unreadable success is rejected and real HTTP authentication failures preserve their status (3.5063ms)
+✔ payload gates reject eager chemistry/search imports even when byte limits would pass (30.2057ms)
+✔ a CSS-only unified home remains a valid entry with zero JavaScript bytes (28.0056ms)
+✔ payload gates reject oversized initial JavaScript and missing compiled assets (24.3379ms)
+✔ manifest paths and unresolved dependencies cannot bypass payload checks (21.9122ms)
+▶ Luna trial is opt-in and keeps model settings, reports and safety boundaries explicit
+  ✔ default dry run makes no provider request and requires no private key (163.3695ms)
+  ✔ explicit run arguments are required and ambiguous modes are rejected (0.8812ms)
+  ✔ three fixed questions use Luna, both moderation steps and manual chemistry review (4.1574ms)
+  ✔ provider failure stops paid retries, restores settings and omits raw errors (0.6626ms)
+  ✔ flagged input is not sent to generation (1.7175ms)
+  ✔ flagged output is excluded from the report (0.8807ms)
+  ✔ an originally absent model setting remains absent after a failure (0.8949ms)
+✔ Luna trial is opt-in and keeps model settings, reports and safety boundaries explicit (177.4704ms)
+▶ Wiz text generation has reasoning space and private failure diagnostics
+  ✔ GPT-5 mini receives a bounded larger budget and low reasoning (66.6303ms)
+  ✔ the unset model matches the existing environment examples (1.3237ms)
+  ✔ dated GPT-5 mini models receive the supported reasoning setting (1.1183ms)
+  ✔ other configured models retain compatibility without forced reasoning (1.2019ms)
+  ✔ Luna explicitly uses medium reasoning, a bounded 16384-token budget and 60-second generation timeout (1.3337ms)
+  ✔ the working GPT-4.1 mini profile retains its own budget and timeout (1.2304ms)
+  ✔ Luna moderation keeps its existing independent request settings (1.1096ms)
+  ✔ a Luna budget failure retains the incomplete-answer guard and model diagnostic (2.3441ms)
+  ✔ an exhausted budget remains an error with a useful safe diagnostic (1.984ms)
+  ✔ a partial chemistry answer is never presented as completed (1.5602ms)
+  ✔ a complete bounded answer is not cut off at the old character limit (1.0947ms)
+  ✔ a rejected model logs metadata without exposing provider messages (4.0068ms)
+  ✔ provider authentication and rate failures keep their public error codes (1.5735ms)
+  ✔ moderation errors can be distinguished from answer-generation errors (0.5594ms)
+  ✔ connection failures do not log raw exception contents (0.5394ms)
+✔ Wiz text generation has reasoning space and private failure diagnostics (93.9774ms)
+✔ two concurrent Worker requests keep their connections and models separate (26.2745ms)
+✔ one Worker request reuses its own connection and closes it on failure (1.4778ms)
+✔ database access outside a Worker request is refused; a failed open can retry inside the request (0.9159ms)
+✔ finished Worker requests do not accumulate connections in the Mongoose registry (1.9901ms)
+✔ Cloudflare workspace routing, private file protection and JSON missing assets (47.701ms)
+ℹ tests 174
+ℹ suites 0
+ℹ pass 174
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 79034.8325
+Local JSON data mode enabled: C:\Users\dell\AppData\Local\Temp\chemwiz-browser-check-Xf9Bjc\database.json
+Local users available: 1
+Auth middleware error: invalid token
+Local browser: FAIL: page.waitForFunction: Timeout 15000ms exceeded.
+LOCAL ACCEPTANCE: FAIL. Local browser acceptance failed or was unavailable.
+npm notice run chemwiz-unified@1.7.0 test:local
+npm notice run node scripts/run-local-checks.mjs
+npm notice run chemwiz-unified@1.7.0 check
+npm notice run node scripts/check-installation.cjs
+Source check: PASS (124 required files; 130 local backend imports). This checks source completeness, not live database or provider access.
+npm notice run chemwiz-unified@1.7.0 verify:content
+npm notice run node web/student/scripts/verify-content.mjs
+Content check: PASS (24 topics; 255 chapters; 218 spec diagrams rendered; 745 quiz answers; 134 mark totals; 181 worked examples).
+PASS: the other 23 topics are byte-equivalent as loaded records; corrected polymer examples have definite answers.
+npm notice run chemwiz-unified@1.7.0 verify:k4
+npm notice run node web/student/scripts/verify-k4.mjs
+PASS: lazy/cache loading, all-tab Wiz contexts, all 24 topics match the accepted K-Cleanup snapshot, complete search manifest, offline voice selection and full-text reading.
+npm notice run chemwiz-unified@1.7.0 test
+npm notice run node --test backend/tests/tutor.test.js backend/tests/voice.test.js backend/tests/liveVoice.test.js tests/*.test.cjs tests/build-gate.test.mjs tests/w2-admin.test.mjs tests/release-recovery.test.mjs tests/password-recovery.test.cjs
+✔ live voice requires Premium and a selected context; backend creates scoped SDP call without disclosing its API key (1399.3501ms)
+Wiz provider diagnostic: {
+  endpoint: '/responses',
+  model: 'gpt-5-mini',
+  httpStatus: 503,
+  providerCode: 'other',
+  parameter: null
+}
+✔ Wiz enforces auth and access, sends scoped messages to OpenAI, and persists the daily cap (262.3893ms)
+✔ voice notes require Premium, forward audio server-side and return editable text (1380.0657ms)
+Local JSON data mode enabled: C:\Users\dell\AppData\Local\Temp\chemwiz-admin-recycle-DLOpYH\database.json
+Local users available: 1
+✔ all new record routes refuse anonymous and learner authority (894.7996ms)
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 409 }
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 409 }
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 409 }
+✔ active, self and other administrator accounts cannot be trashed (63.6633ms)
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 400 }
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 400 }
+✔ account deletion requires an exact email confirmation and a reason (36.8863ms)
+✔ trash preserves records, revokes sessions and hides accounts from users/stats/lookup (156.6057ms)
+✔ inactive disabled accounts are eligible and stale document saves cannot resurrect them (49.4193ms)
+✔ school memberships revoke and seats release without silently restoring school access (54.9745ms)
+✔ restoring preserves learning records and old tokens stay revoked (79.1135ms)
+ChemWiz API error: { name: 'Error', code: 'RECYCLE_RETENTION_ACTIVE', status: 409 }
+ChemWiz API error: { name: 'Error', code: 'RECYCLE_RETENTION_ACTIVE', status: 409 }
+✔ client dates and a tampered early eligibility timestamp cannot bypass the minimum 90 days (47.5081ms)
+✔ the precise 90-day boundary is enforced by the domain clock (8.7024ms)
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 404 }
+✔ permanent account purge erases linked local records and redacts audit references (70.1774ms)
+ChemWiz API error: { name: 'Error', code: 'ACCOUNT_RETENTION_HOLD', status: 409 }
+✔ guardian dependencies hold a purge while unrelated accounts remain recoverable (42.9749ms)
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 409 }
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 409 }
+✔ approved privacy erasure keeps its existing procedure and cannot be restored from this bin (61.3744ms)
+✔ a failed atomic file replacement commits neither deletion nor audit changes (14.3104ms)
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 409 }
+✔ concurrent trash attempts create one recoverable account entry (37.5315ms)
+✔ inventory covers 24 topic modules, 255 chapters and 218 diagrams without declaring rights cleared (13.0234ms)
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 400 }
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 400 }
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 400 }
+✔ draft validation rejects dangerous source URLs and incomplete rights claims (36.3998ms)
+ChemWiz API error: { name: 'Error', code: 'CONTENT_CONFLICT', status: 409 }
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 409 }
+✔ draft edits require the latest revision and cannot change a trashed draft (101.4337ms)
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 400 }
+✔ redistribution checks require matching review hashes and exact offline/platform scope (29.8933ms)
+ChemWiz API error: { name: 'Error', code: 'RECYCLE_RETENTION_ACTIVE', status: 409 }
+✔ material restore returns a draft for fresh review, and a later purge removes the complete saved material (108.7715ms)
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 404 }
+✔ an old editor cannot recreate a purged material through the update endpoint (9.8825ms)
+✔ unrelated saved fields survive recycle and restore unchanged (44.5781ms)
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 400 }
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 400 }
+✔ permission expiry gates redistribution and overly long drafts are rejected without truncation (37.1965ms)
+✔ current request inventory maps every contract through middleware without source errors (2467.5489ms)
+✔ missing backend route blocks the frontend API connection (2641.192ms)
+✔ a frontend HTTP method mismatch blocks the build (2052.299ms)
+✔ missing administrator middleware blocks the build (1437.9581ms)
+✔ authentication declared after a route does not protect that route (1100.1384ms)
+✔ admin guards in the wrong order block the build (1062.7827ms)
+✔ a broken fetch wrapper blocks the middle layer (1684.7118ms)
+✔ a new frontend API without an executable contract blocks the build (1750.3077ms)
+✔ unresolvable request paths cannot silently disappear from the inventory (2106.4477ms)
+✔ an unknown API transport requires a checked adapter (2180.7317ms)
+✔ external frontend API origin blocks unified routing (1730.6289ms)
+✔ missing imports in the backend data layer are checked (1831.2431ms)
+✔ a named frontend import must exist in its target module (2311.2012ms)
+✔ invalid syntax and executable JSON configuration block integrity checks (3333.9886ms)
+✔ embedded credentials and string evaluation block the frontend (2533.4883ms)
+✔ hardcoded signing secrets and missing Premium middleware block security checks (2714.51ms)
+✔ unsupported chained route declarations cannot silently bypass the inventory (1397.4567ms)
+✔ complete evidence is accepted but changed source is rejected (519.7599ms)
+✔ failed, unavailable or skipped preflight/local checks block deployment (7995.0927ms)
+✔ local testing rejects stale preflight and altered compiled assets (640.2353ms)
+✔ fingerprints exclude private records but include backend data code and normalize line endings (26.1698ms)
+✔ Render HTTPS login reaches the API behind an HTTP proxy without enabling trust proxy (178.1772ms)
+✔ configured workspace URLs resolve to their exact origin for custom-domain login (30.5795ms)
+✔ login preflight allows the configured HTTPS origin and required auth headers (7.539ms)
+✔ unlisted origins and forged forwarded headers remain blocked (27.0325ms)
+✔ invalid configuration cannot turn the CORS allowlist into a wildcard (12.1113ms)
+✔ learner edits are cached immediately and a successful save clears the pending flag (7.2598ms)
+✔ offline edits survive a reload and retry sends the account cache (3.4971ms)
+✔ edits during an in-flight save remain pending and use the next revision (1.6463ms)
+✔ a changed remote revision requires an explicit conflict choice and preserves the device copy (1.1867ms)
+✔ choosing the server copy clears an old pending cache without writing (1.0975ms)
+Local JSON data mode enabled: C:\Users\dell\AppData\Local\Temp\chemwiz-password-recovery-nTJ04b\database.json
+Local users available: 1
+✔ password policy rejects short, numberless, punctuation-free, common, repeated and oversized passwords (210.2627ms)
+✔ public signup enforces policy, validates types and ignores injected security fields (1140.3504ms)
+✔ known and unknown emails get the same generic reply; only hashes and one-hour expiry persist (7655.9558ms)
+✔ a rapid resend keeps the current challenge without sending another email (7303.9588ms)
+✔ link reset is single use under concurrent submissions and revokes existing sessions (6345.6079ms)
+✔ email and code reset accepts email casing and rejects replay (4757.1367ms)
+✔ five wrong codes persistently exhaust the challenge without locking ordinary login (4794.3953ms)
+✔ expired reset credentials cannot change a password (4717.1948ms)
+✔ resending after the cooldown invalidates the previous link (7597.3738ms)
+✔ expired upgrade capabilities are rejected and MongoDB recovery fields have safe defaults (241.5063ms)
+✔ policy and confirmation failures leave a valid challenge usable (4266.5453ms)
+✔ weak legacy admin passwords require a limited upgrade before workspace access (1058.2234ms)
+✔ unknown legacy sessions require reauthentication; access tokens cannot upgrade passwords (336.0011ms)
+✔ email casing is accepted and signup cannot duplicate an account (1211.7153ms)
+✔ inactive accounts cannot request or use recovery; normal account status is preserved (6847.9754ms)
+Password recovery email failed: { code: 'EMAIL_DELIVERY_FAILED' }
+✔ delivery failure returns the generic response and clears its unusable challenge (4294.9885ms)
+✔ missing email configuration is a global error and leaves accounts unchanged (813.368ms)
+✔ reset email uses trusted HTTPS configuration and ignores hostile return destinations (3806.7085ms)
+✔ EmailJS transport sends the private key server-side and never includes passwords (3.8716ms)
+✔ dedicated login throttling rejects repeated guessing with a retry response (8048.507ms)
+✔ a failed local password write leaves both persisted data and the active cache unchanged (1209.9291ms)
+Local JSON data mode enabled: C:\Users\dell\AppData\Local\Temp\chemwiz-privacy-schools-ybKmox\database.json
+Local users available: 1
+✔ public privacy contains approved operator data but no private review or account values (322.2967ms)
+✔ publication fails closed and does not prevent administrator access (87.4568ms)
+✔ registration requires current age and legal choices and ignores injected roles/consents (863.9286ms)
+✔ legacy learning records survive the new onboarding gate (69.3712ms)
+✔ declared teen registration cannot forge a guardian approval or store an active child account (9.3424ms)
+✔ guardian issue/revoke and publication endpoints reject a learner token (46.4742ms)
+ChemWiz API error: { name: 'Error', code: 'PRIVACY_INVALID', status: 400 }
+ChemWiz API error: { name: 'Error', code: 'PRIVACY_INVALID', status: 400 }
+✔ guardian authorisation checks written consent and age, and invitation is bound to one child email (44.4892ms)
+ChemWiz API error: { name: 'Error', code: 'GUARDIAN_REQUIRED', status: 403 }
+✔ verified child activation consumes the grant, blocks age forgery and requires child AI review (544.9114ms)
+✔ expired invitations and repeated use cannot authorise activation (594.3058ms)
+✔ guardian withdrawal stops existing child sessions from learning and using AI (679.4108ms)
+✔ optional AI and voice withdrawals are enforced on the backend (53.8984ms)
+ChemWiz API error: { name: 'Error', code: 'SCHOOL_ACCESS_DENIED', status: 403 }
+✔ teacher reports are limited to the authorised school and assigned classes (174.438ms)
+✔ pending sharing exposes no learner progress and valid school membership grants plan access (87.6579ms)
+ChemWiz API error: { name: 'Error', code: 'SCHOOL_ACCESS_DENIED', status: 403 }
+ChemWiz API error: { name: 'Error', code: 'SCHOOL_INACTIVE', status: 403 }
+✔ staff revocation and subscription expiry remove report access without deleting personal progress (88.6039ms)
+ChemWiz API error: { name: 'Error', code: 'GUARDIAN_SCHOOL_REQUIRED', status: 403 }
+✔ guardian school permission is bound to the named school (589.5657ms)
+ChemWiz API error: { name: 'Error', code: 'SCHOOL_SEATS_FULL', status: 409 }
+✔ concurrent school assignments cannot exceed the reserved seat count (41.2392ms)
+✔ account export is scoped, includes consent history and excludes authentication/guardian secrets (27.1722ms)
+✔ core withdrawal immediately stops learning and all school sharing (71.2601ms)
+ChemWiz API error: { name: 'Error', code: 'PRIVACY_INVALID', status: 400 }
+ChemWiz API error: { name: 'Error', code: 'PRIVACY_INVALID', status: 400 }
+✔ deletion approval verifies exact account and staff accounts cannot be erased through learner workflow (40.2244ms)
+✔ approved deletion revokes sessions, waits 24 hours, supports a dry run and erases eligible local records atomically (52.2665ms)
+✔ expired unredeemed guardian invitation personal data is redacted after 30 days by maintenance (37.3703ms)
+✔ an expired historical guardian cannot withdraw an adult learner’s fresh consent (507.8405ms)
+✔ a deletion with another child’s guardian dependency is held for a retention review (537.0609ms)
+✔ changing the child’s named school approval removes the old school-derived entitlement (580.1201ms)
+ChemWiz API error: { name: 'Error', code: 'GUARDIAN_REQUIRED', status: 403 }
+✔ superseded invitations cannot restore child access after the current guardian approval is withdrawn (702.9412ms)
+✔ production checks require MongoDB, HTTPS and canonical private settings (3.8826ms)
+✔ the recovery worker rejects API, lesson, admin and query-string cache targets (3.6331ms)
+✔ installation fetches and caches only public recovery files without credentials (90.2898ms)
+✔ a failed installation removes its partial cache and retains the working release (5.5388ms)
+✔ API, POST, external, query and admin requests never receive a service-worker cache response (5.8464ms)
+✔ offline or server failure uses a public recovery page while authentication errors remain server responses (12.0531ms)
+✔ activation retains one rollback cache and never deletes another application’s caches (4.3409ms)
+✔ update activation requires one matching learner tab and refuses outside-scope messages (3.2824ms)
+✔ web manifest changes participate in the release fingerprint and normalize Windows line endings (330.5981ms)
+✔ Cloudflare serves only the explicit PWA files and keeps private paths blocked (11.2796ms)
+✔ release diagnostics identify missing, extra and changed source files (18.8719ms)
+✔ file comparisons normalize Windows line endings and omit private records (15.3973ms)
+✔ older or missing reports produce actionable read-only diagnostics (13.1665ms)
+✔ misplaced patch helpers are identified instead of ignored by the fingerprint (13.9052ms)
+Local JSON data mode enabled: C:\Users\dell\AppData\Local\Temp\chemwiz-integrated-fYxXEJ\local.json
+Local users available: 2
+✔ one production server serves home, both workspaces and API readiness (2277.7767ms)
+Error: Error: This origin is not permitted to access ChemWiz.
+    at origin (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\backend\src\config\cors.js:14:19)
+    at C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\cors\lib\index.js:219:13
+    at C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\backend\src\config\cors.js:4:48
+    at corsMiddleware (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\index.js:342:13)
+    at C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\index.js:297:9
+    at processParams (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\index.js:582:12)
+    at next (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\index.js:186:3) {
+  statusCode: 403,
+  code: 'CORS_ORIGIN_BLOCKED'
+}
+✔ missing API routes and assets never become a workspace HTML page; private files are not served (40.7903ms)
+✔ only admin accounts reach administration; public registration cannot set a role (45.4818ms)
+✔ learner settings, progress, streak and mistakes save to the authenticated account and survive a new process (1171.2429ms)
+✔ stale saves conflict instead of replacing newer work; account changes preserve learning records (62.9544ms)
+Error: Error: Invalid progress percentage.
+    at invalid (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\backend\src\services\learningState.service.js:7:17)
+    at integer (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\backend\src\services\learningState.service.js:16:61)
+    at validateState (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\backend\src\services\learningState.service.js:42:116)
+    at C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\backend\src\routes\progress.routes.js:21:19
+    at Layer.handleRequest (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\index.js:295:15 {
+  statusCode: 400
+}
+Error: Error: Invalid topic identifier.
+    at invalid (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\backend\src\services\learningState.service.js:7:17)
+    at validateState (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\backend\src\services\learningState.service.js:38:90)
+    at C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\backend\src\routes\progress.routes.js:14:42
+    at Layer.handleRequest (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\index.js:295:15
+    at processParams (C:\Users\dell\Desktop\Project chemwiz\chemwiz update\chemwiz recovery 2\chemwiz One\chemwiz-v1.6\old backup system\node_modules\router\index.js:582:12) {
+  statusCode: 400
+}
+✔ learning data and imported backups are validated before saving (31.2094ms)
+✔ a corrupt local database is preserved and startup fails with a useful message (243.1053ms)
+✔ migration copies account IDs, hashes, subscriptions and logs without overwriting existing data (8.2162ms)
+✔ configuration import preserves backend settings, normalizes aliases and retains the new web address (13.0932ms)
+✔ admin diagnostics support host environment without an env file and identify duplicate emails (12.2023ms)
+✔ diagram wrapping retains chemical tokens, Unicode and every explanatory word (2.3128ms)
+✔ diagram viewport grows to cover negative and outlying text without moving structures (0.5047ms)
+✔ diagram text alternatives include labels/table cells but exclude drawing instructions (0.7553ms)
+✔ only authentication/role failures expire an admin session; CORS/network/panel errors retain it (0.5734ms)
+✔ read-only administrator checks distinguish missing account, wrong role, suspension and legacy casing (0.779ms)
+✔ local account inspection leaves database/private settings bytes unchanged and returns no password material (9.1712ms)
+✔ public admin diagnostics submit no credentials and identify a different deployed version (9.3804ms)
+✔ origin rejection and wrong services are diagnosed before attempting login (1.8527ms)
+✔ Windows npm launcher uses Node plus the literal CLI path rather than cmd shell quoting (2.0167ms)
+✔ npm child arguments with spaces and shell characters remain literal (188.5959ms)
+✔ a stalled account request aborts and reports a retryable timeout without replaying the request (543.2215ms)
+✔ Wiz keeps its longer moderation/generation timeout and sends once (12.5302ms)
+✔ a response that stalls after its headers still reaches the abort deadline (27.4374ms)
+✔ voice transcription and call setup retain separate generous timeouts (4.0063ms)
+✔ an unreadable success is rejected and real HTTP authentication failures preserve their status (4.5113ms)
+✔ payload gates reject eager chemistry/search imports even when byte limits would pass (43.2583ms)
+✔ a CSS-only unified home remains a valid entry with zero JavaScript bytes (33.3947ms)
+✔ payload gates reject oversized initial JavaScript and missing compiled assets (33.7581ms)
+✔ manifest paths and unresolved dependencies cannot bypass payload checks (32.1582ms)
+▶ Luna trial is opt-in and keeps model settings, reports and safety boundaries explicit
+  ✔ default dry run makes no provider request and requires no private key (289.0113ms)
+  ✔ explicit run arguments are required and ambiguous modes are rejected (1.3999ms)
+  ✔ three fixed questions use Luna, both moderation steps and manual chemistry review (7.6934ms)
+  ✔ provider failure stops paid retries, restores settings and omits raw errors (1.4869ms)
+  ✔ flagged input is not sent to generation (3.2304ms)
+  ✔ flagged output is excluded from the report (0.8763ms)
+  ✔ an originally absent model setting remains absent after a failure (0.7358ms)
+✔ Luna trial is opt-in and keeps model settings, reports and safety boundaries explicit (311.5327ms)
+▶ Wiz text generation has reasoning space and private failure diagnostics
+  ✔ GPT-5 mini receives a bounded larger budget and low reasoning (82.2687ms)
+  ✔ the unset model matches the existing environment examples (1.4816ms)
+  ✔ dated GPT-5 mini models receive the supported reasoning setting (1.2959ms)
+  ✔ other configured models retain compatibility without forced reasoning (1.3105ms)
+  ✔ Luna explicitly uses medium reasoning, a bounded 16384-token budget and 60-second generation timeout (1.5393ms)
+  ✔ the working GPT-4.1 mini profile retains its own budget and timeout (1.2769ms)
+  ✔ Luna moderation keeps its existing independent request settings (1.7137ms)
+  ✔ a Luna budget failure retains the incomplete-answer guard and model diagnostic (3.0764ms)
+  ✔ an exhausted budget remains an error with a useful safe diagnostic (2.0967ms)
+  ✔ a partial chemistry answer is never presented as completed (2.4924ms)
+  ✔ a complete bounded answer is not cut off at the old character limit (1.6858ms)
+  ✔ a rejected model logs metadata without exposing provider messages (8.0181ms)
+  ✔ provider authentication and rate failures keep their public error codes (2.2752ms)
+  ✔ moderation errors can be distinguished from answer-generation errors (0.9213ms)
+  ✔ connection failures do not log raw exception contents (0.8165ms)
+✔ Wiz text generation has reasoning space and private failure diagnostics (121.8846ms)
+✔ two concurrent Worker requests keep their connections and models separate (31.114ms)
+✔ one Worker request reuses its own connection and closes it on failure (1.9307ms)
+✔ database access outside a Worker request is refused; a failed open can retry inside the request (1.2892ms)
+✔ finished Worker requests do not accumulate connections in the Mongoose registry (2.9384ms)
+✔ Cloudflare workspace routing, private file protection and JSON missing assets (106.9412ms)
+ℹ tests 174
+ℹ suites 0
+ℹ pass 174
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 82136.3784
+Local JSON data mode enabled: C:\Users\dell\AppData\Local\Temp\chemwiz-browser-check-ZlSX6r\database.json
+Local users available: 1
+Auth middleware error: invalid token
+ChemWiz API error: { name: 'Error', code: 'RECYCLE_RETENTION_ACTIVE', status: 409 }
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 404 }
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 400 }
+ChemWiz API error: { name: 'Error', code: 'CONTENT_CONFLICT', status: 409 }
+Local browser: PASS (85 checks; desktop/mobile; no JavaScript runtime errors).
+Local JSON data mode enabled: C:\Users\dell\AppData\Local\Temp\chemwiz-w3-browser-matrix-7Y2uxs\database.json
+Local users available: 1
+Auth middleware error: invalid token
+ChemWiz API error: { name: 'Error', code: 'RECYCLE_RETENTION_ACTIVE', status: 409 }
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 404 }
+ChemWiz API error: { name: 'Error', code: 'ADMIN_RECORD_INVALID', status: 400 }
+ChemWiz API error: { name: 'Error', code: 'CONTENT_CONFLICT', status: 409 }
+W3 + PWA/admin firefox 153.0: PASS (12 W3 and 18 PWA/admin and 11 recycle/content checks).
+LOCAL ACCEPTANCE: PASS. Recorded release evidence for this source.

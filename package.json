@@ -1,6 +1,6 @@
 {
   "name": "chemwiz-unified",
-  "version": "1.5.3",
+  "version": "1.7.0",
   "private": true,
   "description": "One ChemWiz application: student workspace, admin workspace and Express API",
   "main": "server.js",
@@ -12,7 +12,7 @@
     "postinstall": "node scripts/setup.cjs",
     "dev": "node scripts/dev.cjs",
     "start": "node server.js",
-    "build": "npm run generate:search && vite build",
+    "build": "npm run generate:search && npm run inventory:check && vite build && node scripts/build-pwa.cjs",
     "generate:search": "node web/student/scripts/generate-search.mjs",
     "verify:k4": "node web/student/scripts/verify-k4.mjs",
     "verify:content": "node web/student/scripts/verify-content.mjs",
@@ -39,7 +39,10 @@
     "privacy:maintenance": "node scripts/privacy-maintenance.cjs",
     "test:wiz-live": "node scripts/test-wiz-live.cjs",
     "check:performance": "node scripts/check-performance.mjs",
-    "test:w3": "node scripts/check-w3-browsers.mjs"
+    "test:w3": "node scripts/check-w3-browsers.mjs",
+    "check:pwa": "node scripts/check-pwa.cjs",
+    "inventory:generate": "node scripts/generate-content-inventory.mjs",
+    "inventory:check": "node scripts/generate-content-inventory.mjs --check"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
