@@ -31,6 +31,8 @@ async function createApplication({ development = false } = {}) {
         imgSrc: ["'self'", 'data:', 'blob:'],
         connectSrc: ["'self'"],
         mediaSrc: ["'self'", 'blob:'],
+        workerSrc: ["'self'"],
+        manifestSrc: ["'self'"],
         upgradeInsecureRequests: null,
       },
     },
@@ -41,7 +43,10 @@ async function createApplication({ development = false } = {}) {
   const api = require('./backend/app');
   api.set('trust proxy', app.get('trust proxy'));
   app.use((req, res, next) => {
-    if (req.path === '/api' || req.path.startsWith('/api/')) return api(req, res, next);
+    if (req.path === '/api' || req.path.startsWith('/api/')) {
+      res.setHeader('Cache-Control', 'no-store');
+      return api(req, res, next);
+    }
     next();
   });
   const server = http.createServer(app);
@@ -54,7 +59,7 @@ async function createApplication({ development = false } = {}) {
       server: {
         middlewareMode: true,
         hmr: { server },
-        fs: { allow: [path.join(root, 'web'), path.join(root, 'shared'), path.join(root, 'node_modules')] },
+        fs: { allow: [path.join(root, 'web'), path.join(root, 'shared'), path.join(root, 'node_modules'), path.join(root, 'package.json')] },
       },
     });
     app.use(vite.middlewares);
