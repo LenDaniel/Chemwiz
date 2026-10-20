@@ -47,11 +47,15 @@ try {
   const performance = spawnSync(process.execPath, [path.join(root, 'scripts/check-performance.mjs')], { cwd: root, stdio: 'inherit', timeout: 30000 });
   result.performance = readJson(path.join(folder, 'performance.json')) || { status: 'FAIL' };
   if (performance.status !== 0 || result.performance.status !== 'PASS') throw new Error('Compiled payload budgets or deferred content checks failed.');
+  const pwa = spawnSync(process.execPath, [path.join(root, 'scripts/check-pwa.cjs')], { cwd: root, stdio: 'inherit', timeout: 30000 });
+  result.pwa = readJson(path.join(folder, 'pwa.json')) || { status: 'FAIL' };
+  if (pwa.status !== 0 || result.pwa.status !== 'PASS') throw new Error('PWA build verification failed.');
   writeJson(path.join(folder, 'api-connections.json'), { status: 'NOT_RUN' });
   const probe = spawnSync(process.execPath, [path.join(root, 'scripts/probe-api-connections.mjs')], { cwd: root, stdio: 'inherit', timeout: 120000 });
   result.connections = readJson(path.join(folder, 'api-connections.json')) || { status: 'FAIL' };
   if (probe.status !== 0 || result.connections.status !== 'PASS') throw new Error('Actual frontend/API/middleware connection probes failed.');
   if (sourceFingerprint(root).digest !== initial) throw new Error('Source changed while checks were running; rerun against a stable patch.');
+  if (compiledFingerprint(root) !== result.compile.fingerprint) throw new Error('Compiled files changed during preflight. Repeat against a stable build.');
   result.status = 'PASS';
   console.log('INTEGRATION PREFLIGHT: PASS. Local acceptance testing may now run.');
 } catch (error) {

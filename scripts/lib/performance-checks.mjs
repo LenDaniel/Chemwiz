@@ -39,7 +39,7 @@ export function assessBuild(directory, budgets) {
     for (const imported of manifest[key].imports || []) closure(imported, visited);
     return visited;
   }
-  const initial = new Set(), entryJsGzipBytes = {}, studentModules = new Set();
+  const initial = new Set(), entryJsGzipBytes = {}, studentModules = new Set(), adminModules = new Set();
   for (const key of budgets.requiredEntries) {
     if (!manifest[key] || (!manifest[key].isEntry && !manifest[key].file.endsWith('.css'))) throw new Error(`Missing compiled workspace entry: ${key}`);
     checkedFile(key); // Vite records a CSS-only HTML entry without isEntry.
@@ -48,6 +48,7 @@ export function assessBuild(directory, budgets) {
     entryJsGzipBytes[key] = [...js].reduce((sum, name) => sum + files.get(name).gzip, 0);
     for (const name of js) initial.add(name);
     if (key === 'student/index.html') for (const name of modules) studentModules.add(name);
+    if (key === 'admin/index.html') for (const name of modules) adminModules.add(name);
   }
   const topicModules = Object.keys(manifest).filter(key => /^student\/src\/content\/[^/]+\.jsx$/.test(key));
   const metrics = {
@@ -74,6 +75,10 @@ export function assessBuild(directory, budgets) {
   }
   checks.push({ name: 'Topics stay deferred', value: metrics.deferredTopics, minimum: budgets.minimumDeferredTopics, status: metrics.deferredTopics >= budgets.minimumDeferredTopics && !topicModules.some(key => studentModules.has(key)) ? 'PASS' : 'FAIL' });
   checks.push({ name: 'Search stays deferred', status: metrics.searchDeferred ? 'PASS' : 'FAIL' });
+  if (budgets.adminUsersModule) {
+    metrics.usersPanelDeferred = Boolean(manifest[budgets.adminUsersModule]) && !adminModules.has(budgets.adminUsersModule);
+    checks.push({ name: 'Admin users controls stay deferred', status: metrics.usersPanelDeferred ? 'PASS' : 'FAIL' });
+  }
   return { status: checks.every(check => check.status === 'PASS') ? 'PASS' : 'FAIL', metrics, checks,
     limits: budgets.limits, scope: 'Compiled payload and lazy-loading regression checks; not Core Web Vitals or physical-device performance.' };
 }

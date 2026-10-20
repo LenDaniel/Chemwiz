@@ -3,6 +3,8 @@ import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 import { chromium, firefox } from 'playwright';
 import { runW3Checks } from './lib/w3-browser-checks.mjs';
+import { runV16Checks } from './lib/v16-browser-checks.mjs';
+import { runV17Checks } from './lib/v17-browser-checks.mjs';
 import { readJson, writeJson, verifyPreflight } from './lib/gate-state.mjs';
 import { sourceFingerprint } from './lib/source-checks.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -33,10 +35,12 @@ try {
         if (process.env.CHEMWIZ_TEST_BROWSER_PATH) options.executablePath = process.env.CHEMWIZ_TEST_BROWSER_PATH;
       } else if (name === 'chrome' || name === 'msedge') options.channel = name;
       browser = await (name === 'firefox' ? firefox : chromium).launch(options);
-      watchdog = setTimeout(() => { browser.close().catch(() => {}); }, 120000);
+      watchdog = setTimeout(() => { browser.close().catch(() => {}); }, 180000);
       const result = await runW3Checks({ root, browser, base, label: name });
-      report.browsers.push({ name, ...result });
-      console.log(`W3 ${name} ${browser.version()}: PASS (${result.checks.length} checks).`);
+      const v16 = await runV16Checks({ root, browser, base, app: instance.app });
+      const v17 = await runV17Checks({root,browser,base});
+      report.browsers.push({ name, ...result, v16, v17 });
+      console.log(`W3 + PWA/admin ${name} ${browser.version()}: PASS (${result.checks.length} W3 and ${v16.checks.length} PWA/admin and ${v17.checks.length} recycle/content checks).`);
     } catch (error) {
       report.browsers.push({ name, status: 'FAIL', error: error.message });
       console.error(`W3 ${name}: FAIL. ${error.message}`);

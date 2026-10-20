@@ -130,6 +130,7 @@ export async function runW2Checks({root,browser,base,learner,admin}) {
     await page.reload();await page.getByRole('button',{name:'Retry saved session',exact:true}).waitFor();assert.equal(await page.evaluate(()=>localStorage.getItem('chemwiz.admin.token')),token);
     await page.unroute('**/api/admin/test');await page.getByRole('button',{name:'Retry saved session',exact:true}).click();await page.locator('.admin-mini-card').waitFor();
     checks.push('Temporary admin authority/network failure retains the token and offers a safe retry');
+    await page.getByRole('button',{name:'Users & Subscriptions',exact:true}).click();
     await page.locator('button').filter({hasText:/^View$/}).first().click();
     const modal=page.getByRole('dialog');await modal.waitFor();await page.keyboard.press('Tab');assert.ok(await modal.evaluate(element=>element.contains(document.activeElement)));
     await page.keyboard.press('Escape');await modal.waitFor({state:'hidden'});

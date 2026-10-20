@@ -24,12 +24,12 @@ export function projectFiles(root) {
 }
 export function sourceFingerprint(root) {
   const files = projectFiles(root).filter((file) => file !== 'web/student/src/search/lessonManifest.json' &&
-    (codeExtensions.has(path.extname(file)) || ['.json', '.jsonc', '.html', '.css', '.png', '.svg', '.jpg', '.woff2'].includes(path.extname(file)) || ['AGENTS.md', 'BUILD_RULES.md', '.node-version', '.gitignore', '.env.example', '.env.production.example', '.dev.vars.example'].includes(file)));
+    (codeExtensions.has(path.extname(file)) || ['.json', '.jsonc', '.webmanifest', '.html', '.css', '.png', '.svg', '.jpg', '.woff2'].includes(path.extname(file)) || ['AGENTS.md', 'BUILD_RULES.md', '.node-version', '.gitignore', '.env.example', '.env.production.example', '.dev.vars.example'].includes(file)));
   const hash = createHash('sha256');
   const fileHashes = {};
   for (const file of files) {
     let bytes = fs.readFileSync(path.join(root, file));
-    if (codeExtensions.has(path.extname(file)) || ['.json', '.jsonc', '.html', '.css', '.svg', '.md'].includes(path.extname(file)) || ['.gitignore', '.node-version', '.env.example', '.env.production.example', '.dev.vars.example'].includes(file)) {
+    if (codeExtensions.has(path.extname(file)) || ['.json', '.jsonc', '.webmanifest', '.html', '.css', '.svg', '.md'].includes(path.extname(file)) || ['.gitignore', '.node-version', '.env.example', '.env.production.example', '.dev.vars.example'].includes(file)) {
       bytes = Buffer.from(bytes.toString('utf8').replace(/\r\n/g, '\n'));
     }
     hash.update(file).update('\0').update(bytes).update('\0');
@@ -140,7 +140,7 @@ export function analyzeProject(root, { overrides = new Map(), contracts } = {}) 
   const files = projectFiles(root);
   function read(file) { return overrides.has(file) ? overrides.get(file) : fs.readFileSync(path.join(root, file), 'utf8'); }
   for (const file of files) {
-    if (path.extname(file) === '.json') {
+    if (['.json', '.webmanifest'].includes(path.extname(file))) {
       try { JSON.parse(read(file)); } catch { fail('INVALID_JSON', file, 'JSON could not be parsed.'); }
     }
     if (path.extname(file) === '.jsonc') {

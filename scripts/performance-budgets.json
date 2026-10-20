@@ -3,6 +3,7 @@
   "requiredEntries": ["index.html", "student/index.html", "admin/index.html", "legal/index.html"],
   "minimumDeferredTopics": 24,
   "searchModule": "student/src/search/searchEngine.js",
+  "adminUsersModule": "admin/src/components/UsersPanel.jsx",
   "limits": {
     "entryJsGzipBytes": 120000,
     "totalJsGzipBytes": 800000,

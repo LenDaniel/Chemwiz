@@ -8,6 +8,8 @@ import { chromium } from 'playwright';
 import { runW2Checks } from './lib/w2-browser-checks.mjs';
 import { runAccountChecks } from './lib/account-browser-checks.mjs';
 import { runW3Checks } from './lib/w3-browser-checks.mjs';
+import { runV16Checks } from './lib/v16-browser-checks.mjs';
+import { runV17Checks } from './lib/v17-browser-checks.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
@@ -165,8 +167,12 @@ try {
   checks.push(...privacySchools.checks);
   const w3 = await runW3Checks({ root, browser, base });
   checks.push(...w3.checks);
+  const v16 = await runV16Checks({ root, browser, base, app: instance.app });
+  checks.push(...v16.checks);
+  const v17 = await runV17Checks({root,browser,base});
+  checks.push(...v17.checks);
   assert.deepEqual(errors, []);
-  fs.writeFileSync(path.join(root, '.build-checks/browser.json'), JSON.stringify({ status: 'PASS', browser: browser.version(), checks, w2, accountRecovery, privacySchools, w3 }, null, 2));
+  fs.writeFileSync(path.join(root, '.build-checks/browser.json'), JSON.stringify({ status: 'PASS', browser: browser.version(), checks, w2, accountRecovery, privacySchools, w3, v16, v17 }, null, 2));
   console.log(`Local browser: PASS (${checks.length} checks; desktop/mobile; no JavaScript runtime errors).`);
 } catch (error) {
   fs.writeFileSync(path.join(root, '.build-checks/browser.json'), JSON.stringify({ status: 'FAIL', error: error.message, checks }, null, 2));

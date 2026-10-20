@@ -354,6 +354,69 @@
       "method": "GET",
       "path": "/api/schools/:schoolId/roster",
       "scenario": "privacy-getSchoolRoster"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "trashUserAccount",
+      "method": "POST",
+      "path": "/api/admin/users/:userId/trash",
+      "scenario": "v17-trashUserAccount"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "getRecycleBin",
+      "method": "GET",
+      "path": "/api/admin/recycle-bin",
+      "scenario": "v17-getRecycleBin"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "restoreRecycleEntry",
+      "method": "POST",
+      "path": "/api/admin/recycle-bin/:entryId/restore",
+      "scenario": "v17-restoreRecycleEntry"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "purgeRecycleEntry",
+      "method": "DELETE",
+      "path": "/api/admin/recycle-bin/:entryId",
+      "scenario": "v17-purgeRecycleEntry"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "getContentInventory",
+      "method": "GET",
+      "path": "/api/admin/content-inventory",
+      "scenario": "v17-getContentInventory"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "getContentDrafts",
+      "method": "GET",
+      "path": "/api/admin/content",
+      "scenario": "v17-getContentDrafts"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "createContentDraft",
+      "method": "POST",
+      "path": "/api/admin/content",
+      "scenario": "v17-createContentDraft"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "updateContentDraft",
+      "method": "PUT",
+      "path": "/api/admin/content/:id",
+      "scenario": "v17-updateContentDraft"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "trashContentDraft",
+      "method": "DELETE",
+      "path": "/api/admin/content/:id",
+      "scenario": "v17-trashContentDraft"
     }
   ]
 }

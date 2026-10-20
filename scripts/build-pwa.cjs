@@ -1,0 +1,13 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const { createHash } = require('node:crypto');
+const { studentWorkerSource } = require('./lib/student-service-worker.cjs');
+const root = path.resolve(__dirname, '..');
+const { version } = require('../package.json');
+const files = ['/student/offline.html', '/student/manifest.webmanifest', '/student/icons/chemwiz-192.png', '/student/icons/chemwiz-512.png', '/student/icons/chemwiz.svg'];
+const hash = createHash('sha256').update(version);
+for (const file of files) hash.update(file).update(fs.readFileSync(path.join(root, 'dist', file)));
+hash.update(fs.readFileSync(path.join(root, 'dist/.vite/manifest.json')));
+const buildId = version + '-' + hash.digest('hex').slice(0, 16);
+fs.writeFileSync(path.join(root, 'dist/student/sw.js'), studentWorkerSource({ buildId, files }));
+console.log(`Student PWA recovery worker: ${buildId} (${files.length} public files; no API, lesson or account cache).`);

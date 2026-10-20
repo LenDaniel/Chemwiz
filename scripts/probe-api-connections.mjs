@@ -11,7 +11,7 @@ const require = createRequire(import.meta.url);
 const { configureFixture } = require('./lib/fixture-config.cjs');
 const fixture = configureFixture('api-check');
 const {adultOnboarding}=require('./lib/privacy-fixture.cjs');
-let privacySettings, privacyRequest, schoolRecord, guardianRecord;
+let privacySettings, privacyRequest, schoolRecord, guardianRecord, recycleAccount, materialDraft;
 const contracts = JSON.parse(fs.readFileSync(path.join(root, 'scripts/integration-contracts.json'), 'utf8'));
 const nativeFetch = globalThis.fetch;
 let instance, loader, base, activeProbe, records = [], first, second, admin, recoveryLearner, studentMail, adminMail;
@@ -148,6 +148,25 @@ try {
     'privacy-updateSchoolMembership':async fn=>{const d=await fn(admin.token,schoolRecord.id,{userId:first.user.id,role:'student',status:'pending',classIds:['L6']});assert.equal(d.status,'pending');},
     'privacy-updateSchoolSharing':async fn=>{const d=await fn(first.token,schoolRecord.id,true);assert.equal(d.status,'active');},
     'privacy-getSchoolRoster':async fn=>{const d=await fn(admin.token,schoolRecord.id);assert.equal(d.students[0].userId,first.user.id);},
+  });
+  Object.assign(scenarios, {
+    'v17-trashUserAccount': async fn => {
+      recycleAccount = (await direct('/api/auth/register','POST',{name:'Recycle probe adult',email:'recycle-probe@build-gate.test',password:'Recycle-probe-adult-password!2026',onboarding:adultOnboarding()})).data;
+      await direct('/api/admin/users/'+recycleAccount.user.id+'/status','PATCH',{accountStatus:'suspended'},admin.token);
+      await fn(admin.token,recycleAccount.user.id,{confirmation:recycleAccount.user.email,reason:'Synthetic account lifecycle probe'});
+    },
+    'v17-getRecycleBin': async fn => {const d=await fn(admin.token,{search:recycleAccount.user.email});assert.equal(d.items[0].confirmation,recycleAccount.user.email);assert.equal(d.items[0].canPurge,false);noSecrets(d);},
+    'v17-restoreRecycleEntry': async fn => {await fn(admin.token,'account:'+recycleAccount.user.id,{confirmation:recycleAccount.user.email});assert.equal((await direct('/api/admin/users','GET',null,admin.token)).data.users.find(u=>u.id===recycleAccount.user.id).accountStatus,'suspended');},
+    'v17-purgeRecycleEntry': async fn => {
+      await direct('/api/admin/users/'+recycleAccount.user.id+'/trash','POST',{confirmation:recycleAccount.user.email,reason:'Synthetic aged purge lifecycle probe'},admin.token);
+      require('../backend/src/data/localModels').atomicAdminMutation(state=>{const u=state.users.find(u=>u._id===recycleAccount.user.id);u.recycleBin.deletedAt=new Date(Date.now()-91*86400000).toISOString();u.recycleBin.purgeEligibleAt=new Date(Date.now()-86400000).toISOString();});
+      await fn(admin.token,'account:'+recycleAccount.user.id,{confirmation:recycleAccount.user.email});assert.equal(await require('../backend/src/data/modelProvider').User.findById(recycleAccount.user.id),null);
+    },
+    'v17-getContentInventory': async fn => {const d=await fn(admin.token,{search:'atomic'});assert.ok(d.items.length);assert.ok(d.items.every(row=>row.rightsStatus==='unreviewed'));},
+    'v17-getContentDrafts': async fn => {const d=await fn(admin.token);assert.ok(Array.isArray(d.items));},
+    'v17-createContentDraft': async fn => {const d=await fn(admin.token,{title:'Synthetic content probe',body:'An original synthetic chemistry explanation.',creator:'Synthetic author',licenseName:'Original test content',status:'draft'});materialDraft=d.draft;assert.equal(materialDraft.status,'draft');assert.equal(materialDraft.eligibility.webOffline,false);},
+    'v17-updateContentDraft': async fn => {const d=await fn(admin.token,materialDraft.id,{...materialDraft,title:'Updated synthetic content probe'});assert.equal(d.draft.revision,materialDraft.revision+1);materialDraft=d.draft;},
+    'v17-trashContentDraft': async fn => {await fn(admin.token,materialDraft.id,{revision:materialDraft.revision,confirmation:materialDraft.title,reason:'Synthetic material lifecycle probe'});},
   });
   // Establish the learner first, then use the real admin frontend to activate
   // Premium before invoking the protected Wiz request functions.

@@ -32,7 +32,15 @@ const required = ['package.json', 'package-lock.json', 'server.js', '.env.exampl
   'backend/src/middleware/privacy.middleware.js','backend/src/routes/privacy.routes.js','backend/src/routes/schools.routes.js',
   'web/admin/src/components/PrivacyAdmin.jsx','scripts/privacy-maintenance.cjs','scripts/lib/privacy-fixture.cjs','tests/privacy-schools.test.cjs','scripts/lib/privacy-browser-checks.mjs',
   'web/student/src/components/ConnectionStatus.jsx','scripts/check-performance.mjs','scripts/lib/performance-checks.mjs',
-  'scripts/performance-budgets.json','scripts/check-w3-browsers.mjs','scripts/lib/w3-browser-checks.mjs','tests/w3-regression.test.cjs'];
+  'scripts/performance-budgets.json','scripts/check-w3-browsers.mjs','scripts/lib/w3-browser-checks.mjs','tests/w3-regression.test.cjs',
+  'web/admin/src/components/LazyUsersPanel.jsx','web/student/src/utils/studentPwa.mjs','web/student/src/components/PwaControls.jsx',
+  'web/public/student/manifest.webmanifest','web/public/student/offline.html','web/public/student/icons/chemwiz.svg',
+  'web/public/student/icons/chemwiz-192.png','web/public/student/icons/chemwiz-512.png',
+  'scripts/build-pwa.cjs','scripts/check-pwa.cjs','scripts/lib/student-service-worker.cjs','scripts/lib/pwa-checks.cjs',
+  'scripts/lib/v16-browser-checks.mjs','tests/pwa-policy.test.cjs',
+  'backend/src/services/adminRecords.service.js','shared/content-inventory.json','scripts/generate-content-inventory.mjs',
+  'web/admin/src/components/RecordPanels.jsx','web/admin/src/components/LazyRecordPanel.jsx','web/admin/src/components/RecordConfirmDialog.jsx',
+  'tests/admin-recycle.test.cjs','scripts/lib/v17-browser-checks.mjs'];
 const failures = required.filter((file) => !fs.existsSync(path.join(root, file)));
 function files(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((item) => item.isDirectory()
