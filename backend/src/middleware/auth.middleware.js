@@ -28,6 +28,8 @@ const protect = async (req, res, next) => {
     if ((decoded.authVersion || 0) !== (user.authVersion || 0)) return res.status(401).json({code:'SESSION_REVOKED',message:'Your password changed. Please sign in again.'});
     if (!user.passwordPolicyVersion) return res.status(403).json({code:'PASSWORD_REAUTH_REQUIRED',message:'Please sign in again to check your password against the updated security requirements.'});
 
+    if (user.recycleBin) return res.status(403).json({success:false,code:'ACCOUNT_RECYCLED',message:'This account is in the recycle bin. Contact ChemWiz support.'});
+
     if (user.accountStatus === "suspended") {
       return res.status(403).json({
         success: false,

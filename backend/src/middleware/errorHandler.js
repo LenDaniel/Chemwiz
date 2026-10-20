@@ -3,7 +3,7 @@ const errorHandler = (err, req, res, next) => {
     err.statusCode || (res.statusCode && res.statusCode !== 200 ? res.statusCode : 500);
   const production = process.env.NODE_ENV === 'production';
   const databaseError = /^Mongo/.test(err.name || '') || ['ECONNREFUSED', 'ENOTFOUND', 'ETIMEOUT'].includes(err.code);
-  const publicPrivacyError=/^(PRIVACY_|LEGAL_|AGE_|GUARDIAN_|SCHOOL_|GOVERNANCE_)/.test(err.code || '');
+  const publicPrivacyError=/^(PRIVACY_|LEGAL_|AGE_|GUARDIAN_|SCHOOL_|GOVERNANCE_|ADMIN_RECORD_|RECYCLE_|CONTENT_|ACCOUNT_RETENTION_)/.test(err.code || '');
   if (production && databaseError) statusCode = 503;
   if (production) console.error('ChemWiz API error:', { name: err.name, code: err.code || 'API_ERROR', status: statusCode });
   else console.error('Error:', err);

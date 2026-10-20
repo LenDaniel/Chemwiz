@@ -81,6 +81,7 @@ function normalizeUser(raw = {}) {
     authVersion: Number(raw.authVersion) || 0,
     passwordReset: raw.passwordReset || null,
     privacy: raw.privacy || null,
+    recycleBin: raw.recycleBin || null,
     role: raw.role || 'student',
     level: raw.level || 'A-Level Chemistry',
     subscriptionTier: raw.subscriptionTier || 'free',
@@ -140,6 +141,7 @@ class LocalUserDocument {
     const store = loadStore();
     const index = store.users.findIndex((user) => String(user._id) === String(this._id));
     const existing = index >= 0 ? store.users[index] : {};
+    if (existing.recycleBin || (existing.authVersion || 0) > (this.authVersion || 0)) throw Object.assign(new Error('This account changed. Refresh before saving.'), {statusCode:409, code:'ACCOUNT_CHANGED'});
 
     const merged = normalizeUser({
       ...existing,
@@ -480,7 +482,16 @@ function eraseLocalAccount(userId,requestKey,now=Date.now()) {
   persist({...store,users:store.users.filter(u=>String(u._id)!==String(userId)),learningStates:store.learningStates.filter(d=>d.userId!==String(userId)),adminLogs:store.adminLogs.map(d=>String(d.targetUser)===String(userId)?{...d,targetUser:null,details:{redactedAt:nowIso(),reason:'Approved account erasure'}}:d),governance:records});
 }
 
+function atomicAdminMutation(change) {
+  const next = structuredClone(loadStore());
+  const result = change(next);
+  if (result && typeof result.then === 'function') throw new Error('Local admin changes must be synchronous.');
+  persist(next);
+  return structuredClone(result);
+}
+
 module.exports = {
+  atomicAdminMutation,
   User,
   AdminLog,
   LearningState,

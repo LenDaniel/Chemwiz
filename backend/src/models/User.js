@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema(
     authVersion: { type:Number, default:0 },
     passwordReset: { type:mongoose.Schema.Types.Mixed, default:null, select:false },
     privacy: { type:mongoose.Schema.Types.Mixed, default:null },
+    recycleBin: { type:mongoose.Schema.Types.Mixed, default:null },
     role: {
       type: String,
       enum: ["student", "teacher", "admin"],

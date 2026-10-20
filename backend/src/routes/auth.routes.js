@@ -15,7 +15,7 @@ const HOUR = 60 * 60 * 1000;
 const GENERIC_RESET = 'If an active account uses that email, a reset link and code will be sent. They expire in one hour. Check your spam folder or contact the WhatsApp helpline if the email does not arrive.';
 const emailValue = value => typeof value === 'string' && value.length <= 254 ? value.trim().toLowerCase() : '';
 const emailValid = value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-const active = user => !['suspended','disabled'].includes(user.accountStatus);
+const active = user => !user.recycleBin && !['suspended','disabled'].includes(user.accountStatus);
 async function accountByEmail(email,includeReset=false) {
   const escaped = email.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
   const query = User.find({email:{$regex:`^${escaped}$`,$options:'i'}}).limit(2);

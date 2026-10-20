@@ -4,9 +4,24 @@ const { protect } = require("../middleware/auth.middleware");
 const { adminOnly } = require("../middleware/admin.middleware");
 
 const router = express.Router();
+const records = require('../services/adminRecords.service');
+const { rateLimit } = require('express-rate-limit');
+const recordWriteLimit = rateLimit({windowMs:60000,limit:60,keyGenerator:req=>String(req.user._id),standardHeaders:'draft-8',legacyHeaders:false,message:{code:'ADMIN_WRITE_LIMIT',message:'Please wait before making more record changes.'}});
+const recordRoute = fn => async(req,res,next)=>{try{res.json(await fn(req));}catch(error){next(error);}};
 
 router.use(protect);
 router.use(adminOnly);
+
+router.post('/users/:userId/trash', recordWriteLimit, recordRoute(req=>records.mutate('trash-account',req.params.userId,req.user,req.body)));
+router.get('/recycle-bin', recordRoute(req=>records.recycleBin(req.query)));
+router.post('/recycle-bin/:entryId/restore', recordWriteLimit, recordRoute(req=>records.entryAction('restore',req.params.entryId,req.user,req.body)));
+router.delete('/recycle-bin/:entryId', recordWriteLimit, recordRoute(req=>records.entryAction('purge',req.params.entryId,req.user,req.body)));
+router.get('/content-inventory', recordRoute(req=>records.sourceInventory(req.query)));
+router.get('/content', recordRoute(req=>records.drafts(req.query)));
+router.post('/content', recordWriteLimit, recordRoute(req=>records.mutate('save-content',require('../services/governanceStore').id(),req.user,{...req.body,revision:0})));
+router.put('/content/:id', recordWriteLimit, recordRoute(req=>records.mutate('update-content',req.params.id,req.user,req.body)));
+router.delete('/content/:id', recordWriteLimit, recordRoute(req=>records.mutate('trash-content',req.params.id,req.user,req.body)));
+
 
 const formatAdminUser = (user) => ({
   id: user._id,
@@ -61,15 +76,15 @@ router.get("/stats", async (req, res) => {
       expiredUsers,
       suspendedUsers,
     ] = await Promise.all([
-      User.countDocuments(),
-      User.countDocuments({ role: "student" }),
-      User.countDocuments({ role: "teacher" }),
-      User.countDocuments({ role: "admin" }),
-      User.countDocuments({ subscriptionTier: "free" }),
-      User.countDocuments({ subscriptionTier: "premium" }),
-      User.countDocuments({ subscriptionStatus: "active" }),
-      User.countDocuments({ subscriptionStatus: "expired" }),
-      User.countDocuments({ accountStatus: "suspended" }),
+      User.countDocuments({ recycleBin: null }),
+      User.countDocuments({ recycleBin: null, role: "student" }),
+      User.countDocuments({ recycleBin: null, role: "teacher" }),
+      User.countDocuments({ recycleBin: null, role: "admin" }),
+      User.countDocuments({ recycleBin: null, subscriptionTier: "free" }),
+      User.countDocuments({ recycleBin: null, subscriptionTier: "premium" }),
+      User.countDocuments({ recycleBin: null, subscriptionStatus: "active" }),
+      User.countDocuments({ recycleBin: null, subscriptionStatus: "expired" }),
+      User.countDocuments({ recycleBin: null, accountStatus: "suspended" }),
     ]);
 
     res.json({
@@ -107,7 +122,7 @@ router.get("/users", async (req, res) => {
       limit = 20,
     } = req.query;
 
-    const filter = {};
+    const filter = { recycleBin: null };
 
     if (search) {
       filter.$or = [
@@ -192,14 +207,14 @@ router.patch("/users/:id/subscription", async (req, res) => {
 
 const beforeUser = await User.findById(req.params.id).select("-password");
 
-if (!beforeUser) {
+if (!beforeUser || beforeUser.recycleBin) {
   return res.status(404).json({
     success: false,
     message: "User not found.",
   });
 }
 
-const user = await User.findByIdAndUpdate(req.params.id, update, {
+const user = await User.findOneAndUpdate({_id:req.params.id,recycleBin:null}, {$set:update}, {
   new: true,
   runValidators: true,
 }).select("-password");
@@ -266,16 +281,16 @@ router.patch("/users/:id/status", async (req, res) => {
 
 const beforeUser = await User.findById(req.params.id).select("-password");
 
-if (!beforeUser) {
+if (!beforeUser || beforeUser.recycleBin) {
   return res.status(404).json({
     success: false,
     message: "User not found.",
   });
 }
 
-const user = await User.findByIdAndUpdate(
-  req.params.id,
-  { accountStatus },
+const user = await User.findOneAndUpdate(
+  {_id:req.params.id,recycleBin:null},
+  {$set:{accountStatus}},
   {
     new: true,
     runValidators: true,
@@ -354,7 +369,7 @@ router.patch("/users/:id/role", async (req, res) => {
 
     const targetUser = await User.findById(req.params.id).select("-password");
 
-    if (!targetUser) {
+    if (!targetUser || targetUser.recycleBin) {
       return res.status(404).json({
         success: false,
         message: "User not found.",
@@ -371,7 +386,7 @@ router.patch("/users/:id/role", async (req, res) => {
     }
 
     if (targetUser.role === "admin" && role !== "admin") {
-      const adminCount = await User.countDocuments({ role: "admin" });
+      const adminCount = await User.countDocuments({ recycleBin: null, role: "admin" });
 
       if (adminCount <= 1) {
         return res.status(400).json({
@@ -383,8 +398,9 @@ router.patch("/users/:id/role", async (req, res) => {
 
     const beforeRole = targetUser.role;
 
-    targetUser.role = role;
-    await targetUser.save();
+    const changedUser = await User.findOneAndUpdate({_id:targetUser._id,recycleBin:null},{$set:{role}},{new:true,runValidators:true});
+    if (!changedUser) return res.status(409).json({message:'Account changed. Refresh before editing.'});
+    targetUser.role = changedUser.role;
 
     await createAdminLog({
       adminId: req.user._id,
