@@ -1,8 +1,8 @@
-# ChemWiz unified v1.5.3
+# ChemWiz unified v1.7.0
 
 One Node/Vite application at one address, with learner/admin workspaces and one backend.
 
-This release adds W3a browser recovery, keyboard feedback and payload gates on v1.5.2. Read **W3_README.md** for the current scope, Chromium/Firefox checks and remaining device/operational acceptance. The working Luna medium support is retained; see **LUNA_MEDIUM_README.md** for the optional provider trial. S1 school/privacy guidance remains in **PRIVACY_SCHOOLS_README.md**. The supplied master build roadmap v4.7 extends the included v4.6 roadmap; W3a does not close its staging, rights or device gates.
+This release adds an admin account/material recycle bin with a minimum 90-day retention period, explicit permanent purge and restoration, plus a searchable content inventory and material/provenance draft management. Read **RECYCLE_CONTENT_README.md** for the exact scope and installation/test commands. The lazy users table, school membership lookup, PWA1a and existing chemistry/Wiz/voice/privacy controls remain. **PWA_ADMIN_README.md**, **W3_README.md**, **LUNA_MEDIUM_README.md** and **PRIVACY_SCHOOLS_README.md** describe the earlier foundations.
 
 ```powershell
 npm ci --include=dev
