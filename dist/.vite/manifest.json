@@ -1,1 +1,303 @@
-frfrffr
+{
+  "_RecordConfirmDialog-CdX2myOx.js": {
+    "file": "assets/RecordConfirmDialog-CdX2myOx.js",
+    "name": "RecordConfirmDialog",
+    "imports": [
+      "_privacy-CqucxhQI.js",
+      "_useDialog-bpzUdrAl.js"
+    ]
+  },
+  "_privacy-CqucxhQI.js": {
+    "file": "assets/privacy-CqucxhQI.js",
+    "name": "privacy",
+    "css": [
+      "assets/privacy-_ZRE9ccX.css"
+    ]
+  },
+  "_privacy-_ZRE9ccX.css": {
+    "file": "assets/privacy-_ZRE9ccX.css",
+    "src": "_privacy-_ZRE9ccX.css"
+  },
+  "_useDialog-DMKzRGvS.css": {
+    "file": "assets/useDialog-DMKzRGvS.css",
+    "src": "_useDialog-DMKzRGvS.css"
+  },
+  "_useDialog-bpzUdrAl.js": {
+    "file": "assets/useDialog-bpzUdrAl.js",
+    "name": "useDialog",
+    "imports": [
+      "_privacy-CqucxhQI.js"
+    ],
+    "css": [
+      "assets/useDialog-DMKzRGvS.css"
+    ]
+  },
+  "admin/index.html": {
+    "file": "assets/admin-XSO9GC6M.js",
+    "name": "admin",
+    "src": "admin/index.html",
+    "isEntry": true,
+    "imports": [
+      "_privacy-CqucxhQI.js",
+      "_useDialog-bpzUdrAl.js"
+    ],
+    "dynamicImports": [
+      "admin/src/components/RecordPanels.jsx",
+      "admin/src/components/UsersPanel.jsx"
+    ],
+    "css": [
+      "assets/admin-zriuqb5-.css"
+    ],
+    "assets": [
+      "assets/chemwiz-logo-BSJ0CzpN.png",
+      "assets/wiz-emblem-BhMb_J81.png"
+    ]
+  },
+  "admin/src/assets/brand/chemwiz-logo.png": {
+    "file": "assets/chemwiz-logo-BSJ0CzpN.png",
+    "src": "admin/src/assets/brand/chemwiz-logo.png"
+  },
+  "admin/src/assets/brand/wiz-emblem.png": {
+    "file": "assets/wiz-emblem-BhMb_J81.png",
+    "src": "admin/src/assets/brand/wiz-emblem.png"
+  },
+  "admin/src/components/RecordPanels.jsx": {
+    "file": "assets/RecordPanels-CfrVD11R.js",
+    "name": "RecordPanels",
+    "src": "admin/src/components/RecordPanels.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_privacy-CqucxhQI.js",
+      "admin/index.html",
+      "_RecordConfirmDialog-CdX2myOx.js"
+    ]
+  },
+  "admin/src/components/UsersPanel.jsx": {
+    "file": "assets/UsersPanel-CJCrUHIU.js",
+    "name": "UsersPanel",
+    "src": "admin/src/components/UsersPanel.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_privacy-CqucxhQI.js",
+      "_RecordConfirmDialog-CdX2myOx.js"
+    ]
+  },
+  "index.html": {
+    "file": "assets/home-CDipJThj.css",
+    "src": "index.html"
+  },
+  "legal/index.html": {
+    "file": "assets/legal-DsbmtOAZ.js",
+    "name": "legal",
+    "src": "legal/index.html",
+    "isEntry": true,
+    "imports": [
+      "_privacy-CqucxhQI.js"
+    ]
+  },
+  "student/index.html": {
+    "file": "assets/student-vHKn45kh.js",
+    "name": "student",
+    "src": "student/index.html",
+    "isEntry": true,
+    "imports": [
+      "_privacy-CqucxhQI.js",
+      "_useDialog-bpzUdrAl.js"
+    ],
+    "dynamicImports": [
+      "student/src/content/atomic.jsx",
+      "student/src/content/hydrocarbons.jsx",
+      "student/src/content/transition.jsx",
+      "student/src/content/stoich.jsx",
+      "student/src/content/bonding.jsx",
+      "student/src/content/states.jsx",
+      "student/src/content/energetics.jsx",
+      "student/src/content/electrochem.jsx",
+      "student/src/content/equilibria.jsx",
+      "student/src/content/kinetics.jsx",
+      "student/src/content/periodicity.jsx",
+      "student/src/content/group2.jsx",
+      "student/src/content/group4.jsx",
+      "student/src/content/group7.jsx",
+      "student/src/content/nsulphur.jsx",
+      "student/src/content/halogen_deriv.jsx",
+      "student/src/content/hydroxy.jsx",
+      "student/src/content/carbonyl.jsx",
+      "student/src/content/carboxylic.jsx",
+      "student/src/content/norganic.jsx",
+      "student/src/content/polymers.jsx",
+      "student/src/content/phase.jsx",
+      "student/src/content/environment.jsx",
+      "student/src/content/nano.jsx",
+      "student/src/search/searchEngine.js"
+    ],
+    "css": [
+      "assets/student-BB0oYxP5.css"
+    ],
+    "assets": [
+      "assets/chemwiz-logo-BSJ0CzpN.png",
+      "assets/wiz-emblem-BhMb_J81.png"
+    ]
+  },
+  "student/src/assets/brand/chemwiz-logo.png": {
+    "file": "assets/chemwiz-logo-BSJ0CzpN.png",
+    "src": "admin/src/assets/brand/chemwiz-logo.png"
+  },
+  "student/src/assets/brand/wiz-emblem.png": {
+    "file": "assets/wiz-emblem-BhMb_J81.png",
+    "src": "admin/src/assets/brand/wiz-emblem.png"
+  },
+  "student/src/content/atomic.jsx": {
+    "file": "assets/atomic-CrUAYVJj.js",
+    "name": "atomic",
+    "src": "student/src/content/atomic.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/bonding.jsx": {
+    "file": "assets/bonding-CWgn2tUF.js",
+    "name": "bonding",
+    "src": "student/src/content/bonding.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/carbonyl.jsx": {
+    "file": "assets/carbonyl-AZRJ-1A8.js",
+    "name": "carbonyl",
+    "src": "student/src/content/carbonyl.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/carboxylic.jsx": {
+    "file": "assets/carboxylic-CQGc8paj.js",
+    "name": "carboxylic",
+    "src": "student/src/content/carboxylic.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/electrochem.jsx": {
+    "file": "assets/electrochem-DK2cHbyh.js",
+    "name": "electrochem",
+    "src": "student/src/content/electrochem.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/energetics.jsx": {
+    "file": "assets/energetics-bXNzhJ6H.js",
+    "name": "energetics",
+    "src": "student/src/content/energetics.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/environment.jsx": {
+    "file": "assets/environment-Ti80h9kn.js",
+    "name": "environment",
+    "src": "student/src/content/environment.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/equilibria.jsx": {
+    "file": "assets/equilibria-BIC2rC87.js",
+    "name": "equilibria",
+    "src": "student/src/content/equilibria.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/group2.jsx": {
+    "file": "assets/group2-CREv3nka.js",
+    "name": "group2",
+    "src": "student/src/content/group2.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/group4.jsx": {
+    "file": "assets/group4-aCaOnEmz.js",
+    "name": "group4",
+    "src": "student/src/content/group4.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/group7.jsx": {
+    "file": "assets/group7-IGJSy9Pz.js",
+    "name": "group7",
+    "src": "student/src/content/group7.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/halogen_deriv.jsx": {
+    "file": "assets/halogen_deriv-PYO7ER8y.js",
+    "name": "halogen_deriv",
+    "src": "student/src/content/halogen_deriv.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/hydrocarbons.jsx": {
+    "file": "assets/hydrocarbons-OOZQ7LyB.js",
+    "name": "hydrocarbons",
+    "src": "student/src/content/hydrocarbons.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/hydroxy.jsx": {
+    "file": "assets/hydroxy-g9vA1sYd.js",
+    "name": "hydroxy",
+    "src": "student/src/content/hydroxy.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/kinetics.jsx": {
+    "file": "assets/kinetics-B6iEPDPb.js",
+    "name": "kinetics",
+    "src": "student/src/content/kinetics.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/nano.jsx": {
+    "file": "assets/nano-CSlgQ8sH.js",
+    "name": "nano",
+    "src": "student/src/content/nano.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/norganic.jsx": {
+    "file": "assets/norganic-DKwwMJA5.js",
+    "name": "norganic",
+    "src": "student/src/content/norganic.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/nsulphur.jsx": {
+    "file": "assets/nsulphur-CHfxDkoh.js",
+    "name": "nsulphur",
+    "src": "student/src/content/nsulphur.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/periodicity.jsx": {
+    "file": "assets/periodicity-xPndSyp7.js",
+    "name": "periodicity",
+    "src": "student/src/content/periodicity.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/phase.jsx": {
+    "file": "assets/phase-B9YBEGbz.js",
+    "name": "phase",
+    "src": "student/src/content/phase.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/polymers.jsx": {
+    "file": "assets/polymers-SEqqRV2E.js",
+    "name": "polymers",
+    "src": "student/src/content/polymers.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/states.jsx": {
+    "file": "assets/states-BoexwJS4.js",
+    "name": "states",
+    "src": "student/src/content/states.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/stoich.jsx": {
+    "file": "assets/stoich-DhzxaK8a.js",
+    "name": "stoich",
+    "src": "student/src/content/stoich.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/content/transition.jsx": {
+    "file": "assets/transition-DtF-bxys.js",
+    "name": "transition",
+    "src": "student/src/content/transition.jsx",
+    "isDynamicEntry": true
+  },
+  "student/src/search/searchEngine.js": {
+    "file": "assets/searchEngine-BfcWyWUR.js",
+    "name": "searchEngine",
+    "src": "student/src/search/searchEngine.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "student/index.html"
+    ]
+  }
+}
