@@ -29,6 +29,7 @@ import { MoleCalc } from './tools/MoleCalc.jsx';
 import { AppShell } from './components/layout/AppShell.jsx';
 import { useLearningState } from './hooks/useLearningState.js';
 import { LearningSaveStatus } from './components/LearningSaveStatus.jsx';
+import { PwaUpdateNotice } from './components/PwaControls.jsx';
 
 
 export default function App() {
@@ -402,6 +403,7 @@ if (action === 'tutor') {
       reloadError={reloadError}
     >
       {user && learning.ready && <LearningSaveStatus learning={learning} />}
+      {user && learning.ready && <PwaUpdateNotice learning={learning} canUpdate={['home','profile','progress','tools-home'].includes(current.view)} />}
       {reloadError && <p role="alert">{reloadError}</p>}
       {renderScreen()}
     </AppShell>

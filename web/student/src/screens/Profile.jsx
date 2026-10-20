@@ -1,5 +1,7 @@
 import React from 'react';
 import { LearningDataTransfer } from '../components/LearningDataTransfer.jsx';
+import { PwaControls } from '../components/PwaControls.jsx';
+import { version } from '../../../../package.json';
 
 export function Profile({
   t,
@@ -389,7 +391,7 @@ export function Profile({
         </div>
 
         <div style={{ fontSize: 12, color: t.text, lineHeight: 1.6 }}>
-          ChemWiz v0.6 · Backend auth connected
+          ChemWiz v{version}
         </div>
 
         <div style={{ fontSize: 10, color: t.textDim, marginTop: 4 }}>
@@ -397,6 +399,7 @@ export function Profile({
         </div>
       </div>
 
+      <PwaControls learning={learning} />
       <button
         type="button"
         onClick={onReset}

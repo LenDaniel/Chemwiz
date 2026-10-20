@@ -703,6 +703,11 @@ button { -webkit-tap-highlight-color: transparent; }
 .cw-search-summary { padding:0 16px; font-size:12px; line-height:1.6; color:var(--cw-muted); }
 .cw-search-summary:empty { display:none; }
 .cw-session-recovery p { margin:0 0 10px; }
+.cw-pwa-card,.cw-pwa-notice { padding:16px; margin:0 0 16px; border:1px solid var(--cw-border); border-radius:10px; background:var(--cw-panel); color:var(--cw-text); font-size:13px; line-height:1.7; }
+.cw-pwa-card h2 { margin:0 0 8px; font-size:18px; }
+.cw-pwa-card p,.cw-pwa-notice p { margin:8px 0; }
+.cw-pwa-actions { display:flex; gap:8px; flex-wrap:wrap; }
+.cw-pwa-card button,.cw-pwa-notice button { min-height:44px; padding:8px 12px; border:1px solid var(--cw-accent); border-radius:7px; background:var(--cw-panel); color:var(--cw-text); font:inherit; cursor:pointer; }
 .cw-session-recovery button {
   min-height:44px; padding:10px 14px; border:1px solid var(--cw-accent);
   border-radius:6px; background:var(--cw-panel); color:var(--cw-text); cursor:pointer;
