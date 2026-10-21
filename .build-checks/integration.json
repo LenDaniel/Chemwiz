@@ -1,7 +1,7 @@
 {
   "status": "PASS",
-  "version": "1.7.0",
-  "fingerprint": "91184343229fe47d6e837b040e9470eef94dbd3ea58b322932260bf93805c040",
+  "version": "1.9.0",
+  "fingerprint": "fd95448cf434c4d16d049210c65473973e4596901c1c1f39d960286b3d2aabe1",
   "fileHashes": {
     ".dev.vars.example": "4c0cefa834a101de751b3a39dc454bfeb105536166674eb9135cacefedca3850",
     ".env.example": "6c0063df624cdfa73b7af766fcfd5db120374ed313e74d1edb77e6504e4edab6",
@@ -10,7 +10,7 @@
     ".node-version": "73fb1b615e2043a933be1c0895cde4358036acc28d785692509b822aa53c761f",
     "AGENTS.md": "a85db47679a5ccb0fec4c54ab88bbf4c5575baa0a5046141f7c715176d62f102",
     "BUILD_RULES.md": "4e2b7fef11bbe7c14d7dfe088a7f7c40fef3c51729fb949ee1d97796a6bdea5f",
-    "backend/app.js": "02339dc3d060e8a9e0feaf79502a8a5eda40604b56948ace09436895998e4689",
+    "backend/app.js": "c508a9fb9615291dd024c5817a4b41c3fa5d143dfc63d3b8450fd83f26ef4535",
     "backend/scripts/resetLocalData.js": "b73124cbd08c31c38e66712ea227389b6bee891be6214519e6ea295b55e37862",
     "backend/scripts/resetUserPassword.js": "49998486ae3769e93fdea380b2835d65d44bb408ad320a910084f8bab28bd1da",
     "backend/src/config/cors.js": "36a3751c36c18534c39a11a76bf06c291d0eac630583ee4987ef1637c4661dd2",
@@ -47,8 +47,9 @@
     "backend/src/models/TopicProgress.js": "377c2af699133bbc01a7ae38f308d343855258bc5443133b4d91eee20e627a10",
     "backend/src/models/TutorMessage.js": "db33b9d209b17bc110c7286bf2d61dce5f495ebd99bf09b6d0a9d3226d87b7d1",
     "backend/src/models/User.js": "75d87c001cf66b074b93eec1330677f17c3c2ac0d7fd837fa8602ed5085395f2",
-    "backend/src/routes/admin.routes.js": "3e2ca48a1ded0ce7a694f09d55c1d80c48bb32ce78a2834cd9d959487d4ccb1a",
+    "backend/src/routes/admin.routes.js": "b33013490afa63065585c29924f2d26d1c4d71f90c9c357f3e860254db443032",
     "backend/src/routes/auth.routes.js": "bf230da7afe7632e65fe34534c95b2bd4304bad4de684db903eaca0538ff80b5",
+    "backend/src/routes/content.routes.js": "a53156007443b16876cd00f2c7b2f5c1e92c1800ed4c144f36e31388f98439af",
     "backend/src/routes/liveVoice.routes.js": "20637b1462011f828e4f7ba55b853b2330a28bdda7190f019dd659de2ccc0d07",
     "backend/src/routes/payment.routes.js": "00b62d70b61d0407051ba899d353389a3b8800e3cac98915bce6fb9d2245587a",
     "backend/src/routes/privacy.routes.js": "fa2ec18dd0add27d1937dd463f5b0e4d30326eb6f028d037fd77195ab8bd0a60",
@@ -58,10 +59,13 @@
     "backend/src/routes/subscription.routes.js": "abc2394a5d9d83f915e8e5e2597f821a12552045c3bbd2fb21bd1f28b99ae19c",
     "backend/src/routes/tutor.routes.js": "d3e9b5026ec6156078c8458b2625d163aef46b05ee87c7f395500de52baee140",
     "backend/src/routes/user.routes.js": "88ba0f014b45ae79e40a2ca4c06e3c112b3c82f0d20090ba281979e5b74369f9",
-    "backend/src/services/adminRecords.service.js": "bf0eb5955cfc3e9167759070f2d12dacf3b373fae0147942255aea5637bab211",
+    "backend/src/services/adminRecords.service.js": "6c68ad26813c212b8857bef08ca7232021b6ccd0531c9613bad42fc65747edd4",
     "backend/src/services/ai.service.js": "0098baab7983f3a4e9b12caaa9a095b55172922ba79db029f2fdd165dc0a7549",
+    "backend/src/services/contentEditorial.service.js": "699f4858e9886a21beda7388ddb54599b3e64c697183b3b88312bfe1a01badb2",
+    "backend/src/services/contentMedia.service.js": "746986c0f85f9458bcbf205f94843f6340906ad2a07915f34f12ccc66c1b8245",
     "backend/src/services/email.service.js": "33b41f4a73f34d4a2a116348246ced9bbde08d7a0122a69bdffe04bf74932a10",
     "backend/src/services/governanceStore.js": "06e242710c0e3eb4d88cbd8963bf7769f8d5e791bcbedcafce782b1be87d980d",
+    "backend/src/services/imageNormalization.js": "6774df1f7161f644428b9eb5e724e0a64cd7df1b483ad0f5d3af5fc23f60d264",
     "backend/src/services/learningState.service.js": "e36efcc75edc58e212b6381ffe0c9e306508ab4683591922181682634f353b40",
     "backend/src/services/liveVoice.service.js": "570cf8abddfca51a936b18a3d24f54fb9535d9536a346307e63ba373184176df",
     "backend/src/services/payment.service.js": "6b4042751d8bf0bb7f0c27d873e77e3f067a18bfd9bead118657c7e9434a237b",
@@ -86,18 +90,18 @@
     "docs/RELEASE-MANIFEST.json": "21472459ba9d756ff712f3787d65906c9baed8aaea2b2b15836d854764ca6b46",
     "docs/emailjs/password-changed.html": "883e6ed616168ca34d08602937eb23e20396c05f5740e5030f612f4a86a91b64",
     "docs/emailjs/password-reset.html": "73b99128955ea46da3c850c672cc9ddd9496e138d7005b9baef9c1a9cd80a3c6",
-    "package-lock.json": "ec126eb710f8bcc01a5988ebbfd661e057c5e33bdfdf101fc44289f005631ac1",
-    "package.json": "a377b122118dc6b340346a29046121b438c6fee26a90a5dccfa1a85af353823d",
+    "package-lock.json": "2645e4e4ddb656b81192ad68793ff9eadf6684ac104614c38672315ab8b07d5a",
+    "package.json": "376de0e0b7c950b4f5696398864d58c1be92d81ad1bcde29f9f8ad6d51c544eb",
     "scripts/build-guard.mjs": "016ab93ff9f94e4fe21153df2e9b569c92a6e4132f83ef60df9b274461ad150f",
     "scripts/build-pwa.cjs": "f60b1767edf1e97b082efb96013ff3589b5d53f1ae755a06fdcbf1eb8de6434f",
-    "scripts/check-installation.cjs": "0eac72004b1234b808d7344fc8dddd237dde28f9beeb037e8f712ab619d7e709",
+    "scripts/check-installation.cjs": "b59c2d77e93dabafcf508cbd4cd79f4120b9650799d39878bb281c78c6577582",
     "scripts/check-integration.mjs": "36e74533ee19ab30b62b83d3229713c44d9a8bdcc2e4912a186c1f461467b50c",
-    "scripts/check-local-browser.mjs": "579248488065ef8ec8908da09118b70aca2d2453f78fa1d16cc3ff5b231ae6c1",
+    "scripts/check-local-browser.mjs": "290fa718f176d61223f15793ac9d7a52a5de90e3a9d40c5be2feee63797ea26c",
     "scripts/check-mongo.cjs": "fe6e2809ab9af7897437afea0e0e0ce1a812aad8aa4660290770c337e139f1fc",
     "scripts/check-performance.mjs": "b731df0a0bbeae9164a78713a60df2be887f8b6774eb2e01988456309f0f2aa1",
     "scripts/check-production.cjs": "78f18e6dd97efd1c08892e00a10e7c00ba41184321a666481b5b1035f4a9d58d",
     "scripts/check-pwa.cjs": "1b8b851f570be2a46aa92e171ce5db822187c64896a5e1042f85b0dbb05e940b",
-    "scripts/check-w3-browsers.mjs": "2d3416deb1d3bc89f5e6296eb7392af74e6be571e688b7471a3cf0e713b0619f",
+    "scripts/check-w3-browsers.mjs": "f33fc60417d8f0329799e1d42008999c9e37b58dd50d11aa6a545310c2f700d1",
     "scripts/cloudflare-dev.cjs": "ff009885e22c6d83ab17abb4325b0e63d2fe133d4f41629e5fbc917c2e0771e8",
     "scripts/create-admin.cjs": "79ac2d3bbc67e39a54e81440c71ee239b8567de7b77a9ee3e8d8cabd57921cf5",
     "scripts/dev.cjs": "9ecf39a881a530cf9b49374185df649d290390ec5d67127fc3f0ff4544295ba6",
@@ -107,11 +111,11 @@
     "scripts/generate-content-inventory.mjs": "cb7f816d6fe3c0904ff1235f9e69b7b27d5f84a86572f748085766d305af2e1b",
     "scripts/import-config.cjs": "3692dd16a20ab2140f58f28941d7fa698bece7ce73103cdd43040b84075d3182",
     "scripts/import-local.cjs": "553a13b6a58815c959f3473b122443be2a224479dcdc0feeb18a1c626ce84adb",
-    "scripts/integration-contracts.json": "840347bdef09de34b56a238c3f6a8e7f70c336927efbfb8891cc8e52530a3507",
+    "scripts/integration-contracts.json": "3ec69a67aa48d15ff27f92aa0b3405f34f2935a6a6367f8a3ef91ff2cab677db",
     "scripts/lib/account-browser-checks.mjs": "aec8f09d7794d9e12b8d1b092a7db3d9966600d46b1b2eb245b124fec43bfa68",
     "scripts/lib/admin-diagnostics.mjs": "7d7f6f5fc3d4ad5d5acc9ae66254cb64dbd2bfe2a5331f3828090d6f85687d86",
     "scripts/lib/fixture-config.cjs": "194d8c1b6f0af664013960c82c9da36c1003462caa55101d0c166c126bdbc2d1",
-    "scripts/lib/gate-state.mjs": "b1155fa28b0121e090fe3cf37659870763c69d22b8bd34fd5599c94c6e404a3b",
+    "scripts/lib/gate-state.mjs": "ad1ba62c0434b86cf4d5ffd818ece34612ff80099fcafba0e1d1a2da85d63a33",
     "scripts/lib/performance-checks.mjs": "e85ee92452216af5d7983742a07b4592e38703e34b8a509eddb3fc3df5052b3f",
     "scripts/lib/privacy-browser-checks.mjs": "124c549aa60dc9b53eba116445519f2362e086f3a88419af627ac7bca24b4d56",
     "scripts/lib/privacy-fixture.cjs": "f04da365e1f3eaeced0623c6a569d1b1147aab16fa1e1affb9248485fb1817d3",
@@ -119,14 +123,16 @@
     "scripts/lib/release-diagnostics.mjs": "c94e0041ec3c716bc2bff02c15a6008190b37b14d4cdbf1bc31b7c323d8dd3f2",
     "scripts/lib/source-checks.mjs": "a8036b68779c5c80ed2d6dc0146f88747f46b97c5f9f00ce3a63f179980e5d37",
     "scripts/lib/student-service-worker.cjs": "270ddf62d75fd07ee648d561d932d27210462391021b8fc930f38451556498d2",
-    "scripts/lib/v16-browser-checks.mjs": "010f51105ea112fc0888333391c4bb69686b3c20268c1d2b855d5ce2952e5e07",
+    "scripts/lib/v16-browser-checks.mjs": "d000d3473a45db87e151d88c8b78fc65551ce3ae2ee5d649387e1d961549ee7d",
     "scripts/lib/v17-browser-checks.mjs": "47e1fa02f27580734651a64b3ead7603718d3bfea259d073a745dd61b3d84000",
+    "scripts/lib/v18-browser-checks.mjs": "7d0164dab0ad41d552022e38b1cfc848731cd70b04546bd277bd19b2f47fe23f",
+    "scripts/lib/v19-browser-checks.mjs": "bd6b5e91fe56f7fc4690fd86a0c48d31a2dd4e690597f81d265ccc9e9aa8f5c3",
     "scripts/lib/w2-browser-checks.mjs": "222c7ddb3a6fd6d982125b46ce5271eb6ff9a979f340a11e79f9a7a7c85923bf",
     "scripts/lib/w3-browser-checks.mjs": "f21767c66ac7b591f4fa4981404c5974f90b09a75a67d7b14168eff807ae629d",
     "scripts/lib/wiz-luna-cases.cjs": "6411eda4e541222d03891e5378e0d12615180d32c98ba2f7f5d2bc47a831b45c",
     "scripts/performance-budgets.json": "8e98be3e27a85142c5b5424898f1c19020f28fce15f9d8ca3f574ace0eb5831e",
     "scripts/privacy-maintenance.cjs": "6d0dd722cd7ba0cda928d77520704f2586c188306a7218465d2b640972c6d5bb",
-    "scripts/probe-api-connections.mjs": "8b44e791a0a8294679497f4ddc24d0a563e65d82f0d1e301f86ab1f62ee4a85f",
+    "scripts/probe-api-connections.mjs": "2e939ef082b5b68ef7758dd5ac2ed992976937cf5bd8d60bad76cb00362d8464",
     "scripts/release-gate.mjs": "f603aa764aaea779a91ab95cc2e87a250facb894508df31e358f2b061c5e620c",
     "scripts/run-local-checks.mjs": "69c94579f4475a05574b622f044afa07ef9a5727321b5dd0a79accee2a6311e8",
     "scripts/setup.cjs": "d8e705023d25c5f7faabf47b5991a77946d4ee1bb2e736b527e2a90d709fc7f7",
@@ -146,7 +152,9 @@
     "shared/privacy.css": "854218d1df0aced4f61048b939098dce98ebe5f260605d7a08dc53cb068ab0d4",
     "shared/useDialog.js": "17c420004a5e6c18f77233209b699078e8ce7412df04887f3550f83dac35411e",
     "tests/admin-recycle.test.cjs": "97a8cdb642b7493bd11f7c98d117bc38d2d03eca541227422c741bc6e619dc93",
-    "tests/build-gate.test.mjs": "6019c90352b2ca5aba3f1310fe6d0d5c4f7a60019c78974f81c62a46f17395b7",
+    "tests/build-gate.test.mjs": "99aacb5621e5d87681728c52be9a91c6564a050877ff59b5f392e0d2a011dce9",
+    "tests/content-media.test.cjs": "7fcf472e069e23b1f831cb6428e2261eeca0ac6902ffded60a0875f50355ea61",
+    "tests/content-publishing.test.cjs": "de11b346f827c84405dd42d1bcc96e218a3fe8c1dfdd510b586f00845f1c5f2c",
     "tests/cors.test.cjs": "dae67bb9f02d8bca196dad64e17f22eae3870fd15b21c57fd761104e419d1d38",
     "tests/learning-sync.test.cjs": "76dbf78681a2e5a8253986c9350e776d0809bbbbb34b6394eb8b859a5e35cb93",
     "tests/password-recovery.test.cjs": "1b542c3659ba32f5e32d3656cd83ca15136f6016578d055360e9b6457cdbf900",
@@ -176,22 +184,25 @@
     "web/admin/src/components/AdminSidebar.jsx": "af0d0f0f9e691bb77398577c84ecb0f588a16707597fb25b6c9446987516ddd8",
     "web/admin/src/components/ChemWizBrand.css": "b24e18a33772b216dddc39d2d96c99d0b35f02d24145475712c8c10fb6ca467c",
     "web/admin/src/components/ChemWizBrand.jsx": "b0f2d54e65a8dbc4989857a65f22a6275662f42249f454d62489912336d38f7d",
-    "web/admin/src/components/LazyRecordPanel.jsx": "628fb1c9751ff34c48ee36e6b83f45c7dda9a64707c9a0a058191822b1932796",
+    "web/admin/src/components/EditorialDesk.jsx": "6b44713670ab1524119cf52a062371cc1f2a397c829942fb2dda1b95771e8121",
+    "web/admin/src/components/LazyRecordPanel.jsx": "408f85d187fc46a07963b6f9b5530d5e6098242f52fcd3043711a0e5ab61efec",
     "web/admin/src/components/LazyUsersPanel.jsx": "db12aa281b47bb361e283bc7f38004cc2b87f5c8a52659c1728b09f44752198b",
+    "web/admin/src/components/MediaAttachments.jsx": "3ac6615ee978afcb0f42f8306f951b809c96acc53e7a0c7a8383a8845a33b3de",
+    "web/admin/src/components/MediaLibrary.jsx": "4a19b0f6ac01026e6ec54299e244a9d0b417c16c206749af27f7f8e158bf0ee2",
     "web/admin/src/components/PrivacyAdmin.jsx": "a90f60082e3d6b1e7bd4c914b4407a3a1a1382286484438758a77afc22d432b1",
-    "web/admin/src/components/RecordConfirmDialog.jsx": "2736948b6391fac6f4e5fb68a89519356967f67112c32fa2f67780c0eb9cc0ea",
-    "web/admin/src/components/RecordPanels.jsx": "8b659bd5e50654801211631cadb12a0b2d2778c29d1cf5a2769d08bf1459be3e",
+    "web/admin/src/components/RecordConfirmDialog.jsx": "6578640127624d5be3a1b21420653578e7e58c2a55ffe9908a7b3d194d4bd00c",
+    "web/admin/src/components/RecordPanels.jsx": "17780b3b5fcc6b2749f9fa76bbcb99428f8aa9d7fadace82eaaa2c1e584d4d4c",
     "web/admin/src/components/StatCard.jsx": "1c1b66a8cfa668a6d03180dc322fa32c575b2da1d4986803e1a7b7fe649cbc52",
     "web/admin/src/components/StatsGrid.jsx": "d72212153ba3c9c52d6c7b5ffe99e4e350c6b347e639602e282527aad2e00e5a",
     "web/admin/src/components/UserDetailsModal.jsx": "99583d17aa5da9463020508a87ddda269622225c6d2edc98444a8884f6d6bc5e",
     "web/admin/src/components/UsersPanel.jsx": "1517c6719e538b45370df3e63121d4728ccf55b4a8bd7e8482e509da1a47873a",
-    "web/admin/src/config/api.js": "ef09873fb3f06852f91afd70161b0cd071dcd0e20095a724fe943d0315a8c19f",
+    "web/admin/src/config/api.js": "5b733f14e4df2e52f72587637ac13aa97be38e48548e36705be7d7952076b3dc",
     "web/admin/src/config/session.mjs": "cc1238e60fd38bf74591dca776f37ebef67ec1525314229782490c2ab8ef2207",
     "web/admin/src/index.css": "1a9ef3e4d457a6055de7be59307438cc6041adb87cf935c3446114d678482688",
     "web/admin/src/main.jsx": "4b4b864dbe45253425d0c925337180ec07e204295179f80f59551216f466f618",
-    "web/admin/src/screens/AdminDashboard.jsx": "8ed503aa47d70151fb5912dc75b51d693b8ad222ef4a41afb5454298e525a9d6",
+    "web/admin/src/screens/AdminDashboard.jsx": "8bfc1c228bdc12e8b44a9f6960c67d202aa24c0823cae499005adde42b97d006",
     "web/admin/src/screens/AdminLogin.jsx": "2d7cf2f0621a61ad7bcd054c471fe98a525b806519aa980a899459e2814ea4c5",
-    "web/admin/src/styles/admin.css": "474c450ff5a700eb5e6ccc1ef6db71368b1ca8d4988e46b0f1efd2a2088ae75e",
+    "web/admin/src/styles/admin.css": "a0b11a98036818f829f7de52ffdec5a4b1e9af9cb67a37a822b8bcf1929f0c50",
     "web/home.css": "10383ba4fb440a24537b3aa0b71a296c0070fef3abbcf6c65fcf2fe652a09cfd",
     "web/index.html": "81322e371e851028a77b44853ed5e837f18d07b5dc80eb6ce975b95f61dfaf94",
     "web/legal/index.html": "34a8ae3f2c96f418b6a2dfd096358de2858e6d880afe5c251fa345725db468c3",
@@ -201,11 +212,13 @@
     "web/public/student/icons/chemwiz.svg": "7b684fda4ed0f63f604e96d0b03ddf99c9f027a254c62f1d08222f7d2553a16a",
     "web/public/student/manifest.webmanifest": "948fcc46e63cf8bdc737b11f621f4327928c9470fc0080bf937baebb0c545c4f",
     "web/public/student/offline.html": "ef0c50dc6b05fa5339e8bd75e8fecec57ad15689275eadff497f70306301c52d",
+    "web/shared/ProtectedImage.jsx": "c2d7020f93f004fbed52bd0ac95fd3a4815a43ca2add5880160f85b31f3f7263",
+    "web/shared/protected-image.css": "76c3bdff4d1e434015bd07cd1c5bdb01a397d260dbca901f9d78b6d52af2768c",
     "web/student/index.html": "ffbbdd0cfa4bc46307eace7bcf32d7ae998b7e835e05bc9655b994711bdb25b1",
     "web/student/scripts/generate-search.mjs": "0aba5dc116c5c052acebca566b5c7c7a2f2a62118dc5de149d213393521a7964",
     "web/student/scripts/verify-content.mjs": "a13f8f8a191f788af43190e133df5f008d62d884e04f5586bfc282ea494a81fd",
     "web/student/scripts/verify-k4.mjs": "1cbcebb5d6d179c774312aebd5494e1b9cae0de4658ad16b3bf97ae2716a6021",
-    "web/student/src/App.jsx": "742bbfc00963029e1e2a6463491cf2b94a45bb656776682837cbd2b1b9249b7b",
+    "web/student/src/App.jsx": "f5854eb96af519ae463d9e501afec9413a419b009b7a4ed47c26229b557049ed",
     "web/student/src/assets/brand/chemwiz-logo.png": "92524bd02e5d1ba3a51d9848cd8fe68617ce47ee6420fc63d85c8e8b1540345f",
     "web/student/src/assets/brand/wiz-emblem.png": "07d6b75a525c2ee850c5ce1d10b25443ee59c8f2627f97061442d88c8d779669",
     "web/student/src/components/ChemWizBrand.css": "b24e18a33772b216dddc39d2d96c99d0b35f02d24145475712c8c10fb6ca467c",
@@ -220,7 +233,7 @@
     "web/student/src/components/WizFab.jsx": "d26ff0e1fb8c75f251baffe910e046a62ebc98dd78826a52d444f4c8d56aa8e5",
     "web/student/src/components/layout/AppShell.jsx": "15d266a624b111d85e266e35771936087327eba8972fcd58ff128dc030a2f6bd",
     "web/student/src/components/search/GlobalSearch.jsx": "b15ad81a8d114e781d4c700029a58a0f67f1856781fd322c3e65149a790c8ee9",
-    "web/student/src/config/api.js": "18f3b71383a2a5e462004a1e138b0a3b53086dac77ffd2db606cabd8784f3456",
+    "web/student/src/config/api.js": "6556c3a31f77b6012c90d60c3b4e93b33b9e6fd1b57f23d88afab1355bacbf20",
     "web/student/src/config/theme.js": "88b6f64a00ec0cb7f8916eee3c075f1ab7035a33e54094b51b1683222fca8d41",
     "web/student/src/config/topics.js": "7df3684adfc758b91736870f041579ca8784a703025404e579686bf731d4999f",
     "web/student/src/config/wizContext.js": "bf7ecf9126e7ea8687439d1a60ab8f772798b5bedca375bc3748659061119bda",
@@ -257,15 +270,17 @@
     "web/student/src/main.jsx": "b73cabbcf800544cdd28da1963b3d1c6c1d22cd116917d5276fc73426e75de70",
     "web/student/src/screens/Auth.jsx": "aada0b763b111c3b96fe1ae5aba36b6dcad1c6152805a7b9262a9666b5aa47f8",
     "web/student/src/screens/Chapters.jsx": "a1dc42461b834bdc970586002589b795522de30b0e5acef5580d08f56fb076c0",
-    "web/student/src/screens/Home.jsx": "db4e6894aa460b03d1e156b3f11e3d1dbbb360e93047051366dc00222872f865",
+    "web/student/src/screens/Home.jsx": "54ccaca8d03237e8fd9a7d9fb0aa9206c6dfb7c797b09db9e32ba094fc23a4bf",
     "web/student/src/screens/LiveVoice.jsx": "c969aa19fb1775bc10dbd330a32c135bf3107c7b16aa94c883e66d4bda3b912a",
     "web/student/src/screens/LockedFeature.jsx": "416cb26807c21346f58bce3aaa66971a7a830a1513a250bbdb89f1dc97285cb5",
     "web/student/src/screens/Profile.jsx": "8df4ad20a1e1e06fc9de57f3877c88326b24acb210d724fe26ca46b5320c19f6",
     "web/student/src/screens/Progress.jsx": "45719a9a00c2fcf8704f7d3bc1eddc141696e38cde739a61538343961c3badbf",
+    "web/student/src/screens/PublishedLessons.jsx": "6f3f6e26cb3745914c68333b301a8e070531bca77c3319931643f970541e9b36",
     "web/student/src/screens/Quiz.jsx": "8eb128c2b96def5f2110a4c76bab55408d7ba4c0bb78d7bb04bfd2213923b6a6",
     "web/student/src/screens/Structured.jsx": "b5ceca08cc7709a65a3b51da6ab859a88e0f83fea48e596910ccf1bd37a0d728",
-    "web/student/src/screens/TopicView.jsx": "7495c9e10ee700f195d01d6d69cccd14a32fe41c654f2ce702625d6c55774e7a",
+    "web/student/src/screens/TopicView.jsx": "f6d5b8c0f70fdea53b264ca171b2d9fd569ed59e1e1e45312726f3d3a9dd6acb",
     "web/student/src/screens/TutorChat.jsx": "f79674dd6f8d603b3fb3ac3b6e6d8f1cdcb0200fb9bb29a666c12a8cca99dc34",
+    "web/student/src/screens/published-lessons.css": "38c6229fd2b94ff15b6315251792c672faec1152c96711f5d853061f36b992e1",
     "web/student/src/search/buildLessonEntries.js": "0c841d6c02d9ecbdc6e712480d9c8fea69a4eb56facfc8a7afcddcd3d90afa5f",
     "web/student/src/search/searchEngine.js": "f066ccc3c8d37d5afce4fe3894222ddd20709e8150f4124f5a14037b369d90cb",
     "web/student/src/styles/responsive.css": "afb3770d9a4612ae6478bea361818b982285fe9c2f77812973e7ef1c8f3c8ca9",
@@ -286,14 +301,14 @@
     "web/student/src/utils/studentPwa.mjs": "e5bc3501dc000524959d10871322ee154577b7905f3d2aa4992e17710f5d5131",
     "wrangler.jsonc": "03c19b66036f19223c7f6660d46d189e3c1222833c8e1ee175a0bd861e6d931e"
   },
-  "checkedAt": "2026-10-20T17:52:14.128Z",
+  "checkedAt": "2026-10-21T21:46:08.385Z",
   "installation": {
     "status": "PASS"
   },
   "source": {
     "passed": true,
-    "files": 236,
-    "imports": 791,
+    "files": 249,
+    "imports": 896,
     "frontend": [
       {
         "file": "web/admin/src/config/api.js",
@@ -718,6 +733,224 @@
         }
       },
       {
+        "file": "web/admin/src/config/api.js",
+        "export": "importContentDraft",
+        "method": "POST",
+        "path": "/api/admin/content/import",
+        "backend": {
+          "file": "backend/src/routes/admin.routes.js",
+          "path": "/api/admin/content/import",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "protect",
+            "adminOnly",
+            "recordWriteLimit",
+            "recordRoute"
+          ]
+        }
+      },
+      {
+        "file": "web/admin/src/config/api.js",
+        "export": "getContentHistory",
+        "method": "GET",
+        "path": "/api/admin/content/:param/history",
+        "backend": {
+          "file": "backend/src/routes/admin.routes.js",
+          "path": "/api/admin/content/:id/history",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "protect",
+            "adminOnly",
+            "recordRoute"
+          ]
+        }
+      },
+      {
+        "file": "web/admin/src/config/api.js",
+        "export": "publishContentDraft",
+        "method": "POST",
+        "path": "/api/admin/content/:param/publish",
+        "backend": {
+          "file": "backend/src/routes/admin.routes.js",
+          "path": "/api/admin/content/:id/publish",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "protect",
+            "adminOnly",
+            "recordWriteLimit",
+            "recordRoute"
+          ]
+        }
+      },
+      {
+        "file": "web/admin/src/config/api.js",
+        "export": "unpublishContentDraft",
+        "method": "POST",
+        "path": "/api/admin/content/:param/unpublish",
+        "backend": {
+          "file": "backend/src/routes/admin.routes.js",
+          "path": "/api/admin/content/:id/unpublish",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "protect",
+            "adminOnly",
+            "recordWriteLimit",
+            "recordRoute"
+          ]
+        }
+      },
+      {
+        "file": "web/admin/src/config/api.js",
+        "export": "rollbackContentDraft",
+        "method": "POST",
+        "path": "/api/admin/content/:param/rollback",
+        "backend": {
+          "file": "backend/src/routes/admin.routes.js",
+          "path": "/api/admin/content/:id/rollback",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "protect",
+            "adminOnly",
+            "recordWriteLimit",
+            "recordRoute"
+          ]
+        }
+      },
+      {
+        "file": "web/admin/src/config/api.js",
+        "export": "getMediaLibrary",
+        "method": "GET",
+        "path": "/api/admin/media",
+        "backend": {
+          "file": "backend/src/routes/admin.routes.js",
+          "path": "/api/admin/media",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "protect",
+            "adminOnly",
+            "recordRoute"
+          ]
+        }
+      },
+      {
+        "file": "web/admin/src/config/api.js",
+        "export": "updateMedia",
+        "method": "PUT",
+        "path": "/api/admin/media/:param",
+        "backend": {
+          "file": "backend/src/routes/admin.routes.js",
+          "path": "/api/admin/media/:id",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "protect",
+            "adminOnly",
+            "recordWriteLimit",
+            "recordRoute"
+          ]
+        }
+      },
+      {
+        "file": "web/admin/src/config/api.js",
+        "export": "trashMedia",
+        "method": "DELETE",
+        "path": "/api/admin/media/:param",
+        "backend": {
+          "file": "backend/src/routes/admin.routes.js",
+          "path": "/api/admin/media/:id",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "protect",
+            "adminOnly",
+            "recordWriteLimit",
+            "recordRoute"
+          ]
+        }
+      },
+      {
+        "file": "web/admin/src/config/api.js",
+        "export": "uploadMedia",
+        "method": "POST",
+        "path": "/api/admin/media",
+        "backend": {
+          "file": "backend/src/routes/admin.routes.js",
+          "path": "/api/admin/media",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "protect",
+            "adminOnly",
+            "mediaUploadLimit",
+            "raw",
+            "recordRoute"
+          ]
+        }
+      },
+      {
+        "file": "web/admin/src/config/api.js",
+        "export": "getAdminMediaFile",
+        "method": "GET",
+        "path": "/api/admin/media/:param/file",
+        "backend": {
+          "file": "backend/src/routes/admin.routes.js",
+          "path": "/api/admin/media/:id/file",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "protect",
+            "adminOnly",
+            "inline"
+          ]
+        }
+      },
+      {
         "file": "web/student/src/config/api.js",
         "export": "registerUser",
         "method": "POST",
@@ -833,6 +1066,94 @@
             "urlencoded",
             "ensureDataReady",
             "protect",
+            "inline"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "getPublishedMaterials",
+        "method": "GET",
+        "path": "/api/content",
+        "backend": {
+          "file": "backend/src/routes/content.routes.js",
+          "path": "/api/content",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "inline",
+            "protect",
+            "requireLearningConsent",
+            "read"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "getPublishedMaterial",
+        "method": "GET",
+        "path": "/api/content/:param",
+        "backend": {
+          "file": "backend/src/routes/content.routes.js",
+          "path": "/api/content/:id",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "inline",
+            "protect",
+            "requireLearningConsent",
+            "read"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "getPublishedCredits",
+        "method": "GET",
+        "path": "/api/content/credits",
+        "backend": {
+          "file": "backend/src/routes/content.routes.js",
+          "path": "/api/content/credits",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "inline",
+            "protect",
+            "requireLearningConsent",
+            "read"
+          ]
+        }
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "getPublishedMedia",
+        "method": "GET",
+        "path": "/api/content/:param/media/:param",
+        "backend": {
+          "file": "backend/src/routes/content.routes.js",
+          "path": "/api/content/:id/media/:mediaId",
+          "middleware": [
+            "corsMiddleware",
+            "helmet",
+            "morgan",
+            "json",
+            "urlencoded",
+            "ensureDataReady",
+            "inline",
+            "protect",
+            "requireLearningConsent",
             "inline"
           ]
         }
@@ -1685,6 +2006,90 @@
       },
       {
         "file": "backend/src/routes/admin.routes.js",
+        "method": "GET",
+        "path": "/api/admin/media",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordRoute"
+        ]
+      },
+      {
+        "file": "backend/src/routes/admin.routes.js",
+        "method": "POST",
+        "path": "/api/admin/media",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "mediaUploadLimit",
+          "raw",
+          "recordRoute"
+        ]
+      },
+      {
+        "file": "backend/src/routes/admin.routes.js",
+        "method": "PUT",
+        "path": "/api/admin/media/:id",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordWriteLimit",
+          "recordRoute"
+        ]
+      },
+      {
+        "file": "backend/src/routes/admin.routes.js",
+        "method": "DELETE",
+        "path": "/api/admin/media/:id",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordWriteLimit",
+          "recordRoute"
+        ]
+      },
+      {
+        "file": "backend/src/routes/admin.routes.js",
+        "method": "GET",
+        "path": "/api/admin/media/:id/file",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "inline"
+        ]
+      },
+      {
+        "file": "backend/src/routes/admin.routes.js",
         "method": "POST",
         "path": "/api/admin/users/:userId/trash",
         "middleware": [
@@ -1786,6 +2191,90 @@
         "file": "backend/src/routes/admin.routes.js",
         "method": "POST",
         "path": "/api/admin/content",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordWriteLimit",
+          "recordRoute"
+        ]
+      },
+      {
+        "file": "backend/src/routes/admin.routes.js",
+        "method": "POST",
+        "path": "/api/admin/content/import",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordWriteLimit",
+          "recordRoute"
+        ]
+      },
+      {
+        "file": "backend/src/routes/admin.routes.js",
+        "method": "GET",
+        "path": "/api/admin/content/:id/history",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordRoute"
+        ]
+      },
+      {
+        "file": "backend/src/routes/admin.routes.js",
+        "method": "POST",
+        "path": "/api/admin/content/:id/publish",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordWriteLimit",
+          "recordRoute"
+        ]
+      },
+      {
+        "file": "backend/src/routes/admin.routes.js",
+        "method": "POST",
+        "path": "/api/admin/content/:id/unpublish",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordWriteLimit",
+          "recordRoute"
+        ]
+      },
+      {
+        "file": "backend/src/routes/admin.routes.js",
+        "method": "POST",
+        "path": "/api/admin/content/:id/rollback",
         "middleware": [
           "corsMiddleware",
           "helmet",
@@ -2243,6 +2732,74 @@
           "inline",
           "wrap"
         ]
+      },
+      {
+        "file": "backend/src/routes/content.routes.js",
+        "method": "GET",
+        "path": "/api/content",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "requireLearningConsent",
+          "read"
+        ]
+      },
+      {
+        "file": "backend/src/routes/content.routes.js",
+        "method": "GET",
+        "path": "/api/content/credits",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "requireLearningConsent",
+          "read"
+        ]
+      },
+      {
+        "file": "backend/src/routes/content.routes.js",
+        "method": "GET",
+        "path": "/api/content/:id/media/:mediaId",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "requireLearningConsent",
+          "inline"
+        ]
+      },
+      {
+        "file": "backend/src/routes/content.routes.js",
+        "method": "GET",
+        "path": "/api/content/:id",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "requireLearningConsent",
+          "read"
+        ]
       }
     ],
     "issues": [],
@@ -2259,25 +2816,25 @@
       "total": 0
     },
     "affectedPackages": [],
-    "checkedAt": "2026-10-20T17:52:18.435Z"
+    "checkedAt": "2026-10-21T21:46:11.728Z"
   },
   "compile": {
     "status": "PASS",
-    "fingerprint": "73fdf5333a34b059d1394d63c7d6379a8ed8360d90ffba5f819358c4dae721a9"
+    "fingerprint": "3fcfc965f51a5c0b0d7ba9f3f25929fd272002153a58a066358ce14b1de7ee4e"
   },
   "performance": {
     "status": "PASS",
     "metrics": {
       "entryJsGzipBytes": {
         "index.html": 0,
-        "student/index.html": 98754,
-        "admin/index.html": 63954,
-        "legal/index.html": 53240
+        "student/index.html": 99664,
+        "admin/index.html": 64861,
+        "legal/index.html": 53517
       },
-      "totalJsGzipBytes": 733499,
-      "totalCssGzipBytes": 11214,
-      "largestLazyJsGzipBytes": 200856,
-      "totalRawBytes": 4356102,
+      "totalJsGzipBytes": 743875,
+      "totalCssGzipBytes": 12404,
+      "largestLazyJsGzipBytes": 200876,
+      "totalRawBytes": 4391489,
       "largestFileRawBytes": 1244466,
       "deferredTopics": 24,
       "searchDeferred": true,
@@ -2292,43 +2849,43 @@
       },
       {
         "name": "Initial JavaScript: student/index.html",
-        "value": 98754,
+        "value": 99664,
         "limit": 120000,
         "status": "PASS"
       },
       {
         "name": "Initial JavaScript: admin/index.html",
-        "value": 63954,
+        "value": 64861,
         "limit": 120000,
         "status": "PASS"
       },
       {
         "name": "Initial JavaScript: legal/index.html",
-        "value": 53240,
+        "value": 53517,
         "limit": 120000,
         "status": "PASS"
       },
       {
         "name": "totalJsGzipBytes",
-        "value": 733499,
+        "value": 743875,
         "limit": 800000,
         "status": "PASS"
       },
       {
         "name": "totalCssGzipBytes",
-        "value": 11214,
+        "value": 12404,
         "limit": 20000,
         "status": "PASS"
       },
       {
         "name": "largestLazyJsGzipBytes",
-        "value": 200856,
+        "value": 200876,
         "limit": 220000,
         "status": "PASS"
       },
       {
         "name": "totalRawBytes",
-        "value": 4356102,
+        "value": 4391489,
         "limit": 5000000,
         "status": "PASS"
       },
@@ -2790,6 +3347,132 @@
         "mode": "local fixture"
       },
       {
+        "file": "web/admin/src/config/api.js",
+        "export": "importContentDraft",
+        "method": "POST",
+        "path": "/api/admin/content/import",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/admin/src/config/api.js",
+        "export": "getContentHistory",
+        "method": "GET",
+        "path": "/api/admin/content/:id/history",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/admin/src/config/api.js",
+        "export": "publishContentDraft",
+        "method": "POST",
+        "path": "/api/admin/content/:id/publish",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "getPublishedMaterials",
+        "method": "GET",
+        "path": "/api/content",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "getPublishedMaterial",
+        "method": "GET",
+        "path": "/api/content/:id",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "getPublishedCredits",
+        "method": "GET",
+        "path": "/api/content/credits",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/admin/src/config/api.js",
+        "export": "rollbackContentDraft",
+        "method": "POST",
+        "path": "/api/admin/content/:id/rollback",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/admin/src/config/api.js",
+        "export": "unpublishContentDraft",
+        "method": "POST",
+        "path": "/api/admin/content/:id/unpublish",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/admin/src/config/api.js",
+        "export": "uploadMedia",
+        "method": "POST",
+        "path": "/api/admin/media",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/admin/src/config/api.js",
+        "export": "getMediaLibrary",
+        "method": "GET",
+        "path": "/api/admin/media",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/admin/src/config/api.js",
+        "export": "updateMedia",
+        "method": "PUT",
+        "path": "/api/admin/media/:id",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/admin/src/config/api.js",
+        "export": "getAdminMediaFile",
+        "method": "GET",
+        "path": "/api/admin/media/:id/file",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/student/src/config/api.js",
+        "export": "getPublishedMedia",
+        "method": "GET",
+        "path": "/api/content/:id/media/:mediaId",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
+        "file": "web/admin/src/config/api.js",
+        "export": "trashMedia",
+        "method": "DELETE",
+        "path": "/api/admin/media/:id",
+        "status": 200,
+        "result": "PASS",
+        "mode": "local fixture"
+      },
+      {
         "file": "web/student/src/config/api.js",
         "export": "askTutor",
         "method": "POST",
@@ -2827,12 +3510,12 @@
       "Production scripts restricted by CSP and framework identification header removed",
       "Invalid learner records rejected by backend validation"
     ],
-    "backendRoutesCovered": 54,
+    "backendRoutesCovered": 68,
     "externalServices": "Not called: fixture data only; live voice/transcription connection requires separate provider/device acceptance."
   },
   "pwa": {
     "status": "PASS",
-    "buildId": "1.7.0-05558702ab99ea1a",
+    "buildId": "1.9.0-653cb12096337d6f",
     "cacheFiles": [
       "/student/offline.html",
       "/student/manifest.webmanifest",

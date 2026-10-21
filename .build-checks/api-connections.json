@@ -425,6 +425,132 @@
       "mode": "local fixture"
     },
     {
+      "file": "web/admin/src/config/api.js",
+      "export": "importContentDraft",
+      "method": "POST",
+      "path": "/api/admin/content/import",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "getContentHistory",
+      "method": "GET",
+      "path": "/api/admin/content/:id/history",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "publishContentDraft",
+      "method": "POST",
+      "path": "/api/admin/content/:id/publish",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getPublishedMaterials",
+      "method": "GET",
+      "path": "/api/content",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getPublishedMaterial",
+      "method": "GET",
+      "path": "/api/content/:id",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getPublishedCredits",
+      "method": "GET",
+      "path": "/api/content/credits",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "rollbackContentDraft",
+      "method": "POST",
+      "path": "/api/admin/content/:id/rollback",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "unpublishContentDraft",
+      "method": "POST",
+      "path": "/api/admin/content/:id/unpublish",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "uploadMedia",
+      "method": "POST",
+      "path": "/api/admin/media",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "getMediaLibrary",
+      "method": "GET",
+      "path": "/api/admin/media",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "updateMedia",
+      "method": "PUT",
+      "path": "/api/admin/media/:id",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "getAdminMediaFile",
+      "method": "GET",
+      "path": "/api/admin/media/:id/file",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getPublishedMedia",
+      "method": "GET",
+      "path": "/api/content/:id/media/:mediaId",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "trashMedia",
+      "method": "DELETE",
+      "path": "/api/admin/media/:id",
+      "status": 200,
+      "result": "PASS",
+      "mode": "local fixture"
+    },
+    {
       "file": "web/student/src/config/api.js",
       "export": "askTutor",
       "method": "POST",
@@ -462,6 +588,6 @@
     "Production scripts restricted by CSP and framework identification header removed",
     "Invalid learner records rejected by backend validation"
   ],
-  "backendRoutesCovered": 54,
+  "backendRoutesCovered": 68,
   "externalServices": "Not called: fixture data only; live voice/transcription connection requires separate provider/device acceptance."
 }

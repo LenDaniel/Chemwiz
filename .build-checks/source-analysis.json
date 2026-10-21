@@ -1,7 +1,7 @@
 {
   "passed": true,
-  "files": 236,
-  "imports": 791,
+  "files": 249,
+  "imports": 896,
   "frontend": [
     {
       "file": "web/admin/src/config/api.js",
@@ -426,6 +426,224 @@
       }
     },
     {
+      "file": "web/admin/src/config/api.js",
+      "export": "importContentDraft",
+      "method": "POST",
+      "path": "/api/admin/content/import",
+      "backend": {
+        "file": "backend/src/routes/admin.routes.js",
+        "path": "/api/admin/content/import",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordWriteLimit",
+          "recordRoute"
+        ]
+      }
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "getContentHistory",
+      "method": "GET",
+      "path": "/api/admin/content/:param/history",
+      "backend": {
+        "file": "backend/src/routes/admin.routes.js",
+        "path": "/api/admin/content/:id/history",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordRoute"
+        ]
+      }
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "publishContentDraft",
+      "method": "POST",
+      "path": "/api/admin/content/:param/publish",
+      "backend": {
+        "file": "backend/src/routes/admin.routes.js",
+        "path": "/api/admin/content/:id/publish",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordWriteLimit",
+          "recordRoute"
+        ]
+      }
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "unpublishContentDraft",
+      "method": "POST",
+      "path": "/api/admin/content/:param/unpublish",
+      "backend": {
+        "file": "backend/src/routes/admin.routes.js",
+        "path": "/api/admin/content/:id/unpublish",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordWriteLimit",
+          "recordRoute"
+        ]
+      }
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "rollbackContentDraft",
+      "method": "POST",
+      "path": "/api/admin/content/:param/rollback",
+      "backend": {
+        "file": "backend/src/routes/admin.routes.js",
+        "path": "/api/admin/content/:id/rollback",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordWriteLimit",
+          "recordRoute"
+        ]
+      }
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "getMediaLibrary",
+      "method": "GET",
+      "path": "/api/admin/media",
+      "backend": {
+        "file": "backend/src/routes/admin.routes.js",
+        "path": "/api/admin/media",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordRoute"
+        ]
+      }
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "updateMedia",
+      "method": "PUT",
+      "path": "/api/admin/media/:param",
+      "backend": {
+        "file": "backend/src/routes/admin.routes.js",
+        "path": "/api/admin/media/:id",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordWriteLimit",
+          "recordRoute"
+        ]
+      }
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "trashMedia",
+      "method": "DELETE",
+      "path": "/api/admin/media/:param",
+      "backend": {
+        "file": "backend/src/routes/admin.routes.js",
+        "path": "/api/admin/media/:id",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "recordWriteLimit",
+          "recordRoute"
+        ]
+      }
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "uploadMedia",
+      "method": "POST",
+      "path": "/api/admin/media",
+      "backend": {
+        "file": "backend/src/routes/admin.routes.js",
+        "path": "/api/admin/media",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "mediaUploadLimit",
+          "raw",
+          "recordRoute"
+        ]
+      }
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "getAdminMediaFile",
+      "method": "GET",
+      "path": "/api/admin/media/:param/file",
+      "backend": {
+        "file": "backend/src/routes/admin.routes.js",
+        "path": "/api/admin/media/:id/file",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "protect",
+          "adminOnly",
+          "inline"
+        ]
+      }
+    },
+    {
       "file": "web/student/src/config/api.js",
       "export": "registerUser",
       "method": "POST",
@@ -541,6 +759,94 @@
           "urlencoded",
           "ensureDataReady",
           "protect",
+          "inline"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getPublishedMaterials",
+      "method": "GET",
+      "path": "/api/content",
+      "backend": {
+        "file": "backend/src/routes/content.routes.js",
+        "path": "/api/content",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "requireLearningConsent",
+          "read"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getPublishedMaterial",
+      "method": "GET",
+      "path": "/api/content/:param",
+      "backend": {
+        "file": "backend/src/routes/content.routes.js",
+        "path": "/api/content/:id",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "requireLearningConsent",
+          "read"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getPublishedCredits",
+      "method": "GET",
+      "path": "/api/content/credits",
+      "backend": {
+        "file": "backend/src/routes/content.routes.js",
+        "path": "/api/content/credits",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "requireLearningConsent",
+          "read"
+        ]
+      }
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getPublishedMedia",
+      "method": "GET",
+      "path": "/api/content/:param/media/:param",
+      "backend": {
+        "file": "backend/src/routes/content.routes.js",
+        "path": "/api/content/:id/media/:mediaId",
+        "middleware": [
+          "corsMiddleware",
+          "helmet",
+          "morgan",
+          "json",
+          "urlencoded",
+          "ensureDataReady",
+          "inline",
+          "protect",
+          "requireLearningConsent",
           "inline"
         ]
       }
@@ -1393,6 +1699,90 @@
     },
     {
       "file": "backend/src/routes/admin.routes.js",
+      "method": "GET",
+      "path": "/api/admin/media",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "adminOnly",
+        "recordRoute"
+      ]
+    },
+    {
+      "file": "backend/src/routes/admin.routes.js",
+      "method": "POST",
+      "path": "/api/admin/media",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "adminOnly",
+        "mediaUploadLimit",
+        "raw",
+        "recordRoute"
+      ]
+    },
+    {
+      "file": "backend/src/routes/admin.routes.js",
+      "method": "PUT",
+      "path": "/api/admin/media/:id",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "adminOnly",
+        "recordWriteLimit",
+        "recordRoute"
+      ]
+    },
+    {
+      "file": "backend/src/routes/admin.routes.js",
+      "method": "DELETE",
+      "path": "/api/admin/media/:id",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "adminOnly",
+        "recordWriteLimit",
+        "recordRoute"
+      ]
+    },
+    {
+      "file": "backend/src/routes/admin.routes.js",
+      "method": "GET",
+      "path": "/api/admin/media/:id/file",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "adminOnly",
+        "inline"
+      ]
+    },
+    {
+      "file": "backend/src/routes/admin.routes.js",
       "method": "POST",
       "path": "/api/admin/users/:userId/trash",
       "middleware": [
@@ -1494,6 +1884,90 @@
       "file": "backend/src/routes/admin.routes.js",
       "method": "POST",
       "path": "/api/admin/content",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "adminOnly",
+        "recordWriteLimit",
+        "recordRoute"
+      ]
+    },
+    {
+      "file": "backend/src/routes/admin.routes.js",
+      "method": "POST",
+      "path": "/api/admin/content/import",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "adminOnly",
+        "recordWriteLimit",
+        "recordRoute"
+      ]
+    },
+    {
+      "file": "backend/src/routes/admin.routes.js",
+      "method": "GET",
+      "path": "/api/admin/content/:id/history",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "adminOnly",
+        "recordRoute"
+      ]
+    },
+    {
+      "file": "backend/src/routes/admin.routes.js",
+      "method": "POST",
+      "path": "/api/admin/content/:id/publish",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "adminOnly",
+        "recordWriteLimit",
+        "recordRoute"
+      ]
+    },
+    {
+      "file": "backend/src/routes/admin.routes.js",
+      "method": "POST",
+      "path": "/api/admin/content/:id/unpublish",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "protect",
+        "adminOnly",
+        "recordWriteLimit",
+        "recordRoute"
+      ]
+    },
+    {
+      "file": "backend/src/routes/admin.routes.js",
+      "method": "POST",
+      "path": "/api/admin/content/:id/rollback",
       "middleware": [
         "corsMiddleware",
         "helmet",
@@ -1950,6 +2424,74 @@
         "protect",
         "inline",
         "wrap"
+      ]
+    },
+    {
+      "file": "backend/src/routes/content.routes.js",
+      "method": "GET",
+      "path": "/api/content",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "inline",
+        "protect",
+        "requireLearningConsent",
+        "read"
+      ]
+    },
+    {
+      "file": "backend/src/routes/content.routes.js",
+      "method": "GET",
+      "path": "/api/content/credits",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "inline",
+        "protect",
+        "requireLearningConsent",
+        "read"
+      ]
+    },
+    {
+      "file": "backend/src/routes/content.routes.js",
+      "method": "GET",
+      "path": "/api/content/:id/media/:mediaId",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "inline",
+        "protect",
+        "requireLearningConsent",
+        "inline"
+      ]
+    },
+    {
+      "file": "backend/src/routes/content.routes.js",
+      "method": "GET",
+      "path": "/api/content/:id",
+      "middleware": [
+        "corsMiddleware",
+        "helmet",
+        "morgan",
+        "json",
+        "urlencoded",
+        "ensureDataReady",
+        "inline",
+        "protect",
+        "requireLearningConsent",
+        "read"
       ]
     }
   ],

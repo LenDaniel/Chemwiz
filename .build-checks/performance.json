@@ -3,14 +3,14 @@
   "metrics": {
     "entryJsGzipBytes": {
       "index.html": 0,
-      "student/index.html": 98754,
-      "admin/index.html": 63954,
-      "legal/index.html": 53240
+      "student/index.html": 99664,
+      "admin/index.html": 64861,
+      "legal/index.html": 53517
     },
-    "totalJsGzipBytes": 733499,
-    "totalCssGzipBytes": 11214,
-    "largestLazyJsGzipBytes": 200856,
-    "totalRawBytes": 4356102,
+    "totalJsGzipBytes": 743875,
+    "totalCssGzipBytes": 12404,
+    "largestLazyJsGzipBytes": 200876,
+    "totalRawBytes": 4391489,
     "largestFileRawBytes": 1244466,
     "deferredTopics": 24,
     "searchDeferred": true,
@@ -25,43 +25,43 @@
     },
     {
       "name": "Initial JavaScript: student/index.html",
-      "value": 98754,
+      "value": 99664,
       "limit": 120000,
       "status": "PASS"
     },
     {
       "name": "Initial JavaScript: admin/index.html",
-      "value": 63954,
+      "value": 64861,
       "limit": 120000,
       "status": "PASS"
     },
     {
       "name": "Initial JavaScript: legal/index.html",
-      "value": 53240,
+      "value": 53517,
       "limit": 120000,
       "status": "PASS"
     },
     {
       "name": "totalJsGzipBytes",
-      "value": 733499,
+      "value": 743875,
       "limit": 800000,
       "status": "PASS"
     },
     {
       "name": "totalCssGzipBytes",
-      "value": 11214,
+      "value": 12404,
       "limit": 20000,
       "status": "PASS"
     },
     {
       "name": "largestLazyJsGzipBytes",
-      "value": 200856,
+      "value": 200876,
       "limit": 220000,
       "status": "PASS"
     },
     {
       "name": "totalRawBytes",
-      "value": 4356102,
+      "value": 4391489,
       "limit": 5000000,
       "status": "PASS"
     },

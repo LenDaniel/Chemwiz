@@ -2,9 +2,9 @@
 
 Status: PASS
 
-Version: 1.7.0
+Version: 1.9.0
 
-Source fingerprint: 91184343229fe47d6e837b040e9470eef94dbd3ea58b322932260bf93805c040
+Source fingerprint: fd95448cf434c4d16d049210c65473973e4596901c1c1f39d960286b3d2aabe1
 
 | Frontend function | Method | API path | Backend file | Declared middleware |
 | --- | --- | --- | --- | --- |
@@ -28,12 +28,26 @@ Source fingerprint: 91184343229fe47d6e837b040e9470eef94dbd3ea58b322932260bf93805
 | createContentDraft | POST | /api/admin/content | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, recordWriteLimit, recordRoute |
 | updateContentDraft | PUT | /api/admin/content/:param | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, recordWriteLimit, recordRoute |
 | trashContentDraft | DELETE | /api/admin/content/:param | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, recordWriteLimit, recordRoute |
+| importContentDraft | POST | /api/admin/content/import | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, recordWriteLimit, recordRoute |
+| getContentHistory | GET | /api/admin/content/:param/history | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, recordRoute |
+| publishContentDraft | POST | /api/admin/content/:param/publish | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, recordWriteLimit, recordRoute |
+| unpublishContentDraft | POST | /api/admin/content/:param/unpublish | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, recordWriteLimit, recordRoute |
+| rollbackContentDraft | POST | /api/admin/content/:param/rollback | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, recordWriteLimit, recordRoute |
+| getMediaLibrary | GET | /api/admin/media | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, recordRoute |
+| updateMedia | PUT | /api/admin/media/:param | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, recordWriteLimit, recordRoute |
+| trashMedia | DELETE | /api/admin/media/:param | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, recordWriteLimit, recordRoute |
+| uploadMedia | POST | /api/admin/media | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, mediaUploadLimit, raw, recordRoute |
+| getAdminMediaFile | GET | /api/admin/media/:param/file | backend/src/routes/admin.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, adminOnly, inline |
 | registerUser | POST | /api/auth/register | backend/src/routes/auth.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, registerLimiter, inline |
 | loginUser | POST | /api/auth/login | backend/src/routes/auth.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, loginLimiter, inline |
 | requestPasswordReset | POST | /api/auth/forgot-password | backend/src/routes/auth.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, recoveryLimiter, inline |
 | resetPassword | POST | /api/auth/reset-password | backend/src/routes/auth.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, recoveryLimiter, inline |
 | upgradePassword | POST | /api/auth/upgrade-password | backend/src/routes/auth.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, recoveryLimiter, inline |
 | getCurrentUser | GET | /api/auth/me | backend/src/routes/auth.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, inline |
+| getPublishedMaterials | GET | /api/content | backend/src/routes/content.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, inline, protect, requireLearningConsent, read |
+| getPublishedMaterial | GET | /api/content/:param | backend/src/routes/content.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, inline, protect, requireLearningConsent, read |
+| getPublishedCredits | GET | /api/content/credits | backend/src/routes/content.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, inline, protect, requireLearningConsent, read |
+| getPublishedMedia | GET | /api/content/:param/media/:param | backend/src/routes/content.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, inline, protect, requireLearningConsent, inline |
 | getLearningState | GET | /api/progress/me | backend/src/routes/progress.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, requireLearningConsent, inline, inline |
 | validateLearningImport | POST | /api/progress/validate | backend/src/routes/progress.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, requireLearningConsent, inline, inline |
 | putLearningState | PUT | /api/progress/me | backend/src/routes/progress.routes.js | corsMiddleware, helmet, morgan, json, urlencoded, ensureDataReady, protect, requireLearningConsent, inline, inline |

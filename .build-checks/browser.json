@@ -86,7 +86,32 @@
     "Stale draft saves fail without discarding local text, and the newer server revision can be reopened",
     "Draft materials use the same protected bin and restore as drafts requiring fresh review",
     "Confirmed permanent deletion removes an aged material from the bin and draft store",
-    "The new controls fit mobile width and their disclosure buttons work with the keyboard"
+    "The new controls fit mobile width and their disclosure buttons work with the keyboard",
+    "The learner library remains deferred and makes no content API requests before opening",
+    "A malformed JSON file reports an error; a valid original material file imports only as an editable draft",
+    "An imported draft cannot be fetched by a learner even when its material ID is known",
+    "The saved preview supports phone/desktop and light/dark layouts, renders markup as text and requires a separate chemistry review",
+    "An administrator publishes the exact saved revision through chemistry confirmation, an editorial note and exact-title confirmation",
+    "A free learner reads the live original lesson with its exact source credit and selectable read-aloud controls; markup stays inert",
+    "Credits and sources are aggregated from currently accessible published snapshots and link back to their lessons",
+    "A later private draft does not replace or leak into the already published learner version",
+    "Version history restores an earlier snapshot as a new draft with fresh rights review required and the live version preserved",
+    "Withdrawal removes the material from an open learner reader on refresh and blocks subsequent direct reads",
+    "Premium publications stay absent from a free learner list, source credits and direct material requests",
+    "A publication API outage preserves sign-in and recovers through refresh; the library fits 320px and supports keyboard navigation",
+    "Media controls and metadata are deferred until opening; the library collapses and reopens independently",
+    "Active document uploads are rejected in the UI; a real PNG uploads into a private draft without changing sign-in",
+    "The admin preview fetches and displays the server-normalized image through an authenticated blob request",
+    "Image clearance records separate caption, alternative text, source credit, commercial scope, ownership evidence and image/rights confirmations",
+    "The lesson image chooser saves a canonical attachment to the draft; a learner cannot fetch its file before publication",
+    "The exact saved lesson preview includes its reviewed illustration and publishes through the existing editorial confirmation",
+    "Learners see image alternatives, captions and attribution before choosing to spend bandwidth on the illustration",
+    "A failed image request retains the signed-in lesson and retries into an accessible image with the reviewed alternative text",
+    "Learner credits include per-image attribution and expose no private evidence references, review hashes or stored bytes",
+    "An image review change hides the prior lesson and file; re-saving, reviewing and republishing restores the new exact image generation",
+    "Image recycling enforces 90-day and saved-version holds; restore returns a draft and keeps the prior publication hidden",
+    "An eligible unreferenced image is permanently deleted through an explicit reason and exact-title confirmation; its binary stays unavailable",
+    "Image controls fit 320px, support keyboard collapse and keep authenticated API/image responses out of PWA caches"
   ],
   "w2": {
     "status": "PASS",
@@ -205,5 +230,42 @@
       "The new controls fit mobile width and their disclosure buttons work with the keyboard"
     ],
     "scope": "Real local UI/API with synthetic accounts/drafts. Retention ages are advanced only inside the isolated fixture database. No live database, external backup erasure or rights verification is claimed."
+  },
+  "v18": {
+    "status": "PASS",
+    "checks": [
+      "The learner library remains deferred and makes no content API requests before opening",
+      "A malformed JSON file reports an error; a valid original material file imports only as an editable draft",
+      "An imported draft cannot be fetched by a learner even when its material ID is known",
+      "The saved preview supports phone/desktop and light/dark layouts, renders markup as text and requires a separate chemistry review",
+      "An administrator publishes the exact saved revision through chemistry confirmation, an editorial note and exact-title confirmation",
+      "A free learner reads the live original lesson with its exact source credit and selectable read-aloud controls; markup stays inert",
+      "Credits and sources are aggregated from currently accessible published snapshots and link back to their lessons",
+      "A later private draft does not replace or leak into the already published learner version",
+      "Version history restores an earlier snapshot as a new draft with fresh rights review required and the live version preserved",
+      "Withdrawal removes the material from an open learner reader on refresh and blocks subsequent direct reads",
+      "Premium publications stay absent from a free learner list, source credits and direct material requests",
+      "A publication API outage preserves sign-in and recovers through refresh; the library fits 320px and supports keyboard navigation"
+    ],
+    "scope": "Real local admin/learner UI and API with synthetic original material. No live rights clearance, physical-device audio, binary media upload or offline publication is claimed."
+  },
+  "v19": {
+    "status": "PASS",
+    "checks": [
+      "Media controls and metadata are deferred until opening; the library collapses and reopens independently",
+      "Active document uploads are rejected in the UI; a real PNG uploads into a private draft without changing sign-in",
+      "The admin preview fetches and displays the server-normalized image through an authenticated blob request",
+      "Image clearance records separate caption, alternative text, source credit, commercial scope, ownership evidence and image/rights confirmations",
+      "The lesson image chooser saves a canonical attachment to the draft; a learner cannot fetch its file before publication",
+      "The exact saved lesson preview includes its reviewed illustration and publishes through the existing editorial confirmation",
+      "Learners see image alternatives, captions and attribution before choosing to spend bandwidth on the illustration",
+      "A failed image request retains the signed-in lesson and retries into an accessible image with the reviewed alternative text",
+      "Learner credits include per-image attribution and expose no private evidence references, review hashes or stored bytes",
+      "An image review change hides the prior lesson and file; re-saving, reviewing and republishing restores the new exact image generation",
+      "Image recycling enforces 90-day and saved-version holds; restore returns a draft and keeps the prior publication hidden",
+      "An eligible unreferenced image is permanently deleted through an explicit reason and exact-title confirmation; its binary stays unavailable",
+      "Image controls fit 320px, support keyboard collapse and keep authenticated API/image responses out of PWA caches"
+    ],
+    "scope": "Real local PNG upload, image and lesson reviews, authenticated binary display/retry, credits, review invalidation and image recycle/restore and eligible permanent deletion in this engine. Synthetic content only; no live Atlas, native installer or physical-device acceptance."
   }
 }
