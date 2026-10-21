@@ -29,7 +29,7 @@ function evidence() {
     compile: { status: 'PASS', fingerprint: compiledFingerprint(root) }, performance: {status:'PASS'}, pwa:{status:'PASS'},
     connections: { status: 'PASS', calls: contracts.frontendProbes.map((probe) => ({ ...probe, result: 'PASS' })) } };
   return { status: 'PASS', version, fingerprint, preflight,
-    local: { status: 'PASS', browserMatrix:{status:'PASS',fingerprint,version,browsers:[{name:'firefox',status:'PASS',checks:Array(9).fill('fixture Firefox acceptance'),v17:{status:'PASS',checks:Array(11).fill('fixture recycle/content acceptance')},v16:{status:'PASS',checks:Array(17).fill('fixture Firefox PWA/admin acceptance')}}]}, browser: { status: 'PASS', v17:{status:'PASS',checks:Array(11).fill('fixture recycle/content acceptance')}, v16:{status:'PASS',checks:Array(17).fill('fixture PWA/admin acceptance')}, checks: ['Fixture browser acceptance'], w3:{status:'PASS',checks:Array(9).fill('fixture W3 acceptance')}, accountRecovery:{status:'PASS',checks:Array(6).fill('fixture account recovery')}, privacySchools:{status:'PASS',checks:Array(11).fill('fixture privacy and school acceptance')}, w2: { status:'PASS', diagramTextClipping:0, diagrams:218, viewports:Array(6).fill('fixture viewport') } },
+    local: { status: 'PASS', browserMatrix:{status:'PASS',fingerprint,version,browsers:[{name:'firefox',status:'PASS',checks:Array(9).fill('fixture Firefox acceptance'),v19:{status:'PASS',checks:Array(13).fill('fixture image acceptance')},v18:{status:'PASS',checks:Array(12).fill('fixture publishing acceptance')},v17:{status:'PASS',checks:Array(11).fill('fixture recycle/content acceptance')},v16:{status:'PASS',checks:Array(17).fill('fixture Firefox PWA/admin acceptance')}}]}, browser: { status: 'PASS', v19:{status:'PASS',checks:Array(13).fill('fixture image acceptance')},v18:{status:'PASS',checks:Array(12).fill('fixture publishing acceptance')},v17:{status:'PASS',checks:Array(11).fill('fixture recycle/content acceptance')}, v16:{status:'PASS',checks:Array(17).fill('fixture PWA/admin acceptance')}, checks: ['Fixture browser acceptance'], w3:{status:'PASS',checks:Array(9).fill('fixture W3 acceptance')}, accountRecovery:{status:'PASS',checks:Array(6).fill('fixture account recovery')}, privacySchools:{status:'PASS',checks:Array(11).fill('fixture privacy and school acceptance')}, w2: { status:'PASS', diagramTextClipping:0, diagrams:218, viewports:Array(6).fill('fixture viewport') } },
       steps: ['check', 'verify:content', 'verify:k4', 'test'].map((command) => ({ command: 'npm run ' + command, status: 'PASS' })) } };
 }
 
@@ -115,6 +115,10 @@ test('failed, unavailable or skipped preflight/local checks block deployment', (
     (record) => { delete record.preflight.pwa; },
     (record) => { delete record.local.browser.v16; },
     (record) => { delete record.local.browser.v17; },
+    (record) => { delete record.local.browser.v19; },
+    (record) => { record.local.browserMatrix.browsers[0].v19.checks = []; },
+    (record) => { delete record.local.browser.v18; },
+    (record) => { record.local.browserMatrix.browsers[0].v18.status = 'FAIL'; },
     (record) => { record.local.browserMatrix.browsers[0].v17.status = 'FAIL'; },
     (record) => { record.local.browserMatrix.browsers[0].v16.status = 'FAIL'; },
     (record) => { delete record.preflight.performance; },

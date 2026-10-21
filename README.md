@@ -1,3 +1,13 @@
+## Reviewed lesson images — v1.9.0
+
+Adds a lazy, collapsible Media library for bounded PNG/JPEG uploads, captions/alternative text, independent rights/image review, exact-version lesson attachments and authenticated learner illustrations. Images join the 90-day recycle bin with saved-version reference holds.
+
+Start with [MANAGED_IMAGES_README.md](MANAGED_IMAGES_README.md) for patch application, verification, storage limits and rollback. Native Android and Windows packages remain later roadmap work.
+
+## CMS1b publishing update — v1.8.0
+
+Reviewed text publication, JSON draft import, saved versions/restoration, withdrawal and learner source credits are available. See [CMS_PUBLISHING_README.md](CMS_PUBLISHING_README.md) for installation, exact deployment commands and scope. All existing features and private configuration remain in place.
+
 # ChemWiz unified v1.7.0
 
 One Node/Vite application at one address, with learner/admin workspaces and one backend.

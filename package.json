@@ -1,6 +1,6 @@
 {
   "name": "chemwiz-unified",
-  "version": "1.7.0",
+  "version": "1.9.0",
   "private": true,
   "description": "One ChemWiz application: student workspace, admin workspace and Express API",
   "main": "server.js",
@@ -51,9 +51,11 @@
     "express": "^5.2.1",
     "express-rate-limit": "^8.1.0",
     "helmet": "^8.1.0",
+    "jpeg-js": "0.4.4",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.19.1",
     "morgan": "^1.10.1",
+    "pngjs": "7.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
