@@ -1,0 +1,5 @@
+.cw-protected-image { margin: 20px 0; padding: 16px; border: 1px solid var(--cw-border,#cbd5e1); border-radius: 10px; min-width: 0; overflow-wrap: anywhere; }
+.cw-protected-image img { display: block; max-width: 100%; height: auto; margin: auto; object-fit: contain; max-height: 650px; }
+.cw-protected-image figcaption { margin-top: 12px; line-height: 1.6; white-space: pre-wrap; }
+.cw-protected-image small { display: block; margin-top: 8px; }
+.cw-protected-image button { min-height: 44px; padding: 10px 14px; cursor: pointer; }

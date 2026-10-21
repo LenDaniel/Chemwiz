@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { TOPIC_META, STRANDS } from '../config/topics.js';
 import { Pill } from '../components/Primitives.jsx';
 
-export function Home({ t, progress, streak, mistakesCount, onTopicTap, settings }) {
+export function Home({ t, progress, streak, mistakesCount, onTopicTap, settings, onOpenPublished }) {
   const [query, setQuery] = useState('');
 
   const results = useMemo(() => {
@@ -50,6 +50,7 @@ export function Home({ t, progress, streak, mistakesCount, onTopicTap, settings 
         <div style={{ fontSize: 12, color: t.textMuted, marginTop: 4 }}>{settings.syllabus} · 24 topics · full syllabus coverage</div>
       </div>
 
+      <button type="button" onClick={onOpenPublished} style={{padding:'12px 16px',marginBottom:16,borderRadius:8,border:`1px solid ${t.border}`,background:t.panelHi,color:t.text,font:'inherit',cursor:'pointer'}}>Published lessons</button>
       {/* Quick topic filter. Full-text search is available globally from the app header (Ctrl/Cmd+K). */}
       <div style={{ position: 'relative', marginBottom: 16 }}>
         <input

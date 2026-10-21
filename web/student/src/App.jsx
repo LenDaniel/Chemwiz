@@ -1,6 +1,6 @@
 import {PrivacyPanel} from '../../../shared/PrivacyPanel.jsx';
 import { recoveryToken } from '../../../shared/AccountRecovery.jsx';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { TOPIC_META, topicById } from './config/topics.js';
 import { THEMES } from './config/theme.js';
 import { getItem, setItem } from './utils/storage.js';
@@ -30,6 +30,7 @@ import { AppShell } from './components/layout/AppShell.jsx';
 import { useLearningState } from './hooks/useLearningState.js';
 import { LearningSaveStatus } from './components/LearningSaveStatus.jsx';
 import { PwaUpdateNotice } from './components/PwaControls.jsx';
+const PublishedLessons = lazy(() => import('./screens/PublishedLessons.jsx'));
 
 
 export default function App() {
@@ -273,10 +274,12 @@ const openPremiumFeature = (featureView, topicId, featureName, extra = {}) => {
       return <TutorChat key={`${context.topicId || 'tools'}:${context.featureKey}:${context.featureTitle}`} topic={topic} content={content} context={context} t={t} token={authToken} onExit={pop} />;
     }
 
+    if (current.view === 'published') return <Suspense fallback={<p role="status">Loading published lessons…</p>}><PublishedLessons token={authToken} initialTopic={current.topicId || ''} onAskWiz={material => openPremiumFeature('tutor',material.topicId,'Wiz AI Tutor',{wizContext:makeWizContext(topicById(material.topicId),'published-lesson','Published lesson',material.title,`Learner is studying the published chemistry lesson ${material.title}.`)})}/></Suspense>;
+
     if (tab === 'home') {
       if (current.view === 'home') {
         return <Home t={t} progress={progress} streak={streak} mistakesCount={mistakes.length} settings={settings}
-          onTopicTap={(tp) => push({ view: 'topic', topicId: tp.id })} />;
+          onTopicTap={(tp) => push({ view: 'topic', topicId: tp.id })} onOpenPublished={() => push({view:'published'})} />;
       }
 
       if (current.view === 'topic') {
@@ -285,6 +288,7 @@ const openPremiumFeature = (featureView, topicId, featureName, extra = {}) => {
         return <TopicView topic={topic} content={content} progress={progress} t={t}
           onAction={(action) => {
             if (action === 'chapters') push({ view: 'chapters', topicId: topic.id });
+            if (action === 'published') push({view:'published',topicId:topic.id});
             if (action === 'quiz') push({ view: 'quiz', topicId: topic.id });
             if (action === 'structured') {
   openPremiumFeature('structured', topic.id, 'Structured Questions');

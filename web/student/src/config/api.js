@@ -84,6 +84,16 @@ export function getCurrentUser(token) {
   });
 }
 
+export function getPublishedMaterials(token, params = {}) { const qs = new URLSearchParams(params).toString(); return apiRequest(`/api/content?${qs}`, {method:'GET',cache:'no-store',headers:{Authorization:`Bearer ${token}`}}); }
+export function getPublishedMaterial(token, id) { return apiRequest(`/api/content/${id}`, {method:'GET',cache:'no-store',headers:{Authorization:`Bearer ${token}`}}); }
+export function getPublishedCredits(token, params = {}) { const qs = new URLSearchParams(params).toString(); return apiRequest(`/api/content/credits?${qs}`, {method:'GET',cache:'no-store',headers:{Authorization:`Bearer ${token}`}}); }
+export async function getPublishedMedia(token, contentId, mediaId) {
+  const response = await fetchBackend(`/api/content/${contentId}/media/${mediaId}`, {method:'GET',cache:'no-store',headers:{Authorization:`Bearer ${token}`}});
+  if (!response.ok) { const data = await response.json().catch(() => ({})); throw Object.assign(new Error(data.message || 'This illustration is unavailable. Refresh the lesson.'), {status:response.status,code:data.code}); }
+  if (!['image/png','image/jpeg'].includes(response.headers.get('content-type'))) throw new Error('Unexpected illustration response.');
+  return response.blob();
+}
+
 export function getLearningState(token) {
   return apiRequest('/api/progress/me', { headers: { Authorization: `Bearer ${token}` } });
 }

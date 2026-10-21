@@ -40,6 +40,7 @@ export function TopicView({ topic, content, progress, t, onAction }) {
   const questionCount = (content.quizzes?.length || 0) + (content.multi?.length || 0) + (content.structured?.length || 0) + (content.worked?.length || 0);
 
   const rows = [
+    { icon: '▤', label: 'PUBLISHED LESSONS', count: 'reviewed additions & sources', action: 'published' },
     { icon: '≡', label: 'CHAPTERS',            count: `${tpProg.chaptersRead.length}/${content.chapters.length}`, action: 'chapters' },
     { icon: '?', label: 'PAPER 1 · MCQ',       count: `${content.quizzes?.length || 0} questions`,                action: 'quiz' },
     { icon: '§', label: 'PAPER 2 · STRUCTURED',count: `${content.structured?.length || 0} long-form`,             action: 'structured' },

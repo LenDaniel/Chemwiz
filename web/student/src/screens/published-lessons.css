@@ -1,0 +1,19 @@
+.cw-managed { padding: 24px; color: var(--cw-text); width: 100%; max-width: 1120px; margin: auto; box-sizing: border-box; }
+.cw-managed h1 { font-size: clamp(24px, 4vw, 34px); margin: 8px 0; }
+.cw-managed h2 { font-size: 20px; line-height: 1.35; overflow-wrap: anywhere; }
+.cw-managed p { line-height: 1.65; overflow-wrap: anywhere; }
+.cw-managed-eyebrow { font-size: 11px; letter-spacing: .14em; color: var(--cw-accent); }
+.cw-managed-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 16px 0; }
+.cw-managed button { border: 1px solid var(--cw-border); border-radius: 8px; background: var(--cw-panel-hi); color: var(--cw-text); padding: 10px 14px; min-height: 44px; font: inherit; cursor: pointer; overflow-wrap: anywhere; }
+.cw-managed button:disabled { opacity: .5; cursor: default; }
+.cw-managed button[aria-pressed="true"] { border-color: var(--cw-accent); }
+.cw-managed a { color: var(--cw-accent); overflow-wrap: anywhere; }
+.cw-managed-filters { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; padding: 16px; background: var(--cw-panel); border-radius: 12px; border: 1px solid var(--cw-border); }
+.cw-managed-filters label { display: grid; gap: 8px; flex: 1 1 210px; min-width: 0; }
+.cw-managed input, .cw-managed select { width: 100%; min-width: 0; box-sizing: border-box; padding: 12px; border: 1px solid var(--cw-border); border-radius: 8px; background: var(--cw-bg); color: var(--cw-text); font: inherit; }
+.cw-managed-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,290px),1fr)); gap: 16px; }
+.cw-managed-card, .cw-managed-reader { min-width: 0; padding: 22px; border: 1px solid var(--cw-border); background: var(--cw-panel); border-radius: 12px; }
+.cw-managed-text { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.85; font-size: 17px; margin: 24px 0; }
+.cw-managed-source { border-top: 1px solid var(--cw-border); padding-top: 18px; margin-top: 24px; }
+.cw-managed-note, .cw-managed small { color: var(--cw-muted); line-height: 1.65; }
+@media(max-width:600px) { .cw-managed { padding: 14px; } .cw-managed-card, .cw-managed-reader { padding: 16px; } }
