@@ -117,6 +117,7 @@ export function AdminDashboard({
 
         <RecordSection title="Recycle bin" kind="bin" token={token} version={recordsVersion} onChanged={onRecordsChanged} />
         <RecordSection title="Content & Sources" kind="content" token={token} version={recordsVersion} onChanged={onRecordsChanged} />
+        <RecordSection title="Media library" kind="media" token={token} version={recordsVersion} onChanged={onRecordsChanged} />
         <AdminLogsPanel logs={logs || []} />
       </main>
 

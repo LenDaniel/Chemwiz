@@ -133,3 +133,25 @@ export function getContentDrafts(token, params = {}) { const qs = new URLSearchP
 export function createContentDraft(token, payload) { return apiRequest('/api/admin/content', {method:'POST',token,body:payload}); }
 export function updateContentDraft(token, id, payload) { return apiRequest(`/api/admin/content/${id}`, {method:'PUT',token,body:payload}); }
 export function trashContentDraft(token, id, payload) { return apiRequest(`/api/admin/content/${id}`, {method:'DELETE',token,body:payload}); }
+export function importContentDraft(token, payload) { return apiRequest('/api/admin/content/import', {method:'POST',token,body:payload}); }
+export function getContentHistory(token, id, params = {}) { const qs = new URLSearchParams(params).toString(); return apiRequest(`/api/admin/content/${id}/history?${qs}`, {method:'GET',token}); }
+export function publishContentDraft(token, id, payload) { return apiRequest(`/api/admin/content/${id}/publish`, {method:'POST',token,body:payload}); }
+export function unpublishContentDraft(token, id, payload) { return apiRequest(`/api/admin/content/${id}/unpublish`, {method:'POST',token,body:payload}); }
+export function rollbackContentDraft(token, id, payload) { return apiRequest(`/api/admin/content/${id}/rollback`, {method:'POST',token,body:payload}); }
+
+export function getMediaLibrary(token, params = {}) { const qs = new URLSearchParams(params).toString(); return apiRequest(`/api/admin/media?${qs}`, {method:'GET',cache:'no-store',token}); }
+export function updateMedia(token, id, payload) { return apiRequest(`/api/admin/media/${id}`, {method:'PUT',token,body:payload}); }
+export function trashMedia(token, id, payload) { return apiRequest(`/api/admin/media/${id}`, {method:'DELETE',token,body:payload}); }
+export async function uploadMedia(token, file, filename = file.name || 'illustration.png') {
+  const response = await fetchBackend('/api/admin/media', { method:'POST', headers:{Authorization:`Bearer ${token}`,'Content-Type':file.type,'X-ChemWiz-Filename':encodeURIComponent(filename.slice(0,200))}, body:file });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) throw Object.assign(new Error(data.message || 'Image upload failed.'), {status:response.status,code:data.code});
+  if (!data.media) throw new Error('ChemWiz returned an unreadable upload response. Refresh the media library before retrying.');
+  return data;
+}
+export async function getAdminMediaFile(token, id) {
+  const response = await fetchBackend(`/api/admin/media/${id}/file`, {method:'GET',cache:'no-store',headers:{Authorization:`Bearer ${token}`}});
+  if (!response.ok) { const data = await response.json().catch(() => ({})); throw Object.assign(new Error(data.message || 'Image unavailable.'), {status:response.status,code:data.code}); }
+  if (!['image/png','image/jpeg'].includes(response.headers.get('content-type'))) throw new Error('Unexpected image response.');
+  return response.blob();
+}
