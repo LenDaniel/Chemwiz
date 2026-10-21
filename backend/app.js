@@ -25,6 +25,7 @@ const quizRoutes = require('./src/routes/quiz.routes');
 const adminRoutes = require('./src/routes/admin.routes');
 const privacyRoutes = require('./src/routes/privacy.routes');
 const schoolsRoutes = require('./src/routes/schools.routes');
+const contentRoutes = require('./src/routes/content.routes');
 
 const app = express();
 const { version } = require('../package.json');
@@ -112,6 +113,7 @@ app.use('/api/quiz', quizRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/privacy', privacyRoutes);
 app.use('/api/schools', schoolsRoutes);
+app.use('/api/content', contentRoutes);
 
 app.use((req, res) => {
   res.status(404).json({

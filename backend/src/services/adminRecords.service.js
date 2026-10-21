@@ -3,6 +3,8 @@ const { User } = require('../data/modelProvider');
 const { getDataMode } = require('../config/runtime');
 const { modelForRuntime } = require('../data/workerMongoContext');
 const store = require('./governanceStore');
+const editorial = require('./contentEditorial.service');
+const media = require('./contentMedia.service');
 const { guardianHeadKey } = require('./privacy.service');
 const RETENTION_DAYS = 90;
 const DAY = 86400000;
@@ -61,7 +63,7 @@ function accountAction(state, action, userId, actor, body, now) {
   return { success: true, message: action === 'trash-account' ? 'Account moved to the recycle bin for at least 90 days.' : 'Account restored to its previous suspended or inactive status. Reactivation is a separate action.', id: userId };
 }
 function safeURL(value) { const result = text(value, 1000); if (result) { let parsed; try { parsed = new URL(result); } catch { fail('Enter a full http or https source URL.'); } if (!['https:', 'http:'].includes(parsed.protocol) || parsed.username || parsed.password) fail('Only public http or https source links are supported.'); } return result; }
-function draftData(body, actor, now, previous) {
+function draftData(body, actor, now, previous, mediaLinks) {
   if (typeof body.body === 'string' && body.body.trim().length > 20000) fail('Draft text cannot exceed 20,000 characters. Split it into smaller drafts.');
   const validUntil = text(body.validUntil, 10);
   if (validUntil && (!/^\d{4}-\d\d-\d\d$/.test(validUntil) || !Number.isFinite(Date.parse(validUntil)) || new Date(validUntil).toISOString().slice(0,10) !== validUntil)) fail('Enter a valid permission expiry date.');
@@ -70,8 +72,12 @@ function draftData(body, actor, now, previous) {
   const assetId = text(body.assetId, 200);
   const asset = assetId ? inventory().find(row => row.assetId === assetId) : null;
   if (assetId && !asset) fail('Choose an asset from the current content inventory.');
+  const topicId = text(body.topicId, 80), audience = body.audience || 'premium';
+  if (topicId && !inventory().some(row => row.topicId === topicId)) fail('Choose a current syllabus topic.');
+  if (!['free', 'premium'].includes(audience)) fail('Choose free or Premium learner access.');
   if (!['draft', 'review', 'cleared'].includes(body.status)) fail('Choose draft, review or cleared.');
   const data = { title, body: content, creator, licenseName, assetId, assetHash: asset?.assetHash || null,
+    topicId, audience, publication: previous?.publication || null, ...(mediaLinks === undefined ? {} : { mediaLinks }),
     validUntil, sourceURL: safeURL(body.sourceURL), licenseURL: safeURL(body.licenseURL), attribution: text(body.attribution, 1500), permissionReference: text(body.permissionReference, 400),
     commercialUseAllowed: body.commercialUseAllowed === true, offlineRedistributionAllowed: body.offlineRedistributionAllowed === true,
     platforms: [...new Set(Array.isArray(body.platforms) ? body.platforms.filter(value => ['web', 'android', 'windows'].includes(value)) : [])],
@@ -83,7 +89,7 @@ function draftData(body, actor, now, previous) {
   }
   return data;
 }
-const reviewFields = data => ({ title: data.title, body: data.body, creator: data.creator, licenseName: data.licenseName, validUntil: data.validUntil, sourceURL: data.sourceURL, licenseURL: data.licenseURL, attribution: data.attribution, permissionReference: data.permissionReference, assetId: data.assetId, assetHash: data.assetHash, commercialUseAllowed: data.commercialUseAllowed, offlineRedistributionAllowed: data.offlineRedistributionAllowed, platforms: data.platforms });
+const reviewFields = data => ({ title: data.title, body: data.body, creator: data.creator, licenseName: data.licenseName, validUntil: data.validUntil, sourceURL: data.sourceURL, licenseURL: data.licenseURL, attribution: data.attribution, permissionReference: data.permissionReference, assetId: data.assetId, assetHash: data.assetHash, commercialUseAllowed: data.commercialUseAllowed, offlineRedistributionAllowed: data.offlineRedistributionAllowed, platforms: data.platforms, topicId: data.topicId, audience: data.audience, mediaLinks: data.mediaLinks });
 function canRedistribute(data, platform, { offline = false, now = Date.now() } = {}) {
   return Boolean(data && !data.recycleBin && data.status === 'cleared' && data.reviewHash === digest(reviewFields(data)) && data.commercialUseAllowed && (!data.validUntil || Number.isFinite(Date.parse(data.validUntil)) && now < Date.parse(data.validUntil) + DAY) && Array.isArray(data.platforms) && data.platforms.includes(platform) && (!offline || data.offlineRedistributionAllowed) && (!data.assetId || inventory().some(row => row.assetId === data.assetId && row.assetHash === data.assetHash)));
 }
@@ -93,24 +99,31 @@ function contentAction(state, action, draftId, actor, body, now) {
     if (action === 'update-content' && !previous) fail('Draft not found. A purged draft cannot be restored by saving an old editor.', 404);
     if ((previous?.revision || 0) !== body.revision) fail('This draft changed. Refresh before saving.', 409, 'CONTENT_CONFLICT');
     if (previous?.data.recycleBin) fail('Restore the draft from the recycle bin before editing.', 409);
-    const data = draftData(body, actor, now, previous?.data);
+    const mediaLinks = media.linksForDraft(state, body.mediaIds ?? previous?.data.mediaLinks?.map(item => item.id) ?? []);
+    const data = draftData(body, actor, now, previous?.data, mediaLinks);
+    if (mediaLinks.length || previous?.data.mediaLinks?.length) media.touchStorage(state, now);
+    if (previous) editorial.recordVersion(state, previous, actor, now);
     const doc = { key, kind: 'content-draft', ownerId: '', schoolId: '', revision: (previous?.revision || 0) + 1, createdAt: previous?.createdAt || iso(now), updatedAt: iso(now), data };
     state.governance = [...state.governance.filter(row => row.key !== key), doc];
+    editorial.recordVersion(state, doc, actor, now);
     audit(state, actor, 'CONTENT_DRAFT_SAVED', null, { contentId: draftId, revision: doc.revision, status: data.status }, now);
     return { success: true, draft: formatDraft(doc) };
   }
   if (!previous || previous.kind !== 'content-draft') fail('Draft not found.', 404);
+  if (['publish-content','unpublish-content','rollback-content'].includes(action)) return editorial.publicationAction(state, previous, action, actor, body, now);
   confirm(body, previous.data.title);
   if (body.revision !== previous.revision) fail('This draft changed. Refresh before continuing.', 409, 'CONTENT_CONFLICT');
   if (action === 'trash-content') {
     if (previous.data.recycleBin) fail('This draft is already in the recycle bin.', 409);
+    editorial.recordVersion(state, previous, actor, now);
+    if (previous.data.publication) previous.data.publication = { ...previous.data.publication, status: 'withdrawn', withdrawnAt: iso(now), withdrawnBy: String(actor._id) };
     previous.data.recycleBin = stamp(actor, body, now); previous.data.status = 'draft'; delete previous.data.reviewHash;
   } else {
     if (!previous.data.recycleBin) fail('This draft is not in the recycle bin.', 404);
     if (action === 'restore-content') { previous.data.recycleBin = null; previous.data.status = 'draft'; delete previous.data.reviewHash; }
     else if (action === 'purge-content') {
       due(previous.data.recycleBin, now);
-      state.governance = state.governance.filter(doc => doc.key !== key);
+      state.governance = state.governance.filter(doc => doc.key !== key && !(doc.kind === 'content-version' && doc.data.contentId === draftId));
       state.adminLogs = state.adminLogs.map(log => log.details?.contentId === draftId ? { ...log, details: { redactedAt: iso(now), reason: 'Permanent material erasure' } } : log);
       audit(state, actor, 'RECYCLE_ENTRY_PERMANENTLY_DELETED', null, { type: 'material', completedAt: iso(now) }, now);
       return { success: true, message: 'Draft material and its saved provenance permanently deleted.' };
@@ -122,7 +135,7 @@ function contentAction(state, action, draftId, actor, body, now) {
 }
 function transition(state, action, targetId, actor, body = {}, now = Date.now()) {
   authorize(actor); id(targetId);
-  return action.endsWith('account') ? accountAction(state, action, targetId, actor, body, now) : contentAction(state, action, targetId, actor, body, now);
+  return action.endsWith('account') ? accountAction(state, action, targetId, actor, body, now) : action.endsWith('media') ? media.transition(state, action, targetId, actor, body, now) : contentAction(state, action, targetId, actor, body, now);
 }
 async function mutate(action, targetId, actor, body) {
   const now = Date.now(); authorize(actor); id(targetId);
@@ -134,10 +147,10 @@ async function mutate(action, targetId, actor, body) {
   const session = await User.db.startSession(); let result;
   try {
     await session.withTransaction(async () => {
-      const account = action.endsWith('account');
+      const account = action.endsWith('account'), image = action.endsWith('media');
       const user = account ? await User.findById(targetId).select('+passwordReset').session(session).lean() : null;
-      const filter = account ? { $or: [{ ownerId: targetId }, { kind: 'guardian', 'data.childEmail': user?.email }, { kind: 'guardian', 'data.parentEmail': user?.email }, { key: guardianHeadKey(user?.email || '') }, { kind: 'school', 'data.reservedUserIds': targetId }] } : { key: 'content:' + targetId };
-      const logs = action.startsWith('purge') ? await AdminLog.find(account ? { $or: [{ targetUser: targetId }, { admin: targetId }] } : { 'details.contentId': targetId }).session(session).lean() : [];
+      const filter = account ? { $or: [{ ownerId: targetId }, { kind: 'guardian', 'data.childEmail': user?.email }, { kind: 'guardian', 'data.parentEmail': user?.email }, { key: guardianHeadKey(user?.email || '') }, { kind: 'school', 'data.reservedUserIds': targetId }] } : image ? media.mutationFilter(action, targetId) : { $or: [{ key: 'content:' + targetId }, { kind: 'content-version', 'data.contentId': targetId }, { kind: 'content-media' }, { key: 'media-storage' }] };
+      const logs = action.startsWith('purge') ? await AdminLog.find(account ? { $or: [{ targetUser: targetId }, { admin: targetId }] } : image ? { 'details.mediaId': targetId } : { 'details.contentId': targetId }).session(session).lean() : [];
       const before = copy({ users: user ? [user] : [], governance: await Governance.find(filter).session(session).lean(), learningStates: [], adminLogs: logs });
       const next = copy(before); result = transition(next, action, targetId, actor, body, now);
       if (account && user) {
@@ -174,14 +187,18 @@ function pageRows(rows, query = {}) {
   const page = Math.max(1, Math.min(100000, Math.floor(Number(query.page) || 1))), limit = Math.max(1, Math.min(50, Math.floor(Number(query.limit) || 20)));
   return { items: rows.slice((page - 1) * limit, page * limit), pagination: { page, limit, total: rows.length, pages: Math.max(1, Math.ceil(rows.length / limit)) } };
 }
-const formatDraft = doc => ({ id: doc.key.slice(8), revision: doc.revision, ...doc.data, eligibility: { webOffline: canRedistribute(doc.data, 'web', { offline: true }), androidOffline: canRedistribute(doc.data, 'android', { offline: true }), windowsOffline: canRedistribute(doc.data, 'windows', { offline: true }) } });
-async function drafts(query) { const search = text(query.search, 200).toLowerCase(); return pageRows((await store.list({ kind: 'content-draft' })).filter(doc => !doc.data.recycleBin && (!search || (doc.data.title + ' ' + doc.data.creator).toLowerCase().includes(search))).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)).map(formatDraft), query); }
+const formatDraft = doc => ({ id: doc.key.slice(8), revision: doc.revision, ...doc.data, eligibility: { web: canRedistribute(doc.data, 'web'), webOffline: canRedistribute(doc.data, 'web', { offline: true }), androidOffline: canRedistribute(doc.data, 'android', { offline: true }), windowsOffline: canRedistribute(doc.data, 'windows', { offline: true }) } });
+async function drafts(query) { const search = text(query.search, 200).toLowerCase(); return pageRows((await store.list({ kind: 'content-draft' })).filter(doc => !doc.data.recycleBin && (!search || (doc.data.title + ' ' + doc.data.creator).toLowerCase().includes(search))).sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()).map(formatDraft), query); }
 function sourceInventory(query) { const search = text(query.search, 200).toLowerCase(); return { ...pageRows(inventory().filter(row => !search || (row.title + ' ' + row.topicId + ' ' + row.assetId).toLowerCase().includes(search)), query), notice: 'Inventory entries identify existing source files and content hashes. Their provenance requires review; inventory does not grant redistribution permission.' }; }
 async function recycleBin(query = {}) {
   const now = Date.now(), search = text(query.search, 200).toLowerCase(); const entries = [];
   for (const user of await User.find({ recycleBin: { $ne: null } }).select('-password')) if (user.recycleBin) entries.push({ entryId: 'account:' + user._id, targetId: String(user._id), type: 'account', title: user.name, confirmation: user.email, accountStatus: user.accountStatus, ...user.recycleBin });
   for (const doc of await store.list({ kind: 'content-draft' })) if (doc.data.recycleBin) entries.push({ entryId: 'material:' + doc.key.slice(8), targetId: doc.key.slice(8), revision: doc.revision, type: 'material', title: doc.data.title, confirmation: doc.data.title, ...doc.data.recycleBin });
-  return { ...pageRows(entries.filter(row => (!query.type || row.type === query.type) && (!search || (row.title + ' ' + row.confirmation).toLowerCase().includes(search))).map(row => ({ ...row, canPurge: Number.isFinite(Date.parse(row.deletedAt)) && Number.isFinite(Date.parse(row.purgeEligibleAt)) && now >= Math.max(Date.parse(row.purgeEligibleAt), Date.parse(row.deletedAt) + RETENTION_DAYS * DAY) })).sort((a, b) => b.deletedAt.localeCompare(a.deletedAt)), query), retentionDays: RETENTION_DAYS };
+  const mediaDocs = await store.list({ kind: 'content-media' });
+  const recycledImages = mediaDocs.filter(doc => doc.data.recycleBin);
+  const references = recycledImages.length ? { governance: [...await store.list({ kind: 'content-draft' }), ...await store.list({ kind: 'content-version' })] } : { governance: [] };
+  for (const doc of recycledImages) { const imageId = doc.key.slice(6), count = media.references(references, imageId); entries.push({ entryId: 'media:' + imageId, targetId: imageId, revision: doc.revision, type: 'media', title: doc.data.title, confirmation: doc.data.title, ...doc.data.recycleBin, retentionHold: count ? `${count} retained material(s) reference this image. Purge those materials first.` : null }); }
+  return { ...pageRows(entries.filter(row => (!query.type || row.type === query.type) && (!search || (row.title + ' ' + row.confirmation).toLowerCase().includes(search))).map(row => ({ ...row, canPurge: !row.retentionHold && Number.isFinite(Date.parse(row.deletedAt)) && Number.isFinite(Date.parse(row.purgeEligibleAt)) && now >= Math.max(Date.parse(row.purgeEligibleAt), Date.parse(row.deletedAt) + RETENTION_DAYS * DAY) })).sort((a, b) => b.deletedAt.localeCompare(a.deletedAt)), query), retentionDays: RETENTION_DAYS };
 }
-function entryAction(action, entryId, actor, body) { const match = /^(account|material):([a-f0-9]{24})$/.exec(entryId); if (!match) fail('Invalid recycle-bin entry.'); return mutate(action + '-' + (match[1] === 'account' ? 'account' : 'content'), match[2], actor, body); }
-module.exports = { RETENTION_DAYS, transition, mutate, recycleBin, drafts, sourceInventory, entryAction, canRedistribute };
+function entryAction(action, entryId, actor, body) { const match = /^(account|material|media):([a-f0-9]{24})$/.exec(entryId); if (!match) fail('Invalid recycle-bin entry.'); return mutate(action + '-' + (match[1] === 'material' ? 'content' : match[1]), match[2], actor, body); }
+module.exports = { RETENTION_DAYS, transition, mutate, recycleBin, drafts, sourceInventory, entryAction, canRedistribute, draftData };

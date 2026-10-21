@@ -1,0 +1,14 @@
+const express = require('express');
+const { protect } = require('../middleware/auth.middleware');
+const { requireLearningConsent } = require('../middleware/privacy.middleware');
+const editorial = require('../services/contentEditorial.service');
+const router = express.Router();
+router.use((req,res,next) => { res.setHeader('Cache-Control','no-store'); next(); });
+router.use(protect);
+router.use(requireLearningConsent);
+const read = fn => async (req,res,next) => { try { res.json(await fn(req)); } catch (error) { next(error); } };
+router.get('/', read(req => editorial.publishedList(req.user,req.query)));
+router.get('/credits', read(req => editorial.publishedList(req.user,req.query,true)));
+router.get('/:id/media/:mediaId', async (req,res,next) => { try { const media = require('../services/contentMedia.service'); media.sendFile(res, await media.publishedFile(req.user,req.params.id,req.params.mediaId)); } catch (error) { next(error); } });
+router.get('/:id', read(req => editorial.publishedMaterial(req.user,req.params.id)));
+module.exports = router;

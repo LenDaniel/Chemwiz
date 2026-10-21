@@ -5,12 +5,25 @@ const { adminOnly } = require("../middleware/admin.middleware");
 
 const router = express.Router();
 const records = require('../services/adminRecords.service');
+const editorial = require('../services/contentEditorial.service');
+const media = require('../services/contentMedia.service');
 const { rateLimit } = require('express-rate-limit');
 const recordWriteLimit = rateLimit({windowMs:60000,limit:60,keyGenerator:req=>String(req.user._id),standardHeaders:'draft-8',legacyHeaders:false,message:{code:'ADMIN_WRITE_LIMIT',message:'Please wait before making more record changes.'}});
 const recordRoute = fn => async(req,res,next)=>{try{res.json(await fn(req));}catch(error){next(error);}};
 
 router.use(protect);
 router.use(adminOnly);
+
+const mediaUploadLimit = rateLimit({ windowMs: 60000, limit: 6, keyGenerator: req => String(req.user._id), standardHeaders: 'draft-8', legacyHeaders: false, message: { code: 'CONTENT_MEDIA_UPLOAD_LIMIT', message: 'Please wait before uploading more images.' } });
+router.get('/media', recordRoute(req => media.list(req.query)));
+router.post('/media', mediaUploadLimit, express.raw({ type: ['image/png', 'image/jpeg'], limit: '2mb' }), recordRoute(req => {
+  let filename = ''; try { filename = decodeURIComponent(req.get('X-ChemWiz-Filename') || ''); } catch { /* An invalid filename never changes file validation. */ }
+  return media.upload(req.user, req.body, req.get('Content-Type'), filename);
+}));
+router.put('/media/:id', recordWriteLimit, recordRoute(req => records.mutate('update-media', req.params.id, req.user, req.body)));
+router.delete('/media/:id', recordWriteLimit, recordRoute(req => records.mutate('trash-media', req.params.id, req.user, req.body)));
+router.get('/media/:id/file', async (req,res,next) => { try { media.sendFile(res, await media.file(req.params.id)); } catch (error) { next(error); } });
+
 
 router.post('/users/:userId/trash', recordWriteLimit, recordRoute(req=>records.mutate('trash-account',req.params.userId,req.user,req.body)));
 router.get('/recycle-bin', recordRoute(req=>records.recycleBin(req.query)));
@@ -19,6 +32,11 @@ router.delete('/recycle-bin/:entryId', recordWriteLimit, recordRoute(req=>record
 router.get('/content-inventory', recordRoute(req=>records.sourceInventory(req.query)));
 router.get('/content', recordRoute(req=>records.drafts(req.query)));
 router.post('/content', recordWriteLimit, recordRoute(req=>records.mutate('save-content',require('../services/governanceStore').id(),req.user,{...req.body,revision:0})));
+router.post('/content/import', recordWriteLimit, recordRoute(req=>records.mutate('save-content',require('../services/governanceStore').id(),req.user,editorial.importMaterial(req.body))));
+router.get('/content/:id/history', recordRoute(req=>editorial.history(req.params.id,req.query)));
+router.post('/content/:id/publish', recordWriteLimit, recordRoute(req=>records.mutate('publish-content',req.params.id,req.user,req.body)));
+router.post('/content/:id/unpublish', recordWriteLimit, recordRoute(req=>records.mutate('unpublish-content',req.params.id,req.user,req.body)));
+router.post('/content/:id/rollback', recordWriteLimit, recordRoute(req=>records.mutate('rollback-content',req.params.id,req.user,req.body)));
 router.put('/content/:id', recordWriteLimit, recordRoute(req=>records.mutate('update-content',req.params.id,req.user,req.body)));
 router.delete('/content/:id', recordWriteLimit, recordRoute(req=>records.mutate('trash-content',req.params.id,req.user,req.body)));
 
