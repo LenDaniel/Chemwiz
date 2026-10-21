@@ -1,6 +1,6 @@
 'use strict';
 const PREFIX = 'chemwiz-student-recovery-';
-const BUILD = "1.7.0-05558702ab99ea1a";
+const BUILD = "1.9.0-653cb12096337d6f";
 const CACHE = PREFIX + BUILD;
 const FILES = ["/student/offline.html","/student/manifest.webmanifest","/student/icons/chemwiz-192.png","/student/icons/chemwiz-512.png","/student/icons/chemwiz.svg"];
 const OFFLINE = '/student/offline.html';
