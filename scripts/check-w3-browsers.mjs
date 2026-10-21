@@ -5,6 +5,8 @@ import { chromium, firefox } from 'playwright';
 import { runW3Checks } from './lib/w3-browser-checks.mjs';
 import { runV16Checks } from './lib/v16-browser-checks.mjs';
 import { runV17Checks } from './lib/v17-browser-checks.mjs';
+import { runV18Checks } from './lib/v18-browser-checks.mjs';
+import { runV19Checks } from './lib/v19-browser-checks.mjs';
 import { readJson, writeJson, verifyPreflight } from './lib/gate-state.mjs';
 import { sourceFingerprint } from './lib/source-checks.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -39,8 +41,10 @@ try {
       const result = await runW3Checks({ root, browser, base, label: name });
       const v16 = await runV16Checks({ root, browser, base, app: instance.app });
       const v17 = await runV17Checks({root,browser,base});
-      report.browsers.push({ name, ...result, v16, v17 });
-      console.log(`W3 + PWA/admin ${name} ${browser.version()}: PASS (${result.checks.length} W3 and ${v16.checks.length} PWA/admin and ${v17.checks.length} recycle/content checks).`);
+      const v18 = await runV18Checks({root,browser,base});
+      const v19 = await runV19Checks({root,browser,base});
+      report.browsers.push({ name, ...result, v16, v17, v18, v19 });
+      console.log(`W3 + PWA/admin ${name} ${browser.version()}: PASS (${result.checks.length} W3 and ${v16.checks.length} PWA/admin and ${v17.checks.length} recycle/content and ${v18.checks.length} CMS1b and ${v19.checks.length} image checks).`);
     } catch (error) {
       report.browsers.push({ name, status: 'FAIL', error: error.message });
       console.error(`W3 ${name}: FAIL. ${error.message}`);

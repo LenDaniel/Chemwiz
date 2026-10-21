@@ -1,7 +1,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..');
-const required = ['package.json', 'package-lock.json', 'server.js', '.env.example', 'vite.config.mjs',
+const required = ['backend/src/services/imageNormalization.js','backend/src/services/contentMedia.service.js','web/shared/ProtectedImage.jsx','web/shared/protected-image.css','web/admin/src/components/MediaLibrary.jsx','web/admin/src/components/MediaAttachments.jsx','tests/content-media.test.cjs','scripts/lib/v19-browser-checks.mjs','MANAGED_IMAGES_README.md','package.json', 'package-lock.json', 'server.js', '.env.example', 'vite.config.mjs',
   'scripts/setup.cjs', 'backend/app.js', 'backend/src/data/localModels.js', 'backend/src/data/modelProvider.js',
   'backend/src/services/learningState.service.js', 'shared/learning-defaults.json',
   'web/index.html', 'web/student/index.html', 'web/admin/index.html',
@@ -38,6 +38,7 @@ const required = ['package.json', 'package-lock.json', 'server.js', '.env.exampl
   'web/public/student/icons/chemwiz-192.png','web/public/student/icons/chemwiz-512.png',
   'scripts/build-pwa.cjs','scripts/check-pwa.cjs','scripts/lib/student-service-worker.cjs','scripts/lib/pwa-checks.cjs',
   'scripts/lib/v16-browser-checks.mjs','tests/pwa-policy.test.cjs',
+  'backend/src/services/contentEditorial.service.js','backend/src/routes/content.routes.js','web/admin/src/components/EditorialDesk.jsx','web/student/src/screens/PublishedLessons.jsx','web/student/src/screens/published-lessons.css','tests/content-publishing.test.cjs','scripts/lib/v18-browser-checks.mjs','CMS_PUBLISHING_README.md',
   'backend/src/services/adminRecords.service.js','shared/content-inventory.json','scripts/generate-content-inventory.mjs',
   'web/admin/src/components/RecordPanels.jsx','web/admin/src/components/LazyRecordPanel.jsx','web/admin/src/components/RecordConfirmDialog.jsx',
   'tests/admin-recycle.test.cjs','scripts/lib/v17-browser-checks.mjs'];

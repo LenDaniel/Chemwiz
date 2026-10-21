@@ -417,6 +417,104 @@
       "method": "DELETE",
       "path": "/api/admin/content/:id",
       "scenario": "v17-trashContentDraft"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "importContentDraft",
+      "method": "POST",
+      "path": "/api/admin/content/import",
+      "scenario": "v18-importContentDraft"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "getContentHistory",
+      "method": "GET",
+      "path": "/api/admin/content/:id/history",
+      "scenario": "v18-getContentHistory"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "publishContentDraft",
+      "method": "POST",
+      "path": "/api/admin/content/:id/publish",
+      "scenario": "v18-publishContentDraft"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getPublishedMaterials",
+      "method": "GET",
+      "path": "/api/content",
+      "scenario": "v18-getPublishedMaterials"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getPublishedMaterial",
+      "method": "GET",
+      "path": "/api/content/:id",
+      "scenario": "v18-getPublishedMaterial"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getPublishedCredits",
+      "method": "GET",
+      "path": "/api/content/credits",
+      "scenario": "v18-getPublishedCredits"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "rollbackContentDraft",
+      "method": "POST",
+      "path": "/api/admin/content/:id/rollback",
+      "scenario": "v18-rollbackContentDraft"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "unpublishContentDraft",
+      "method": "POST",
+      "path": "/api/admin/content/:id/unpublish",
+      "scenario": "v18-unpublishContentDraft"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "uploadMedia",
+      "method": "POST",
+      "path": "/api/admin/media",
+      "scenario": "v19-uploadMedia"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "getMediaLibrary",
+      "method": "GET",
+      "path": "/api/admin/media",
+      "scenario": "v19-getMediaLibrary"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "updateMedia",
+      "method": "PUT",
+      "path": "/api/admin/media/:id",
+      "scenario": "v19-updateMedia"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "getAdminMediaFile",
+      "method": "GET",
+      "path": "/api/admin/media/:id/file",
+      "scenario": "v19-getAdminMediaFile"
+    },
+    {
+      "file": "web/student/src/config/api.js",
+      "export": "getPublishedMedia",
+      "method": "GET",
+      "path": "/api/content/:id/media/:mediaId",
+      "scenario": "v19-getPublishedMedia"
+    },
+    {
+      "file": "web/admin/src/config/api.js",
+      "export": "trashMedia",
+      "method": "DELETE",
+      "path": "/api/admin/media/:id",
+      "scenario": "v19-trashMedia"
     }
   ]
 }

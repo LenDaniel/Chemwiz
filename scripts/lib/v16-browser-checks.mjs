@@ -170,6 +170,9 @@ async function pwaChecks({ root, browser, app }) {
   try {
     const account = await learner(base);
     await page.goto(base + '/student/');
+    // Let the first document become controlled before the fixture reloads it to inject login.
+    // Reloading during activation can leave that navigation uncontrolled despite a healthy active worker.
+    await page.waitForFunction(() => Boolean(navigator.serviceWorker.controller));
     await page.evaluate(token => localStorage.setItem('cw.authToken', token), account.token);
     await page.reload(); await page.locator('.cw-topic-tile').first().waitFor();
     await page.waitForFunction(() => Boolean(navigator.serviceWorker.controller));

@@ -10,6 +10,8 @@ import { runAccountChecks } from './lib/account-browser-checks.mjs';
 import { runW3Checks } from './lib/w3-browser-checks.mjs';
 import { runV16Checks } from './lib/v16-browser-checks.mjs';
 import { runV17Checks } from './lib/v17-browser-checks.mjs';
+import { runV18Checks } from './lib/v18-browser-checks.mjs';
+import { runV19Checks } from './lib/v19-browser-checks.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
@@ -171,12 +173,16 @@ try {
   checks.push(...v16.checks);
   const v17 = await runV17Checks({root,browser,base});
   checks.push(...v17.checks);
+  const v18 = await runV18Checks({root,browser,base});
+  checks.push(...v18.checks);
+  const v19 = await runV19Checks({root,browser,base});
+  checks.push(...v19.checks);
   assert.deepEqual(errors, []);
-  fs.writeFileSync(path.join(root, '.build-checks/browser.json'), JSON.stringify({ status: 'PASS', browser: browser.version(), checks, w2, accountRecovery, privacySchools, w3, v16, v17 }, null, 2));
+  fs.writeFileSync(path.join(root, '.build-checks/browser.json'), JSON.stringify({ status: 'PASS', browser: browser.version(), checks, w2, accountRecovery, privacySchools, w3, v16, v17, v18, v19 }, null, 2));
   console.log(`Local browser: PASS (${checks.length} checks; desktop/mobile; no JavaScript runtime errors).`);
 } catch (error) {
   fs.writeFileSync(path.join(root, '.build-checks/browser.json'), JSON.stringify({ status: 'FAIL', error: error.message, checks }, null, 2));
-  console.error('Local browser: FAIL:', error.message); process.exitCode = 1;
+  console.error('Local browser: FAIL:', error.stack || error.message); process.exitCode = 1;
 } finally {
   if (browser) await browser.close();
   if (instance?.server.listening) await new Promise((resolve) => instance.server.close(resolve));

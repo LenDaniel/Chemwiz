@@ -71,6 +71,10 @@ export function verifyRelease(root, evidence = readJson(path.join(root, 'verific
   const firefox = matrix?.browsers?.find(result => result.name === 'firefox');
   const v16 = evidence?.local?.browser?.v16;
   const v17 = evidence?.local?.browser?.v17;
+  const v18 = evidence?.local?.browser?.v18;
+  const v19 = evidence?.local?.browser?.v19;
+  if (evidence && (v19?.status !== 'PASS' || !Array.isArray(v19.checks) || v19.checks.length < 13 || firefox?.v19?.status !== 'PASS' || !Array.isArray(firefox.v19.checks) || firefox.v19.checks.length < 13)) issues.push('CMS image upload, review, guarded binary display, credits and recycle checks must pass in both engines.');
+  if (evidence && (v18?.status !== 'PASS' || !Array.isArray(v18.checks) || v18.checks.length < 12 || firefox?.v18?.status !== 'PASS' || !Array.isArray(firefox.v18.checks) || firefox.v18.checks.length < 12)) issues.push('CMS1b import, publication, source credits, version restore and withdrawal checks must pass in both engines.');
   if (evidence && (v17?.status !== 'PASS' || !Array.isArray(v17.checks) || v17.checks.length < 10 || firefox?.v17?.status !== 'PASS' || !Array.isArray(firefox.v17.checks) || firefox.v17.checks.length < 10)) issues.push('Account/material recycle, retention and content-source browser checks must pass in both engines.');
   if (evidence && (v16?.status !== 'PASS' || !Array.isArray(v16.checks) || v16.checks.length < 15 || firefox?.v16?.status !== 'PASS' || !Array.isArray(firefox.v16.checks) || firefox.v16.checks.length < 15)) issues.push('PWA recovery/update/privacy and deferred admin browser checks must pass in both browser engines.');
   if (evidence && (matrix?.status !== 'PASS' || matrix.fingerprint !== fingerprint || matrix.version !== version || firefox?.status !== 'PASS' || !Array.isArray(firefox.checks) || firefox.checks.length < 9)) issues.push('W3 Firefox acceptance must pass for this exact source; run npm run test:local.');
