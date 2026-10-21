@@ -1,14 +1,28 @@
 {
-  "_RecordConfirmDialog-CdX2myOx.js": {
-    "file": "assets/RecordConfirmDialog-CdX2myOx.js",
-    "name": "RecordConfirmDialog",
+  "_ProtectedImage-CQWiOHl0.css": {
+    "file": "assets/ProtectedImage-CQWiOHl0.css",
+    "src": "_ProtectedImage-CQWiOHl0.css"
+  },
+  "_ProtectedImage-CfPYtdMH.js": {
+    "file": "assets/ProtectedImage-CfPYtdMH.js",
+    "name": "ProtectedImage",
     "imports": [
-      "_privacy-CqucxhQI.js",
-      "_useDialog-bpzUdrAl.js"
+      "_privacy-DTmV_rE4.js"
+    ],
+    "css": [
+      "assets/ProtectedImage-CQWiOHl0.css"
     ]
   },
-  "_privacy-CqucxhQI.js": {
-    "file": "assets/privacy-CqucxhQI.js",
+  "_RecordConfirmDialog-DQamWrtn.js": {
+    "file": "assets/RecordConfirmDialog-DQamWrtn.js",
+    "name": "RecordConfirmDialog",
+    "imports": [
+      "_privacy-DTmV_rE4.js",
+      "_useDialog-BwumaTnk.js"
+    ]
+  },
+  "_privacy-DTmV_rE4.js": {
+    "file": "assets/privacy-DTmV_rE4.js",
     "name": "privacy",
     "css": [
       "assets/privacy-_ZRE9ccX.css"
@@ -18,35 +32,40 @@
     "file": "assets/privacy-_ZRE9ccX.css",
     "src": "_privacy-_ZRE9ccX.css"
   },
-  "_useDialog-DMKzRGvS.css": {
-    "file": "assets/useDialog-DMKzRGvS.css",
-    "src": "_useDialog-DMKzRGvS.css"
+  "_topics-K7KB9L0k.js": {
+    "file": "assets/topics-K7KB9L0k.js",
+    "name": "topics"
   },
-  "_useDialog-bpzUdrAl.js": {
-    "file": "assets/useDialog-bpzUdrAl.js",
+  "_useDialog-BwumaTnk.js": {
+    "file": "assets/useDialog-BwumaTnk.js",
     "name": "useDialog",
     "imports": [
-      "_privacy-CqucxhQI.js"
+      "_privacy-DTmV_rE4.js"
     ],
     "css": [
       "assets/useDialog-DMKzRGvS.css"
     ]
   },
+  "_useDialog-DMKzRGvS.css": {
+    "file": "assets/useDialog-DMKzRGvS.css",
+    "src": "_useDialog-DMKzRGvS.css"
+  },
   "admin/index.html": {
-    "file": "assets/admin-XSO9GC6M.js",
+    "file": "assets/admin-ogpp2cK7.js",
     "name": "admin",
     "src": "admin/index.html",
     "isEntry": true,
     "imports": [
-      "_privacy-CqucxhQI.js",
-      "_useDialog-bpzUdrAl.js"
+      "_privacy-DTmV_rE4.js",
+      "_useDialog-BwumaTnk.js"
     ],
     "dynamicImports": [
+      "admin/src/components/MediaLibrary.jsx",
       "admin/src/components/RecordPanels.jsx",
       "admin/src/components/UsersPanel.jsx"
     ],
     "css": [
-      "assets/admin-zriuqb5-.css"
+      "assets/admin-BfvYohW2.css"
     ],
     "assets": [
       "assets/chemwiz-logo-BSJ0CzpN.png",
@@ -61,25 +80,39 @@
     "file": "assets/wiz-emblem-BhMb_J81.png",
     "src": "admin/src/assets/brand/wiz-emblem.png"
   },
+  "admin/src/components/MediaLibrary.jsx": {
+    "file": "assets/MediaLibrary-CqDXfpJD.js",
+    "name": "MediaLibrary",
+    "src": "admin/src/components/MediaLibrary.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_privacy-DTmV_rE4.js",
+      "admin/index.html",
+      "_RecordConfirmDialog-DQamWrtn.js",
+      "_ProtectedImage-CfPYtdMH.js"
+    ]
+  },
   "admin/src/components/RecordPanels.jsx": {
-    "file": "assets/RecordPanels-CfrVD11R.js",
+    "file": "assets/RecordPanels-DRpl6uCQ.js",
     "name": "RecordPanels",
     "src": "admin/src/components/RecordPanels.jsx",
     "isDynamicEntry": true,
     "imports": [
-      "_privacy-CqucxhQI.js",
+      "_privacy-DTmV_rE4.js",
+      "_topics-K7KB9L0k.js",
       "admin/index.html",
-      "_RecordConfirmDialog-CdX2myOx.js"
+      "_RecordConfirmDialog-DQamWrtn.js",
+      "_ProtectedImage-CfPYtdMH.js"
     ]
   },
   "admin/src/components/UsersPanel.jsx": {
-    "file": "assets/UsersPanel-CJCrUHIU.js",
+    "file": "assets/UsersPanel-ZXDL0_hd.js",
     "name": "UsersPanel",
     "src": "admin/src/components/UsersPanel.jsx",
     "isDynamicEntry": true,
     "imports": [
-      "_privacy-CqucxhQI.js",
-      "_RecordConfirmDialog-CdX2myOx.js"
+      "_privacy-DTmV_rE4.js",
+      "_RecordConfirmDialog-DQamWrtn.js"
     ]
   },
   "index.html": {
@@ -87,22 +120,23 @@
     "src": "index.html"
   },
   "legal/index.html": {
-    "file": "assets/legal-DsbmtOAZ.js",
+    "file": "assets/legal-KfhSpik_.js",
     "name": "legal",
     "src": "legal/index.html",
     "isEntry": true,
     "imports": [
-      "_privacy-CqucxhQI.js"
+      "_privacy-DTmV_rE4.js"
     ]
   },
   "student/index.html": {
-    "file": "assets/student-vHKn45kh.js",
+    "file": "assets/student-wIRyaTJB.js",
     "name": "student",
     "src": "student/index.html",
     "isEntry": true,
     "imports": [
-      "_privacy-CqucxhQI.js",
-      "_useDialog-bpzUdrAl.js"
+      "_privacy-DTmV_rE4.js",
+      "_useDialog-BwumaTnk.js",
+      "_topics-K7KB9L0k.js"
     ],
     "dynamicImports": [
       "student/src/content/atomic.jsx",
@@ -129,7 +163,8 @@
       "student/src/content/phase.jsx",
       "student/src/content/environment.jsx",
       "student/src/content/nano.jsx",
-      "student/src/search/searchEngine.js"
+      "student/src/search/searchEngine.js",
+      "student/src/screens/PublishedLessons.jsx"
     ],
     "css": [
       "assets/student-BB0oYxP5.css"
@@ -291,12 +326,28 @@
     "src": "student/src/content/transition.jsx",
     "isDynamicEntry": true
   },
+  "student/src/screens/PublishedLessons.jsx": {
+    "file": "assets/PublishedLessons-DMkelxVv.js",
+    "name": "PublishedLessons",
+    "src": "student/src/screens/PublishedLessons.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_privacy-DTmV_rE4.js",
+      "_topics-K7KB9L0k.js",
+      "student/index.html",
+      "_ProtectedImage-CfPYtdMH.js"
+    ],
+    "css": [
+      "assets/PublishedLessons-C9FCkdVt.css"
+    ]
+  },
   "student/src/search/searchEngine.js": {
-    "file": "assets/searchEngine-BfcWyWUR.js",
+    "file": "assets/searchEngine-DoYuoK_Z.js",
     "name": "searchEngine",
     "src": "student/src/search/searchEngine.js",
     "isDynamicEntry": true,
     "imports": [
+      "_topics-K7KB9L0k.js",
       "student/index.html"
     ]
   }
